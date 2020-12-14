@@ -1,0 +1,27 @@
+{
+    "title": "javaX学习笔记",
+    "description": "Java学习中的记录，知识、技术",
+    "author": "weidd",
+    "language": "zh-hans",
+    "root": ".",
+
+    "plugins": [
+        "github-buttons@2.1.0",
+        "edit-link",
+        "toggle-chapters"
+    ],
+    
+    "pluginsConfig": {
+        "github-buttons": {
+            "repo": "weidong902/JavaStudyBook",
+            "types": [
+                "star"
+            ],
+            "size": "small"
+        },
+        "edit-link": {
+            "base": "https://https://github.com/weidong902/JavaStudyBook",
+            "label": "Edit This Page"
+        }
+    }
+}
