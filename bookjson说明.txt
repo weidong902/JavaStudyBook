@@ -28,7 +28,7 @@
             "size": "small"
         },
         "edit-link": {
-            "base": "https://https://github.com/weidong902/JavaStudyBook",
+            "base": "https://github.com/weidong902/JavaStudyBook",
             "label": "Edit This Page"
         }
     }
