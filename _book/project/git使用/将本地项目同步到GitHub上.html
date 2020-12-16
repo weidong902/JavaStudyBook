@@ -1,0 +1,409 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>将本地项目同步到GitHub上 · java学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="weidd">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../gitbook_start/readme.html" />
+    
+    
+    <link rel="prev" href="Git介绍.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Git介绍.html">
+            
+                <a href="Git介绍.html">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="将本地项目同步到GitHub上.html">
+            
+                <a href="将本地项目同步到GitHub上.html">
+            
+                    
+                    将本地项目同步到GitHub上
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../gitbook_start/readme.html">
+            
+                <a href="../gitbook_start/readme.html">
+            
+                    
+                    gitbook
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../gitbook_start/gitbook创建一本书.html">
+            
+                <a href="../gitbook_start/gitbook创建一本书.html">
+            
+                    
+                    Gitbook创建一本书
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../gitbook_start/将Gitbook上的书籍发布在GitHubPages上.html">
+            
+                <a href="../gitbook_start/将Gitbook上的书籍发布在GitHubPages上.html">
+            
+                    
+                    将Gitbook书上传到GitHubPages
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../typora使用/typora使用.html">
+            
+                <a href="../typora使用/typora使用.html">
+            
+                    
+                    Typora使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../优秀的语言/读书心得.html">
+            
+                <a href="../优秀的语言/读书心得.html">
+            
+                    
+                    个人言语
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >将本地项目同步到GitHub上</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="git&#x4F7F;&#x7528;">Git&#x4F7F;&#x7528;</h2>
+<ul>
+<li><p>Git&#x5B89;&#x88C5;</p>
+</li>
+<li><p>GitHub&#x8D26;&#x6237;&#x6CE8;&#x518C;</p>
+</li>
+<li><p>&#x4E0A;&#x4F20;</p>
+<ul>
+<li><p>&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;&#x4F5C;&#x4E3A;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;&#xFF1A;</p>
+<pre><code class="lang-shell">mkdir testPushGitHub
+cd testPushGitHub
+# &#x5355;&#x884C;&#x6CE8;&#x91CA;(shell&#x811A;&#x672C;)
+# &#x5C06;&#x672C;&#x6587;&#x4EF6;&#x5939;&#x53D8;&#x6210;Git&#x53EF;&#x7BA1;&#x7406;&#x7684;&#x4ED3;&#x5E93; git init 
+git init 
+
+git add . #&#x5C06;&#x6587;&#x4EF6;&#x5939;&#x76EE;&#x5F55;&#x4E0B;&#x6240;&#x6709;&#x63D0;&#x4EA4;&#x5230;&#x7F13;&#x5B58;&#x533A;&#xFF0C;&#x4E5F;&#x53EF;&#xFF08;git add xx.txt&#xFF09;
+git status # &#x67E5;&#x770B;&#x73B0;&#x6709;&#x72B6;&#x6001;
+git commit -m &quot;&#x5199;&#x4E9B;&#x6CE8;&#x91CA;&#xFF0C;&#x4E0D;&#x5199;&#x6CE8;&#x91CA;&#x63D0;&#x4EA4;&#x4E0D;&#x4E86;&quot; #&#x5C06;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;&#x4ED3;&#x5E93;
+
+#&#x8FDE;&#x63A5;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#xFF1A;Git&#x4ED3;&#x5E93;&#x4E0E;GitHub&#x4ED3;&#x5E93;&#x4E4B;&#x95F4;&#x4F20;&#x8F93;&#x662F;&#x901A;&#x8FC7;ssh&#x52A0;&#x5BC6;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x521D;&#x6B21;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4E0B;&#x3002;
+# mac&#x4E0B; 
+cd ~/.ssh #(&#x5982;&#x679C;&#x6CA1;&#x6709;&#x521B;&#x5EFA; mkdir ~/.ssh)
+
+ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
+#&#x4E00;&#x8DEF;&#x56DE;&#x8F66;
+cat ~/.ssh/id_rsa.pub
+# github --&gt;settings--&gt;SSH and GPG keys--&gt;NEW SSH key &#x5C06;&#x672C;&#x5730;&#x7535;&#x8111;&#x4E2D;id_rsa.pub&#x590D;&#x5236;&#x5230;
+# &#x521B;&#x5EFA;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;
+git branch -M main
+git remote add origin git@github.com:weidong902/testPushGitHub.git
+git push -u origin main
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>  <img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215211229044.png" alt="image-20201215211229044" style="zoom:50%;"></p>
+<p><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212254880.png" style="zoom:50%;"></p>
+<p><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212319191.png" style="zoom:80%;"></p>
+<p>&lt;img src=&quot;%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212755723.png&quot; alt=&quot;image-20201215212755723&quot; style=&quot;zoom:80%;&quot; /</p>
+<ul>
+<li><strong>&#x521B;&#x5EFA;&#x4ED3;&#x5E93;</strong></li>
+<li><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212947579.png"></li>
+</ul>
+<p><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215213211612.png" alt=""></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Git介绍.html" class="navigation navigation-prev " aria-label="Previous page: Git">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../gitbook_start/readme.html" class="navigation navigation-next " aria-label="Next page: gitbook">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"将本地项目同步到GitHub上","level":"1.2.1","depth":2,"next":{"title":"gitbook","level":"1.3","depth":1,"path":"project/gitbook_start/readme.md","ref":"project/gitbook_start/readme.md","articles":[{"title":"Gitbook创建一本书","level":"1.3.1","depth":2,"path":"project/gitbook_start/gitbook创建一本书.md","ref":"project/gitbook_start/gitbook创建一本书.md","articles":[]},{"title":"将Gitbook书上传到GitHubPages","level":"1.3.2","depth":2,"path":"project/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.md","ref":"project/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.md","articles":[]}]},"previous":{"title":"Git","level":"1.2","depth":1,"path":"project/git使用/Git介绍.md","ref":"project/git使用/Git介绍.md","articles":[{"title":"将本地项目同步到GitHub上","level":"1.2.1","depth":2,"path":"project/git使用/将本地项目同步到GitHub上.md","ref":"project/git使用/将本地项目同步到GitHub上.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"weidd","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"project/git使用/将本地项目同步到GitHub上.md","mtime":"2020-12-15T13:32:32.197Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-16T02:05:55.030Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

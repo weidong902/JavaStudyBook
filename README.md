@@ -4,18 +4,19 @@
 
 * 新东西先去用，再去学。
 
-* 自律、自信
+* 自律、自信。
 
-* 保持好奇、激情
+* 保持好奇、激情。
 
   ***
 
 * #### 目标？
 
   * 计划？
-  * 回顾
-    
-  * 检验
+  * 回顾？
+  * 检验？
+  
+  吾日三省吾身。
   
 * #### 明白？
 
@@ -46,9 +47,8 @@
 * 重要操作。
 
   * typora作为最好用的makedown编辑器。（语法）
-  * [安装Gitbook](/project/gitbook_start/gitbookstart.md)
-  * [安装Gitbook11](/project/gitbook_start/gitbookstart.md)
-  * <a href="/project/gitbook_start/gitbookstart.md">跳转</a>
+  
+    
 
 
 

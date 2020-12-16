@@ -1,44 +1,44 @@
-* # typora语法教程
+# typora语法教程
 
-  #### 快捷键：command + 数字
+#### 快捷键：command + 数字
 
-  #一级标题 command + 1
+#一级标题 command + 1
 
-  ```xml
-  # 一级标题       command + 1
-  ## 二级标题      command + 2
-  ### 三级标题     command + 3
-  #### 四级标题    command + 4
-  ##### 五级标题   command + 5
-  ###### 六级标题  command + 6
-  ```
+```xml
+# 一级标题       command + 1
+## 二级标题      command + 2
+### 三级标题     command + 3
+#### 四级标题    command + 4
+##### 五级标题   command + 5
+###### 六级标题  command + 6
+```
 
-  ##### 引用 command+option+Q
+##### 引用 command+option+Q
 
-  ```java
-  > 引用
-  
-  command+option+Q
-  ```
+```java
+> 引用
 
-  > 引用：
+command+option+Q
+```
 
-  ##### 列表
+> 引用：
 
-  无序列表 command+option+U
+##### 列表
 
-  ```
-  无序列表
-  * AAA
-  * BBB
-  * CCC
-  
-  * 多行列表
-  TAB * 多行列表
-  TAB TAB * 多行列表
-  
-  command+option+U
-  ```
+无序列表 command+option+U
+
+```
+无序列表
+* AAA
+* BBB
+* CCC
+
+* 多行列表
+TAB * 多行列表
+TAB TAB * 多行列表
+
+command+option+U
+```
 
 * 列表
   * 列表
@@ -101,9 +101,9 @@ command+option+C
 control+command+i
 ```
 
-![](../../../../../../)
+![]()
 
-<img src="../../../../Library/Application Support/typora-user-images/image-20201212171936069.png" style="zoom:50%;" />
+<img src="/typora-user-images/image-20201212171936069.png" style="zoom:50%;" />
 
 #### 公式
 
