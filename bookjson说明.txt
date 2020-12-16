@@ -1,12 +1,12 @@
 {
-    "title": "javaX学习笔记",
+    "title": "java学习笔记",
     "description": "Java学习中的记录，知识、技术",
     "author": "weidd",
     "language": "zh-hans",
     "root": ".",
 
     "plugins": [
-        "donate",//打赏
+        "donate",
         "github-buttons@2.1.0",
         "edit-link"
     ],
@@ -39,7 +39,7 @@
 
 
 
-
+Gitbook插件说明：
 gitbook 还支持许多插件，用户可以从 NPM（https://www.npmjs.com/） 上搜索 gitbook 相关的插件
 
 gitbook 的插件信息会保存在 book.json 文件里
@@ -50,3 +50,7 @@ gitbook-plugin-donate(打赏按钮): https://www.npmjs.com/package/gitbook-plugi
 gitbook-plugin-github-buttons(GitHub按钮): https://www.npmjs.com/package/gitbook-plugin-github-buttons
 
 gitbook-plugin-edit-link(GitHub编辑按钮): https://www.npmjs.com/package/gitbook-plugin-edit-link
+
+折叠插件：
+"toggle-chapters"
+"expandable-chapters"
