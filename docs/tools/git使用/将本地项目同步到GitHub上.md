@@ -43,8 +43,6 @@
 
 <img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212319191.png" style="zoom:80%;" />
 
-<img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212755723.png" alt="image-20201215212755723" style="zoom:80%;" /
-
 * **创建仓库**
 * <img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212947579.png" />
 

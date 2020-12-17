@@ -121,15 +121,7 @@ $$
 P_{u,i}=\frac{\sum_{j}^n(sum{_{u,j}})*R_{j,i}}{\sum_{j}^nsim_{u,j}}
 $$
 
-#### 表格：
-
-
-
-<img src="../../../../Library/Application Support/typora-user-images/image-20201212172334336.png" style="zoom:50%;" />
-
-
-
-
+#### 表格：option+command+t
 
 ###### 样式
 
