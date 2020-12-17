@@ -28,14 +28,18 @@
     cat ~/.ssh/id_rsa.pub
     # github -->settings-->SSH and GPG keys-->NEW SSH key 将本地电脑中id_rsa.pub复制到
     # 创建远程仓库
+    # 如果之前电脑
     git branch -M main
     git remote add origin git@github.com:weidong902/testPushGitHub.git
     git push -u origin main
     ```
+  ```
 
   
+  
+  ```
 
-  <img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215211229044.png" alt="image-20201215211229044" style="zoom:50%;" />
+<img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215211229044.png" alt="image-20201215211229044" style="zoom:50%;" />
 
   
 
@@ -47,3 +51,28 @@
 * <img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212947579.png" />
 
 ![](%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215213211612.png)
+
+```
+检查有没有设置过
+git config user.name
+git config user.email
+
+设置用户名和邮箱
+git config --global user.name "你的用户名"
+git config --global user.email "你的邮箱"
+
+修改你的用户名和邮箱
+git config --global --replace-all user.name "你的用户名"
+git config --global --replace-all user.email "你的邮箱"
+
+生成密钥
+ssh-keygen -t rsa -C '上面的邮箱'
+代码参数含义：
+
+-t 指定密钥类型，默认是 rsa ，可以省略。
+-C 设置注释文字，比如邮箱。
+-f 指定密钥文件存储文件名。
+
+
+```
+
