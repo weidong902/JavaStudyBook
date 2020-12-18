@@ -901,22 +901,45 @@ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
 cat ~/.ssh/id_rsa.pub
 # github --&gt;settings--&gt;SSH and GPG keys--&gt;NEW SSH key &#x5C06;&#x672C;&#x5730;&#x7535;&#x8111;&#x4E2D;id_rsa.pub&#x590D;&#x5236;&#x5230;
 # &#x521B;&#x5EFA;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;
+# &#x5982;&#x679C;&#x4E4B;&#x524D;&#x7535;&#x8111;
 git branch -M main
 git remote add origin git@github.com:weidong902/testPushGitHub.git
 git push -u origin main
 </code></pre>
+<p>```</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>  <img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215211229044.png" alt="image-20201215211229044" style="zoom:50%;"></p>
-<p><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212254880.png" style="zoom:50%;"></p>
-<p><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212319191.png" style="zoom:80%;"></p>
-<ul>
-<li><strong>&#x521B;&#x5EFA;&#x4ED3;&#x5E93;</strong></li>
-<li><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212947579.png"></li>
-</ul>
-<p><img src="%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215213211612.png" alt=""></p>
+<pre><code>
+&lt;img src=&quot;%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215211229044.png&quot; alt=&quot;image-20201215211229044&quot; style=&quot;zoom:50%;&quot; /&gt;
+
+
+
+&lt;img src=&quot;%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212254880.png&quot; style=&quot;zoom:50%;&quot; /&gt;
+
+&lt;img src=&quot;%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212319191.png&quot; style=&quot;zoom:80%;&quot; /&gt;
+
+* **&#x521B;&#x5EFA;&#x4ED3;&#x5E93;**
+* &lt;img src=&quot;%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215212947579.png&quot; /&gt;
+
+![](%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%90%8C%E6%AD%A5%E5%88%B0GitHub%E4%B8%8A.assets/image-20201215213211612.png)
+</code></pre><p>&#x68C0;&#x67E5;&#x6709;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x8FC7;
+git config user.name
+git config user.email</p>
+<p>&#x8BBE;&#x7F6E;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x7BB1;
+git config --global user.name &quot;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;&quot;
+git config --global user.email &quot;&#x4F60;&#x7684;&#x90AE;&#x7BB1;&quot;</p>
+<p>&#x4FEE;&#x6539;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x7BB1;
+git config --global --replace-all user.name &quot;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;&quot;
+git config --global --replace-all user.email &quot;&#x4F60;&#x7684;&#x90AE;&#x7BB1;&quot;</p>
+<p>&#x751F;&#x6210;&#x5BC6;&#x94A5;
+ssh-keygen -t rsa -C &apos;&#x4E0A;&#x9762;&#x7684;&#x90AE;&#x7BB1;&apos;
+&#x4EE3;&#x7801;&#x53C2;&#x6570;&#x542B;&#x4E49;&#xFF1A;</p>
+<p>-t &#x6307;&#x5B9A;&#x5BC6;&#x94A5;&#x7C7B;&#x578B;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F; rsa &#xFF0C;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x3002;
+-C &#x8BBE;&#x7F6E;&#x6CE8;&#x91CA;&#x6587;&#x5B57;&#xFF0C;&#x6BD4;&#x5982;&#x90AE;&#x7BB1;&#x3002;
+-f &#x6307;&#x5B9A;&#x5BC6;&#x94A5;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x6587;&#x4EF6;&#x540D;&#x3002;</p>
+<p>```</p>
 
                                 
                                 </section>
@@ -960,7 +983,7 @@ git push -u origin main
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"将本地项目同步到GitHub上","level":"1.12.1.1","depth":3,"next":{"title":"gitbook","level":"1.12.2","depth":2,"path":"docs/tools/gitbook_start/readme.md","ref":"docs/tools/gitbook_start/readme.md","articles":[{"title":"Gitbook创建一本书","level":"1.12.2.1","depth":3,"path":"docs/tools/gitbook_start/gitbook创建一本书.md","ref":"docs/tools/gitbook_start/gitbook创建一本书.md","articles":[]},{"title":"将Gitbook书上传到GitHubPages","level":"1.12.2.2","depth":3,"path":"docs/tools/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.md","ref":"docs/tools/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.md","articles":[]}]},"previous":{"title":"Git","level":"1.12.1","depth":2,"path":"project/tools/git使用/Git介绍.md","ref":"project/tools/git使用/Git介绍.md","articles":[{"title":"将本地项目同步到GitHub上","level":"1.12.1.1","depth":3,"path":"docs/tools/git使用/将本地项目同步到GitHub上.md","ref":"docs/tools/git使用/将本地项目同步到GitHub上.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"weidd","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/tools/git使用/将本地项目同步到GitHub上.md","mtime":"2020-12-17T02:55:32.427Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-17T09:30:58.141Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"将本地项目同步到GitHub上","level":"1.12.1.1","depth":3,"next":{"title":"gitbook","level":"1.12.2","depth":2,"path":"docs/tools/gitbook_start/readme.md","ref":"docs/tools/gitbook_start/readme.md","articles":[{"title":"Gitbook创建一本书","level":"1.12.2.1","depth":3,"path":"docs/tools/gitbook_start/gitbook创建一本书.md","ref":"docs/tools/gitbook_start/gitbook创建一本书.md","articles":[]},{"title":"将Gitbook书上传到GitHubPages","level":"1.12.2.2","depth":3,"path":"docs/tools/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.md","ref":"docs/tools/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.md","articles":[]}]},"previous":{"title":"Git","level":"1.12.1","depth":2,"path":"project/tools/git使用/Git介绍.md","ref":"project/tools/git使用/Git介绍.md","articles":[{"title":"将本地项目同步到GitHub上","level":"1.12.1.1","depth":3,"path":"docs/tools/git使用/将本地项目同步到GitHub上.md","ref":"docs/tools/git使用/将本地项目同步到GitHub上.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","expandable-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"weidd","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/tools/git使用/将本地项目同步到GitHub上.md","mtime":"2020-12-18T01:39:14.747Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T01:39:45.709Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -979,10 +1002,6 @@ git push -u origin main
     
         
         <script src="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
-        
-    
-        
-        <script src="../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
