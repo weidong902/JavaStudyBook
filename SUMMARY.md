@@ -6,10 +6,14 @@
     * 容器
     * 并发
     * JVM（重点）
-    * 
+    * 设计模式
 * 操作系统
-* 数据结构与算法
-* 数据库
+* [数据结构与算法](/docs/dataStructures-algorithms/SUMMARY.md)
+    * [算法](/docs/dataStructures-algorithms/algorithms/readme.md)
+    * [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
+    * [leetCode](/docs/dataStructures-algorithms/leetcode/README.md)
+* [数据库](/docs/database/README.md)
+    * 
 * 
 * java框架
     * spring
@@ -19,6 +23,7 @@
     * dubbo
     * hibernate
 * 技术
+    * Redis
     * 认证授权
         * SSO（单点登录）
     * 分布式
@@ -45,6 +50,7 @@
 * 消息队列
 * linux
 * 网络编程
+* [bigTOP](/docs/bigtop/SUMMARY.md)
 * [工具](/docs/tools/readme.md)
     * [Git](project/tools/git使用/Git介绍.md)
         * [将本地项目同步到GitHub上](docs/tools/git使用/将本地项目同步到GitHub上.md)
