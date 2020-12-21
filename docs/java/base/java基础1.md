@@ -22,4 +22,10 @@
 
 * 
 
-  
+*  构造器 Constructor 是否可被 override?
+
+  Constructor 不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况。
+
+* 
+
+* 
