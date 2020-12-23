@@ -8,6 +8,8 @@
     "plugins": [
         "github-buttons@2.1.0",
         "edit-link",
+         "disqus",
+         "back-to-top-button",
         "expandable-chapters"
     ],
     
@@ -22,6 +24,12 @@
         "edit-link": {
             "base": "https://github.com/weidong902/JavaStudyBook",
             "label": "Edit This Page"
-        }
+        },
+         "disqus": {
+        "shortName": "gitbook-tutorial"
+         }
+
+
+
     }
 }

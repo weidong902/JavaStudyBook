@@ -6,7 +6,8 @@
     * 容器
     * 并发
     * JVM（重点）
-    * 设计模式
+    * [设计模式](/docs/设计模式/README.md)
+      * 
 * 操作系统
 * [数据结构与算法](/docs/dataStructures-algorithms/SUMMARY.md)
     * [算法](/docs/dataStructures-algorithms/algorithms/readme.md)
