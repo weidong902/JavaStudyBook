@@ -69,7 +69,7 @@ command+option+O
 
 ```
 
-
+目录生成（`[toc]+回车键`）
 
 **代码：command+option+C**
 
