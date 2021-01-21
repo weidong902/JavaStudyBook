@@ -21,5 +21,19 @@
 
 ## 优质公众号
 
+* JavaGuide
+
+* 虫洞栈
+
+* labuladong
+
+* Java团长
+
+* Java研发军团
+
+* 阿里技术
+
+* 程序人生
+
 
 

@@ -1,8 +1,9 @@
-# 目录
+#  目录
 
 * [介绍](README.md)
 
 * [java基础](/docs/java/base/java基础.md)
+    
     * [Java基础](/docs/java/base/java基础.md)
     * 容器
     * 并发
@@ -22,7 +23,10 @@
 
 * [数据结构与算法](/docs/dataStructures-algorithms/SUMMARY.md)
 
+    * [labuladong的算法小抄](/docs/dataStructures-algorithms/labuladong/readme.md)
     * [算法](/docs/dataStructures-algorithms/algorithms/readme.md)
+      * [十大排序算法之-快速排序](/docs/dataStructures-algorithms/algorithms/快速排序.md)
+      * [十大排序算法之-归并排序](/docs/dataStructures-algorithms/algorithms/归并排序.md)
     * [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
     * [leetCode](/docs/dataStructures-algorithms/leetcode/README.md)
 
@@ -30,7 +34,8 @@
   
     * 
     
-* java框架
+* [java框架](/docs/框架/README.md)
+    
     * spring
     * mybatis
     * springmvc
@@ -39,7 +44,7 @@
     * hibernate
     
 * 技术
-    * Redis
+    * [Redis](/docs/skill/Redis/README.md)
     * 认证授权
         * SSO（单点登录）
     * 分布式
@@ -72,12 +77,11 @@
 * [bigTOP](/docs/bigtop/SUMMARY.md)
   
     * [阿里](/docs/bigtop/阿里.md)
-    * [百度](/docs/bigtop/百度.md)
-    * 京东
-    * 字节
-    * 美团
-    * 小米
+    * [字节](/docs/bigtop/字节.md)
+    * [京东](/docs/bigtop/京东.md)
     * 知乎
+    * [百度](/docs/bigtop/百度.md)
+    * [小米](/docs/bigtop/小米.md)
     * [面试汇总](/docs/bigtop/面试/README.md)
       * [面试汇总1](/docs/bigtop/面试/面试题汇总1.md)
     
@@ -92,4 +96,6 @@
     * [Typora使用](/docs/tools/typora使用/typora使用.md)
     
 * [个人言语](docs/优秀的语言/读书心得.md)
+
+* [优秀的公众号及网站](/excellent.md)
 
