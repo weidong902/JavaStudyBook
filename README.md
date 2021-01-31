@@ -2,6 +2,8 @@
 
 文档请访问：https://weidong902.github.io/JavaStudyBook/
 
+GitHub地址：https://github.com/weidong902/JavaStudyBook
+
 * 掉进水里不会淹死，待在水里才会淹死。
 
 * 新东西先去用，再去学。

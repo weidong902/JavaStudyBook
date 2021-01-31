@@ -10,6 +10,24 @@
 
 
 
+
+
+
+
+## 学习计划：
+
+流程图：
+
+* 数据库：
+  * mysql:
+
+* Redis：
+
+* 多线程 ，线程池
+
+
+	
+
 MySQL、Redis、消息队列、dubbo、zk
 
 TCP、UDP、HTTP协议
