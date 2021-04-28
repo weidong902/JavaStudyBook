@@ -8,7 +8,7 @@
 
 [![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
 
-```
+```shell
 #1.安装node.js，在node.js官网下载，直接安装稳定版本。
 https://nodejs.org/en/
 
