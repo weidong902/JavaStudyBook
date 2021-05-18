@@ -33,8 +33,6 @@
   
 *  操作系统
 
-* 数据结构与算法
-
 * [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
 
     * 链表
@@ -51,6 +49,7 @@
 * [数据库](/docs/database/README.md)
   
     * [mysql](/docs/database/mysql.md)
+    * redis
     
 * [java框架](/docs/框架/README.md)
   
@@ -92,21 +91,6 @@
 * 消息队列
 
 * linux
-
-* [bigTOP](/docs/bigtop/SUMMARY.md)
-  
-    * [阿里](/docs/bigtop/阿里.md)
-    * [字节](/docs/bigtop/字节.md)
-    * [京东](/docs/bigtop/京东.md)
-    * [百度](/docs/bigtop/百度.md)
-    * [面试汇总](/docs/bigtop/面试/README.md)
-      * [面试汇总1](/docs/bigtop/面试/面试题汇总1.md)
-    
-    ---
-    
-* [银行知识：](/docs/银行业务整理/README.md)
-
-    * [银行业务](/docs/银行业务整理/银行业务.md)
 
 * [工具](/docs/tools/readme.md)
   
