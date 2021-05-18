@@ -10,33 +10,42 @@
       * [IO流](/docs/java/base/IO流.md)
       * [Java-web基础](/docs/java/base/Java-Web基础.md)
       * [Java版本特性](/docs/java/base/Java版本特性.md)
-      * 
     * [容器](/docs/java/collection/README.md)
       * [List](/docs/java/collection/List.md)
       * [Map](/docs/java/collection/Map.md)
       * [Set](/docs/java/collection/Set.md)
     * [并发](/docs/java/more_thread/README.md)
-    * [JVM（重点）](/docs/java/jvm/README.md)
-    * [设计模式](/docs/设计模式/README.md)
     
+    
+    
+    * [JVM（重点）](/docs/java/jvm/README.md)
+    
+    
+    
+    * [设计模式](/docs/设计模式/README.md)
+
 * [网络编程](/docs/network/网络编程.md)
   
   * [三次握手与四次挥手](/docs/network/三次握手和四次挥手.md)
   * [常考](/docs/network/README.md)
   
-  ---
   
-* 操作系统
+  
+*  操作系统
 
-    ---
+* 数据结构与算法
 
-* [数据结构与算法](/docs/dataStructures-algorithms/SUMMARY.md)
+* [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
 
+    * 链表
+
+* 算法
+
+    * [个人总结常见算法题](/docs/dataStructures-algorithms/algorithms/常见算法题.md)
     * [labuladong的算法小抄](/docs/dataStructures-algorithms/labuladong/readme.md)
-    * [算法](/docs/dataStructures-algorithms/algorithms/readme.md)
+    * [排序](/docs/dataStructures-algorithms/algorithms/readme.md)
       * [十大排序算法之-快速排序](/docs/dataStructures-algorithms/algorithms/快速排序.md)
       * [十大排序算法之-归并排序](/docs/dataStructures-algorithms/algorithms/归并排序.md)
-    * [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
     * [leetCode](/docs/dataStructures-algorithms/leetcode/README.md)
 
 * [数据库](/docs/database/README.md)
