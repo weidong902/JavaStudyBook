@@ -411,7 +411,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1.1" data-path="../../设计模式/">
+        <li class="chapter " data-level="3.1.1" data-path="../../bigtop/面试/myself/4.JVM.html">
+            
+                <a href="../../bigtop/面试/myself/4.JVM.html">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../../设计模式/">
             
                 <a href="../../设计模式/">
             
@@ -684,14 +697,14 @@
             
         </li>
     
-        <li class="chapter " data-level="8.1.2" >
+        <li class="chapter " data-level="8.1.2" data-path="../../bigtop/面试/myself/3.redis.html">
             
-                <span>
+                <a href="../../bigtop/面试/myself/3.redis.html">
             
                     
                     redis
             
-                </span>
+                </a>
             
 
             
@@ -1572,19 +1585,67 @@
     }
 </code></pre>
 <h3 id="141-&#x73AF;&#x5F62;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank">141. &#x73AF;&#x5F62;&#x94FE;&#x8868;</a></h3>
-<pre><code>public class Solution {
-    public boolean hasCycle(ListNode head) {
-        Set&lt;ListNode&gt; seen = new HashSet&lt;ListNode&gt;();
-        while (head != null) {
-            if (!seen.add(head)) {
-                return true;
+<pre><code class="lang-Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasCycle</span><span class="hljs-params">(ListNode head)</span> </span>{
+        Set&lt;ListNode&gt; seen = <span class="hljs-keyword">new</span> HashSet&lt;ListNode&gt;();
+        <span class="hljs-keyword">while</span> (head != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">if</span> (!seen.add(head)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
             }
             head = head.next;
         }
-        return false;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
     }
 }
-</code></pre><h2 id="&#x4E09;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;">&#x4E09;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</h2>
+</code></pre>
+<h3 id="&#x9762;&#x8BD5;&#x9898;-0206-&#x56DE;&#x6587;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/palindrome-linked-list-lcci/" target="_blank">&#x9762;&#x8BD5;&#x9898; 02.06. &#x56DE;&#x6587;&#x94FE;&#x8868;</a></h3>
+<ul>
+<li>&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x83B7;&#x53D6;&#x4E2D;&#x95F4;&#x7ED3;&#x70B9;&#x7684;&#x65B9;&#x6CD5;</li>
+<li>&#x94FE;&#x8868;&#x53CD;&#x8F6C;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x6700;&#x7EC8;&#x8FBE;&#x5230;</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(ListNode head)</span> </span>{
+<span class="hljs-comment">// &#x65B9;&#x5F0F;3&#xFF1A;&#x53CD;&#x8F6C;&#x540E;&#x534A;&#x6BB5;&#x94FE;&#x8868;&#xFF0C;&#x7136;&#x540E;&#x6BD4;&#x8F83;&#x524D;&#x540E;&#x534A;&#x6BB5;&#x94FE;&#x8868;&#x7684;&#x503C;</span>
+        <span class="hljs-comment">// 1&#x3001;&#x901A;&#x8FC7;&#x5FEB;&#x6162;&#x6307;&#x9488;&#xFF0C;&#x627E;&#x51FA;&#x94FE;&#x8868;&#x7684;&#x4E2D;&#x95F4;&#x7ED3;&#x70B9;&#xFF0C;&#x6162;&#x6307;&#x9488;&#x7684;next&#x7ED3;&#x70B9;&#x4E3A;&#x540E;&#x534A;&#x90E8;&#x5206;&#x7684;&#x5F00;&#x59CB;</span>
+        ListNode firstTail = getFirstHalf(head);
+        <span class="hljs-keyword">if</span>(firstTail==<span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span> ;
+        <span class="hljs-comment">//2&#x3001;&#x53CD;&#x8F6C;&#x540E;&#x534A;&#x90E8;&#x5206;&#x94FE;&#x8868;</span>
+        ListNode nextHalf= reversal(firstTail.next);
+        <span class="hljs-comment">//3&#x3001;&#x6BD4;&#x8F83;&#x5C06;&#x539F;&#x94FE;&#x8868;&#x548C;&#x540E;&#x534A;&#x90E8;&#x5206;&#x503C;&#x6BD4;&#x8F83;&#x3002;&#xFF08;&#x4E0D;&#x540C;return false&#xFF0C; &#x76F8;&#x540C;&#x8FD4;&#x56DE;true&#xFF09;</span>
+        <span class="hljs-keyword">while</span>(nextHalf!=<span class="hljs-keyword">null</span>){
+            <span class="hljs-keyword">if</span>(head.val!=nextHalf.val){
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            } <span class="hljs-keyword">else</span>{
+                head=head.next;
+                nextHalf=nextHalf.next;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-comment">// &#x83B7;&#x53D6;&#x94FE;&#x8868;&#x4E2D;&#x95F4;&#x7ED3;&#x70B9;&#x7684;&#x65B9;&#x6CD5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> ListNode <span class="hljs-title">getFirstHalf</span><span class="hljs-params">(ListNode head)</span></span>{
+        ListNode fast =head,slow =head;
+        <span class="hljs-keyword">while</span>(fast!=<span class="hljs-keyword">null</span>&amp;&amp;fast.next!=<span class="hljs-keyword">null</span>&amp;&amp; fast.next.next!=<span class="hljs-keyword">null</span>){
+            fast =fast.next.next;
+            slow=slow.next;
+        }
+        <span class="hljs-keyword">return</span> slow;
+    }
+    <span class="hljs-comment">// &#x94FE;&#x8868;&#x53CD;&#x8F6C;</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> ListNode <span class="hljs-title">reversal</span><span class="hljs-params">(ListNode node)</span></span>{
+        ListNode pre = <span class="hljs-keyword">null</span>, cur=node,tem=<span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">while</span>(cur!=<span class="hljs-keyword">null</span>){
+            tem =cur.next;
+            cur.next=pre;
+            pre=cur;
+            cur=tem;
+        } 
+        <span class="hljs-keyword">return</span> pre;
+    }
+}
+</code></pre>
+<h2 id="&#x4E09;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;">&#x4E09;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</h2>
 <ul>
 <li>&#x5B57;&#x7B26;&#x4E32;&#x95EE;&#x9898;&#x4E00;&#x822C;&#x8F6C;&#x6362;&#x6210;char&#x6570;&#x7EC4;&#xFF0C;&#x53BB;&#x64CD;&#x4F5C;&#x6570;&#x7EC4;&#xFF0C;&#x7701;&#x7684;&#x6BCF;&#x6B21;&#x64CD;&#x4F5C;&#x5B57;&#x7B26;&#x4E32;&#x7684;<code>str.charAt(i)</code></li>
 <li></li>
@@ -1672,6 +1733,62 @@ s &#x4EC5;&#x7531;&#x6570;&#x5B57;&#x548C;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF0
 <h2 id="&#x4E94;&#x3001;&#x6808;&#xFF1A;">&#x4E94;&#x3001;&#x6808;&#xFF1A;</h2>
 <h2 id="&#x516D;&#x3001;hash&#x8868;">&#x516D;&#x3001;Hash&#x8868;</h2>
 <h2 id="&#x4E03;&#x3001;&#x56FE;">&#x4E03;&#x3001;&#x56FE;</h2>
+<h2 id="&#x516B;&#x3001;&#x52A8;&#x6001;&#x89C4;&#x5212;&#xFF08;labuladong&#xFF09;">&#x516B;&#x3001;&#x52A8;&#x6001;&#x89C4;&#x5212;&#xFF08;labuladong&#xFF09;</h2>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524103338426.png" alt="image-20210524103338426"></p>
+<ul>
+<li>&#x4E0D;&#x8981;&#x5C0F;&#x770B;&#x7A77;&#x4E3E;</li>
+<li>&#x6838;&#x5FC3;&#xFF1A;&#x7A77;&#x4E3E;</li>
+</ul>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524104147868.png" alt="image-20210524104147868"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524104228806.png" alt="image-20210524104228806"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524104255133.png" alt="image-20210524104255133"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524110029673.png" alt="image-20210524110029673"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524110123303.png" alt="image-20210524110123303"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524110307321.png" alt="image-20210524110307321"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210524111455743.png" alt="image-20210524111455743"></p>
+<p><img src="%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.assets/image-20210523234630863.png" alt="image-20210523234630863"></p>
+<ul>
+<li>&#x7A7A;&#x95F4;&#x6362;&#x65F6;&#x95F4;&#x3002;&#x5F15;&#x5165;&#x6570;&#x7EC4;&#x5907;&#x5FD8;&#x5F55;&#xFF0C;&#x5360;&#x7528;&#x6570;&#x7EC4;&#x5927;&#x5C0F;&#x7684;&#x7A7A;&#x95F4;&#x3002;</li>
+</ul>
+<h3 id="509&#xFF1A;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;">509&#xFF1A;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;</h3>
+<pre><code class="lang-Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-comment">// &#x65B9;&#x5F0F;1&#xFF1A;&#x76F4;&#x63A5;&#x9012;&#x5F52; &#xFF0C;&#x4F46;&#x662F;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x8F83;&#x9AD8;&#xFF0C;&#x591A;&#x4E86;&#x5F88;&#x591A;&#x91CD;&#x590D;&#x7684;&#x8BA1;&#x7B97;&#x3002;</span>
+         <span class="hljs-comment">/*// &#x65B9;&#x5F0F;2&#xFF1A;&#x5E26;&#x5907;&#x5FD8;&#x5F55;&#x7684;&#x9012;&#x5F52;&#x3002;&#x5C06;&#x6240;&#x6709;&#x8BA1;&#x7B97;&#x8FC7;&#x7684;&#x503C;&#x7F13;&#x5B58;&#x4E0B;&#x6765;&#xFF0C;&#x9012;&#x5F52;&#x4E2D;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x3002;&#xFF08;&#x81EA;&#x9876;&#x5411;&#x4E0B;&#x63A8;&#xFF0C;&#x7136;&#x540E;&#x81EA;&#x5E95;&#x5411;&#x4E0A;&#x56DE;&#x6EAF;&#xFF09;
+       // &#x521D;&#x59CB;&#x5316;&#x5907;&#x5FD8;&#x5F55;&#x3002;
+         int[] notes =new int[n+1];
+        // &#x8FDB;&#x884C;&#x5E26;&#x5907;&#x5FD8;&#x5F55;&#x7684;&#x9012;&#x5F52;&#x3002;
+        return helper(notes, n);*/</span>
+
+       <span class="hljs-comment">/* // &#x65B9;&#x5F0F;3&#xFF1A;dp&#x6570;&#x7EC4;&#x8FED;&#x4EE3;&#x6CD5; &#xFF08;&#x81EA;&#x5E95;&#x5411;&#x4E0A;&#xFF09;
+        if(n==0) return 0;
+        int[] dp =new int[n+1];
+        // base case 
+        dp[0]=0; dp[1]=1;
+        // &#x72B6;&#x6001;&#x8F6C;&#x79FB;
+        for(int i=2; i&lt;=n;i++){
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        return dp[n];*/</span>
+        <span class="hljs-comment">//&#x65B9;&#x5F0F;4&#xFF1A; &#x4F18;&#x5316;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x6C42;&#x7B2C;n&#x4E2A;&#x6570;&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x4ED6;&#x7684;&#x524D;&#x4E24;&#x4E2A;&#x6570;&#x5C31;&#x53EF;&#x4EE5;&#x4E86; &#xFF0C;</span>
+        <span class="hljs-comment">// &#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x53BB;&#x8868;&#x793A;&#x5B83;&#x7684;&#x524D;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x503C;&#xFF0C;&#x4F9D;&#x6B21;&#x6765;&#x4F18;&#x5316;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;</span>
+        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> pre=<span class="hljs-number">0</span>,curr=<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++){
+            <span class="hljs-keyword">int</span> sum=pre+curr;
+            pre =curr;
+            curr=sum;
+        }
+        <span class="hljs-keyword">return</span> curr;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">helper</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] notes,<span class="hljs-keyword">int</span> n)</span></span>{
+        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>|| n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> n; <span class="hljs-comment">//base case</span>
+        <span class="hljs-keyword">if</span>(notes[n]!=<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> notes[n];
+        notes[n] =helper(notes,n-<span class="hljs-number">1</span>)+helper(notes,n-<span class="hljs-number">2</span>);
+        <span class="hljs-keyword">return</span> notes[n];
+    }
+}
+</code></pre>
 <h2 id=""> </h2>
 
                                 
@@ -1712,7 +1829,7 @@ s &#x4EC5;&#x7531;&#x6570;&#x5B57;&#x548C;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"个人总结常见算法题","level":"7.1.1","depth":2,"next":{"title":"labuladong的算法小抄","level":"7.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},"previous":{"title":"算法","level":"7.1","depth":1,"ref":"","articles":[{"title":"个人总结常见算法题","level":"7.1.1","depth":2,"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","ref":"docs/dataStructures-algorithms/algorithms/常见算法题.md","articles":[]},{"title":"labuladong的算法小抄","level":"7.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},{"title":"排序","level":"7.1.3","depth":2,"path":"docs/dataStructures-algorithms/algorithms/readme.md","ref":"docs/dataStructures-algorithms/algorithms/readme.md","articles":[{"title":"十大排序算法之-快速排序","level":"7.1.3.1","depth":3,"path":"docs/dataStructures-algorithms/algorithms/快速排序.md","ref":"docs/dataStructures-algorithms/algorithms/快速排序.md","articles":[]},{"title":"十大排序算法之-归并排序","level":"7.1.3.2","depth":3,"path":"docs/dataStructures-algorithms/algorithms/归并排序.md","ref":"docs/dataStructures-algorithms/algorithms/归并排序.md","articles":[]}]},{"title":"leetCode","level":"7.1.4","depth":2,"path":"docs/dataStructures-algorithms/leetcode/README.md","ref":"docs/dataStructures-algorithms/leetcode/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","mtime":"2021-05-20T01:43:06.288Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-20T02:48:15.373Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"个人总结常见算法题","level":"7.1.1","depth":2,"next":{"title":"labuladong的算法小抄","level":"7.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},"previous":{"title":"算法","level":"7.1","depth":1,"ref":"","articles":[{"title":"个人总结常见算法题","level":"7.1.1","depth":2,"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","ref":"docs/dataStructures-algorithms/algorithms/常见算法题.md","articles":[]},{"title":"labuladong的算法小抄","level":"7.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},{"title":"排序","level":"7.1.3","depth":2,"path":"docs/dataStructures-algorithms/algorithms/readme.md","ref":"docs/dataStructures-algorithms/algorithms/readme.md","articles":[{"title":"十大排序算法之-快速排序","level":"7.1.3.1","depth":3,"path":"docs/dataStructures-algorithms/algorithms/快速排序.md","ref":"docs/dataStructures-algorithms/algorithms/快速排序.md","articles":[]},{"title":"十大排序算法之-归并排序","level":"7.1.3.2","depth":3,"path":"docs/dataStructures-algorithms/algorithms/归并排序.md","ref":"docs/dataStructures-algorithms/algorithms/归并排序.md","articles":[]}]},{"title":"leetCode","level":"7.1.4","depth":2,"path":"docs/dataStructures-algorithms/leetcode/README.md","ref":"docs/dataStructures-algorithms/leetcode/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","mtime":"2021-05-24T03:22:52.469Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-24T03:23:25.234Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
