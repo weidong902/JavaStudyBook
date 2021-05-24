@@ -27,7 +27,7 @@
     
 * [JVM（重点）](/docs/java/jvm/README.md)
   
-  * 
+  * [JVM](/docs/bigtop/面试/myself/4.JVM.md)
   * [设计模式](/docs/设计模式/README.md)
 
 
@@ -63,7 +63,7 @@
 * [数据库](/docs/database/README.md)
   
     * [mysql](/docs/database/mysql.md)
-    * redis
+    * [redis](/docs/bigtop/面试/myself/3.redis.md)
 
 
 
