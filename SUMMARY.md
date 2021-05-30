@@ -49,14 +49,19 @@
 
 
 
-* 算法
+* [算法](/docs/dataStructures-algorithms/SUMMARY.md)
 
     * [个人总结常见算法题](/docs/dataStructures-algorithms/algorithms/常见算法题.md)
+    
     * [labuladong的算法小抄](/docs/dataStructures-algorithms/labuladong/readme.md)
+    
     * [排序](/docs/dataStructures-algorithms/algorithms/readme.md)
       * [十大排序算法之-快速排序](/docs/dataStructures-algorithms/algorithms/快速排序.md)
       * [十大排序算法之-归并排序](/docs/dataStructures-algorithms/algorithms/归并排序.md)
+      
     * [leetCode](/docs/dataStructures-algorithms/leetcode/README.md)
+    
+      
 
 
 
@@ -79,8 +84,6 @@
 
 
 * [技术](/docs/skill/README.md)
-  
-    * [Redis](/docs/skill/Redis/README.md)
     * 认证授权
         * SSO（单点登录）
     * 分布式
