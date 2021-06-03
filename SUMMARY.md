@@ -1,4 +1,4 @@
-## 目录
+## 目录（带有整理的是最近做的）
 
 * [介绍](README.md)
 
@@ -6,6 +6,7 @@
 
 * [Java基础](/docs/java/base/README.md)
   
+    * [Javabase整理](/docs/myself/1.javabase.md)
     * [Java基础](/docs/java/base/java基础.md)
       * [java中二进制操作符号](/docs/java/base/java中二进制操作符号.md)
       * [反射](/docs/java/base/反射.md)
@@ -27,8 +28,15 @@
     
 * [JVM（重点）](/docs/java/jvm/README.md)
   
-  * [JVM](/docs/bigtop/面试/myself/4.JVM.md)
+  * [JVM整理](/docs/myself/4.JVM.md)
   * [设计模式](/docs/设计模式/README.md)
+
+
+
+* [数据库](/docs/database/README.md)
+  * [mysql](/docs/database/mysql.md)
+  * [MySQL整理](/docs/myself/2.mysql.md)
+  * [redis](/docs/myself/3.redis.md)
 
 
 
@@ -65,21 +73,20 @@
 
 
 
-* [数据库](/docs/database/README.md)
-  
-    * [mysql](/docs/database/mysql.md)
-    * [redis](/docs/bigtop/面试/myself/3.redis.md)
+* * 
 
 
 
 * [java框架](/docs/框架/README.md)
   
-    * spring
-    * mybatis
+    * [spring整理](/docs/myself/5.spring.md)
+    * [mybatis](/docs/myself/9.mybatis.md)
     * springmvc
     * netty
-    * dubbo
+    * [dubbo整理](/docs/myself/6.dubbo.md)
     * hibernate
+    * [rabbitmq整理](/docs/myself/7.rabbitmq.md)
+    * [zookeeper整理](/docs/myself/8.zookeeper.md)
 
 
 
