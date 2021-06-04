@@ -1,10 +1,8 @@
-#  Java进阶之路——奔波儿东
+#  Java进阶之路——benboerdong
 
 ### 文档地址
 
 文档请访问：https://weidong902.github.io/JavaStudyBook/
-
-GitHub地址：https://github.com/weidong902/JavaStudyBook
 
 
 
@@ -15,6 +13,8 @@ GitHub地址：https://github.com/weidong902/JavaStudyBook
 * 自律、自信。
 
 * 保持好奇、激情。
+
+* 一鼓作气，再而衰，三而竭。
 
   ***
 

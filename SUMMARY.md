@@ -52,14 +52,13 @@
 
 
 * [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
-
-    * 链表
+* 链表
 
 
 
 * [算法](/docs/dataStructures-algorithms/SUMMARY.md)
 
-    * [个人总结常见算法题](/docs/dataStructures-algorithms/algorithms/常见算法题.md)
+    * [个人总结常见算法题整理](/docs/dataStructures-algorithms/algorithms/常见算法题.md)
     
     * [labuladong的算法小抄](/docs/dataStructures-algorithms/labuladong/readme.md)
     

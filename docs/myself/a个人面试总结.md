@@ -1,102 +1,76 @@
-# 总结：奔波儿东
-
 ## 一、跟谁学：
 
-### 1、自我介绍：为什么想换工作？
-
-* 为什么想换工作？
-  * 每个阶段有每个阶段的想法吧 ，当时进入银行内心的想法是一个安稳，不累。但是待着待着感觉这不是自己想要的一种工作方式，我个人还是比较喜欢编码的，但是目前的工作中，杂事太多（比如管理外协人员的进出场），行内的各种会议等等 ，导致只有到了下班点才有时间去对项目进行真正的开发；还有就是行内的人员分布比较散，导致有时候一些简单的事情，可能需要花费大量的时间去沟通（行内各系统分布在北京、上海、深圳），感觉沟通的成本太高；另外一个，行内外协人员的个人能力一般 ，有好些时候在简单的问题上出现疏忽，导致要排查好久的问题。
+### 1、主观问题：见有道云笔记
 
 ### 2、集合你用过哪些 Hashmap的数据结构 ConcurrentHashMap怎么实现线程安全的
-
-* 
 
 ### 3、ThreadLocal如何用的？
 
 * 用于线程间数据的隔离，填充的数据只属于当前线程，变量的数据对别的线程而言相对隔离，
 
-### 4、项目：介绍项目？项目中的角色？
+### 4、
 
-* 银企直联系统是我行对大客户大企业提供的一种企业和银行直联互通的电子交易平台，客户可以通过其自己的财务系统实现与银行电子交易系统之间的无缝对接。节约其人员成本及劳动量，保证数据的准确性和实时性，同时支持定制化开发。不同于我行的企业网银系统，但是我们和企业网银系统的架构是一套。我在其中担任的是子项目负责人的角色，主要对接的客户是军队，同时手里有两个BS架构的项目在维护（在拥有网银功能的前提下，对客户实现定制。）
-* 
+### 5、
 
-### 5、项目中难点是什么？
+### 6、算法：
 
-* 项目中的难点：
-  * 账户体系复杂，根据不同的签约属性，需要进行各种验证。
-  * 业务逻辑较复杂，我们想要做一个转账，转账要素需要来自好几个系统提供，跨行转账还涉及到外系统。（转账：分行内行外走不同的系统；同时金额还分大小额，大额走二代支付，小额走超级网银；）
-  * 转账判重的依据：交易要素相同，收付款账户，金额，用途。
-  * 权限校验、交易要素信息入库、报文解析、加解密、加签验签。
-  * 客户定制化需求较多，不同的客户接口报文的形式，数据格式不同。编码也有差异。
-  * 沟通成本较高，大多数是客户的定制化开发，需要对接不同客户的不同需求；另外行内人员较分散，不同系统在不同的地方，。
-  * 定时同步交易数据，夜间跑批，数据文件推送。（需要解析好几个系统的数据文件，最终映射出客户需要的数据）
-  * 
-  * 事前审批、事中监控、事后对账
-  * 系统异构
+###  反转链表？
 
-### 6、项目中遇到的过的问题？
+```java
+// ## 请在下方进行输入
+// A->B->C->D
+// D->C->B->A
+public class SingleLinkedListTest {
 
-* 出现过日志重复打印，造成堆内存溢出。查询返回较大量数据，同时使用new String去转码，并且重复写日志。导致了堆内存溢出。 排查发现是公共服务系统提供的接口有误（一个JSon串给了十几兆。）。
-* 在维护自助柜面系统的时候，发现打开一个页面，后台被请求很多次，做分页查询时同样会调用后台多次。最后排查发现是前端代码逻辑的问题，每次查下一页，都会重新提交整个From表单，然后后台再做分页。
-* 在做石化3期项目时候，发现两个同事都有定时，一个同事的定时正常跑，另外一个同事的两个定时都不跑，首先研究其代码 ，发现一些问题但是不至于导致定时不跑，后来在生产上排查其出现问题的时间前后，发现是由于线程池被内的线程被耗尽了。由于和企业网银项目的代码是同一套，好多配置项都是同一个，当时同事没注意就都使用了网银组的线程池，最后新建了自己的线程池，才将问题解决。（[线程池数2倍的CPU数]()）
+    static class Node {
+        String data;
+        Node next;
 
-* ### 算法：反转链表？
+        public Node(String data) {
+            this.data = data;
+        }
+        public Node next(Node next) {
+            this.next = next;
+            return next;
+        }
+    }
 
-  ```java
-  // ## 请在下方进行输入
-  // A->B->C->D
-  // D->C->B->A
-  public class SingleLinkedListTest {
-  
-      static class Node {
-          String data;
-          Node next;
-  
-          public Node(String data) {
-              this.data = data;
-          }
-          public Node next(Node next) {
-              this.next = next;
-              return next;
-          }
-      }
-  
-      public static void main(String[] args) {
-  
-          Node first = new Node("1");
-          Node second = new Node("2");
-          Node third = new Node("3");
-          Node fourth = new Node("4");
-          Node five = new Node("5");
-          first.next(second);
-          second.next(third);
-          third.next(fourth);
-          fourth.next(five);
-          five.next(null);
-          Node node=first;
-          while (first != null) {
-              System.out.print(first.data);
-              first = first.next;
-              System.out.print("-->");
-          }
-          System.out.println();
-          System.out.println("--------链表反转---------");
-          Node cur =node,pre=null,temp=null;
-          while(cur!=null){
-              temp=cur.next;
-              cur.next=pre;
-              pre=cur;
-              cur=temp;
-          }
-          while(pre!=null){
-              System.out.print(pre.data);
-              pre=pre.next;
-              System.out.print("->");
-          }
-      }
-  }
-  
-  ```
+    public static void main(String[] args) {
+
+        Node first = new Node("1");
+        Node second = new Node("2");
+        Node third = new Node("3");
+        Node fourth = new Node("4");
+        Node five = new Node("5");
+        first.next(second);
+        second.next(third);
+        third.next(fourth);
+        fourth.next(five);
+        five.next(null);
+        Node node=first;
+        while (first != null) {
+            System.out.print(first.data);
+            first = first.next;
+            System.out.print("-->");
+        }
+        System.out.println();
+        System.out.println("--------链表反转---------");
+        Node cur =node,pre=null,temp=null;
+        while(cur!=null){
+            temp=cur.next;
+            cur.next=pre;
+            pre=cur;
+            cur=temp;
+        }
+        while(pre!=null){
+            System.out.print(pre.data);
+            pre=pre.next;
+            System.out.print("->");
+        }
+    }
+}
+
+```
 
 
 ## 二、长城汽车
