@@ -398,6 +398,32 @@
             
         </li>
     
+        <li class="chapter " data-level="2.1.5" data-path="并发编程.html">
+            
+                <a href="并发编程.html">
+            
+                    
+                    并发编程整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="锁相关.html">
+            
+                <a href="锁相关.html">
+            
+                    
+                    锁相关
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -507,7 +533,7 @@
                 <a href="3.redis.html">
             
                     
-                    redis
+                    redis整理
             
                 </a>
             
@@ -1495,6 +1521,207 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="mybatis">Mybatis</h1>
+<p><img src="9.mybatis.assets/image-20210616235431067.png" alt="image-20210616235431067"></p>
+<p><strong>MyBatis &#x9762;&#x8BD5;&#x9898;&#x7B54;&#x6848;&#x89E3;&#x6790;</strong></p>
+<h2 id="1&#x3001;&#x4EC0;&#x4E48;&#x662F;-mybatis&#xFF1F;"><strong>1&#x3001;&#x4EC0;&#x4E48;&#x662F; Mybatis&#xFF1F;</strong></h2>
+<p>&#xFF08;1&#xFF09;Mybatis &#x662F;&#x4E00;&#x4E2A;&#x534A; ORM&#xFF08;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x6620;&#x5C04;&#xFF09;&#x6846;&#x67B6;&#xFF0C;&#x5B83;&#x5185;&#x90E8;&#x5C01;&#x88C5;&#x4E86; JDBC&#xFF0C;&#x5F00;&#x53D1;&#x65F6;&#x53EA;&#x9700;&#x8981;&#x5173;&#x6CE8; SQL &#x8BED;&#x53E5;&#x672C;&#x8EAB;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x82B1;&#x8D39;&#x7CBE;&#x529B;&#x53BB;&#x5904;&#x7406;&#x52A0;&#x8F7D;&#x9A71;&#x52A8;&#x3001;&#x521B;&#x5EFA;&#x8FDE;&#x63A5;&#x3001;&#x521B;&#x5EFA;statement &#x7B49;&#x7E41;&#x6742;&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x7A0B;&#x5E8F;&#x5458;&#x76F4;&#x63A5;&#x7F16;&#x5199;&#x539F;&#x751F;&#x6001; sql&#xFF0C;&#x53EF;&#x4EE5;&#x4E25;&#x683C;&#x63A7;&#x5236; sql &#x6267;&#x884C;&#x6027;&#x80FD;&#xFF0C;&#x7075;&#x6D3B;&#x5EA6;&#x9AD8;&#x3002;</p>
+<p>&#xFF08;2&#xFF09;MyBatis &#x53EF;&#x4EE5;&#x4F7F;&#x7528; XML &#x6216;&#x6CE8;&#x89E3;&#x6765;&#x914D;&#x7F6E;&#x548C;&#x6620;&#x5C04;&#x539F;&#x751F;&#x4FE1;&#x606F;&#xFF0C;&#x5C06; POJO &#x6620;&#x5C04;&#x6210;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x8BB0;&#x5F55;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684; JDBC &#x4EE3;&#x7801;&#x548C;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x53C2;&#x6570;&#x4EE5;&#x53CA;&#x83B7;&#x53D6;&#x7ED3;&#x679C;&#x96C6;&#x3002;</p>
+<p>&#xFF08;3&#xFF09;&#x901A;&#x8FC7; xml &#x6587;&#x4EF6;&#x6216;&#x6CE8;&#x89E3;&#x7684;&#x65B9;&#x5F0F;&#x5C06;&#x8981;&#x6267;&#x884C;&#x7684;&#x5404;&#x79CD; statement &#x914D;&#x7F6E;&#x8D77;&#x6765;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;java &#x5BF9;&#x8C61;&#x548C; statement &#x4E2D; sql &#x7684;&#x52A8;&#x6001;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x6620;&#x5C04;&#x751F;&#x6210;&#x6700;&#x7EC8;&#x6267;&#x884C;&#x7684; sql &#x8BED;&#x53E5;&#xFF0C;&#x6700;&#x540E;&#x7531; mybatis &#x6846;&#x67B6;&#x6267;&#x884C; sql &#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x6620;&#x5C04;&#x4E3A; java &#x5BF9;&#x8C61;&#x5E76;&#x8FD4;&#x56DE;&#x3002;&#xFF08;&#x4ECE;&#x6267;&#x884C; sql &#x5230;&#x8FD4;&#x56DE; result &#x7684;&#x8FC7;&#x7A0B;&#xFF09;&#x3002;</p>
+<h2 id="2&#x3001;mybaits-&#x7684;&#x4F18;&#x70B9;&#xFF1A;"><strong>2&#x3001;Mybaits &#x7684;&#x4F18;&#x70B9;&#xFF1A;</strong></h2>
+<p>&#xFF08;1&#xFF09;&#x57FA; &#x4E8E; SQL &#x8BED;&#x53E5;&#x7F16;&#x7A0B;&#xFF0C;&#x76F8;&#x5F53;&#x7075;&#x6D3B;&#xFF0C;&#x4E0D;&#x4F1A;&#x5BF9;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x6216;&#x8005;&#x6570;&#x636E;&#x5E93;&#x7684;&#x73B0;&#x6709;&#x8BBE;&#x8BA1;&#x9020;&#x6210;&#x4EFB;&#x4F55;&#x5F71;&#x54CD;&#xFF0C;SQL &#x5199;&#x5728; XML &#x91CC;&#xFF0C;&#x89E3;&#x9664; sql &#x4E0E;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x4FBF;&#x4E8E;&#x7EDF;&#x4E00;&#x7BA1;&#x7406;&#xFF1B;&#x63D0;&#x4F9B; XML&#x6807;&#x7B7E;&#xFF0C;&#x652F;&#x6301;&#x7F16;&#x5199;&#x52A8;&#x6001; SQL &#x8BED;&#x53E5;&#xFF0C;&#x5E76;&#x53EF;&#x91CD;&#x7528;&#x3002;</p>
+<p>&#xFF08;2&#xFF09;&#x4E0E; JDBC &#x76F8;&#x6BD4;&#xFF0C;&#x51CF;&#x5C11;&#x4E86; 50%&#x4EE5;&#x4E0A;&#x7684;&#x4EE3;&#x7801;&#x91CF;&#xFF0C;&#x6D88;&#x9664;&#x4E86; JDBC &#x5927;&#x91CF;&#x5197;&#x4F59;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x5F00;&#x5173;&#x8FDE;&#x63A5;&#xFF1B;</p>
+<p>&#xFF08;3&#xFF09;&#x5F88;&#x597D;&#x7684;&#x4E0E;&#x5404;&#x79CD;&#x6570;&#x636E;&#x5E93;&#x517C;&#x5BB9;&#xFF08;&#x56E0;&#x4E3A; MyBatis &#x4F7F;&#x7528; JDBC &#x6765;&#x8FDE;&#x63A5;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;JDBC &#x652F;&#x6301;&#x7684;&#x6570;&#x636E;&#x5E93; MyBatis &#x90FD;&#x652F;&#x6301;&#xFF09;&#x3002;</p>
+<p>&#xFF08;4&#xFF09;&#x80FD;&#x591F;&#x4E0E; Spring &#x5F88;&#x597D;&#x7684;&#x96C6;&#x6210;&#xFF1B;</p>
+<p>&#xFF08;5&#xFF09;&#x63D0;&#x4F9B;&#x6620;&#x5C04;&#x6807;&#x7B7E;&#xFF0C;&#x652F;&#x6301;&#x5BF9;&#x8C61;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x7684; ORM &#x5B57;&#x6BB5;&#x5173;&#x7CFB;&#x6620;&#x5C04;&#xFF1B;&#x63D0;&#x4F9B;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x6620;&#x5C04;&#x6807;&#x7B7E;&#xFF0C;&#x652F;&#x6301;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x7EC4;&#x4EF6;&#x7EF4;&#x62A4;&#x3002;</p>
+<h2 id="3&#x3001;mybatis-&#x6846;&#x67B6;&#x7684;&#x7F3A;&#x70B9;&#xFF1A;"><strong>3&#x3001;MyBatis &#x6846;&#x67B6;&#x7684;&#x7F3A;&#x70B9;&#xFF1A;</strong></h2>
+<p>&#xFF08;1&#xFF09;SQL &#x8BED;&#x53E5;&#x7684;&#x7F16;&#x5199;&#x5DE5;&#x4F5C;&#x91CF;&#x8F83;&#x5927;&#xFF0C;&#x5C24;&#x5176;&#x5F53;&#x5B57;&#x6BB5;&#x591A;&#x3001;&#x5173;&#x8054;&#x8868;&#x591A;&#x65F6;&#xFF0C;&#x5BF9;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x7F16;&#x5199;SQL &#x8BED;&#x53E5;&#x7684;&#x529F;&#x5E95;&#x6709;&#x4E00;&#x5B9A;&#x8981;&#x6C42;&#x3002;</p>
+<p>&#xFF08;2&#xFF09;SQL &#x8BED;&#x53E5;&#x4F9D;&#x8D56;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5BFC;&#x81F4;&#x6570;&#x636E;&#x5E93;&#x79FB;&#x690D;&#x6027;&#x5DEE;&#xFF0C;&#x4E0D;&#x80FD;&#x968F;&#x610F;&#x66F4;&#x6362;&#x6570;&#x636E;&#x5E93;&#x3002;</p>
+<h2 id="4&#x3001;mybatis-&#x6846;&#x67B6;&#x9002;&#x7528;&#x573A;&#x5408;&#xFF1A;"><strong>4&#x3001;MyBatis &#x6846;&#x67B6;&#x9002;&#x7528;&#x573A;&#x5408;&#xFF1A;</strong></h2>
+<p>&#xFF08;1&#xFF09;MyBatis &#x4E13;&#x6CE8;&#x4E8E; SQL &#x672C;&#x8EAB;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x8DB3;&#x591F;&#x7075;&#x6D3B;&#x7684; DAO &#x5C42;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<p>&#xFF08;2&#xFF09;&#x5BF9;&#x6027;&#x80FD;&#x7684;&#x8981;&#x6C42;&#x5F88;&#x9AD8;&#xFF0C;&#x6216;&#x8005;&#x9700;&#x6C42;&#x53D8;&#x5316;&#x8F83;&#x591A;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x5982;&#x4E92;&#x8054;&#x7F51;&#x9879;&#x76EE;&#xFF0C;MyBatis &#x5C06;&#x662F;&#x4E0D;&#x9519;&#x7684;&#x9009;&#x62E9;&#x3002;</p>
+<h2 id="5&#x3001;mybatis-&#x4E0E;-hibernate-&#x6709;&#x54EA;&#x4E9B;&#x4E0D;&#x540C;&#xFF1F;"><strong>5&#x3001;MyBatis &#x4E0E; Hibernate &#x6709;&#x54EA;&#x4E9B;&#x4E0D;&#x540C;&#xFF1F;</strong></h2>
+<p>&#xFF08;1&#xFF09;Mybatis &#x548C; hibernate &#x4E0D;&#x540C;&#xFF0C;&#x5B83;&#x4E0D;&#x5B8C;&#x5168;&#x662F;&#x4E00;&#x4E2A; ORM &#x6846;&#x67B6;&#xFF0C;&#x56E0;&#x4E3A; MyBatis &#x9700;&#x8981;&#x7A0B;&#x5E8F;&#x5458;&#x81EA;&#x5DF1;&#x7F16;&#x5199; Sql &#x8BED;&#x53E5;&#x3002;</p>
+<p>&#xFF08;2&#xFF09;Mybatis &#x76F4;&#x63A5;&#x7F16;&#x5199;&#x539F;&#x751F;&#x6001; sql&#xFF0C;&#x53EF;&#x4EE5;&#x4E25;&#x683C;&#x63A7;&#x5236; sql &#x6267;&#x884C;&#x6027;&#x80FD;&#xFF0C;&#x7075;&#x6D3B;&#x5EA6;&#x9AD8;&#xFF0C;&#x975E;&#x5E38;&#x9002;&#x5408;&#x5BF9;&#x5173;&#x7CFB;&#x6570;&#x636E;&#x6A21;&#x578B;&#x8981;&#x6C42;&#x4E0D;&#x9AD8;&#x7684;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x7C7B;&#x8F6F;&#x4EF6;&#x9700;&#x6C42;&#x53D8;&#x5316;&#x9891;&#x7E41;&#xFF0C;&#x4E00;&#x4F46;&#x9700;&#x6C42;&#x53D8;&#x5316;&#x8981;&#x6C42;&#x8FC5;&#x901F;&#x8F93;&#x51FA;&#x6210;&#x679C;&#x3002;&#x4F46;&#x662F;&#x7075;&#x6D3B;&#x7684;&#x524D;&#x63D0;&#x662F; mybatis &#x65E0;&#x6CD5;&#x505A;&#x5230;&#x6570;&#x636E;&#x5E93;&#x65E0;&#x5173;&#x6027;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x652F;&#x6301;&#x591A;&#x79CD;&#x6570;&#x636E;&#x5E93;&#x7684;&#x8F6F;&#x4EF6;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x591A;&#x5957; sql &#x6620;&#x5C04;&#x6587;&#x4EF6;&#xFF0C;&#x5DE5;&#x4F5C;&#x91CF;&#x5927;&#x3002;</p>
+<p>&#xFF08;3&#xFF09;Hibernate &#x5BF9;&#x8C61;/&#x5173;&#x7CFB;&#x6620;&#x5C04;&#x80FD;&#x529B;&#x5F3A;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x65E0;&#x5173;&#x6027;&#x597D;&#xFF0C;&#x5BF9;&#x4E8E;&#x5173;&#x7CFB;&#x6A21;&#x578B;&#x8981;&#x6C42;&#x9AD8;&#x7684;&#x8F6F;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x7528;hibernate&#x5F00;&#x53D1;&#x53EF;&#x4EE5;&#x8282;&#x7701;&#x5F88;&#x591A;&#x4EE3;&#x7801;&#xFF0C;&#x63D0;&#x9AD8;&#x6548;&#x7387;&#x3002;</p>
+<h2 id="6&#x3001;&#x548C;&#x7684;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><strong>6&#x3001;#{}&#x548C;${}&#x7684;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</strong></h2>
+<p>#{}&#x662F;&#x9884;&#x7F16;&#x8BD1;&#x5904;&#x7406;&#xFF0C;${}&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x66FF;&#x6362;&#x3002;</p>
+<p>Mybatis &#x5728;&#x5904;&#x7406;#{}&#x65F6;&#xFF0C;&#x4F1A;&#x5C06; sql &#x4E2D;&#x7684;#{}&#x66FF;&#x6362;&#x4E3A;?&#x53F7;&#xFF0C;&#x8C03;&#x7528; PreparedStatement &#x7684;set &#x65B9;&#x6CD5;&#x6765;&#x8D4B;&#x503C;&#xFF1B;</p>
+<p>Mybatis &#x5728;&#x5904;&#x7406;${}&#x65F6;&#xFF0C;&#x5C31;&#x662F;&#x628A;${}&#x66FF;&#x6362;&#x6210;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x4F7F;&#x7528;#{}&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x9632;&#x6B62; SQL &#x6CE8;&#x5165;&#xFF0C;&#x63D0;&#x9AD8;&#x7CFB;&#x7EDF;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<h2 id="7&#x3001;&#x5F53;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x8868;&#x4E2D;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x4E0D;&#x4E00;&#x6837;-&#xFF0C;&#x600E;&#x4E48;&#x529E;-&#xFF1F;"><strong>7&#x3001;&#x5F53;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x8868;&#x4E2D;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x4E0D;&#x4E00;&#x6837; &#xFF0C;&#x600E;&#x4E48;&#x529E; &#xFF1F;</strong></h2>
+<p>&#x7B2C; 1 &#x79CD;&#xFF1A;&#x901A;&#x8FC7;&#x5728;&#x67E5;&#x8BE2;&#x7684; sql &#x8BED;&#x53E5;&#x4E2D;&#x5B9A;&#x4E49;&#x5B57;&#x6BB5;&#x540D;&#x7684;&#x522B;&#x540D;&#xFF0C;&#x8BA9;&#x5B57;&#x6BB5;&#x540D;&#x7684;&#x522B;&#x540D;&#x548C;&#x5B9E;&#x4F53;&#x7C7B;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x4E00;&#x81F4;&#x3002;</p>
+<pre><code>&lt;select id=&#x201D;selectorder&#x201D; parametertype=&#x201D;int&#x201D; resultetype=&#x201D;
+me.gacl.domain.order&#x201D;&gt;
+select order_id id, order_no orderno ,order_price price form
+orders where order_id=#{id};&lt;/select&gt;
+</code></pre><p>&#x7B2C; 2 &#x79CD;&#xFF1A;&#x901A;&#x8FC7;<resultmap>&#x6765;&#x6620;&#x5C04;&#x5B57;&#x6BB5;&#x540D;&#x548C;&#x5B9E;&#x4F53;&#x7C7B;&#x5C5E;&#x6027;&#x540D;&#x7684;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#x7684;&#x5173;&#x7CFB;&#x3002;</resultmap></p>
+<pre><code>&lt;select id=&quot;getOrder&quot; parameterType=&quot;int&quot;
+resultMap=&quot;orderresultmap&quot;&gt;
+select * from orders where order_id=#{id}&lt;/select&gt;&lt;resultMap type=&#x201D;me.gacl.domain.order&#x201D; id=&#x201D;orderresultmap&#x201D;&gt;&lt;!&#x2013;&#x7528; id &#x5C5E;&#x6027;&#x6765;&#x6620;&#x5C04;&#x4E3B;&#x952E;&#x5B57;&#x6BB5;&#x2013;&gt;&lt;id property=&#x201D;id&#x201D; column=&#x201D;order_id&#x201D;&gt;&lt;!&#x2013;&#x7528; result &#x5C5E;&#x6027;&#x6765;&#x6620;&#x5C04;&#x975E;&#x4E3B;&#x952E;&#x5B57;&#x6BB5;&#xFF0C;property &#x4E3A;&#x5B9E;&#x4F53;&#x7C7B;&#x5C5E;&#x6027;&#x540D;&#xFF0C;column
+&#x4E3A;&#x6570;&#x636E;&#x8868;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x2013;&gt;&lt;result property = &#x201C;orderno&#x201D; column =&#x201D;order_no&#x201D;/&gt;&lt;result property=&#x201D;price&#x201D; column=&#x201D;order_price&#x201D; /&gt;&lt;/reslutMap&gt;
+</code></pre><h2 id="8&#x3001;-&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;-like-&#x8BED;&#x53E5;&#x8BE5;&#x600E;&#x4E48;&#x5199;"><strong>8&#x3001; &#x6A21;&#x7CCA;&#x67E5;&#x8BE2; like &#x8BED;&#x53E5;&#x8BE5;&#x600E;&#x4E48;&#x5199;?</strong></h2>
+<p>&#x7B2C; 1 &#x79CD;&#xFF1A;&#x5728; Java &#x4EE3;&#x7801;&#x4E2D;&#x6DFB;&#x52A0; sql &#x901A;&#x914D;&#x7B26;&#x3002;</p>
+<pre><code>string wildcardname = &#x201C;%smi%&#x201D;;
+list&lt;name&gt; names = mapper.selectlike(wildcardname);&lt;select id=&#x201D;selectlike&#x201D;&gt;
+select * from foo where bar like #{value}&lt;/select&gt;
+</code></pre><p>&#x7B2C; 2 &#x79CD;&#xFF1A;&#x5728; sql &#x8BED;&#x53E5;&#x4E2D;&#x62FC;&#x63A5;&#x901A;&#x914D;&#x7B26;&#xFF0C;&#x4F1A;&#x5F15;&#x8D77; sql &#x6CE8;&#x5165;</p>
+<pre><code>string wildcardname = &#x201C;smi&#x201D;;
+list&lt;name&gt; names = mapper.selectlike(wildcardname);&lt;select id=&#x201D;selectlike&#x201D;&gt;
+select * from foo where bar like &quot;%&quot;#{value}&quot;%&quot;&lt;/select&gt;
+</code></pre><h2 id="9&#x3001;&#x901A;&#x5E38;&#x4E00;&#x4E2A;-xml-&#x6620;&#x5C04;&#x6587;&#x4EF6;&#xFF0C;&#x90FD;&#x4F1A;&#x5199;&#x4E00;&#x4E2A;-dao-&#x63A5;&#x53E3;&#x4E0E;&#x4E4B;&#x5BF9;&#x5E94;&#xFF0C;&#x8BF7;&#x95EE;&#xFF0C;&#x8FD9;&#x4E2A;-dao-&#x63A5;&#x53E3;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;dao-&#x63A5;&#x53E3;&#x91CC;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53C2;&#x6570;&#x4E0D;&#x540C;&#x65F6;&#xFF0C;&#x65B9;&#x6CD5;&#x80FD;&#x91CD;&#x8F7D;&#x5417;&#xFF1F;"><strong>9&#x3001;&#x901A;&#x5E38;&#x4E00;&#x4E2A; Xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#xFF0C;&#x90FD;&#x4F1A;&#x5199;&#x4E00;&#x4E2A; Dao &#x63A5;&#x53E3;&#x4E0E;&#x4E4B;&#x5BF9;&#x5E94;&#xFF0C;&#x8BF7;&#x95EE;&#xFF0C;&#x8FD9;&#x4E2A; Dao &#x63A5;&#x53E3;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;Dao &#x63A5;&#x53E3;&#x91CC;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53C2;&#x6570;&#x4E0D;&#x540C;&#x65F6;&#xFF0C;&#x65B9;&#x6CD5;&#x80FD;&#x91CD;&#x8F7D;&#x5417;&#xFF1F;</strong></h2>
+<p>Dao &#x63A5;&#x53E3;&#x5373; Mapper &#x63A5;&#x53E3;&#x3002;&#x63A5;&#x53E3;&#x7684;&#x5168;&#x9650;&#x540D;&#xFF0C;&#x5C31;&#x662F;&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#x7684; namespace &#x7684;&#x503C;&#xFF1B;&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x6CD5;&#x540D;&#xFF0C;&#x5C31;&#x662F;&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D; Mapper &#x7684; Statement &#x7684; id &#x503C;&#xFF1B;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x5185;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x4F20;&#x9012;&#x7ED9; sql &#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<p>Mapper &#x63A5;&#x53E3;&#x662F;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x7C7B;&#x7684;&#xFF0C;&#x5F53;&#x8C03;&#x7528;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x63A5;&#x53E3;&#x5168;&#x9650;&#x540D;+&#x65B9;&#x6CD5;&#x540D;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#x4F5C;&#x4E3A; key &#x503C;&#xFF0C;&#x53EF;&#x552F;&#x4E00;&#x5B9A;&#x4F4D;&#x4E00;&#x4E2A; MapperStatement&#x3002;&#x5728; Mybatis &#x4E2D;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;<select>&#x3001;<insert>&#x3001;<update>&#x3001;<delete>&#x6807;&#x7B7E;&#xFF0C;&#x90FD;&#x4F1A;&#x88AB;&#x89E3;&#x6790;&#x4E3A;&#x4E00;&#x4E2A;MapperStatement &#x5BF9;&#x8C61;&#x3002;</delete></update></insert></select></p>
+<p>&#x4E3E;&#x4F8B;&#xFF1A;com.mybatis3.mappers.StudentDao.findStudentById&#xFF0C;&#x53EF;&#x4EE5;&#x552F;&#x4E00;&#x627E;&#x5230; namespace &#x4E3A; com.mybatis3.mappers.StudentDao &#x4E0B;&#x9762; id &#x4E3A;findStudentById &#x7684; MapperStatement&#x3002;</p>
+<p>Mapper &#x63A5;&#x53E3;&#x91CC;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x662F;&#x4E0D;&#x80FD;&#x91CD;&#x8F7D;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;&#x4F7F;&#x7528; &#x5168;&#x9650;&#x540D;+&#x65B9;&#x6CD5;&#x540D; &#x7684;&#x4FDD;&#x5B58;&#x548C;&#x5BFB;&#x627E;&#x7B56;&#x7565;&#x3002;Mapper &#x63A5;&#x53E3;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x662F; JDK &#x52A8;&#x6001;&#x4EE3;&#x7406;&#xFF0C;Mybatis &#x8FD0;&#x884C;&#x65F6;&#x4F1A;&#x4F7F;&#x7528; JDK&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x4E3A; Mapper &#x63A5;&#x53E3;&#x751F;&#x6210;&#x4EE3;&#x7406;&#x5BF9;&#x8C61; proxy&#xFF0C;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4F1A;&#x62E6;&#x622A;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#xFF0C;&#x8F6C;&#x800C;&#x6267;&#x884C; MapperStatement &#x6240;&#x4EE3;&#x8868;&#x7684; sql&#xFF0C;&#x7136;&#x540E;&#x5C06; sql &#x6267;&#x884C;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x3002;</p>
+<h2 id="10&#x3001;mybatis-&#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x5206;&#x9875;&#x7684;&#xFF1F;&#x5206;&#x9875;&#x63D2;&#x4EF6;&#x7684;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><strong>10&#x3001;Mybatis &#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x5206;&#x9875;&#x7684;&#xFF1F;&#x5206;&#x9875;&#x63D2;&#x4EF6;&#x7684;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</strong></h2>
+<p>Mybatis &#x4F7F;&#x7528; RowBounds &#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x5206;&#x9875;&#xFF0C;&#x5B83;&#x662F;&#x9488;&#x5BF9; ResultSet &#x7ED3;&#x679C;&#x96C6;&#x6267;&#x884C;&#x7684;&#x5185;&#x5B58;&#x5206;&#x9875;&#xFF0C;&#x800C;&#x975E;&#x7269;&#x7406;&#x5206;&#x9875;&#x3002;&#x53EF;&#x4EE5;&#x5728; sql &#x5185;&#x76F4;&#x63A5;&#x4E66;&#x5199;&#x5E26;&#x6709;&#x7269;&#x7406;&#x5206;&#x9875;&#x7684;&#x53C2;&#x6570;&#x6765;&#x5B8C;&#x6210;&#x7269;&#x7406;&#x5206;&#x9875;&#x529F;&#x80FD;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5206;&#x9875;&#x63D2;&#x4EF6;&#x6765;&#x5B8C;&#x6210;&#x7269;&#x7406;&#x5206;&#x9875;&#x3002;</p>
+<p>&#x5206;&#x9875;&#x63D2;&#x4EF6;&#x7684;&#x57FA;&#x672C;&#x539F;&#x7406;&#x662F;&#x4F7F;&#x7528; Mybatis &#x63D0;&#x4F9B;&#x7684;&#x63D2;&#x4EF6;&#x63A5;&#x53E3;&#xFF0C;&#x5B9E;&#x73B0;&#x81EA;&#x5B9A;&#x4E49;&#x63D2;&#x4EF6;&#xFF0C;&#x5728;&#x63D2;&#x4EF6;&#x7684;&#x62E6;&#x622A;&#x65B9;&#x6CD5;&#x5185;&#x62E6;&#x622A;&#x5F85;&#x6267;&#x884C;&#x7684; sql&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x5199; sql&#xFF0C;&#x6839; &#x636E; dialect &#x65B9;&#x8A00;&#xFF0C;&#x6DFB;&#x52A0;&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x7406;&#x5206;&#x9875;&#x8BED;&#x53E5;&#x548C;&#x7269;&#x7406;&#x5206;&#x9875;&#x53C2;&#x6570;&#x3002;</p>
+<h2 id="11&#x3001;mybatis-&#x662F;&#x5982;&#x4F55;&#x5C06;-sql-&#x6267;&#x884C;&#x7ED3;&#x679C;&#x5C01;&#x88C5;&#x4E3A;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x5E76;&#x8FD4;&#x56DE;&#x7684;&#xFF1F;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x6620;&#x5C04;&#x5F62;&#x5F0F;&#xFF1F;"><strong>11&#x3001;Mybatis &#x662F;&#x5982;&#x4F55;&#x5C06; sql &#x6267;&#x884C;&#x7ED3;&#x679C;&#x5C01;&#x88C5;&#x4E3A;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x5E76;&#x8FD4;&#x56DE;&#x7684;&#xFF1F;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x6620;&#x5C04;&#x5F62;&#x5F0F;&#xFF1F;</strong></h2>
+<p>&#x7B2C;&#x4E00;&#x79CD;&#x662F;&#x4F7F;&#x7528;<resultmap>&#x6807;&#x7B7E;&#xFF0C;&#x9010;&#x4E00;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x5E93;&#x5217;&#x540D;&#x548C;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x540D;&#x4E4B;&#x95F4;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x3002;</resultmap></p>
+<p>&#x7B2C;&#x4E8C;&#x79CD;&#x662F;&#x4F7F;&#x7528; sql &#x5217;&#x7684;&#x522B;&#x540D;&#x529F;&#x80FD;&#xFF0C;&#x5C06;&#x5217;&#x7684;&#x522B;&#x540D;&#x4E66;&#x5199;&#x4E3A;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x540D;&#x3002;</p>
+<p>&#x6709;&#x4E86;&#x5217;&#x540D;&#x4E0E;&#x5C5E;&#x6027;&#x540D;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x540E;&#xFF0C;Mybatis &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x540C;&#x65F6;&#x4F7F;&#x7528;&#x53CD;&#x5C04;&#x7ED9;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x9010;&#x4E00;&#x8D4B;&#x503C;&#x5E76;&#x8FD4;&#x56DE;&#xFF0C;&#x90A3;&#x4E9B;&#x627E;&#x4E0D;&#x5230;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x662F;&#x65E0;&#x6CD5;&#x5B8C;&#x6210;&#x8D4B;&#x503C;&#x7684;&#x3002;</p>
+<h2 id="12&#x3001;&#x5982;&#x4F55;&#x6267;&#x884C;&#x6279;&#x91CF;&#x63D2;&#x5165;"><strong>12&#x3001;&#x5982;&#x4F55;&#x6267;&#x884C;&#x6279;&#x91CF;&#x63D2;&#x5165;?</strong></h2>
+<p>&#x9996;&#x5148;,&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684; insert &#x8BED;&#x53E5;:</p>
+<pre><code>&lt;insert id=&#x201D;insertname&#x201D;&gt;
+insert into names (name) values (#{
+    value
+})&lt;/insert&gt;
+</code></pre><p>&#x7136;&#x540E;&#x5728; java &#x4EE3;&#x7801;&#x4E2D;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x6267;&#x884C;&#x6279;&#x5904;&#x7406;&#x63D2;&#x5165;:</p>
+<pre><code>list &lt; string &gt; names = new arraylist();
+names.add(&#x201C;fred&#x201D;);
+names.add(&#x201C;barney&#x201D;);
+names.add(&#x201C;betty&#x201D;);
+names.add(&#x201C;wilma&#x201D;);// &#x6CE8;&#x610F;&#x8FD9;&#x91CC; executortype.batch
+sqlsession sqlsession =
+sqlsessionfactory.opensession(executortype.batch);try {
+    namemapper mapper = sqlsession.getmapper(namemapper.class);
+    for (string name: names) {
+        mapper.insertname(name);
+    }
+    sqlsession.commit();}catch (Exception e) {
+    e.printStackTrace();
+    sqlSession.rollback();
+    throw e;}finally {
+    sqlsession.close();}
+</code></pre><h2 id="13&#x3001;&#x5982;&#x4F55;&#x83B7;&#x53D6;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x4E3B;&#x952E;&#x503C;"><strong>13&#x3001;&#x5982;&#x4F55;&#x83B7;&#x53D6;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;(&#x4E3B;)&#x952E;&#x503C;?</strong></h2>
+<p>insert &#x65B9;&#x6CD5;&#x603B;&#x662F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; int &#x503C; &#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x4EE3;&#x8868;&#x7684;&#x662F;&#x63D2;&#x5165;&#x7684;&#x884C;&#x6570;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x91C7;&#x7528;&#x81EA;&#x589E;&#x957F;&#x7B56;&#x7565;&#xFF0C;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x952E;&#x503C;&#x5728; insert &#x65B9;&#x6CD5;&#x6267;&#x884C;&#x5B8C;&#x540E;&#x53EF;&#x4EE5;&#x88AB;&#x8BBE;&#x7F6E;&#x5230;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x5BF9;&#x8C61;&#x4E2D;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>&lt;insert id=&#x201D;insertname&#x201D; usegeneratedkeys=&#x201D;true&#x201D; keyproperty=&#x201D;
+id&#x201D;&gt;
+insert into names (name) values (#{
+    name
+})&lt;/insert&gt;
+name name = new name();
+name.setname(&#x201C;fred&#x201D;);int rows = mapper.insertname(name);// &#x5B8C;&#x6210;&#x540E;,id &#x5DF2;&#x7ECF;&#x88AB;&#x8BBE;&#x7F6E;&#x5230;&#x5BF9;&#x8C61;&#x4E2D;
+system.out.println(&#x201C;rows inserted = &#x201D; + rows);
+system.out.println(&#x201C;generated key value = &#x201D; + name.getid());
+</code></pre><h2 id="14&#x3001;&#x5728;-mapper-&#x4E2D;&#x5982;&#x4F55;&#x4F20;&#x9012;&#x591A;&#x4E2A;&#x53C2;&#x6570;"><strong>14&#x3001;&#x5728; mapper &#x4E2D;&#x5982;&#x4F55;&#x4F20;&#x9012;&#x591A;&#x4E2A;&#x53C2;&#x6570;?</strong></h2>
+<p><strong>&#x7B2C;&#x4E00;&#x79CD;&#xFF1A;DAO &#x5C42;&#x7684;&#x51FD;&#x6570;</strong></p>
+<p>public UserselectUser(String name,String area);</p>
+<p>&#x5BF9;&#x5E94;&#x7684; xml,#{0}&#x4EE3;&#x8868;&#x63A5;&#x6536;&#x7684;&#x662F; dao &#x5C42;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;#{1}&#x4EE3;&#x8868; dao &#x5C42;&#x4E2D;&#x7B2C;&#x4E8C;&#x53C2;&#x6570;&#xFF0C;&#x66F4;&#x591A;&#x53C2;&#x6570;&#x4E00;&#x81F4;&#x5F80;&#x540E;&#x52A0;&#x5373;&#x53EF;&#x3002;</p>
+<pre><code>&lt;select id=&quot;selectUser&quot;resultMap=&quot;BaseResultMap&quot;&gt;
+select * fromuser_user_t whereuser_name = #{0}
+anduser_area=#{1}&lt;/select&gt;
+</code></pre><p><strong>&#x7B2C;&#x4E8C;&#x79CD;&#xFF1A;&#x4F7F;&#x7528;</strong> <strong>@param</strong> <strong>&#x6CE8;&#x89E3;:</strong></p>
+<pre><code>public interface usermapper {
+    user selectuser(@param(&#x201C;username&#x201D;) string
+    username,@param(&#x201C;hashedpassword&#x201D;) string hashedpassword);}
+</code></pre><p>&#x7136;&#x540E;,&#x5C31;&#x53EF;&#x4EE5;&#x5728; xml &#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x4F7F;&#x7528;(&#x63A8;&#x8350;&#x5C01;&#x88C5;&#x4E3A;&#x4E00;&#x4E2A; map,&#x4F5C;&#x4E3A;&#x5355;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9;mapper):</p>
+<pre><code>&lt;select id=&#x201D;selectuser&#x201D; resulttype=&#x201D;user&#x201D;&gt;
+select id, username, hashedpassword
+from some_table
+where username = #{username}
+and hashedpassword = #{hashedpassword}&lt;/select&gt;
+</code></pre><p><strong>&#x7B2C;&#x4E09;&#x79CD;&#xFF1A;&#x591A;&#x4E2A;&#x53C2;&#x6570;&#x5C01;&#x88C5;&#x6210; map</strong></p>
+<pre><code>try {
+    //&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;.SQL &#x7247;&#x6BB5;&#x7684; ID&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x5BF9;&#x5E94;&#x7684;&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#x7684;
+    SQL
+    //&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x7684;&#x53C2;&#x6570;&#x8D85;&#x8FC7;&#x4E86;&#x4E24;&#x4E2A;&#xFF0C;&#x800C;&#x65B9;&#x6CD5;&#x4E2D;&#x53EA;&#x6709;&#x4E00;&#x4E2A; Object &#x53C2;&#x6570;&#x6536;&#x96C6;&#xFF0C;&#x56E0;&#x6B64;
+    &#x6211;&#x4EEC;&#x4F7F;&#x7528; Map &#x96C6;&#x5408;&#x6765;&#x88C5;&#x8F7D;&#x6211;&#x4EEC;&#x7684;&#x53C2;&#x6570;
+    Map &lt; String, Object &gt; map = new HashMap();
+    map.put(&quot;start&quot;, start);
+    map.put(&quot;end&quot;, end);
+    return sqlSession.selectList(&quot;StudentID.pagination&quot;, map);}catch (Exception e) {
+    e.printStackTrace();
+    sqlSession.rollback();
+    throw e;}finally {
+    MybatisUtil.closeSqlSession();}
+</code></pre><h2 id="15&#x3001;mybatis-&#x52A8;&#x6001;-sql-&#x6709;&#x4EC0;&#x4E48;&#x7528;&#xFF1F;&#x6267;&#x884C;&#x539F;&#x7406;&#xFF1F;&#x6709;&#x54EA;&#x4E9B;&#x52A8;&#x6001;-sql&#xFF1F;"><strong>15&#x3001;Mybatis &#x52A8;&#x6001; sql &#x6709;&#x4EC0;&#x4E48;&#x7528;&#xFF1F;&#x6267;&#x884C;&#x539F;&#x7406;&#xFF1F;&#x6709;&#x54EA;&#x4E9B;&#x52A8;&#x6001; sql&#xFF1F;</strong></h2>
+<p>Mybatis &#x52A8;&#x6001; sql &#x53EF;&#x4EE5;&#x5728; Xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#x5185;&#xFF0C;&#x4EE5;&#x6807;&#x7B7E;&#x7684;&#x5F62;&#x5F0F;&#x7F16;&#x5199;&#x52A8;&#x6001; sql&#xFF0C;&#x6267;&#x884C;&#x539F;&#x7406;&#x662F;&#x6839;&#x636E;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x503C; &#x5B8C;&#x6210;&#x903B;&#x8F91;&#x5224;&#x65AD;&#x5E76;&#x52A8;&#x6001;&#x62FC;&#x63A5; sql &#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<p>Mybatis &#x63D0;&#x4F9B;&#x4E86; 9 &#x79CD;&#x52A8;&#x6001; sql &#x6807;&#x7B7E;&#xFF1A;trim | where | set | foreach | if | choose| when | otherwise | bind&#x3002;</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="&#x56FE;&#x7247;"></p>
+<h2 id="16&#x3001;xml-&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x5E38;&#x89C1;&#x7684;-selectinsertupdaedelete&#x6807;&#x7B7E;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x54EA;&#x4E9B;&#x6807;&#x7B7E;&#xFF1F;"><strong>16&#x3001;Xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x5E38;&#x89C1;&#x7684; select|insert|updae|delete&#x6807;&#x7B7E;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x54EA;&#x4E9B;&#x6807;&#x7B7E;&#xFF1F;</strong></h2>
+<p>&#x7B54;&#xFF1A;<resultmap>&#x3001;<parametermap>&#x3001;<sql>&#x3001;<include>&#x3001;<selectkey>&#xFF0C;&#x52A0;&#x4E0A;&#x52A8;&#x6001; sql &#x7684; 9 &#x4E2A;&#x6807;&#x7B7E;&#xFF0C;&#x5176;&#x4E2D;<sql>&#x4E3A; sql &#x7247;&#x6BB5;&#x6807;&#x7B7E;&#xFF0C;&#x901A;&#x8FC7;<include>&#x6807;&#x7B7E;&#x5F15;&#x5165; sql &#x7247;&#x6BB5;&#xFF0C;<selectkey>&#x4E3A;&#x4E0D;&#x652F;&#x6301;&#x81EA;&#x589E;&#x7684;&#x4E3B;&#x952E;&#x751F;&#x6210;&#x7B56;&#x7565;&#x6807;&#x7B7E;&#x3002;</selectkey></include></sql></selectkey></include></sql></parametermap></resultmap></p>
+<h2 id="17&#x3001;mybatis-&#x7684;-xml-&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4E0D;&#x540C;&#x7684;-xml-&#x6620;&#x5C04;&#x6587;&#x4EF6;&#xFF0C;id-&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#xFF1F;"><strong>17&#x3001;Mybatis &#x7684; Xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4E0D;&#x540C;&#x7684; Xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#xFF0C;id &#x662F;&#x5426;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#xFF1F;</strong></h2>
+<p>&#x4E0D;&#x540C;&#x7684; Xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x914D;&#x7F6E;&#x4E86; namespace&#xFF0C;&#x90A3;&#x4E48; id &#x53EF;&#x4EE5;&#x91CD;&#x590D;&#xFF1B;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x914D;&#x7F6E; namespace&#xFF0C;&#x90A3;&#x4E48; id &#x4E0D;&#x80FD;&#x91CD;&#x590D;&#xFF1B;</p>
+<p>&#x539F;&#x56E0;&#x5C31;&#x662F; namespace+id &#x662F;&#x4F5C;&#x4E3A; Map<string, mapperstatement="">&#x7684; key&#x4F7F;&#x7528;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709; namespace&#xFF0C;&#x5C31;&#x5269;&#x4E0B; id&#xFF0C;&#x90A3;&#x4E48;&#xFF0C;id &#x91CD;&#x590D;&#x4F1A;&#x5BFC;&#x81F4;&#x6570;&#x636E;&#x4E92;&#x76F8;&#x8986;&#x76D6;&#x3002;&#x6709;&#x4E86; namespace&#xFF0C;&#x81EA;&#x7136; id &#x5C31;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#xFF0C;namespace &#x4E0D;&#x540C;&#xFF0C;namespace+id &#x81EA;&#x7136;&#x4E5F;&#x5C31;&#x4E0D;&#x540C;&#x3002;</string,></p>
+<h2 id="18&#x3001;&#x4E3A;&#x4EC0;&#x4E48;&#x8BF4;-mybatis-&#x662F;&#x534A;&#x81EA;&#x52A8;-orm-&#x6620;&#x5C04;&#x5DE5;&#x5177;&#xFF1F;&#x5B83;&#x4E0E;&#x5168;&#x81EA;&#x52A8;&#x7684;&#x533A;&#x522B;&#x5728;&#x54EA;&#x91CC;&#xFF1F;"><strong>18&#x3001;&#x4E3A;&#x4EC0;&#x4E48;&#x8BF4; Mybatis &#x662F;&#x534A;&#x81EA;&#x52A8; ORM &#x6620;&#x5C04;&#x5DE5;&#x5177;&#xFF1F;&#x5B83;&#x4E0E;&#x5168;&#x81EA;&#x52A8;&#x7684;&#x533A;&#x522B;&#x5728;&#x54EA;&#x91CC;&#xFF1F;</strong></h2>
+<p>Hibernate &#x5C5E;&#x4E8E;&#x5168;&#x81EA;&#x52A8; ORM &#x6620;&#x5C04;&#x5DE5;&#x5177;&#xFF0C;&#x4F7F;&#x7528; Hibernate &#x67E5;&#x8BE2;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x5173;&#x8054;&#x96C6;&#x5408;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x6A21;&#x578B;&#x76F4;&#x63A5;&#x83B7;&#x53D6;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x662F;&#x5168;&#x81EA;&#x52A8;&#x7684;&#x3002;&#x800C; Mybatis&#x5728;&#x67E5;&#x8BE2;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x6216;&#x5173;&#x8054;&#x96C6;&#x5408;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x7F16;&#x5199; sql &#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x79F0;&#x4E4B;&#x4E3A;&#x534A;&#x81EA;&#x52A8; ORM &#x6620;&#x5C04;&#x5DE5;&#x5177;&#x3002;</p>
+<h2 id="19&#x3001;-&#x4E00;&#x5BF9;&#x4E00;&#x3001;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x5173;&#x8054;&#x67E5;&#x8BE2;-&#xFF1F;"><strong>19&#x3001; &#x4E00;&#x5BF9;&#x4E00;&#x3001;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x5173;&#x8054;&#x67E5;&#x8BE2; &#xFF1F;</strong></h2>
+<pre><code>&lt;mapper namespace=&quot;com.lcb.mapping.userMapper&quot;&gt;&lt;!--association &#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x8054;&#x67E5;&#x8BE2; --&gt;&lt;select id=&quot;getClass&quot; parameterType=&quot;int&quot;
+resultMap=&quot;ClassesResultMap&quot;&gt;
+select * from class c,teacher t where c.teacher_id=t.t_id and
+c.c_id=#{id}&lt;/select&gt;&lt;resultMap type=&quot;com.lcb.user.Classes&quot; id=&quot;ClassesResultMap&quot;&gt;&lt;!-- &#x5B9E;&#x4F53;&#x7C7B;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x548C;&#x6570;&#x636E;&#x8868;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x6620;&#x5C04; --&gt;&lt;id property=&quot;id&quot; column=&quot;c_id&quot;/&gt;&lt;result property=&quot;name&quot; column=&quot;c_name&quot;/&gt;&lt;association property=&quot;teacher&quot;
+javaType=&quot;com.lcb.user.Teacher&quot;&gt;&lt;id property=&quot;id&quot; column=&quot;t_id&quot;/&gt;&lt;result property=&quot;name&quot; column=&quot;t_name&quot;/&gt;&lt;/association&gt;&lt;/resultMap&gt;&lt;!--collection &#x4E00;&#x5BF9;&#x591A;&#x5173;&#x8054;&#x67E5;&#x8BE2; --&gt;&lt;select id=&quot;getClass2&quot; parameterType=&quot;int&quot;
+resultMap=&quot;ClassesResultMap2&quot;&gt;
+select * from class c,teacher t,student s where c.teacher_id=t.t_id
+and c.c_id=s.class_id and c.c_id=#{id}&lt;/select&gt;&lt;resultMap type=&quot;com.lcb.user.Classes&quot; id=&quot;ClassesResultMap2&quot;&gt;&lt;id property=&quot;id&quot; column=&quot;c_id&quot;/&gt;&lt;result property=&quot;name&quot; column=&quot;c_name&quot;/&gt;&lt;association property=&quot;teacher&quot;
+javaType=&quot;com.lcb.user.Teacher&quot;&gt;&lt;id property=&quot;id&quot; column=&quot;t_id&quot;/&gt;&lt;result property=&quot;name&quot; column=&quot;t_name&quot;/&gt;&lt;/association&gt;&lt;collection property=&quot;student&quot;
+ofType=&quot;com.lcb.user.Student&quot;&gt;&lt;id property=&quot;id&quot; column=&quot;s_id&quot;/&gt;&lt;result property=&quot;name&quot; column=&quot;s_name&quot;/&gt;&lt;/collection&gt;&lt;/resultMap&gt;&lt;/mapper&gt;
+</code></pre><h2 id="20&#x3001;mybatis-&#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x4E00;&#x6709;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;&#x5177;&#x4F53;&#x600E;&#x4E48;&#x64CD;&#x4F5C;&#x7684;&#xFF1F;"><strong>20&#x3001;MyBatis &#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x4E00;&#x6709;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;?&#x5177;&#x4F53;&#x600E;&#x4E48;&#x64CD;&#x4F5C;&#x7684;&#xFF1F;</strong></h2>
+<p>&#x6709;&#x8054;&#x5408;&#x67E5;&#x8BE2;&#x548C;&#x5D4C;&#x5957;&#x67E5;&#x8BE2;,&#x8054;&#x5408;&#x67E5;&#x8BE2;&#x662F;&#x51E0;&#x4E2A;&#x8868;&#x8054;&#x5408;&#x67E5;&#x8BE2;,&#x53EA;&#x67E5;&#x8BE2;&#x4E00;&#x6B21;, &#x901A;&#x8FC7;&#x5728;resultMap &#x91CC;&#x9762;&#x914D;&#x7F6E; association &#x8282;&#x70B9;&#x914D;&#x7F6E;&#x4E00;&#x5BF9;&#x4E00;&#x7684;&#x7C7B;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#xFF1B;&#x5D4C;&#x5957;&#x67E5;&#x8BE2;&#x662F;&#x5148;&#x67E5;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x8868;&#x91CC;&#x9762;&#x7684;&#x7ED3;&#x679C;&#x7684; &#x5916;&#x952E; id&#xFF0C;&#x53BB;&#x518D;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x91CC;&#x9762;&#x67E5;&#x8BE2;&#x6570;&#x636E;,&#x4E5F;&#x662F;&#x901A;&#x8FC7; association &#x914D;&#x7F6E;&#xFF0C;&#x4F46;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x67E5;&#x8BE2;&#x901A;&#x8FC7; select &#x5C5E;&#x6027;&#x914D;&#x7F6E;&#x3002;</p>
+<h2 id="21&#x3001;mybatis-&#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x591A;&#x6709;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;&#x600E;&#x4E48;&#x64CD;&#x4F5C;&#x7684;&#xFF1F;"><strong>21&#x3001;MyBatis &#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x591A;&#x6709;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;,&#x600E;&#x4E48;&#x64CD;&#x4F5C;&#x7684;&#xFF1F;</strong></h2>
+<p>&#x6709;&#x8054;&#x5408;&#x67E5;&#x8BE2;&#x548C;&#x5D4C;&#x5957;&#x67E5;&#x8BE2;&#x3002;&#x8054;&#x5408;&#x67E5;&#x8BE2;&#x662F;&#x51E0;&#x4E2A;&#x8868;&#x8054;&#x5408;&#x67E5;&#x8BE2;,&#x53EA;&#x67E5;&#x8BE2;&#x4E00;&#x6B21;,&#x901A;&#x8FC7;&#x5728;resultMap &#x91CC;&#x9762;&#x7684; collection &#x8282;&#x70B9;&#x914D;&#x7F6E;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x7C7B;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#xFF1B;&#x5D4C;&#x5957;&#x67E5;&#x8BE2;&#x662F;&#x5148;&#x67E5;&#x4E00;&#x4E2A;&#x8868;,&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x8868;&#x91CC;&#x9762;&#x7684; &#x7ED3;&#x679C;&#x7684;&#x5916;&#x952E; id,&#x53BB;&#x518D;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x91CC;&#x9762;&#x67E5;&#x8BE2;&#x6570;&#x636E;,&#x4E5F;&#x662F;&#x901A;&#x8FC7;&#x914D;&#x7F6E; collection,&#x4F46;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x67E5;&#x8BE2;&#x901A;&#x8FC7; select &#x8282;&#x70B9;&#x914D;&#x7F6E;&#x3002;</p>
+<h2 id="22&#x3001;mybatis-&#x662F;&#x5426;&#x652F;&#x6301;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF1F;&#x5982;&#x679C;&#x652F;&#x6301;&#xFF0C;&#x5B83;&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><strong>22&#x3001;Mybatis &#x662F;&#x5426;&#x652F;&#x6301;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF1F;&#x5982;&#x679C;&#x652F;&#x6301;&#xFF0C;&#x5B83;&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</strong></h2>
+<p>&#x7B54;&#xFF1A;Mybatis &#x4EC5;&#x652F;&#x6301; association &#x5173;&#x8054;&#x5BF9;&#x8C61;&#x548C; collection &#x5173;&#x8054;&#x96C6;&#x5408;&#x5BF9;&#x8C61;&#x7684;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF0C;association &#x6307;&#x7684;&#x5C31;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#xFF0C;collection &#x6307;&#x7684;&#x5C31;&#x662F;&#x4E00;&#x5BF9;&#x591A;&#x67E5;&#x8BE2;&#x3002;&#x5728; Mybatis&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x662F;&#x5426;&#x542F;&#x7528;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D; lazyLoadingEnabled=true|false&#x3002;</p>
+<p>&#x5B83;&#x7684;&#x539F;&#x7406;&#x662F;&#xFF0C;&#x4F7F;&#x7528; CGLIB &#x521B;&#x5EFA;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x5F53;&#x8C03;&#x7528;&#x76EE;&#x6807;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x8FDB;&#x5165;&#x62E6;&#x622A;&#x5668;&#x65B9;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;&#x8C03;&#x7528; a.getB().getName()&#xFF0C;&#x62E6;&#x622A;&#x5668; invoke()&#x65B9;&#x6CD5;&#x53D1;&#x73B0; a.getB()&#x662F;null &#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x5355;&#x72EC;&#x53D1;&#x9001;&#x4E8B;&#x5148;&#x4FDD;&#x5B58;&#x597D;&#x7684;&#x67E5;&#x8BE2;&#x5173;&#x8054; B &#x5BF9;&#x8C61;&#x7684; sql&#xFF0C;&#x628A; B &#x67E5;&#x8BE2;&#x4E0A;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528; a.setB(b)&#xFF0C;&#x4E8E;&#x662F; a &#x7684;&#x5BF9;&#x8C61; b &#x5C5E;&#x6027;&#x5C31;&#x6709;&#x503C;&#x4E86;&#xFF0C;&#x63A5;&#x7740;&#x5B8C;&#x6210; a.getB().getName()&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x3002;&#x8FD9;&#x5C31;&#x662F;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x7684;&#x57FA;&#x672C;&#x539F;&#x7406;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#x4E86;&#xFF0C;&#x4E0D;&#x5149;&#x662F; Mybatis&#xFF0C;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684;&#x5305;&#x62EC; Hibernate&#xFF0C;&#x652F;&#x6301;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x7684;&#x539F;&#x7406;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<h2 id="23&#x3001;mybatis-&#x7684;&#x4E00;&#x7EA7;&#x3001;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;"><strong>23&#x3001;Mybatis &#x7684;&#x4E00;&#x7EA7;&#x3001;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;:</strong></h2>
+<p>1&#xFF09;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;: &#x57FA;&#x4E8E; PerpetualCache &#x7684; HashMap &#x672C;&#x5730;&#x7F13;&#x5B58;&#xFF0C;&#x5176;&#x5B58;&#x50A8;&#x4F5C;&#x7528;&#x57DF;&#x4E3A;Session&#xFF0C;&#x5F53; Session flush &#x6216; close &#x4E4B;&#x540E;&#xFF0C;&#x8BE5; Session &#x4E2D;&#x7684;&#x6240;&#x6709; Cache &#x5C31;&#x5C06;&#x6E05;&#x7A7A;&#xFF0C;&#x9ED8;&#x8BA4;&#x6253;&#x5F00;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x3002;</p>
+<p>2&#xFF09;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x4E0E;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x5176;&#x673A;&#x5236;&#x76F8;&#x540C;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E5F;&#x662F;&#x91C7;&#x7528; PerpetualCache&#xFF0C;HashMap&#x5B58;&#x50A8;&#xFF0C;&#x4E0D;&#x540C;&#x5728;&#x4E8E;&#x5176;&#x5B58;&#x50A8;&#x4F5C;&#x7528;&#x57DF;&#x4E3A; Mapper(Namespace)&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;&#x5B58;&#x50A8;&#x6E90;&#xFF0C;&#x5982; Ehcache&#x3002;&#x9ED8;&#x8BA4;&#x4E0D;&#x6253;&#x5F00;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x8981;&#x5F00;&#x542F;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x4F7F;&#x7528;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x5C5E;&#x6027;&#x7C7B;&#x9700;&#x8981;&#x5B9E;&#x73B0; Serializable &#x5E8F;&#x5217;&#x5316;&#x63A5;&#x53E3;(&#x53EF;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;),&#x53EF;&#x5728;&#x5B83;&#x7684;&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;<cache> &#xFF1B;</cache></p>
+<p>3&#xFF09;&#x5BF9;&#x4E8E;&#x7F13;&#x5B58;&#x6570;&#x636E;&#x66F4;&#x65B0;&#x673A;&#x5236;&#xFF0C;&#x5F53;&#x67D0;&#x4E00;&#x4E2A;&#x4F5C;&#x7528;&#x57DF;(&#x4E00;&#x7EA7;&#x7F13;&#x5B58; Session/&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;Namespaces)&#x7684;&#x8FDB;&#x884C;&#x4E86; C/U/D &#x64CD;&#x4F5C;&#x540E;&#xFF0C;&#x9ED8;&#x8BA4;&#x8BE5;&#x4F5C;&#x7528;&#x57DF;&#x4E0B;&#x6240;&#x6709; select &#x4E2D;&#x7684;&#x7F13;&#x5B58;&#x5C06;&#x88AB; clear&#x3002;</p>
+<h2 id="24&#x3001;&#x4EC0;&#x4E48;&#x662F;-mybatis-&#x7684;&#x63A5;&#x53E3;&#x7ED1;&#x5B9A;&#xFF1F;&#x6709;&#x54EA;&#x4E9B;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF1F;"><strong>24&#x3001;&#x4EC0;&#x4E48;&#x662F; MyBatis &#x7684;&#x63A5;&#x53E3;&#x7ED1;&#x5B9A;&#xFF1F;&#x6709;&#x54EA;&#x4E9B;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF1F;</strong></h2>
+<p>&#x63A5;&#x53E3;&#x7ED1;&#x5B9A;&#xFF0C;&#x5C31;&#x662F;&#x5728; MyBatis &#x4E2D;&#x4EFB;&#x610F;&#x5B9A;&#x4E49;&#x63A5;&#x53E3;,&#x7136;&#x540E;&#x628A;&#x63A5;&#x53E3;&#x91CC;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x548C; SQL &#x8BED;&#x53E5;&#x7ED1;&#x5B9A;, &#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x5C31;&#x53EF;&#x4EE5;,&#x8FD9;&#x6837;&#x6BD4;&#x8D77;&#x539F;&#x6765;&#x4E86; SqlSession &#x63D0;&#x4F9B;&#x7684;&#x65B9;&#x6CD5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6709;&#x66F4;&#x52A0;&#x7075;&#x6D3B;&#x7684;&#x9009;&#x62E9;&#x548C;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x63A5;&#x53E3;&#x7ED1;&#x5B9A;&#x6709;&#x4E24;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;,&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x7ED1;&#x5B9A;&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x6CD5;&#x4E0A;&#x9762;&#x52A0;&#x4E0A;@Select&#x3001;@Update &#x7B49;&#x6CE8;&#x89E3;&#xFF0C;&#x91CC;&#x9762;&#x5305;&#x542B; Sql &#x8BED;&#x53E5;&#x6765;&#x7ED1;&#x5B9A;&#xFF1B;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x5C31;&#x662F;&#x901A;&#x8FC7; xml&#x91CC;&#x9762;&#x5199; SQL &#x6765;&#x7ED1;&#x5B9A;, &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;,&#x8981;&#x6307;&#x5B9A; xml &#x6620;&#x5C04;&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684; namespace &#x5FC5;&#x987B;&#x4E3A;&#x63A5;&#x53E3;&#x7684;&#x5168;&#x8DEF;&#x5F84;&#x540D;&#x3002;&#x5F53; Sql &#x8BED;&#x53E5;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x65F6;&#x5019;,&#x7528;&#x6CE8;&#x89E3;&#x7ED1;&#x5B9A;, &#x5F53; SQL &#x8BED;&#x53E5;&#x6BD4;&#x8F83;&#x590D;&#x6742;&#x65F6;&#x5019;,&#x7528; xml &#x7ED1;&#x5B9A;,&#x4E00;&#x822C;&#x7528; xml &#x7ED1;&#x5B9A;&#x7684;&#x6BD4;&#x8F83;&#x591A;&#x3002;</p>
+<h2 id="25&#x3001;&#x4F7F;&#x7528;-mybatis-&#x7684;-mapper-&#x63A5;&#x53E3;&#x8C03;&#x7528;&#x65F6;&#x6709;&#x54EA;&#x4E9B;&#x8981;&#x6C42;&#xFF1F;"><strong>25&#x3001;&#x4F7F;&#x7528; MyBatis &#x7684; mapper &#x63A5;&#x53E3;&#x8C03;&#x7528;&#x65F6;&#x6709;&#x54EA;&#x4E9B;&#x8981;&#x6C42;&#xFF1F;</strong></h2>
+<p>&#xFF08;1&#xFF09;Mapper &#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x540D;&#x548C; mapper.xml &#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x6BCF;&#x4E2A; sql &#x7684; id &#x76F8;&#x540C;&#xFF1B;</p>
+<p>&#xFF08;2&#xFF09;Mapper &#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x7684;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x548C; mapper.xml &#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x6BCF;&#x4E2A; sql &#x7684;parameterType &#x7684;&#x7C7B;&#x578B;&#x76F8;&#x540C;&#xFF1B;</p>
+<p>&#xFF08;3&#xFF09;Mapper &#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x7684;&#x8F93;&#x51FA;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x548C; mapper.xml &#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x6BCF;&#x4E2A; sql &#x7684;resultType &#x7684;&#x7C7B;&#x578B;&#x76F8;&#x540C;&#xFF1B;</p>
+<p>&#xFF08;4&#xFF09;Mapper.xml &#x6587;&#x4EF6;&#x4E2D;&#x7684; namespace &#x5373;&#x662F; mapper &#x63A5;&#x53E3;&#x7684;&#x7C7B;&#x8DEF;&#x5F84;&#x3002;</p>
+<h2 id="26&#x3001;mapper-&#x7F16;&#x5199;&#x6709;&#x54EA;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;&#xFF1F;"><strong>26&#x3001;Mapper &#x7F16;&#x5199;&#x6709;&#x54EA;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;&#xFF1F;</strong></h2>
+<p>&#x7B2C;&#x4E00;&#x79CD;&#xFF1A;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x7C7B;&#x7EE7;&#x627F; SqlSessionDaoSupport&#xFF1A;&#x4F7F;&#x7528;&#x6B64;&#x79CD;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x7F16;&#x5199;mapper &#x63A5;&#x53E3;&#xFF0C;mapper &#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x7C7B;&#x3001;mapper.xml &#x6587;&#x4EF6;&#x3002;</p>
+<p>&#xFF08;1&#xFF09;&#x5728; sqlMapConfig.xml &#x4E2D;&#x914D;&#x7F6E; mapper.xml &#x7684;&#x4F4D;&#x7F6E;</p>
+<pre><code>&lt;mappers&gt;&lt;mapper resource=&quot;mapper.xml &#x6587;&#x4EF6;&#x7684;&#x5730;&#x5740;&quot; /&gt;&lt;mapper resource=&quot;mapper.xml &#x6587;&#x4EF6;&#x7684;&#x5730;&#x5740;&quot; /&gt;&lt;/mappers&gt;
+</code></pre><p>&#xFF08;2&#xFF09;&#x5B9A;&#x4E49; mapper &#x63A5;&#x53E3;</p>
+<p>&#xFF08;3&#xFF09;&#x5B9E;&#x73B0;&#x7C7B;&#x96C6;&#x6210; SqlSessionDaoSupport</p>
+<p>mapper &#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5; this.getSqlSession()&#x8FDB;&#x884C;&#x6570;&#x636E;&#x589E;&#x5220;&#x6539;&#x67E5;&#x3002;</p>
+<p>&#xFF08;4&#xFF09;spring &#x914D;&#x7F6E;</p>
+<pre><code>&lt;bean id=&quot; &quot; class=&quot;mapper &#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;&quot;&gt;&lt;property name=&quot;sqlSessionFactory&quot;
+ref=&quot;sqlSessionFactory&quot;&gt;&lt;/property&gt;&lt;/bean&gt;
+</code></pre><p>&#x7B2C;&#x4E8C;&#x79CD;&#xFF1A;&#x4F7F;&#x7528; org.mybatis.spring.mapper.MapperFactoryBean&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x5728; sqlMapConfig.xml &#x4E2D;&#x914D;&#x7F6E; mapper.xml &#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5982;&#x679C; mapper.xml &#x548C;mappre &#x63A5;&#x53E3;&#x7684;&#x540D;&#x79F0;&#x76F8;&#x540C;&#x4E14;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#xFF0C;&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x914D;&#x7F6E;</p>
+<pre><code>&lt;mappers&gt;&lt;mapper resource=&quot;mapper.xml &#x6587;&#x4EF6;&#x7684;&#x5730;&#x5740;&quot; /&gt;&lt;mapper resource=&quot;mapper.xml &#x6587;&#x4EF6;&#x7684;&#x5730;&#x5740;&quot; /&gt;&lt;/mappers&gt;
+</code></pre><p>&#xFF08;2&#xFF09;&#x5B9A;&#x4E49; mapper &#x63A5;&#x53E3;&#xFF1A;</p>
+<p>&#xFF08;3&#xFF09;mapper.xml &#x4E2D;&#x7684; namespace &#x4E3A; mapper &#x63A5;&#x53E3;&#x7684;&#x5730;&#x5740;</p>
+<p>&#xFF08;4&#xFF09;mapper &#x63A5;&#x53E3;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x540D;&#x548C; mapper.xml &#x4E2D;&#x7684;&#x5B9A;&#x4E49;&#x7684; statement &#x7684; id &#x4FDD;&#x6301;&#x4E00;&#x81F4;</p>
+<p>&#xFF08;5&#xFF09;Spring &#x4E2D;&#x5B9A;&#x4E49;</p>
+<pre><code>&lt;bean id=&quot;&quot; class=&quot;org.mybatis.spring.mapper.MapperFactoryBean&quot;&gt;&lt;property name=&quot;mapperInterface&quot; value=&quot;mapper &#x63A5;&#x53E3;&#x5730;&#x5740;&quot; /&gt;&lt;property name=&quot;sqlSessionFactory&quot; ref=&quot;sqlSessionFactory&quot; /&gt;&lt;/bean&gt;
+</code></pre><p>&#x7B2C;&#x4E09;&#x79CD;&#xFF1A;&#x4F7F;&#x7528; mapper &#x626B;&#x63CF;&#x5668;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;mapper.xml &#x6587;&#x4EF6;&#x7F16;&#x5199;&#xFF1A;</p>
+<p>mapper.xml &#x4E2D;&#x7684; namespace &#x4E3A; mapper &#x63A5;&#x53E3;&#x7684;&#x5730;&#x5740;&#xFF1B;</p>
+<p>mapper &#x63A5;&#x53E3;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x540D;&#x548C; mapper.xml &#x4E2D;&#x7684;&#x5B9A;&#x4E49;&#x7684; statement &#x7684; id &#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF1B;</p>
+<p>&#x5982;&#x679C;&#x5C06; mapper.xml &#x548C; mapper &#x63A5;&#x53E3;&#x7684;&#x540D;&#x79F0;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x5219;&#x4E0D;&#x7528;&#x5728; sqlMapConfig.xml&#x4E2D;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#xFF08;2&#xFF09;&#x5B9A;&#x4E49; mapper &#x63A5;&#x53E3;&#xFF1A;</p>
+<p>&#x6CE8;&#x610F; mapper.xml &#x7684;&#x6587;&#x4EF6;&#x540D;&#x548C; mapper &#x7684;&#x63A5;&#x53E3;&#x540D;&#x79F0;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF0C;&#x4E14;&#x653E;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;</p>
+<p>&#xFF08;3&#xFF09;&#x914D;&#x7F6E; mapper &#x626B;&#x63CF;&#x5668;&#xFF1A;</p>
+<pre><code>&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;&lt;property name=&quot;basePackage&quot; value=&quot;mapper &#x63A5;&#x53E3;&#x5305;&#x5730;&#x5740;
+&quot;&gt;&lt;/property&gt;&lt;property name=&quot;sqlSessionFactoryBeanName&quot;
+value=&quot;sqlSessionFactory&quot;/&gt;&lt;/bean&gt;
+</code></pre><p>&#xFF08;4&#xFF09;&#x4F7F;&#x7528;&#x626B;&#x63CF;&#x5668;&#x540E;&#x4ECE; spring &#x5BB9;&#x5668;&#x4E2D;&#x83B7;&#x53D6; mapper &#x7684;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;&#x3002;</p>
+<h2 id="27&#x3001;&#x7B80;&#x8FF0;-mybatis-&#x7684;&#x63D2;&#x4EF6;&#x8FD0;&#x884C;&#x539F;&#x7406;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x3002;"><strong>27&#x3001;&#x7B80;&#x8FF0; Mybatis &#x7684;&#x63D2;&#x4EF6;&#x8FD0;&#x884C;&#x539F;&#x7406;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x3002;</strong></h2>
+<p>&#x7B54;&#xFF1A;Mybatis &#x4EC5;&#x53EF;&#x4EE5;&#x7F16;&#x5199;&#x9488;&#x5BF9; ParameterHandler&#x3001;ResultSetHandler&#x3001;StatementHandler&#x3001;Executor &#x8FD9; 4 &#x79CD;&#x63A5;&#x53E3;&#x7684;&#x63D2;&#x4EF6;&#xFF0C;Mybatis &#x4F7F;&#x7528; JDK &#x7684;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#xFF0C;&#x4E3A;&#x9700;&#x8981;&#x62E6;&#x622A;&#x7684;&#x63A5;&#x53E3;&#x751F;&#x6210;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4EE5;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x62E6;&#x622A;&#x529F;&#x80FD;&#xFF0C;&#x6BCF;&#x5F53;&#x6267;&#x884C;&#x8FD9; 4 &#x79CD;&#x63A5;&#x53E3;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x8FDB;&#x5165;&#x62E6;&#x622A;&#x65B9;&#x6CD5;&#xFF0C;&#x5177;&#x4F53;&#x5C31;&#x662F; InvocationHandler &#x7684; invoke()&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x53EA;&#x4F1A;&#x62E6;&#x622A;&#x90A3;&#x4E9B;&#x4F60;&#x6307;&#x5B9A;&#x9700;&#x8981;&#x62E6;&#x622A;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x7F16;&#x5199;&#x63D2;&#x4EF6;&#xFF1A;&#x5B9E;&#x73B0; Mybatis &#x7684; Interceptor &#x63A5;&#x53E3;&#x5E76;&#x590D;&#x5199; intercept()&#x65B9;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x7ED9;&#x63D2;&#x4EF6;&#x7F16;&#x5199;&#x6CE8;&#x89E3;&#xFF0C;&#x6307;&#x5B9A;&#x8981;&#x62E6;&#x622A;&#x54EA;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#x7684;&#x54EA;&#x4E9B;&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#xFF0C;&#x8BB0;&#x4F4F;&#xFF0C;&#x522B;&#x5FD8;&#x4E86;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x4F60;&#x7F16;&#x5199;&#x7684;&#x63D2;&#x4EF6;&#x3002;</p>
 
                                 
                                 </section>
@@ -1534,7 +1761,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"mybatis","level":"10.1.2","depth":2,"next":{"title":"springmvc","level":"10.1.3","depth":2,"ref":"","articles":[]},"previous":{"title":"spring整理","level":"10.1.1","depth":2,"path":"docs/myself/5.spring.md","ref":"docs/myself/5.spring.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/9.mybatis.md","mtime":"2021-06-04T06:04:38.739Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-06-05T09:34:50.903Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"mybatis","level":"10.1.2","depth":2,"next":{"title":"springmvc","level":"10.1.3","depth":2,"ref":"","articles":[]},"previous":{"title":"spring整理","level":"10.1.1","depth":2,"path":"docs/myself/5.spring.md","ref":"docs/myself/5.spring.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/9.mybatis.md","mtime":"2021-06-16T15:54:59.592Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-06-16T16:15:13.946Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1565,6 +1792,10 @@
     
         
         <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
