@@ -23,6 +23,8 @@
       * [Set](/docs/java/collection/Set.md)
         * HashSet
     * [并发](/docs/java/more_thread/README.md)
+    * [并发编程整理](/docs/myself/并发编程.md)
+    * [锁相关](/docs/myself/锁相关.md)
     
     
     
@@ -36,7 +38,7 @@
 * [数据库](/docs/database/README.md)
   * [mysql](/docs/database/mysql.md)
   * [MySQL整理](/docs/myself/2.mysql.md)
-  * [redis](/docs/myself/3.redis.md)
+  * [redis整理](/docs/myself/3.redis.md)
 
 
 
