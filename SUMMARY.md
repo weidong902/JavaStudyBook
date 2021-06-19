@@ -95,14 +95,14 @@
     * 认证授权
         * SSO（单点登录）
     * 分布式
-        * CAP 理论
+        * [CAP 理论](/docs/skill/分布式/cap理论.md)
         * BASE 理论
         * Paxos 算法和 Raft 算法
         * 搜索引擎
-        * RPC
+        * [RPC](/docs/skill/分布式/RPC.md)
         * API 网关
         * 分布式 id
-        * 分布式事务
+        * [分布式事务](/docs/skill/分布式/分布式事务.md)
     * 微服务
     * 高并发
         * 消息队列
