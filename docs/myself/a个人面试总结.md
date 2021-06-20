@@ -109,7 +109,7 @@ public class SingleLinkedListTest {
 
 ### [1、Spring如何处理依赖注入的？](https://blog.csdn.net/weixin_39559282/article/details/116101230)
 
-### 循环注入分两种情况：1、构造方法注入 2、set方法注入（单例和多例有区别）
+### 循环注入分两种情况：1、构造方法注入   2、set方法注入（单例和多例有区别）
 
 #### 1、构造方法注入：Spring没有办法解决会抛出异常：Requested bean is currently in creation: Is there an unresolvable circular reference?
 
@@ -160,7 +160,7 @@ public class SpringCyclicTest {
 
 * 首先，不能直接说创建几个对象，需要分情况去分析：先说结论：一个或两个。
 * 如果字符串 abc 之前没有用过，毫无疑问会创建2个对象，一个是new String创建的对象，一个是abc对象的内容创建的对象。
-* 如果字符串abc之前用过，那么就值创建一个对象，abc取至缓存池。
+* 如果字符串abc之前用过，那么就只创建一个对象，abc取至缓存池。
 
 ### 2、Setter方法注入-单例
 
