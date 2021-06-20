@@ -24,7 +24,7 @@
         * HashSet
     * [并发](/docs/java/more_thread/README.md)
     * [并发编程整理](/docs/myself/并发编程.md)
-    * [锁相关](/docs/myself/锁相关.md)
+    * [锁相关整理](/docs/myself/锁相关.md)
     
     
     
@@ -94,7 +94,7 @@
 * [技术](/docs/skill/README.md)
     * 认证授权
         * SSO（单点登录）
-    * 分布式
+    * [分布式](/docs/skill/分布式/SUMMARY.md)
         * [CAP 理论](/docs/skill/分布式/cap理论.md)
         * BASE 理论
         * Paxos 算法和 Raft 算法
@@ -103,6 +103,7 @@
         * API 网关
         * 分布式 id
         * [分布式事务](/docs/skill/分布式/分布式事务.md)
+        * [分布式锁实现业务幂等](/docs/skill/分布式/分布式锁实现业务幂等.md)
     * 微服务
     * 高并发
         * 消息队列
@@ -145,3 +146,16 @@
 * [优秀的公众号及网站](/excellent.md)
 * [待学习知识](/docs/TODO/TODO.md)
 
+
+
+* 为每个章节都能有目录而做
+  * [分布式](/docs/skill/分布式/SUMMARY.md)
+    * [cap](/docs/skill/分布式/cap理论.md)
+    * [分布式课程](/docs/skill/分布式/分布式课程.md)
+    * [分布式事务](/docs/skill/分布式/分布式事务.md)
+    * [分布式锁](/docs/skill/分布式/分布式锁.md)
+    * [分布式锁实现业务幂等](/Users/mac/gitbook/weiddjavastudy/JavaStudyBook/docs/skill/分布式/分布式锁实现业务幂等.md)
+    * [RPC](/docs/skill/分布式/RPC.md)
+    * [dubbo](/docs/skill/分布式/dubbo.md)
+    * 
+  * 

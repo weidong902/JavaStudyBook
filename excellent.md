@@ -39,6 +39,10 @@ GitHub高Star整理：https://github.com/Snailclimb/awesome-java
 
 ---
 
+[有梦想的老王博客园](https://www.cnblogs.com/whgk/)
+
+[陈树义的博客](https://shuyi.tech/)
+
 labuladong算法小抄：
 
 https://labuladong.gitbook.io/algo/
