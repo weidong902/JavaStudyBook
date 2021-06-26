@@ -2,20 +2,6 @@
 
 # 看完保送阿里的RocketMQ知识点（超详细）
 
-![img](RocketMQ.assets/original.png)
-
-[敖 丙](https://aobing.blog.csdn.net/) 2019-12-02 00:01:15 ![img](RocketMQ.assets/articleReadEyes.png) 17560 ![img](RocketMQ.assets/tobarCollect.png) 收藏 527
-
-分类专栏： [《我们一起去大厂》系列](https://blog.csdn.net/qq_35190492/category_9424379.html) 文章标签： [java](https://www.csdn.net/tags/NtTaIg5sMzYyLWJsb2cO0O0O.html) [面试](https://so.csdn.net/so/search/s.do?q=面试&t=blog&o=vip&s=&l=&f=&viparticle=) [面试技巧](https://www.csdn.net/tags/MtTaEg0sMDE2MTAtYmxvZwO0O0OO0O0O.html) [消息队列](https://www.csdn.net/tags/MtTaEg0sMTU4NzgtYmxvZwO0O0OO0O0O.html) [RocketMQ](https://www.csdn.net/tags/MtTaEg0sMTA4NzYtYmxvZwO0O0OO0O0O.html)
-
-版权
-
-> 你知道的越多，你不知道的越多
->
-> 点赞再看，养成习惯
->
-> 本文**GitHub** [https://github.com/JavaFamily](https://github.com/AobingJava/JavaFamily) 已收录，有一线大厂面试点脑图、个人联系方式，欢迎Star和指教
-
 ## 前言
 
 **消息队列**在互联网技术存储方面使用如此广泛，几乎所有的后端技术面试官都要在**消息队列**的使用和原理方面对小伙伴们进行360°的刁难。
