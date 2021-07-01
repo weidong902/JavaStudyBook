@@ -1,59 +1,20 @@
-# Spring
-
-## spring事务：
-
-### 什么是Spring事务：
-
-* spring事务本质是对数据库事务的支持，如果数据库不支持事务，那么Spring的事务也是不生效的
-
-### 事务的隔离级别：
-
-### 事务的传播特性
-
-#### 什么是事务的传播特性：
-
-* 事务的传播特性：事务传播行为是指一个事务方法A被另一个事务方法B调用时，这个事务A应该如何处理。事务A应该在事务B中运行还是另起一个事务，这个有事务A的传播行为决定。
-
-#### 七种传播特性：
-
-| 常量名称                  | 常量解释                                                     |
-| ------------------------- | ------------------------------------------------------------ |
-| PROPAGATION_REQUIRED      | 支持当前事务，如果当前没有事务，就新建一个事务。这是Spring 默认的事务的传播。（`必须有事务`） |
-| PROPAGATION_REQUIRES_NEW  | 新建事务，如果当前存在事务，把当前事务挂起。新建的事务将和被挂起的事务没有任何关系，是两个独立的事务，外层事务失败回滚之后， 不能回滚内层事务执行的结果，内层事务失败抛出异常，外层事务捕获， 也可以不处理回滚操作。 使用JtaTransactionManager作为事务管理器。（`必须有事务`） 【新开启事务可以自己回滚或提交，不影响外部事物】 |
-| PROPAGATION_NESTED        | 如果一个活动的事务存在，则运行在一个嵌套的事务中。如果没有活动事务，则按REQUIRED属性执行。它使用了一个单独的事务，这个事务拥有多个可以回滚的保存点。内部事务的回滚不会对外部事务造成影响。它只对DataSourceTransactionManager事务管理器起效。（`必须有事务`）【嵌套事务一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。】 |
-| PROPAGATION_MANDATORY     | 支持当前事务，如果当前没有事务，就抛出异常。（`必须有事务`） |
-| PROPAGATION_NOT_SUPPORTED | 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。即：无论如何都不支持事务。（`不支持事务`） |
-| PROPAGATION_NEVER         | 以非事务方式执行，如果当前存在事务，则抛出异常。（`不支持事务`） |
-| PROPAGATION_SUPPORTS      | 支持当前事务，如果当前没有事务，就以非事务方式执行。（`可有可无`） |
-
-[PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:]()
-
-PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:它们非常类似,都像一个嵌套事务，如果不存在一个活动的事务，都会开启一个新的事务。使用 PROPAGATION_REQUIRES_NEW时，内层事务与外层事务就像两个独立的事务一样，一旦内层事务进行了提交后，外层事务不能对其进行回滚，两个事务互不影响。两个事务不是一个真正的嵌套事务。同时它需要JTA事务管理器的支持。
-
-```PROPAGATION_NESTED```（嵌套事务）：一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。使用PROPAGATION_NESTED时，外层事务的回滚可以引起内层事务的回滚。而内层事务的异常并不会导致外层事务的回滚，它是一个真正的嵌套事务。DataSourceTransactionManager使用savepoint支持PROPAGATION_NESTED时，需要JDBC 3.0以上驱动及1.4以上的JDK版本支持。其它的JTA TrasactionManager实现可能有不同的支持方式。
-
-PROPAGATION_REQUIRES_NEW 启动一个新的, 不依赖于环境的 “内部” 事务. 这个事务将被完全 commited 或 rolled back 而不依赖于外部事务, 它拥有自己的隔离范围, 自己的锁, 等等. 当内部事务开始执行时, 外部事务将被挂起, 内务事务结束时, 外部事务将继续执行。
-
-PROPAGATION_REQUIRES_NEW 和 PROPAGATION_NESTED 的最大区别在于, PROPAGATION_REQUIRES_NEW 完全是一个新的事务, 而 PROPAGATION_NESTED 则是外部事务的子事务, 如果外部事务 commit, 嵌套事务也会被 commit, 这个规则同样适用于 roll back.
-
-
-
-
+# Spring知识-benboerdong整理
 
 ### 1、Spring是什么?
 
 Spring是一个轻量级的IoC和AOP容器框架。是为Java应用程序提供基础性服务的一套框架，目的是用于简化企业应用程序的开发，它使得开发者只需要关心业务需求。主要包括以下七个模块：
 
-Spring Context：提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；
-Spring Core：核心类库，所有功能都依赖于该类库，提供IOC和DI服务；
-Spring AOP：AOP服务；
-Spring Web：提供了基本的面向Web的综合特性，提供对常见框架如Struts2的支持，Spring能够管理这些框架，将Spring的资源注入给框架，也能在这些框架的前后插入拦截器；
-Spring MVC：提供面向Web应用的Model-View-Controller，即MVC实现。
-Spring DAO：对JDBC的抽象封装，简化了数据访问异常的处理，并能统一管理JDBC事务；
-Spring ORM：对现有的ORM框架的支持；
+> Spring Context：提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；
+> Spring Core：核心类库，所有功能都依赖于该类库，提供IOC和DI服务；
+> Spring AOP：AOP服务；
+> Spring Web：提供了基本的面向Web的综合特性，提供对常见框架如Struts2的支持，Spring能够管理这些框架，将Spring的资源注入给框架，也能在这些框架的前后插入拦截器；
+> Spring MVC：提供面向Web应用的Model-View-Controller，即MVC实现。
+> Spring DAO：对JDBC的抽象封装，简化了数据访问异常的处理，并能统一管理JDBC事务；
+> Spring ORM：对现有的ORM框架的支持；
+
 下图对应的是Spring 4.x的版本，5.x版本中Web模块的Portlet组件已经被废弃
 
-![img](5.spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155809230.png)
+![img](Spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155809230.png)
 
  
 
@@ -67,7 +28,14 @@ Spring ORM：对现有的ORM框架的支持；
 
 （4）spring对于主流的应用框架提供了集成支持。
 
+- 基于POJO的轻量级和最小侵入性编程；
+- 通过依赖注入和面向接口实现松耦合；
+- 基于切面和惯例进行声明式编程；
+- 通过切面和模板减少样板式代码。
+
 ### 3、Spring的IoC理解：
+
+
 
 （1）IOC就是控制反转，指创建对象的控制权转移给Spring框架进行管理，并由Spring根据配置文件去创建实例和管理各个实例之间的依赖关系，对象与对象之间松散耦合，也利于功能的复用。DI依赖注入，和控制反转是同一个概念的不同角度的描述，即 应用程序在运行时依赖IoC容器来动态注入对象需要的外部依赖。
 
@@ -91,15 +59,13 @@ AOP实现的关键在于 代理模式，AOP代理主要分为静态代理和动�
 
  ① JDK动态代理只提供接口的代理，不支持类的代理，要求被代理类实现接口。JDK动态代理的核心是InvocationHandler接口和Proxy类，在获取代理对象时，使用Proxy类来动态创建目标类的代理类（即最终真正的代理类，这个类继承自Proxy并实现了我们定义的接口），当代理对象调用真实对象的方法时， InvocationHandler 通过invoke()方法反射来调用目标类中的代码，动态地将横切逻辑和业务编织在一起；
 
- InvocationHandler 的 invoke(Object  proxy,Method  method,Object[] args)：proxy是最终生成的代理对象;  method 是被代理目标实例的某个具体方法;  args 是被代理目标实例某个方法的具体入参, 在方法反射调用时使用。
+InvocationHandler 的 invoke(Object  proxy,Method  method,Object[] args)：proxy是最终生成的代理对象;  method 是被代理目标实例的某个具体方法;  args 是被代理目标实例某个方法的具体入参, 在方法反射调用时使用。
 
 ② 如果被代理类没有实现接口，那么Spring AOP会选择使用CGLIB来动态代理目标类。CGLIB（Code Generation Library），是一个代码生成的类库，可以在运行时动态的生成指定类的一个子类对象，并覆盖其中特定方法并添加增强代码，从而实现AOP。CGLIB是通过继承的方式做的动态代理，因此如果某个类被标记为final，那么它是无法使用CGLIB做动态代理的。
 
 （3）静态代理与动态代理区别在于生成AOP代理对象的时机不同，相对来说AspectJ的静态代理方式具有更好的性能，但是AspectJ需要特定的编译器进行处理，而Spring AOP则无需特定的编译器处理。
 
 IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍布于应用各层的功能分离出来形成可重用的功能组件。
-
- 
 
 ### 5、Spring AOP里面的几个名词的概念：
 
@@ -123,11 +89,11 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 
 几个概念的关系图可以参考下图：
 
-![img](5.spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155825006.png)
+![img](Spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155825006.png)
 
 网上有张非常形象的图，描述了各个概念所处的场景和作用，贴在这里供大家理解：
 
- ![img](5.spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155833275.png)
+ ![img](Spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155833275.png)
 
 ### 6、Spring通知（Advice）有哪些类型？
 
@@ -141,10 +107,8 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 
 （5）抛出异常后通知（AfterThrowing advice）：在方法抛出异常退出时执行的通知
 
-![img](5.spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155846499.png)
+![img](Spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=,size_16,color_FFFFFF,t_70-20210603155846499.png)
 
->
->
 >同一个Aspect，不同advice的执行顺序：
 >
 >（1）没有异常情况下的执行顺序：
@@ -179,7 +143,7 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 
 ### 7、Spring容器的启动流程：
 
-![image-20210618164921459](5.spring.assets/image-20210618164921459.png)
+![image-20210618164921459](Spring.assets/image-20210618164921459.png)
 
 详细内容可以阅读这篇文章：https://blog.csdn.net/a745233700/article/details/113761271
 
@@ -208,7 +172,7 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 
 ### 8、BeanFactory和ApplicationContext有什么区别？
 
-        BeanFactory和ApplicationContext是Spring的两大核心接口，都可以当做Spring的容器。
+*  BeanFactory和ApplicationContext是Spring的两大核心接口，都可以当做Spring的容器。
 
 （1）BeanFactory是Spring里面最底层的接口，是IoC的核心，定义了IoC的基本功能，包含了各种Bean的定义、加载、实例化，依赖注入和生命周期管理。ApplicationContext接口作为BeanFactory的子类，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：
 
@@ -218,9 +182,9 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 提供在监听器中注册bean的事件。
 （2）①BeanFactroy采用的是延迟加载形式来注入Bean的，只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，我们就不能提前发现一些存在的Spring的配置问题。如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常。
 
-        ②ApplicationContext，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 
-    
-        ③ApplicationContext启动后预载入所有的单实例Bean，所以在运行的时候速度比较快，因为它们已经创建好了。相对于BeanFactory，ApplicationContext 唯一的不足是占用内存空间，当应用程序配置Bean较多时，程序启动较慢。
+②ApplicationContext，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 
+
+ ③ApplicationContext启动后预载入所有的单实例Bean，所以在运行的时候速度比较快，因为它们已经创建好了。相对于BeanFactory，ApplicationContext 唯一的不足是占用内存空间，当应用程序配置Bean较多时，程序启动较慢。
 
 （3）BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。
 
@@ -234,7 +198,7 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 
 但具体来说，Spring Bean的生命周期包含下图的流程：
 
-![img](5.spring.assets/84341632e9df3625a91c3e2a1437ee65.png)
+![img](Spring.assets/84341632e9df3625a91c3e2a1437ee65.png)
 
 （1）实例化Bean：
 
@@ -319,13 +283,17 @@ set()方法注入；
 循环依赖问题在Spring中主要有三种情况：
 
 （1）通过构造方法进行依赖注入时产生的循环依赖问题。
+
 （2）通过setter方法进行依赖注入且是在多例（原型）模式下产生的循环依赖问题。
+
 （3）通过setter方法进行依赖注入且是在单例模式下产生的循环依赖问题。
 在Spring中，只有第（3）种方式的循环依赖问题被解决了，其他两种方式在遇到循环依赖问题时都会产生异常。这是因为：
 
 第一种构造方法注入的情况下，在new对象的时候就会堵塞住了，其实也就是”先有鸡还是先有蛋“的历史难题。
+
 第二种setter方法（多例）的情况下，每一次getBean()时，都会产生一个新的Bean，如此反复下去就会有无穷无尽的Bean产生了，最终就会导致OOM问题的出现。
-Spring在单例模式下的setter方法依赖注入引起的循环依赖问题，主要是通过二级缓存和三级缓存来解决的，其中三级缓存是主要功臣。解决的核心原理就是：在对象实例化之后，依赖注入之前，Spring提前暴露的Bean实例的引用在第三级缓存中进行存储。
+
+Spring在单例模式下的setter方法依赖注入引起的循环依赖问题，主要是通过二级缓存和三级缓存来解决的，其中三级缓存是主要功臣。解决的核心原理就是：`在对象实例化之后，依赖注入之前，Spring提前暴露的Bean实例的引用在第三级缓存中进行存储。`
 
 ### 14、Spring的自动装配：
 
@@ -353,9 +321,9 @@ Spring在单例模式下的setter方法依赖注入引起的循环依赖问题�
 
 注：@Autowired和@Resource之间的区别：
 
-(1) @Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。
+* (1) @Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。
 
-(2) @Resource默认是按照名称来装配注入的，只有当找不到与名称匹配的bean才会按照类型来装配注入。
+* (2) @Resource默认是按照名称来装配注入的，只有当找不到与名称匹配的bean才会按照类型来装配注入。
 
 ### 15、Spring事务的实现方式和实现原理：
 
@@ -441,13 +409,9 @@ Spring 提供了以下5种标准的事件：
 
 
 
-
-
-
-
 ##  1、不同版本的 Spring Framework 有哪些主要功能？
 
-![图片](5.spring.assets/640-20210616233924265.png)
+![图片](Spring.assets/640-20210616233924265.png)
 
 ## 2、什么是 Spring Framework？
 
@@ -463,15 +427,17 @@ Spring 是一个开源应用框架，旨在降低应用程序开发的复杂度�
 
 ## 5、Spring Framework 中有多少个模块，它们分别是什么？
 
-![图片](5.spring.assets/640.jpeg)
+![图片](Spring.assets/640.jpeg)
 
 **Spring 核心容器 – 该层基本上是 Spring Framework 的核心。它包含以下模块：
+
 **· Spring Core
 · Spring Bean
 · SpEL (Spring Expression Language)
 · Spring Context
 
 **数据访问/集成 – 该层提供与数据库交互的支持。它包含以下模块：
+
 **· JDBC (Java DataBase Connectivity)
 · ORM (Object Relational Mapping)
 · OXM (Object XML Mappers)
@@ -479,21 +445,26 @@ Spring 是一个开源应用框架，旨在降低应用程序开发的复杂度�
 · Transaction
 
 **Web – 该层提供了创建 Web 应用程序的支持。它包含以下模块：
+
 **· Web
 · Web – Servlet
 · Web – Socket
 · Web – Portlet
 
 **AOP
+
 **· 该层支持面向切面编程
 
 **Instrumentation
+
 **· 该层为类检测和类加载器实现提供支持。
 
 **Test
+
 **· 该层为使用 JUnit 和 TestNG 进行测试提供支持。
 
 **几个杂项模块:
+
 **Messaging – 该模块为 STOMP 提供支持。它还支持注解编程模型，该模型用于从WebSocket 客户端路由和处理 STOMP 消息。
  Aspects – 该模块为与 AspectJ 的集成提供支持。
 
@@ -522,7 +493,7 @@ Spring 应用一般有以下组件：
 
 Spring 框架的核心是 Spring 容器。容器创建对象，将它们装配在一起，配置它们并管理它们的完整生命周期。Spring 容器使用依赖注入来管理组成应用程序的组件。容器通过读取提供的配置元数据来接收对象进行实例化，配置和组装的指令。该元数据可以通过 XML，Java 注解或 Java 代码提供。
 
-![image-20210616234041183](5.spring.assets/image-20210616234041183.png)
+![image-20210616234041183](Spring.assets/image-20210616234041183.png)
 
 
 
@@ -539,7 +510,7 @@ Spring 框架的核心是 Spring 容器。容器创建对象，将它们装配�
 
 ## 12、区分构造函数注入和 setter 注入。
 
-![	](5.spring.assets/640-20210616233924295.png)
+![	](Spring.assets/640-20210616233924295.png)
 
 ## 13、spring 中有多少种 IOC 容器？
 
@@ -547,7 +518,7 @@ BeanFactory - BeanFactory 就像一个包含 bean 集合的工厂类。它会在
 
 ## 14、区分 BeanFactory 和 ApplicationContext。
 
-![image-20210616234111153](5.spring.assets/image-20210616234111153.png)
+![image-20210616234111153](Spring.assets/image-20210616234111153.png)
 
 ## 15、列举 IoC 的一些好处。
 
@@ -646,7 +617,7 @@ spring bean 容器的生命周期流程如下：
 （8）如果 bean 实现DisposableBean 接口，当 spring 容器关闭时，会调用 destory()。
 （9）如果为bean 指定了 destroy 方法（ <bean> 的 destroy-method 属性），那么将 调用它。
 
-![image-20210616234230239](5.spring.assets/image-20210616234230239.png)
+![image-20210616234230239](Spring.assets/image-20210616234230239.png)
 
 ## 21、什么是 spring 的内部 bean？
 
@@ -678,6 +649,7 @@ bean.xml
 Spring 容器能够自动装配 bean。也就是说，可以通过检查 BeanFactory 的内容让 Spring 自动解析 bean 的协作者。
 
 **自动装配的不同模式：
+
 **no - 这是默认设置，表示没有自动装配。应使用显式 bean 引用进行装配。
 byName - 它根据 bean 的名称注入对象依赖项。它匹配并装配其属性与 XML文件中由相同名称定义的 bean。
 byType - 它根据类型注入对象依赖项。如果属性的类型与 XML 文件中的一个 bean 名称匹配，则匹配并装配属性。构造函数- 它通过调用类的构造函数来注入依赖项。它有大量的参数。
@@ -789,7 +761,7 @@ Spring DAO 使得 JDBC，Hibernate 或 JDO 这样的数据访问技术更容易�
 
 ## 33、列举 Spring DAO 抛出的异常。
 
-![image-20210616234257197](5.spring.assets/image-20210616234257197.png)
+![image-20210616234257197](Spring.assets/image-20210616234257197.png)
 
 ## 34、spring JDBC API 中存在哪些类？
 
@@ -827,7 +799,7 @@ AOP(Aspect-Oriented Programming), 即 面向切面编程, 它与OOP( Object-Orie
 
 aspect 由 pointcount 和 advice 组成, 它既包含了横切逻辑的定义, 也包括了连接点的定义. Spring AOP 就是负责实施切面的框架, 它将切面所定义的横切逻辑编织到切面所指定的连接点中. AOP 的工作重心在于如何将增强编织目标对象的连接点上, 这里包含两个工作: (1)如何通过 pointcut 和 advice 定位到特定的 joinpoint 上 (2)如何在advice 中编写切面代码.
 
-![image-20210616234320659](5.spring.assets/image-20210616234320659.png)
+![image-20210616234320659](Spring.assets/image-20210616234320659.png)
 
 可以简单地认为, 使用 @Aspect 注解的类就是切面.
 
@@ -876,7 +848,7 @@ Spring AOP 基于动态代理方式实现；AspectJ 基于静态代理方式实�
 
 为了创建一个 advice 对象而链接一个 aspect 和其它应用类型或对象，称为编织（Weaving）。在 Spring AOP 中，编织在运行时执行。请参考下图：
 
-![图片](5.spring.assets/640-20210616233924276.png)
+![图片](Spring.assets/640-20210616233924276.png)
 
 ## 48、Spring MVC 框架有什么用？
 
@@ -886,7 +858,7 @@ Spring Web MVC 框架提供 模型-视图-控制器 架构和随时可用的组�
 
 DispatcherServlet 的工作流程可以用一幅图来说明：
 
-![image-20210616234356591](5.spring.assets/image-20210616234356591.png)
+![image-20210616234356591](Spring.assets/image-20210616234356591.png)
 
 （1）向服务器发送 HTTP 请求，请求被前端控制器 DispatcherServlet 捕获。
 （2） DispatcherServlet 根据 -servlet.xml 中的配置对请求的 URL 进行解析，得到请求资源标识符（URI）。然后根据该 URI，调用 HandlerMapping获得该 Handler 配置的所有相关的对象（包括 Handler 对象以及 Handler 对象对应的拦截器），最后以HandlerExecutionChain 对象的形式返回。
@@ -1254,3 +1226,327 @@ WebApplicationContext 继承了 ApplicationContext 并增加了一些 WEB 应用
 ## 129、@RequestMapping  注解
 
 该注解是用来映射一个 URL 到一个类或一个特定的方处理法上。
+
+## spring事务：
+
+### 什么是Spring事务：
+
+* spring事务本质是对数据库事务的支持，如果数据库不支持事务，那么Spring的事务也是不生效的
+
+### 事务的隔离级别：
+
+### 事务的传播特性
+
+#### 什么是事务的传播特性：
+
+* 事务的传播特性：事务传播行为是指一个事务方法A被另一个事务方法B调用时，这个事务A应该如何处理。事务A应该在事务B中运行还是另起一个事务，这个有事务A的传播行为决定。
+
+#### 七种传播特性：
+
+| 常量名称                  | 常量解释                                                     |
+| ------------------------- | ------------------------------------------------------------ |
+| PROPAGATION_REQUIRED      | 支持当前事务，如果当前没有事务，就新建一个事务。这是Spring 默认的事务的传播。（`必须有事务`） |
+| PROPAGATION_REQUIRES_NEW  | 新建事务，如果当前存在事务，把当前事务挂起。新建的事务将和被挂起的事务没有任何关系，是两个独立的事务，外层事务失败回滚之后， 不能回滚内层事务执行的结果，内层事务失败抛出异常，外层事务捕获， 也可以不处理回滚操作。 使用JtaTransactionManager作为事务管理器。（`必须有事务`） 【新开启事务可以自己回滚或提交，不影响外部事物】 |
+| PROPAGATION_NESTED        | 如果一个活动的事务存在，则运行在一个嵌套的事务中。如果没有活动事务，则按REQUIRED属性执行。它使用了一个单独的事务，这个事务拥有多个可以回滚的保存点。内部事务的回滚不会对外部事务造成影响。它只对DataSourceTransactionManager事务管理器起效。（`必须有事务`）【嵌套事务一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。】 |
+| PROPAGATION_MANDATORY     | 支持当前事务，如果当前没有事务，就抛出异常。（`必须有事务`） |
+| PROPAGATION_NOT_SUPPORTED | 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。即：无论如何都不支持事务。（`不支持事务`） |
+| PROPAGATION_NEVER         | 以非事务方式执行，如果当前存在事务，则抛出异常。（`不支持事务`） |
+| PROPAGATION_SUPPORTS      | 支持当前事务，如果当前没有事务，就以非事务方式执行。（`可有可无`） |
+
+[PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:]()
+
+PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:它们非常类似,都像一个嵌套事务，如果不存在一个活动的事务，都会开启一个新的事务。使用 PROPAGATION_REQUIRES_NEW时，内层事务与外层事务就像两个独立的事务一样，一旦内层事务进行了提交后，外层事务不能对其进行回滚，两个事务互不影响。两个事务不是一个真正的嵌套事务。同时它需要JTA事务管理器的支持。
+
+```PROPAGATION_NESTED```（嵌套事务）：一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。使用PROPAGATION_NESTED时，外层事务的回滚可以引起内层事务的回滚。而内层事务的异常并不会导致外层事务的回滚，它是一个真正的嵌套事务。DataSourceTransactionManager使用savepoint支持PROPAGATION_NESTED时，需要JDBC 3.0以上驱动及1.4以上的JDK版本支持。其它的JTA TrasactionManager实现可能有不同的支持方式。
+
+PROPAGATION_REQUIRES_NEW 启动一个新的, 不依赖于环境的 “内部” 事务. 这个事务将被完全 commited 或 rolled back 而不依赖于外部事务, 它拥有自己的隔离范围, 自己的锁, 等等. 当内部事务开始执行时, 外部事务将被挂起, 内务事务结束时, 外部事务将继续执行。
+
+PROPAGATION_REQUIRES_NEW 和 PROPAGATION_NESTED 的最大区别在于, PROPAGATION_REQUIRES_NEW 完全是一个新的事务, 而 PROPAGATION_NESTED 则是外部事务的子事务, 如果外部事务 commit, 嵌套事务也会被 commit, 这个规则同样适用于 roll back.
+
+
+
+
+
+##  @Transactional注解在哪些场景下会失效？
+
+@Transactional 注解相信大家并不陌生，平时开发中很常用的一个注解，它能保证方法内多个数据库操作要么同时成功、要么同时失败。使用@Transactional注解时需要注意许多的细节，不然你会发现@Transactional总是莫名其妙的就失效了。
+
+### 一、事务
+
+事务管理在系统开发中是不可缺少的一部分，Spring提供了很好事务管理机制，主要分为编程式事务和声明式事务两种。
+
+编程式事务：是指在代码中手动的管理事务的提交、回滚等操作，代码侵入性比较强，如下示例：
+
+```text
+try {
+    //TODO something
+     transactionManager.commit(status);
+} catch (Exception e) {
+    transactionManager.rollback(status);
+    throw new InvoiceApplyException("异常失败");
+```
+
+声明式事务：基于AOP面向切面的，它将具体业务与事务处理部分解耦，代码侵入性很低，所以在实际开发中声明式事务用的比较多。声明式事务也有两种实现方式，一是基于TX和AOP的xml配置文件方式，二种就是基于@Transactional注解了。
+
+```text
+@Transactional
+    @GetMapping("/test")
+    public String test() {
+    
+        int insert = cityInfoDictMapper.insert(cityInfoDict);
+    }
+```
+
+### 二、@Transactional介绍
+
+#### 1、@Transactional注解可以作用于哪些地方？
+
+@Transactional 可以作用在接口、类、类方法。
+
+作用于类：当把@Transactional 注解放在类上时，表示所有该类的public方法都配置相同的事务属性信息。
+
+作用于方法：当类配置了@Transactional，方法也配置了@Transactional，方法的事务会覆盖类的事务配置信息。
+
+作用于接口：`不推荐这种使用方法`，因为一旦标注在Interface上并且配置了Spring AOP 使用CGLib动态代理，将会导致@Transactional注解失效
+
+```java
+@Transactional
+@RestController
+@RequestMapping
+public class MybatisPlusController {
+    @Autowired
+    private CityInfoDictMapper cityInfoDictMapper;
+    
+    @Transactional(rollbackFor = Exception.class)
+    @GetMapping("/test")
+    public String test() throws Exception {
+        CityInfoDict cityInfoDict = new CityInfoDict();
+        cityInfoDict.setParentCityId(2);
+        cityInfoDict.setCityName("2");
+        cityInfoDict.setCityLevel("2");
+        cityInfoDict.setCityCode("2");
+        int insert = cityInfoDictMapper.insert(cityInfoDict);
+        return insert + "";
+    }
+}
+```
+
+#### 2、@Transactional注有哪些属性？
+
+#### propagation属性
+
+propagation 代表事务的传播行为，默认值为 Propagation.REQUIRED，其他的属性信息如下：
+
+Propagation.REQUIRED：如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。( 也就是说如果A方法和B方法都添加了注解，在默认传播模式下，A方法内部调用B方法，会把两个方法的事务合并为一个事务 ）
+
+Propagation.SUPPORTS：如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+
+Propagation.MANDATORY：如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+
+Propagation.REQUIRES_NEW：重新创建一个新的事务，如果当前存在事务，暂停当前的事务。( 当类A中的 a 方法用默认Propagation.REQUIRED模式，类B中的 b方法加上采用 Propagation.REQUIRES_NEW模式，然后在 a 方法中调用 b方法操作数据库，然而 a方法抛出异常后，b方法并没有进行回滚，因为Propagation.REQUIRES_NEW会暂停 a方法的事务 )
+
+Propagation.NOT_SUPPORTED：以非事务的方式运行，如果当前存在事务，暂停当前的事务。
+
+Propagation.NEVER：以非事务的方式运行，如果当前存在事务，则抛出异常。
+
+Propagation.NESTED ：和 Propagation.REQUIRED 效果一样。
+
+#### isolation 属性
+
+isolation ：事务的隔离级别，默认值为 Isolation.DEFAULT。
+
+Isolation.DEFAULT：使用底层数据库默认的隔离级别。
+
+Isolation.READ_UNCOMMITTED
+
+Isolation.READ_COMMITTED
+
+Isolation.REPEATABLE_READ
+
+Isolation.SERIALIZABLE
+
+#### timeout 属性
+
+timeout ：事务的超时时间，默认值为 -1。如果超过该时间限制但事务还没有完成，则自动回滚事务。
+
+#### readOnly 属性
+
+readOnly ：指定事务是否为只读事务，默认值为 false；为了忽略那些不需要事务的方法，比如读取数据，可以设置 read-only 为 true。
+
+#### rollbackFor 属性
+
+rollbackFor ：用于指定能够触发事务回滚的异常类型，可以指定多个异常类型。
+
+#### noRollbackFor属性
+
+noRollbackFor：抛出指定的异常类型，不回滚事务，也可以指定多个异常类型。
+
+### 三、@Transactional失效场景
+
+接下来我们结合具体的代码分析一下哪些场景下，@Transactional 注解会失效。
+
+#### 1、@Transactional 应用在非 public 修饰的方法上
+
+如果Transactional注解应用在非public 修饰的方法上，Transactional将会失效。
+
+
+
+![img](Spring.assets/v2-126455864b86d9f0c732d102f7419246_1440w-20210626185757216.jpg)
+
+之所以会失效是因为在Spring AOP 代理时，如上图所示 TransactionInterceptor （事务拦截器）在目标方法执行前后进行拦截，DynamicAdvisedInterceptor（CglibAopProxy 的内部类）的 intercept 方法或 JdkDynamicAopProxy 的 invoke 方法会间接调用 AbstractFallbackTransactionAttributeSource的 computeTransactionAttribute 方法，获取Transactional 注解的事务配置信息。
+
+```java
+protected TransactionAttribute computeTransactionAttribute(Method method,
+    Class<?> targetClass) {
+        // Don't allow no-public methods as required.
+        if (allowPublicMethodsOnly() && !Modifier.isPublic(method.getModifiers())) {
+        return null;
+}
+```
+
+此方法会检查目标方法的修饰符是否为 public，不是 public则不会获取@Transactional 的属性配置信息。
+
+注意：protected、private 修饰的方法上使用 @Transactional 注解，虽然事务无效，但不会有任何报错，这是我们很容犯错的一点。
+
+#### 2、@Transactional 注解属性 propagation 设置错误
+
+这种失效是由于配置错误，若是错误的配置以下三种 propagation，事务将不会发生回滚。
+
+TransactionDefinition.PROPAGATION_SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。 
+TransactionDefinition.PROPAGATION_NOT_SUPPORTED：以非事务方式运行，如果当前存在事务，则把当前事务挂起。 
+TransactionDefinition.PROPAGATION_NEVER：以非事务方式运行，如果当前存在事务，则抛出异常。
+
+#### 3、@Transactional 注解属性 rollbackFor 设置错误
+
+rollbackFor 可以指定能够触发事务回滚的异常类型。Spring默认抛出了未检查unchecked异常（继承自 RuntimeException 的异常）或者 Error才回滚事务；其他异常不会触发回滚事务。如果在事务中抛出其他类型的异常，但却期望 Spring 能够回滚事务，就需要指定rollbackFor属性。
+
+![img](Spring.assets/v2-9fb97fce11a566dd6c74b27d5e257f60_1440w-20210626185757212.jpg)
+
+```text
+// 希望自定义的异常可以进行回滚
+@Transactional(propagation= Propagation.REQUIRED,rollbackFor= MyException.class
+```
+
+若在目标方法中抛出的异常是 rollbackFor 指定的异常的子类，事务同样会回滚。Spring源码如下：
+
+```java
+private int getDepth(Class<?> exceptionClass, int depth) {
+
+ if (exceptionClass.getName().contains(this.exceptionName)) {
+
+ // Found it!
+
+ return depth;
+
+}
+
+ // If we've gone as far as we can go and haven't found it...
+
+ if (exceptionClass == Throwable.class) {
+
+ return -1;
+
+}
+
+return getDepth(exceptionClass.getSuperclass(), depth + 1);
+
+}
+```
+
+#### 4、同一个类中方法调用，导致@Transactional失效
+
+开发中避免不了会对同一个类里面的方法调用，比如有一个类Test，它的一个方法A，A再调用本类的方法B（不论方法B是用public还是private修饰），但方法A没有声明注解事务，而B方法有。则外部调用方法A之后，方法B的事务是不会起作用的。这也是经常犯错误的一个地方。
+
+那为啥会出现这种情况？其实这还是由于使用Spring AOP代理造成的，因为只有当事务方法被当前类以外的代码调用时，才会由Spring生成的代理对象来管理。
+
+```java
+//@Transactional
+    @GetMapping("/test")
+    private Integer A() throws Exception {
+        CityInfoDict cityInfoDict = new CityInfoDict();
+        cityInfoDict.setCityName("2");
+        /**
+         * B 插入字段为 3的数据
+         */
+        this.insertB();
+        /**
+         * A 插入字段为 2的数据
+         */
+        int insert = cityInfoDictMapper.insert(cityInfoDict);
+ 
+        return insert;
+    }
+ 
+    @Transactional()
+    public Integer insertB() throws Exception {
+        CityInfoDict cityInfoDict = new CityInfoDict();
+        cityInfoDict.setCityName("3");
+        cityInfoDict.setParentCityId(3);
+ 
+        return cityInfoDictMapper.insert(cityInfoDict);
+    }
+```
+
+#### 5、异常被你的 catch“吃了”导致@Transactional失效
+
+这种情况是最常见的一种@Transactional注解失效场景，
+
+```java
+@Transactional
+    private Integer A() throws Exception {
+        int insert = 0;
+        try {
+            CityInfoDict cityInfoDict = new CityInfoDict();
+            cityInfoDict.setCityName("2");
+            cityInfoDict.setParentCityId(2);
+            /**
+             * A 插入字段为 2的数据
+             */
+            insert = cityInfoDictMapper.insert(cityInfoDict);
+            /**
+             * B 插入字段为 3的数据
+             */
+            b.insertB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```
+
+如果B方法内部抛了异常，而A方法此时try catch了B方法的异常，那这个事务还能正常回滚吗？
+
+答案：不能！
+
+会抛出异常：
+
+```text
+org.springframework.transaction.UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only
+```
+
+因为当ServiceB中抛出了一个异常以后，ServiceB标识当前事务需要rollback。但是ServiceA中由于你手动的捕获这个异常并进行处理，ServiceA认为当前事务应该正常commit。此时就出现了前后不一致，也就是因为这样，抛出了前面的
+UnexpectedRollbackException异常。
+
+spring的事务是在调用业务方法之前开始的，业务方法执行完毕之后才执行commit or rollback，事务是否执行取决于是否抛出runtime异常。如果抛出runtime exception 并在你的业务方法中没有catch到的话，事务会回滚。
+
+在业务方法中一般不需要catch异常，如果非要catch一定要抛出throw new RuntimeException()，或者注解中指定抛异常类型@Transactional(rollbackFor=Exception.class)，否则会导致事务失效，数据commit造成数据不一致，所以有些时候try catch反倒会画蛇添足。
+
+#### 6、数据库引擎不支持事务
+
+这种情况出现的概率并不高，事务能否生效数据库引擎是否支持事务是关键。常用的MySQL数据库默认使用支持事务的innodb引擎。一旦数据库引擎切换成不支持事务的myisam，那事务就从根本上失效了。
+
+### 总结
+
+@Transactional 注解的看似简单易用，但如果对它的用法一知半解，还是会踩到很多坑的
+
+
+
+
+
+# spring面试：
+
+![image-20210626224201725](Spring.assets/image-20210626224201725.png)
+
+![image-20210626224406207](Spring.assets/image-20210626224406207.png)
+
+![image-20210626224800289](Spring.assets/image-20210626224800289.png)
+

@@ -166,7 +166,6 @@ public E set(int index, E element) {
 ```
 public E get(int index) {
     rangeCheck(index);
-
     return elementData(index);
 }
 

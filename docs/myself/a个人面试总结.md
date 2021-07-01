@@ -155,12 +155,6 @@ public class SpringCyclicTest {
 然后，创建BB类对象的时候构造方法又需要CC类对象；
 最后去创建CC类对象时候发现构造方法需要AA类的对象，最终形成环，无法创建。进而抛出异常。
 
-###  String str = new String("abc")创建了几个对象？
-
-* 首先，不能直接说创建几个对象，需要分情况去分析：先说结论：一个或两个。
-* 如果字符串 abc 之前没有用过，毫无疑问会创建2个对象，一个是new String创建的对象，一个是abc对象的内容创建的对象。
-* 如果字符串abc之前用过，那么就只创建一个对象，abc取至缓存池。
-
 ### 2、Setter方法注入-单例
 
 代码：
@@ -250,7 +244,11 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 * `FactoryBean`：可以理解为为使用工厂模式和装饰者模式为指定类创建实例对象。
 
+###  String str = new String("abc")创建了几个对象？
 
+* 首先，不能直接说创建几个对象，需要分情况去分析：先说结论：一个或两个。
+* 如果字符串 abc 之前没有用过，毫无疑问会创建2个对象，一个是new String创建的对象，一个是abc对象的内容创建的对象。
+* 如果字符串abc之前用过，那么就只创建一个对象，abc取至缓存池。
 
 ### 3、HashMap为什么是线程不安全的？
 
@@ -662,7 +660,7 @@ spring+mybatis+jump（前端）：版本：spring版本5.1，mybatis: 3.5.,   my
 
 ###  4、Spring AOP
 
-### 4、@Transactional在什么情况下会失效？（使用aop的思想解释下）
+### 4、@Transactional注解在哪些场景下会失效？（使用aop的思想解释下）参看spring总结
 
 ### 5、Mybatis中如何在插入数据后获取主键值（主键值自增）
 
@@ -717,9 +715,87 @@ spring+mybatis+jump（前端）：版本：spring版本5.1，mybatis: 3.5.,   my
 
 
 
+# 天鹅到家
 
 
 
+>深度学习，大数据，推荐算法，搜索算法
+>
+>基于java做的深度学习。
+
+## 一面
+
+### 手写快排
+
+### rabbitmq：消息是有序的吗？怎么保证有序消费 。
+
+### 常用集合
+
+### Linux常用命令？
+
+### 如何从日志中查看error，或统计error出现的次数
+
+### String的题
+
+>String a ="abc";
+>
+>String b ="abc";
+>
+>String c =new String("abc");
+>
+>String d =new String("abc");
+>
+>sout(a==b);// ture
+>
+>sout(c==d);//false
+
+## 二面：
+
+
+
+>二面聊了项目 ，主要介绍了他们目前做的事情，
+>
+>基于java的深度学习，推荐，搜索算法。偏大数据，深度学习
+>
+> 推荐&搜索&广告&用户画像&深度学习整理（https://zhuanlan.zhihu.com/p/51015148）
+>
+>[Java Web个性化推荐引擎工程师](https://zhuanlan.zhihu.com/p/136398867)
+
+
+
+
+
+---
+
+
+
+# 北京银行
+
+>Springboot SpringCloud 
+
+### 聊项目，原因
+
+### 拦截器和过滤器
+
+### Springboot核心注解
+
+### springboot如何初始化一些参数
+
+### 分布式实现：dubbo
+
+### 多线程、线程池（线程池的参数、拒绝策略）
+
+#### 1、讲下dubbo的调用流程。
+
+### redis做限流、Nginx做限流 、Springcloud做限流
+
+### 
+
+
+
+>spring 需要再学习下。
+>
+>springboot+ Springcloud需要看看。
 
 
 
@@ -764,6 +840,8 @@ spring+mybatis+jump（前端）：版本：spring版本5.1，mybatis: 3.5.,   my
 ### 18、redis是单线程还是多线程的
 
 ### 19、数据库的事物隔离级别
+
+### 20 、如果有一个cookie，每一个线程都带着，一个cookie内容大小是30字节，现在有300个线程，本地磁盘有一个黑名单文件，黑名单中存在500万个cookie，每一个cookie占一行，现在要求在毫秒级的响应中找到黑名单的cookie
 
 
 
