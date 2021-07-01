@@ -111,7 +111,7 @@
 
     
         
-        <li class="header">目录（带有整理的是最近做的）</li>
+        <li class="header">目录（benboerdong）</li>
         
         
     
@@ -797,9 +797,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="10.1.1" data-path="../../myself/5.spring.html">
+        <li class="chapter " data-level="10.1.1" data-path="../../myself/Spring.html">
             
-                <a href="../../myself/5.spring.html">
+                <a href="../../myself/Spring.html">
             
                     
                     spring整理
@@ -810,7 +810,33 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.2" data-path="../../myself/9.mybatis.html">
+        <li class="chapter " data-level="10.1.2" data-path="../../myself/springboot.html">
+            
+                <a href="../../myself/springboot.html">
+            
+                    
+                    SpringBoot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3" data-path="../../myself/springcloud.html">
+            
+                <a href="../../myself/springcloud.html">
+            
+                    
+                    Springcloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.4" data-path="../../myself/9.mybatis.html">
             
                 <a href="../../myself/9.mybatis.html">
             
@@ -823,7 +849,7 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.3" >
+        <li class="chapter " data-level="10.1.5" >
             
                 <span>
             
@@ -836,7 +862,7 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.4" >
+        <li class="chapter " data-level="10.1.6" >
             
                 <span>
             
@@ -849,7 +875,7 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.5" data-path="../../myself/6.dubbo.html">
+        <li class="chapter " data-level="10.1.7" data-path="../../myself/6.dubbo.html">
             
                 <a href="../../myself/6.dubbo.html">
             
@@ -862,7 +888,7 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.6" >
+        <li class="chapter " data-level="10.1.8" >
             
                 <span>
             
@@ -875,7 +901,7 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.7" data-path="../../myself/7.rabbitmq.html">
+        <li class="chapter " data-level="10.1.9" data-path="../../myself/7.rabbitmq.html">
             
                 <a href="../../myself/7.rabbitmq.html">
             
@@ -888,7 +914,7 @@
             
         </li>
     
-        <li class="chapter " data-level="10.1.8" data-path="../../myself/8.zookeeper.html">
+        <li class="chapter " data-level="10.1.10" data-path="../../myself/8.zookeeper.html">
             
                 <a href="../../myself/8.zookeeper.html">
             
@@ -2283,6 +2309,60 @@ s &#x4EC5;&#x7531;&#x6570;&#x5B57;&#x548C;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF0
     }
 }
 </code></pre>
+<h3 id="&#x5251;&#x6307;-offer-32---i-&#x4ECE;&#x4E0A;&#x5230;&#x4E0B;&#x6253;&#x5370;&#x4E8C;&#x53C9;&#x6811;"><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/" target="_blank">&#x5251;&#x6307; Offer 32 - I. &#x4ECE;&#x4E0A;&#x5230;&#x4E0B;&#x6253;&#x5370;&#x4E8C;&#x53C9;&#x6811;</a></h3>
+<blockquote>
+<p>&#x4ECE;&#x4E0A;&#x5230;&#x4E0B;&#x6253;&#x5370;&#x51FA;&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x540C;&#x4E00;&#x5C42;&#x7684;&#x8282;&#x70B9;&#x6309;&#x7167;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#x7684;&#x987A;&#x5E8F;&#x6253;&#x5370;&#x3002;</p>
+<p>&#x4F8B;&#x5982;:
+&#x7ED9;&#x5B9A;&#x4E8C;&#x53C9;&#x6811;: [3,9,20,null,null,15,7],</p>
+<p>   3
+  / \
+ 9  20
+   /  \
+  15   7
+&#x8FD4;&#x56DE;&#xFF1A;</p>
+<p>[3,9,20,15,7]</p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] levelOrder(TreeNode root) {
+        <span class="hljs-comment">//&#x5206;&#x5C42;&#x6253;&#x5370;&#xFF0C;&#x9700;&#x8981;&#x5F15;&#x5165;&#x961F;&#x5217;&#xFF0C;&#x5229;&#x7528;&#x961F;&#x5217;&#x7684;&#x5148;&#x5165;&#x5148;&#x51FA;&#x7684;&#x7279;&#x6027;</span>
+        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>)<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]{};
+
+        Queue&lt;TreeNode&gt; queue =<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
+        ArrayList&lt;Integer&gt; list =<span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-comment">//&#x5148;&#x628A;&#x6839;&#x8282;&#x70B9;&#x653E;&#x5165;&#x5230;&#x961F;&#x5217;&#x4E2D;&#xFF0C;</span>
+        queue.add(root);
+        <span class="hljs-comment">//&#x5982;&#x679C;&#x961F;&#x5217;&#x4E0D;&#x4E3A;&#x7A7A;&#x5C31;&#x4E00;&#x76F4;&#x904D;&#x5386;</span>
+        <span class="hljs-keyword">while</span>(!queue.isEmpty()){
+            <span class="hljs-comment">//&#x53D6;&#x51FA;&#xFF08;&#x79FB;&#x9664;&#xFF09;&#x961F;&#x5217;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span>
+            TreeNode node =queue.remove();
+            <span class="hljs-comment">//&#x5C06;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x5143;&#x7D20;&#x503C;&#x653E;&#x5165;&#x5230;List&#x4E2D;</span>
+            list.add(node.val);
+            <span class="hljs-comment">//&#x5982;&#x679C;left&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x653E;&#x5165;&#x5230;&#x961F;&#x5217;&#x4E2D;</span>
+            <span class="hljs-keyword">if</span>(node.left!=<span class="hljs-keyword">null</span>)
+            queue.add(node.left);
+            <span class="hljs-comment">//&#x5982;&#x679C;right&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x653E;&#x5165;&#x5230;&#x961F;&#x5217;&#x4E2D;</span>
+            <span class="hljs-keyword">if</span>(node.right!=<span class="hljs-keyword">null</span>)
+            queue.add(node.right);
+
+        }
+
+        <span class="hljs-keyword">int</span>[] arr =<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[list.size()];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;list.size();i++){
+            arr[i]=list.get(i);
+        }
+        <span class="hljs-keyword">return</span> arr;
+    }
+}
+</code></pre>
 <h2 id="&#x4E94;&#x3001;&#x6808;&#xFF1A;">&#x4E94;&#x3001;&#x6808;&#xFF1A;</h2>
 <h2 id="&#x516D;&#x3001;hash&#x8868;">&#x516D;&#x3001;Hash&#x8868;</h2>
 <h2 id="&#x4E03;&#x3001;&#x56FE;">&#x4E03;&#x3001;&#x56FE;</h2>
@@ -2450,7 +2530,7 @@ s &#x4EC5;&#x7531;&#x6570;&#x5B57;&#x548C;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"个人总结常见算法题整理","level":"8.1.1","depth":2,"next":{"title":"labuladong的算法小抄","level":"8.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},"previous":{"title":"算法","level":"8.1","depth":1,"path":"docs/dataStructures-algorithms/SUMMARY.md","ref":"docs/dataStructures-algorithms/SUMMARY.md","articles":[{"title":"个人总结常见算法题整理","level":"8.1.1","depth":2,"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","ref":"docs/dataStructures-algorithms/algorithms/常见算法题.md","articles":[]},{"title":"labuladong的算法小抄","level":"8.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},{"title":"排序","level":"8.1.3","depth":2,"path":"docs/dataStructures-algorithms/algorithms/readme.md","ref":"docs/dataStructures-algorithms/algorithms/readme.md","articles":[{"title":"十大排序算法之-快速排序","level":"8.1.3.1","depth":3,"path":"docs/dataStructures-algorithms/algorithms/快速排序.md","ref":"docs/dataStructures-algorithms/algorithms/快速排序.md","articles":[]},{"title":"十大排序算法之-归并排序","level":"8.1.3.2","depth":3,"path":"docs/dataStructures-algorithms/algorithms/归并排序.md","ref":"docs/dataStructures-algorithms/algorithms/归并排序.md","articles":[]}]},{"title":"leetCode","level":"8.1.4","depth":2,"path":"docs/dataStructures-algorithms/leetcode/README.md","ref":"docs/dataStructures-algorithms/leetcode/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","mtime":"2021-06-19T13:17:24.470Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-06-20T13:28:20.807Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"个人总结常见算法题整理","level":"8.1.1","depth":2,"next":{"title":"labuladong的算法小抄","level":"8.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},"previous":{"title":"算法","level":"8.1","depth":1,"path":"docs/dataStructures-algorithms/SUMMARY.md","ref":"docs/dataStructures-algorithms/SUMMARY.md","articles":[{"title":"个人总结常见算法题整理","level":"8.1.1","depth":2,"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","ref":"docs/dataStructures-algorithms/algorithms/常见算法题.md","articles":[]},{"title":"labuladong的算法小抄","level":"8.1.2","depth":2,"path":"docs/dataStructures-algorithms/labuladong/readme.md","ref":"docs/dataStructures-algorithms/labuladong/readme.md","articles":[]},{"title":"排序","level":"8.1.3","depth":2,"path":"docs/dataStructures-algorithms/algorithms/readme.md","ref":"docs/dataStructures-algorithms/algorithms/readme.md","articles":[{"title":"十大排序算法之-快速排序","level":"8.1.3.1","depth":3,"path":"docs/dataStructures-algorithms/algorithms/快速排序.md","ref":"docs/dataStructures-algorithms/algorithms/快速排序.md","articles":[]},{"title":"十大排序算法之-归并排序","level":"8.1.3.2","depth":3,"path":"docs/dataStructures-algorithms/algorithms/归并排序.md","ref":"docs/dataStructures-algorithms/algorithms/归并排序.md","articles":[]}]},{"title":"leetCode","level":"8.1.4","depth":2,"path":"docs/dataStructures-algorithms/leetcode/README.md","ref":"docs/dataStructures-algorithms/leetcode/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/dataStructures-algorithms/algorithms/常见算法题.md","mtime":"2021-06-23T13:00:30.552Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-01T03:01:19.896Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

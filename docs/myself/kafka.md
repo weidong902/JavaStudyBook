@@ -902,5 +902,7 @@ Successfully started reassignment of partitions.
 
 
 
+![image-20210626173407880](kafka.assets/image-20210626173407880.png)
+
 **[有梦想的老王](https://www.cnblogs.com/whgk/p/14291466.html)**
 

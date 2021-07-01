@@ -1,4 +1,4 @@
-## 一、跟谁学：
+# 一、跟谁学：
 
 ### 1、主观问题：见有道云笔记
 
@@ -104,8 +104,7 @@ public class SingleLinkedListTest {
 
 ```
 
-
-## 二、长城汽车
+# 二、长城汽车
 
 ### [1、Spring如何处理依赖注入的？](https://blog.csdn.net/weixin_39559282/article/details/116101230)
 
@@ -155,12 +154,6 @@ public class SpringCyclicTest {
 首先，在创建AA类对象的时候，构造方法需要BB类对象；
 然后，创建BB类对象的时候构造方法又需要CC类对象；
 最后去创建CC类对象时候发现构造方法需要AA类的对象，最终形成环，无法创建。进而抛出异常。
-
-###  String str = new String("abc")创建了几个对象？
-
-* 首先，不能直接说创建几个对象，需要分情况去分析：先说结论：一个或两个。
-* 如果字符串 abc 之前没有用过，毫无疑问会创建2个对象，一个是new String创建的对象，一个是abc对象的内容创建的对象。
-* 如果字符串abc之前用过，那么就只创建一个对象，abc取至缓存池。
 
 ### 2、Setter方法注入-单例
 
@@ -224,9 +217,9 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 配置：(多例)
 
 ```xml
- <bean id="a" class="com.weidd.best.frame.springTest.circular2.AA" scope="prototype">
+ 		<bean id="a" class="com.weidd.best.frame.springTest.circular2.AA" scope="prototype">
         <property name="b" ref="b"></property>
-    </bean>
+    </bean>	
     <bean id="b" class="com.weidd.best.frame.springTest.circular2.BB" scope="prototype">
         <property name="c" ref="c"></property>
     </bean>
@@ -251,7 +244,11 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 * `FactoryBean`：可以理解为为使用工厂模式和装饰者模式为指定类创建实例对象。
 
+###  String str = new String("abc")创建了几个对象？
 
+* 首先，不能直接说创建几个对象，需要分情况去分析：先说结论：一个或两个。
+* 如果字符串 abc 之前没有用过，毫无疑问会创建2个对象，一个是new String创建的对象，一个是abc对象的内容创建的对象。
+* 如果字符串abc之前用过，那么就只创建一个对象，abc取至缓存池。
 
 ### 3、HashMap为什么是线程不安全的？
 
@@ -290,7 +287,7 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 
 
-## 三、欧科云链
+# 三、欧科云链
 
 ### 1、HashMap扩容怎么实现的？
 
@@ -312,7 +309,7 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 
 
-## 四、好未来 自由发挥的面多（面的不行）
+# 四、好未来 自由发挥的面多（面的不行）
 
 ### 1、谈谈对Java的认识
 
@@ -334,7 +331,7 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 
 
-## 五、火花思维
+# 五、火花思维
 
 ## 一面(20210427)
 
@@ -539,9 +536,266 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 ### 6、Spring中依赖注入？
 
-7、
+### 7、for循环与foreach
+
+* foreach适用于循环次数未知，或者计算循环次数比较麻烦情况下使用效率更高，但是更为复杂的一些循环还是需要用到for循环效率更高。
+
+# 六、十荟团（技术栈，springCloud）
+
+## 一面：
+
+### 1、HashMap
+
+* put流程
 
 
+
+### 2、ConcurrentHashMap如何保证线程安全的
+
+* 节点和HashMap有什么区别吗？（树的时候）
+* 
+
+### 3、LinkedHashMap是怎么保证顺序的？
+
+* HashMap和双向链表合二为一即是LinkedHashMap
+
+* 在hash
+
+### 4、redis如何做分布式锁？
+
+### 5、zk和redis做分布式锁的场景？
+
+* redis 可能在主从复制的时候导致数据的丢失，（为什么？）
+
+### 6、MySQL主键为什么是自增而不能用uuid
+
+* 会大大增加页分裂的可能
+* 排序
+
+### 7、ThreadLocal（不行）
+
+### 8、如何保证i++ 的线程安全？
+
+* #### juc的AtomicInteger类
+
+  * 有现成的方法
+
+* 加synchronized
+
+### 9、线程池：
+
+#### 线程池的用处
+
+#### 为什么不能用Excl.
+
+## 二面
+
+### 所了解的元子类？怎么实现原子性的？
+
+### ArrayList，和LInkedList 插入值的时间复杂度
+
+### Redis的线程模型
+
+### 微服务的了解
+
+### 什么时候会考虑分库分表？怎么做的 ？
+
+### 算法：力扣102题
+
+* 层序遍历树，将同一层的树放到同一个集合中
+* ![image-20210625223945758](a%E4%B8%AA%E4%BA%BA%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93.assets/image-20210625223945758.png)
+
+# 七、当当
+
+## 一面
+
+> #### 技术栈：
+>
+> * springcloud
+>
+> #### 业务：
+>
+> * 支付
+> * 购物车
+> * 支付流程
+>
+> 高并发：做促销时候的高并发
+>
+> redis做分布式锁
+>
+> kafka、rabbitmq、redis、
+
+### 1、项目介绍：
+
+#### 1、项目框架：
+
+spring+mybatis+jump（前端）：版本：spring版本5.1，mybatis: 3.5.,   mybatis-spring : 2.0
+
+![image-20210626150925411](a%E4%B8%AA%E4%BA%BA%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93.assets/image-20210626150925411.png)
+
+
+
+### 2、常用集合有哪些？
+
+#### ArrayList、LinkedList、HashMap、ConcurrentHashMap
+
+#### 什么情况下用ArrayList，什么情况下用LinkedList？
+
+#### LinkedList是什么链表？（双向链表）
+
+#### HashMap 1.7和1.8有哪些不同？
+
+* 1.7头插法，会出现成环，造成死循环；1.7是由数组加链表组成；
+* 1.8尾插发，解决了死循环，但是还是会有数据被覆盖的情况；1.8为了解决查询效率低的情况引入了红黑树。
+
+#### CopyOnWriteArrayList
+
+* 
+
+### 3、String、StringBuffer、StringBuilder
+
+* 问了个字符串反转（竟然是问api的）
+
+### 4、Spring中ApplicationContext的加载过程（Bean的加载过程）【回答的不太好】
+
+###  4、Spring AOP
+
+### 4、@Transactional注解在哪些场景下会失效？（使用aop的思想解释下）参看spring总结
+
+### 5、Mybatis中如何在插入数据后获取主键值（主键值自增）
+
+* 配置上配置
+
+  >### 方式1：
+  >
+  >MyBatis中向MYSQL插入数据后，对象立刻获取主键的方法 。可以通过实体类中的getId()方法
+  >
+  >在insert或者insertSelective标签中，加入keyProperty和useGeneratedKeys两个属性，# useGeneratedKeys为true时则表示使用导出主键，keyProperty的值设为主键值。
+  >
+  >```xml
+  ><insert id="insertSelective" parameterType="user" useGeneratedKeys="true" keyProperty="id"> insert into user(id,name) values (#{id,jdbcType=BIGINT},#{name,jdbcType=VARCHAR}) </insert>
+  >```
+  >
+  >### 方式2：
+  >
+  >AFTER是在执行插入语句之后再执行selectKey。BEFORE是先选择主键，设置keyProperty的值然后执行插入语句。
+  >
+  >```xml
+  ><insert id="insert" parameterType="****" >
+  >	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+  >	<!-- 注意这里的keyProperty值是实体类中的主键属性名 -->
+  >		SELECT LAST_INSERT_ID()
+  >	</selectKey>
+  > 	INSERT INTO table_name(*,*,*) VALUES(#{?},#{?},#{?})
+  ></insert>
+  >```
+  >
+  >
+
+  
+
+### rabbitmq
+
+* 怎么保证消息到达消费方？
+
+### 线程池的参数？
+
+### 线程池的最佳线程数（IO密集和CPU密集型？）
+
+* IO密集型：
+  * 
+* CPU密集型：
+  * cpu 密集型（CPU-bound）线程池设计  最佳线程数=cpu核数或者cpu核数±1
+
+
+
+### 100个电话号码通过哪个集合可以快速查出？
+
+* 如上集合的话，我会选择HashMap，可以使用HashMap的continsKey()方法。底层就是一个hash查找，，时间复杂度低（O(1)--O(logn)）
+
+
+
+# 天鹅到家
+
+
+
+>深度学习，大数据，推荐算法，搜索算法
+>
+>基于java做的深度学习。
+
+## 一面
+
+### 手写快排
+
+### rabbitmq：消息是有序的吗？怎么保证有序消费 。
+
+### 常用集合
+
+### Linux常用命令？
+
+### 如何从日志中查看error，或统计error出现的次数
+
+### String的题
+
+>String a ="abc";
+>
+>String b ="abc";
+>
+>String c =new String("abc");
+>
+>String d =new String("abc");
+>
+>sout(a==b);// ture
+>
+>sout(c==d);//false
+
+## 二面：
+
+
+
+>二面聊了项目 ，主要介绍了他们目前做的事情，
+>
+>基于java的深度学习，推荐，搜索算法。偏大数据，深度学习
+>
+> 推荐&搜索&广告&用户画像&深度学习整理（https://zhuanlan.zhihu.com/p/51015148）
+>
+>[Java Web个性化推荐引擎工程师](https://zhuanlan.zhihu.com/p/136398867)
+
+
+
+
+
+---
+
+
+
+# 北京银行
+
+>Springboot SpringCloud 
+
+### 聊项目，原因
+
+### 拦截器和过滤器
+
+### Springboot核心注解
+
+### springboot如何初始化一些参数
+
+### 分布式实现：dubbo
+
+### 多线程、线程池（线程池的参数、拒绝策略）
+
+#### 1、讲下dubbo的调用流程。
+
+### redis做限流、Nginx做限流 、Springcloud做限流
+
+### 
+
+
+
+>spring 需要再学习下。
+>
+>springboot+ Springcloud需要看看。
 
 
 
@@ -555,7 +809,7 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 
 ### 3、线程池的配置参数和拒绝策略
 
-### 4、线程sleep和wait的区别
+###  4、线程sleep和wait的区别
 
 ### 5、mysql索引原理
 
@@ -586,6 +840,8 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 ### 18、redis是单线程还是多线程的
 
 ### 19、数据库的事物隔离级别
+
+### 20 、如果有一个cookie，每一个线程都带着，一个cookie内容大小是30字节，现在有300个线程，本地磁盘有一个黑名单文件，黑名单中存在500万个cookie，每一个cookie占一行，现在要求在毫秒级的响应中找到黑名单的cookie
 
 
 

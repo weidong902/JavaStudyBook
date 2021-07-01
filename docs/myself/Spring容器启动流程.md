@@ -60,36 +60,39 @@ public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
 		return;
 	}
 
-	abd.setInstanceSupplier(instanceSupplier);
-	ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
-	abd.setScope(scopeMetadata.getScopeName());
-	String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
-	// 处理类上的通用注解
-	AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
-	if (qualifiers != null) {
-		for (Class<? extends Annotation> qualifier : qualifiers) {
-			if (Primary.class == qualifier) {
-				abd.setPrimary(true);
-			}
-			else if (Lazy.class == qualifier) {
-				abd.setLazyInit(true);
-			}
-			else {
-				abd.addQualifier(new AutowireCandidateQualifier(qualifier));
-			}
+```java
+abd.setInstanceSupplier(instanceSupplier);
+ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
+abd.setScope(scopeMetadata.getScopeName());
+String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
+// 处理类上的通用注解
+AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
+if (qualifiers != null) {
+	for (Class<? extends Annotation> qualifier : qualifiers) {
+		if (Primary.class == qualifier) {
+			abd.setPrimary(true);
+		}
+		else if (Lazy.class == qualifier) {
+			abd.setLazyInit(true);
+		}
+		else {
+			abd.addQualifier(new AutowireCandidateQualifier(qualifier));
 		}
 	}
-	// 封装成一个 BeanDefinitionHolder
-	for (BeanDefinitionCustomizer customizer : definitionCustomizers) {
-		customizer.customize(abd);
-	}
-	BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
-	// 处理 scopedProxyMode
-	definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
-	 
-	// 把 BeanDefinitionHolder 注册到 registry
-	BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
 }
+// 封装成一个 BeanDefinitionHolder
+for (BeanDefinitionCustomizer customizer : definitionCustomizers) {
+	customizer.customize(abd);
+}
+BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
+// 处理 scopedProxyMode
+definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
+ 
+// 把 BeanDefinitionHolder 注册到 registry
+BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
+}
+```
+
 
 
 三、refresh()容器刷新流程：
