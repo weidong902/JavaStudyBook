@@ -1,6 +1,6 @@
-# ConcurrentHashMap基础1
+# 一、ConcurrentHashMap基础
 
-
+## 1、ConcurrentHashMap介绍
 
 ConcurrentHashMap是在JDK1.5时，J.U.C引入的一个同步集合工具类，顾名思义，这是一个线程安全的HashMap。不同版本的ConcurrentHashMap，内部实现机制千差万别，本节所有的讨论基于JDK1.8。
 
@@ -14,11 +14,13 @@ ConcurrentHashMap的类继承关系并不复杂：
 
 ![img](concurrenthashmap.assets/15549511018883.jpg)
 
-ConcurrentMap接口提供的功能：
+### ConcurrentMap接口提供的功能：
 
 ![img](concurrenthashmap.assets/15549511204925.jpg)
 
-## 基本结构
+## 2、基本结构
+
+### 基本结构
 
 我们先来看下ConcurrentHashMap对象的内部结构究竟什么样的：
 
@@ -26,7 +28,7 @@ ConcurrentMap接口提供的功能：
 
 ConcurrentHashMap内部维护了一个Node类型的数组，也就是table：
 
-```
+```java
 transient volatile Node<K, V>[] table;
 ```
 
@@ -34,9 +36,11 @@ transient volatile Node<K, V>[] table;
 
 需要注意的是：TreeBin所链接的是一颗红黑树，红黑树的结点用TreeNode表示，所以ConcurrentHashMap中实际上一共有五种不同类型的Node结点。
 
-之所以用TreeBin而不是直接用TreeNode，是因为红黑树的操作比较复杂，包括构建、左旋、右旋、删除，平衡等操作，用一个代理结点TreeBin来包含这些复杂操作，其实是一种“职责分离”的思想。另外TreeBin中也包含了一些加/解锁的操作。
 
-ConcurrentHashMap一共包含5种结点，我们来看下各个结点的定义和作用。
+
+`之所以用TreeBin而不是直接用TreeNode，是因为红黑树的操作比较复杂，包括构建、左旋、右旋、删除，平衡等操作，用一个代理结点TreeBin来包含这些复杂操作，其实是一种“职责分离”的思想。另外TreeBin中也包含了一些加/解锁的操作。`
+
+## ConcurrentHashMap一共包含5种结点各个结点的定义和作用。
 
 ### Node结点
 
@@ -45,7 +49,7 @@ Node结点的定义非常简单，也是其它四种类型结点的父类。
 > 默认链接到table[i]——桶上的结点就是Node结点。
 > 当出现hash冲突时，Node结点会首先以链表的形式链接到table上，当结点数量超过一定数目时，链表会转化为红黑树。因为链表查找的平均时间复杂度为O(n)，而红黑树是一种平衡二叉树，其平均时间复杂度为O(logn)。
 
-```
+```java
 /**
  * 普通的Entry结点, 以链表形式保存时才会使用, 存储实际的数据.
  */
@@ -114,7 +118,7 @@ static class Node<K, V> implements Map.Entry<K, V> {
 
 TreeNode就是红黑树的结点，TreeNode不会直接链接到table[i]——桶上面，而是由TreeBin链接，TreeBin会指向红黑树的根结点。
 
-```
+```java
 /**
  * 红黑树结点, 存储实际的数据.
  */
@@ -181,7 +185,7 @@ static final class TreeNode<K, V> extends Node<K, V> {
 
 TreeBin相当于TreeNode的代理结点。TreeBin会直接链接到table[i]——桶上面，该结点提供了一系列红黑树相关的操作，以及加锁、解锁操作。
 
-```
+```java
 /**
  * TreeNode的代理结点（相当于封装了TreeNode的容器，提供针对红黑树的转换操作和锁控制）
  * hash值固定为-3
@@ -714,7 +718,7 @@ static final class TreeBin<K, V> extends Node<K, V> {
 
 ForwardingNode结点仅仅在扩容时才会使用——关于扩容，会在下一篇文章专门论述
 
-```
+```java
 /**
  * ForwardingNode是一种临时结点，在扩容进行中才会出现，hash值固定为-1，且不存储实际数据。
  * 如果旧table数组的一个hash桶中全部的结点都迁移到了新table中，则在这个桶中放置一个ForwardingNode。
@@ -763,7 +767,7 @@ static final class ForwardingNode<K, V> extends Node<K, V> {
 
 保留结点，ConcurrentHashMap中的一些特殊方法会专门用到该类结点。
 
-```
+```java
 /**
  * 保留结点.
  * hash值固定为-3， 不保存实际数据
@@ -860,7 +864,7 @@ static final int NCPU = Runtime.getRuntime().availableProcessors();
 
 **字段**
 
-```
+```java
 /**
  * Node数组，标识整个Map，首次插入元素时创建，大小总是2的幂次.
  */
@@ -1336,7 +1340,7 @@ Node<K, V> find(int h, Object k) {
 
 
 
-# ConcurrentHashMap基础2 ConcurrentHashMap 扩容
+#  二、ConcurrentHashMap 扩容
 
 
 

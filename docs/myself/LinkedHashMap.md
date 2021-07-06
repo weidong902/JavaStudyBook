@@ -2,7 +2,7 @@
 
 
 
-HashMap和双向链表合二为一即是LinkedHashMap。所谓LinkedHashMap，其落脚点在HashMap，因此更准确地说，它是一个将所有Entry节点链入一个双向链表的HashMap。由于LinkedHashMap是HashMap的子类，所以LinkedHashMap自然会拥有HashMap的所有特性。比如，LinkedHashMap的元素存取过程基本与HashMap基本类似，只是在细节实现上稍有不同。当然，这是由LinkedHashMap本身的特性所决定的，因为它额外维护了一个双向链表用于保持迭代顺序。此外，LinkedHashMap可以很好的支持LRU算法，笔者在第七节便在LinkedHashMap的基础上实现了一个能够很好支持LRU的结构。
+HashMap和双向链表合二为一即是LinkedHashMap。所谓LinkedHashMap，其落脚点在HashMap，因此更准确地说，`它是一个将所有Entry节点链入一个双向链表的HashMap`。由于LinkedHashMap是HashMap的子类，所以LinkedHashMap自然会拥有HashMap的所有特性。比如，LinkedHashMap的元素存取过程基本与HashMap基本类似，只是在细节实现上稍有不同。当然，这是由LinkedHashMap本身的特性所决定的，因为它额外维护了一个双向链表用于保持迭代顺序。此外，LinkedHashMap可以很好的支持LRU算法，笔者在第七节便在LinkedHashMap的基础上实现了一个能够很好支持LRU的结构。
 
 友情提示：
 
@@ -62,30 +62,21 @@ public class LinkedHashMap<K,V>
 
 　　与HashMap相比，LinkedHashMap增加了两个属性用于保证迭代顺序，分别是 双向链表头结点header 和 标志位accessOrder (值为true时，表示按照访问顺序迭代；值为false时，表示按照插入顺序迭代)。
 
-    /**
-     * The head of the doubly linked list.
-     */
-    private transient Entry<K,V> header;  // 双向链表的表头元素
-    
-    /**
-     * The iteration ordering method for this linked hash map: <tt>true</tt>
-     * for access-order, <tt>false</tt> for insertion-order.
-     *
-     * @serial
-     */
-    private final boolean accessOrder;  //true表示按照访问顺序迭代，false时表示按照插入顺序 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+```java
+/**
+ * The head of the doubly linked list.
+ */
+private transient Entry<K,V> header;  // 双向链表的表头元素
+
+/**
+ * The iteration ordering method for this linked hash map: <tt>true</tt>
+ * for access-order, <tt>false</tt> for insertion-order.
+ *
+ * @serial
+ */
+private final boolean accessOrder;  //true表示按照访问顺序迭代，false时表示按照插入顺序 
+```
+
 3、成员方法定义
 
 　　从下图我们可以看出，LinkedHashMap中并增加没有额外方法。也就是说，LinkedHashMap与HashMap在操作上大致相同，只是在实现细节上略有不同罢了。
@@ -137,7 +128,10 @@ private static class Entry<K,V> extends HashMap.Entry<K,V> {
 
 　　该构造函数意在构造一个指定初始容量和指定负载因子的空 LinkedHashMap，其源码如下：
 
-   /**
+ 
+
+```
+  /**
      * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
      * with the specified initial capacity and load factor.
      *
@@ -150,19 +144,9 @@ private static class Entry<K,V> extends HashMap.Entry<K,V> {
         super(initialCapacity, loadFactor);      // 调用HashMap对应的构造函数
         accessOrder = false;            // 迭代顺序的默认值
     }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
+```
+
+
 3、LinkedHashMap(int initialCapacity)
 
 　　该构造函数意在构造一个指定初始容量和默认负载因子 (0.75)的空 LinkedHashMap，其源码如下：
@@ -1110,7 +1094,7 @@ public V put(K key, V value) {
 
  * @created 2017年5月12日 上午11:32:10    
  */      
-  public class LRU<K,V> extends LinkedHashMap<K, V> implements Map<K, V>{
+    public class LRU<K,V> extends LinkedHashMap<K, V> implements Map<K, V>{
 
     private static final long serialVersionUID = 1L;
 
@@ -1129,14 +1113,14 @@ public V put(K key, V value) {
      * @return     
      * @see java.util.LinkedHashMap#removeEldestEntry(java.util.Map.Entry)     
      */  
-      @Override
-      protected boolean removeEldestEntry(java.util.Map.Entry<K, V> eldest) {
+        @Override
+        protected boolean removeEldestEntry(java.util.Map.Entry<K, V> eldest) {
         // TODO Auto-generated method stub
         if(size() > 6){
             return true;
         }
         return false;
-      }
+        }
 
     public static void main(String[] args) {
 
@@ -1151,56 +1135,56 @@ public V put(K key, V value) {
         System.out.println("LRU的大小 ：" + lru.size());
         System.out.println("LRU ：" + lru);
     }
-  }
-  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
-  10
-  11
-  12
-  13
-  14
-  15
-  16
-  17
-  18
-  19
-  20
-  21
-  22
-  23
-  24
-  25
-  26
-  27
-  28
-  29
-  30
-  31
-  32
-  33
-  34
-  35
-  36
-  37
-  38
-  39
-  40
-  41
-  42
-  43
-  44
-  45
-  46
-  47
-  48
-  　　下图是程序的运行结果： 
+    }
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    13
+    14
+    15
+    16
+    17
+    18
+    19
+    20
+    21
+    22
+    23
+    24
+    25
+    26
+    27
+    28
+    29
+    30
+    31
+    32
+    33
+    34
+    35
+    36
+    37
+    38
+    39
+    40
+    41
+    42
+    43
+    44
+    45
+    46
+    47
+    48
+    　　下图是程序的运行结果： 
 
  ![LRU.png-13.2kB](LinkedHashMap.assets/LRU.png)
 

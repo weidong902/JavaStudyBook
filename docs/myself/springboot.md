@@ -323,9 +323,39 @@ public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
 **1、@SpringBootApplication**
 
-这是 Spring Boot 最最最核心的注解，用在 Spring Boot 主类上，标识这是一个 Spring Boot 应用，用来开启 Spring Boot 的各项能力。
+这是 Spring Boot 最最最核心的注解，用在 SpringBoot 主类上，标识这是一个 Spring Boot 应用，用来开启 Spring Boot 的各项能力。
 
 其实这个注解就是 `@SpringBootConfiguration`、`@EnableAutoConfiguration`、`@ComponentScan` 这三个注解的组合，也可以用这三个注解来代替 `@SpringBootApplication`注解。
+
+```java 
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+public @interface SpringBootApplication {}
+```
+
+>* SpringBootConfiguration:
+>
+>  * 除了，原来的那些注解外。就多了一个@Configuration注解。它是让我们能够去注册一些额外的Bean，并且导入一些额外的配置。@Configuration还有一个作用就是把该类变成一个配置类，不需要额外的XML进行配置。所以@SpringBootConfiguration就相当于@Configuration。
+>
+>* @EnableAutoConfiguration
+>
+>  @AutoConfigurationPackage，@Import(AutoConfigurationImportSelector.class)
+>  先来说一下这两个注解的作用。
+>
+>  * @AutoConfigurationPackage：让包中的类以及子包中的类能够被自动扫描到spring容器中。
+>  * @Import(AutoConfigurationImportSelector.class)：这个是自动配置的核心，我们说自动配置，那他到底帮我们配置了什么，怎么配置的？我们就来看看这个注解：`AutoConfigurationImportSelector`重要
+>  * @EnableAutoConfiguration主要作用就是让你自动去配置，但并不是所有都是创建好的，是根据你程序去进行决定。
+>
+>* ComponentScan
+>  *  扫描包，放入spring容器
+>
+>
 
 **2、@EnableAutoConfiguration**
 

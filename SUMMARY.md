@@ -19,7 +19,7 @@
         * LinkedList
       * [Map](/docs/java/collection/Map.md)
         * HashMap
-        * CurconnectHashMap
+        * [CurconnectHashMap](/docs/myself/concurrenthashmap.md)
       * [Set](/docs/java/collection/Set.md)
         * HashSet
     * [并发](/docs/java/more_thread/README.md)
