@@ -1,0 +1,2776 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>spring容器启动流程 · java学习笔记-奔波儿东</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="benboerdong">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Spring.html" />
+    
+    
+    <link rel="prev" href="springboot.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">目录（benboerdong）</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../java/base/">
+            
+                <a href="../java/base/">
+            
+                    
+                    Java基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="1.javabase.html">
+            
+                <a href="1.javabase.html">
+            
+                    
+                    Javabase整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../java/base/java基础.html">
+            
+                <a href="../java/base/java基础.html">
+            
+                    
+                    Java基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.2.1" data-path="../java/base/java中二进制操作符号.html">
+            
+                <a href="../java/base/java中二进制操作符号.html">
+            
+                    
+                    java中二进制操作符号
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.2" data-path="../java/base/反射.html">
+            
+                <a href="../java/base/反射.html">
+            
+                    
+                    反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.3" data-path="../java/base/IO流.html">
+            
+                <a href="../java/base/IO流.html">
+            
+                    
+                    IO流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.4" data-path="../java/base/Java-Web基础.html">
+            
+                <a href="../java/base/Java-Web基础.html">
+            
+                    
+                    Java-web基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.5" data-path="../java/base/Java版本特性.html">
+            
+                <a href="../java/base/Java版本特性.html">
+            
+                    
+                    Java版本特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../java/collection/">
+            
+                <a href="../java/collection/">
+            
+                    
+                    容器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.1" data-path="../java/collection/List.html">
+            
+                <a href="../java/collection/List.html">
+            
+                    
+                    List
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.1.1" >
+            
+                <span>
+            
+                    
+                    ArrayList
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.1.2" >
+            
+                <span>
+            
+                    
+                    LinkedList
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2" data-path="../java/collection/Map.html">
+            
+                <a href="../java/collection/Map.html">
+            
+                    
+                    Map
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.2.1" >
+            
+                <span>
+            
+                    
+                    HashMap
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2.2" data-path="concurrenthashmap.html">
+            
+                <a href="concurrenthashmap.html">
+            
+                    
+                    CurconnectHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.3" data-path="../java/collection/Set.html">
+            
+                <a href="../java/collection/Set.html">
+            
+                    
+                    Set
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.3.1" >
+            
+                <span>
+            
+                    
+                    HashSet
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../java/more_thread/">
+            
+                <a href="../java/more_thread/">
+            
+                    
+                    并发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="并发编程.html">
+            
+                <a href="并发编程.html">
+            
+                    
+                    并发编程整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="锁相关.html">
+            
+                <a href="锁相关.html">
+            
+                    
+                    锁相关整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../java/jvm/">
+            
+                <a href="../java/jvm/">
+            
+                    
+                    JVM（重点）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="4.JVM.html">
+            
+                <a href="4.JVM.html">
+            
+                    
+                    JVM整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../设计模式/">
+            
+                <a href="../设计模式/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../database/">
+            
+                <a href="../database/">
+            
+                    
+                    数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../database/mysql.md">
+            
+                <span>
+            
+                    
+                    mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="2.mysql.html">
+            
+                <a href="2.mysql.html">
+            
+                    
+                    MySQL整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="3.redis.html">
+            
+                <a href="3.redis.html">
+            
+                    
+                    redis整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../network/网络编程.html">
+            
+                <a href="../network/网络编程.html">
+            
+                    
+                    网络编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../network/三次握手和四次挥手.html">
+            
+                <a href="../network/三次握手和四次挥手.html">
+            
+                    
+                    三次握手与四次挥手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="../network/">
+            
+                <a href="../network/">
+            
+                    
+                    常考
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" >
+            
+                <span>
+            
+                    
+                    操作系统
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../dataStructures-algorithms/dataStructure/readme.html">
+            
+                <a href="../dataStructures-algorithms/dataStructure/readme.html">
+            
+                    
+                    数据结构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" >
+            
+                <span>
+            
+                    
+                    链表
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../dataStructures-algorithms/SUMMARY.html">
+            
+                <a href="../dataStructures-algorithms/SUMMARY.html">
+            
+                    
+                    算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1.1" data-path="../dataStructures-algorithms/algorithms/常见算法题.html">
+            
+                <a href="../dataStructures-algorithms/algorithms/常见算法题.html">
+            
+                    
+                    个人总结常见算法题整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.2" data-path="../dataStructures-algorithms/labuladong/readme.html">
+            
+                <a href="../dataStructures-algorithms/labuladong/readme.html">
+            
+                    
+                    labuladong的算法小抄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.3" data-path="../dataStructures-algorithms/algorithms/readme.html">
+            
+                <a href="../dataStructures-algorithms/algorithms/readme.html">
+            
+                    
+                    排序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1.3.1" data-path="../dataStructures-algorithms/algorithms/快速排序.html">
+            
+                <a href="../dataStructures-algorithms/algorithms/快速排序.html">
+            
+                    
+                    十大排序算法之-快速排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.3.2" data-path="../dataStructures-algorithms/algorithms/归并排序.html">
+            
+                <a href="../dataStructures-algorithms/algorithms/归并排序.html">
+            
+                    
+                    十大排序算法之-归并排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.4" data-path="../dataStructures-algorithms/leetcode/">
+            
+                <a href="../dataStructures-algorithms/leetcode/">
+            
+                    
+                    leetCode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" >
+            
+                <span>
+            
+                    
+                    myself
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="并发编程.html">
+            
+                <a href="并发编程.html">
+            
+                    
+                    并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="分库分表.html">
+            
+                <a href="分库分表.html">
+            
+                    
+                    分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.3" data-path="锁相关.html">
+            
+                <a href="锁相关.html">
+            
+                    
+                    锁相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.4" data-path="微服务.html">
+            
+                <a href="微服务.html">
+            
+                    
+                    微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.5" data-path="问题排查.html">
+            
+                <a href="问题排查.html">
+            
+                    
+                    问题排查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.6" data-path="转账业务.html">
+            
+                <a href="转账业务.html">
+            
+                    
+                    转账业务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.7" data-path="a个人面试总结.html">
+            
+                <a href="a个人面试总结.html">
+            
+                    
+                    个面总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.8" data-path="ArrayList.html">
+            
+                <a href="ArrayList.html">
+            
+                    
+                    ArrayList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.9" data-path="concurrenthashmap.html">
+            
+                <a href="concurrenthashmap.html">
+            
+                    
+                    concurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.10" data-path="MySQL学习笔记一索引.html">
+            
+                <a href="MySQL学习笔记一索引.html">
+            
+                    
+                    mysql索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.11" data-path="Spring Boot笔记.html">
+            
+                <a href="Spring Boot笔记.html">
+            
+                    
+                    springboot笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.12" data-path="springboot.html">
+            
+                <a href="springboot.html">
+            
+                    
+                    springboot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="9.1.13" data-path="Spring容器启动流程.html">
+            
+                <a href="Spring容器启动流程.html">
+            
+                    
+                    spring容器启动流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.14" data-path="Spring.html">
+            
+                <a href="Spring.html">
+            
+                    
+                    spring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.15" data-path="springmvc.html">
+            
+                <a href="springmvc.html">
+            
+                    
+                    springmvc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.16" data-path="springcloud.html">
+            
+                <a href="springcloud.html">
+            
+                    
+                    springCloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.17" data-path="ssm.html">
+            
+                <a href="ssm.html">
+            
+                    
+                    ssm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.18" data-path="synchronized.html">
+            
+                <a href="synchronized.html">
+            
+                    
+                    synchronized
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.19" data-path="ThreadLocal.html">
+            
+                <a href="ThreadLocal.html">
+            
+                    
+                    ThreadLocal
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.20" data-path="1.javabase.html">
+            
+                <a href="1.javabase.html">
+            
+                    
+                    javabase整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="10.1" data-path="../框架/README.md">
+            
+                <span>
+            
+                    
+                    java框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1.1" data-path="Spring.html">
+            
+                <a href="Spring.html">
+            
+                    
+                    spring整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.2" data-path="springboot.html">
+            
+                <a href="springboot.html">
+            
+                    
+                    SpringBoot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3" data-path="springcloud.html">
+            
+                <a href="springcloud.html">
+            
+                    
+                    Springcloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.4" data-path="9.mybatis.html">
+            
+                <a href="9.mybatis.html">
+            
+                    
+                    mybatis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.5" >
+            
+                <span>
+            
+                    
+                    springmvc
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.6" >
+            
+                <span>
+            
+                    
+                    netty
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.7" data-path="6.dubbo.html">
+            
+                <a href="6.dubbo.html">
+            
+                    
+                    dubbo整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.8" >
+            
+                <span>
+            
+                    
+                    hibernate
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.9" data-path="7.rabbitmq.html">
+            
+                <a href="7.rabbitmq.html">
+            
+                    
+                    rabbitmq整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.10" data-path="8.zookeeper.html">
+            
+                <a href="8.zookeeper.html">
+            
+                    
+                    zookeeper整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../skill/">
+            
+                <a href="../skill/">
+            
+                    
+                    技术
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.1" >
+            
+                <span>
+            
+                    
+                    认证授权
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.1.1" >
+            
+                <span>
+            
+                    
+                    SSO（单点登录）
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2" data-path="../skill/分布式/SUMMARY.html">
+            
+                <a href="../skill/分布式/SUMMARY.html">
+            
+                    
+                    分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.2.1" data-path="../skill/分布式/cap理论.html">
+            
+                <a href="../skill/分布式/cap理论.html">
+            
+                    
+                    CAP 理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.2" >
+            
+                <span>
+            
+                    
+                    BASE 理论
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.3" >
+            
+                <span>
+            
+                    
+                    Paxos 算法和 Raft 算法
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.4" >
+            
+                <span>
+            
+                    
+                    搜索引擎
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.5" data-path="../skill/分布式/RPC.html">
+            
+                <a href="../skill/分布式/RPC.html">
+            
+                    
+                    RPC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.6" >
+            
+                <span>
+            
+                    
+                    API 网关
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.7" >
+            
+                <span>
+            
+                    
+                    分布式 id
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.8" data-path="../skill/分布式/分布式事务.html">
+            
+                <a href="../skill/分布式/分布式事务.html">
+            
+                    
+                    分布式事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.9" data-path="../skill/分布式/分布式锁实现业务幂等.html">
+            
+                <a href="../skill/分布式/分布式锁实现业务幂等.html">
+            
+                    
+                    分布式锁实现业务幂等
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.3" >
+            
+                <span>
+            
+                    
+                    微服务
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4" >
+            
+                <span>
+            
+                    
+                    高并发
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.4.1" >
+            
+                <span>
+            
+                    
+                    消息队列
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4.2" >
+            
+                <span>
+            
+                    
+                    读写分离
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4.3" >
+            
+                <span>
+            
+                    
+                    分库分表
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4.4" >
+            
+                <span>
+            
+                    
+                    负载均衡
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.5" >
+            
+                <span>
+            
+                    
+                    高可用
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.5.1" >
+            
+                <span>
+            
+                    
+                    限流
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.5.2" >
+            
+                <span>
+            
+                    
+                    降级
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.5.3" >
+            
+                <span>
+            
+                    
+                    熔断
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.5.4" >
+            
+                <span>
+            
+                    
+                    排队
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="12.1" >
+            
+                <span>
+            
+                    
+                    架构
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" >
+            
+                <span>
+            
+                    
+                    消息队列
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" >
+            
+                <span>
+            
+                    
+                    linux
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="15.1" data-path="../tools/readme.html">
+            
+                <a href="../tools/readme.html">
+            
+                    
+                    工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.1" data-path="../tools/git使用/Git介绍.html">
+            
+                <a href="../tools/git使用/Git介绍.html">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.1.1" data-path="../tools/git使用/将本地项目同步到GitHub上.html">
+            
+                <a href="../tools/git使用/将本地项目同步到GitHub上.html">
+            
+                    
+                    将本地项目同步到GitHub上
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.1.2" data-path="../tools/git使用/Git和SVN的区别.html">
+            
+                <a href="../tools/git使用/Git和SVN的区别.html">
+            
+                    
+                    Git与SVN的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.2" data-path="../tools/gitbook_start/readme.html">
+            
+                <a href="../tools/gitbook_start/readme.html">
+            
+                    
+                    gitbook
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.2.1" data-path="../tools/gitbook_start/gitbook创建一本书.html">
+            
+                <a href="../tools/gitbook_start/gitbook创建一本书.html">
+            
+                    
+                    Gitbook创建一本书
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.2.2" data-path="../tools/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.html">
+            
+                <a href="../tools/gitbook_start/将Gitbook上的书籍发布在GitHubPages上.html">
+            
+                    
+                    将Gitbook书上传到GitHubPages
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.3" data-path="../tools/typora使用/typora使用.html">
+            
+                <a href="../tools/typora使用/typora使用.html">
+            
+                    
+                    Typora使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../优秀的语言/读书心得.html">
+            
+                <a href="../优秀的语言/读书心得.html">
+            
+                    
+                    个人言语
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../../excellent.html">
+            
+                <a href="../../excellent.html">
+            
+                    
+                    优秀的公众号及网站
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../TODO/TODO.html">
+            
+                <a href="../TODO/TODO.html">
+            
+                    
+                    待学习知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" >
+            
+                <span>
+            
+                    
+                    为每个章节都能有目录而做
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="17.1.1" data-path="../skill/分布式/SUMMARY.html">
+            
+                <a href="../skill/分布式/SUMMARY.html">
+            
+                    
+                    分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="17.1.1.1" data-path="../skill/分布式/cap理论.html">
+            
+                <a href="../skill/分布式/cap理论.html">
+            
+                    
+                    cap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.1.2" data-path="../skill/分布式/分布式课程.html">
+            
+                <a href="../skill/分布式/分布式课程.html">
+            
+                    
+                    分布式课程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.1.3" data-path="../skill/分布式/分布式事务.html">
+            
+                <a href="../skill/分布式/分布式事务.html">
+            
+                    
+                    分布式事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.1.4" data-path="../skill/分布式/分布式锁.html">
+            
+                <a href="../skill/分布式/分布式锁.html">
+            
+                    
+                    分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.1.5" data-path="../../Users/mac/gitbook/weiddjavastudy/JavaStudyBook/docs/skill/分布式/分布式锁实现业务幂等.md">
+            
+                <span>
+            
+                    
+                    分布式锁实现业务幂等
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.1.6" data-path="../skill/分布式/RPC.html">
+            
+                <a href="../skill/分布式/RPC.html">
+            
+                    
+                    RPC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.1.7" data-path="../skill/分布式/dubbo.html">
+            
+                <a href="../skill/分布式/dubbo.html">
+            
+                    
+                    dubbo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >spring容器启动流程</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#xFF08;&#x672C;&#x6587;&#x57FA;&#x4E8E;-spring-&#x7684;-516release-&#x7248;&#x672C;&#xFF09;">&#xFF08;&#x672C;&#x6587;&#x57FA;&#x4E8E; Spring &#x7684; 5.1.6.RELEASE &#x7248;&#x672C;&#xFF09;</h1>
+<h2 id="spring&#x7684;&#x542F;&#x52A8;&#x6D41;&#x7A0B;&#x53EF;&#x4EE5;&#x5F52;&#x7EB3;&#x4E3A;&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;">Spring&#x7684;&#x542F;&#x52A8;&#x6D41;&#x7A0B;&#x53EF;&#x4EE5;&#x5F52;&#x7EB3;&#x4E3A;&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</h2>
+<ul>
+<li>1&#x3001;&#x521D;&#x59CB;&#x5316;Spring&#x5BB9;&#x5668;&#xFF0C;&#x6CE8;&#x518C;&#x5185;&#x7F6E;&#x7684;BeanPostProcessor&#x7684;BeanDefinition&#x5230;&#x5BB9;&#x5668;&#x4E2D;</li>
+<li>2&#x3001;&#x5C06;&#x914D;&#x7F6E;&#x7C7B;&#x7684;BeanDefinition&#x6CE8;&#x518C;&#x5230;&#x5BB9;&#x5668;&#x4E2D;</li>
+<li>3&#x3001;&#x8C03;&#x7528;refresh()&#x65B9;&#x6CD5;&#x5237;&#x65B0;&#x5BB9;&#x5668;</li>
+</ul>
+<p>&#x56E0;&#x4E3A;&#x662F;&#x57FA;&#x4E8E; java-config &#x6280;&#x672F;&#x5206;&#x6790;&#x6E90;&#x7801;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x7684;&#x5165;&#x53E3;&#x662F; AnnotationConfigApplicationContext &#xFF0C;&#x5982;&#x679C;&#x662F;&#x4F7F;&#x7528; xml &#x5206;&#x6790;&#xFF0C;&#x90A3;&#x4E48;&#x5165;&#x53E3;&#x5373;&#x4E3A; ClassPathXmlApplicationContext &#xFF0C;&#x5B83;&#x4EEC;&#x4FE9;&#x7684;&#x5171;&#x540C;&#x7279;&#x5F81;&#x4FBF;&#x662F;&#x90FD;&#x7EE7;&#x627F;&#x4E86; AbstractApplicationContext &#x7C7B;&#xFF0C;&#x800C;&#x5927;&#x540D;&#x9F0E;&#x9F0E;&#x7684; refresh()&#x4FBF;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x7C7B;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x63A5;&#x7740;&#x5206;&#x6790; AnnotationConfigApplicationContext &#x7C7B;&#xFF0C;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x521D;&#x59CB;&#x5316;&#x5BB9;&#x5668;</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AnnotationConfigApplicationContext</span><span class="hljs-params">(Class&lt;?&gt;... annotatedClasses)</span> </span>{
+    <span class="hljs-comment">// &#x6CE8;&#x518C; Spring &#x5185;&#x7F6E;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x7684; BeanDefinition &#x5230;&#x5BB9;&#x5668;</span>
+    <span class="hljs-keyword">this</span>();
+    <span class="hljs-comment">// &#x6CE8;&#x518C;&#x914D;&#x7F6E;&#x7C7B; BeanDefinition &#x5230;&#x5BB9;&#x5668;</span>
+    register(annotatedClasses);
+    <span class="hljs-comment">// &#x52A0;&#x8F7D;&#x6216;&#x8005;&#x5237;&#x65B0;&#x5BB9;&#x5668;&#x4E2D;&#x7684;Bean</span>
+    refresh();
+}
+</code></pre>
+<p>&#x6240;&#x4EE5;&#x6574;&#x4E2A;Spring&#x5BB9;&#x5668;&#x7684;&#x542F;&#x52A8;&#x6D41;&#x7A0B;&#x53EF;&#x4EE5;&#x7ED8;&#x5236;&#x6210;&#x5982;&#x4E0B;&#x6D41;&#x7A0B;&#x56FE;&#xFF1A;</p>
+<p><img src="Spring%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.assets/image-20210618162746127.png" alt="image-20210618162746127"></p>
+<p>&#x63A5;&#x7740;&#x6211;&#x4EEC;&#x4E3B;&#x8981;&#x4ECE;&#x8FD9;&#x4E09;&#x4E2A;&#x5165;&#x53E3;&#x8BE6;&#x7EC6;&#x5206;&#x6790;&#x4E00;&#x4E0B;Spring&#x7684;&#x542F;&#x52A8;&#x6D41;&#x7A0B;&#xFF1A;</p>
+<h3 id="&#x4E00;&#x3001;&#x521D;&#x59CB;&#x5316;&#x6D41;&#x7A0B;&#xFF1A;">&#x4E00;&#x3001;&#x521D;&#x59CB;&#x5316;&#x6D41;&#x7A0B;&#xFF1A;</h3>
+<h4 id="1&#x3001;spring&#x5BB9;&#x5668;&#x7684;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;this&#x8C03;&#x7528;&#x4E86;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4E3B;&#x8981;&#x505A;&#x4E86;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x4E8B;&#x60C5;&#xFF1A;">1&#x3001;spring&#x5BB9;&#x5668;&#x7684;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;this()&#x8C03;&#x7528;&#x4E86;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4E3B;&#x8981;&#x505A;&#x4E86;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x4E8B;&#x60C5;&#xFF1A;</h4>
+<p>&#xFF08;1&#xFF09;&#x5B9E;&#x4F8B;&#x5316;BeanFactory&#x3010;DefaultListableBeanFactory&#x3011;&#x5DE5;&#x5382;&#xFF0C;&#x7528;&#x4E8E;&#x751F;&#x6210;Bean&#x5BF9;&#x8C61;
+&#xFF08;2&#xFF09;&#x5B9E;&#x4F8B;&#x5316;BeanDefinitionReader&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x8BFB;&#x53D6;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x5BF9;&#x7279;&#x5B9A;&#x6CE8;&#x89E3;&#xFF08;&#x5982;@Service&#x3001;@Repository&#xFF09;&#x7684;&#x7C7B;&#x8FDB;&#x884C;&#x8BFB;&#x53D6;&#x8F6C;&#x5316;&#x6210;  BeanDefinition &#x5BF9;&#x8C61;&#xFF0C;&#xFF08;BeanDefinition &#x662F; Spring &#x4E2D;&#x6781;&#x5176;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x5B83;&#x5B58;&#x50A8;&#x4E86; bean &#x5BF9;&#x8C61;&#x7684;&#x6240;&#x6709;&#x7279;&#x5F81;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x662F;&#x5426;&#x5355;&#x4F8B;&#xFF0C;&#x662F;&#x5426;&#x61D2;&#x52A0;&#x8F7D;&#xFF0C;factoryBeanName &#x7B49;&#xFF09;
+&#xFF08;3&#xFF09;&#x5B9E;&#x4F8B;&#x5316;ClassPathBeanDefinitionScanner&#x8DEF;&#x5F84;&#x626B;&#x63CF;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5305;&#x76EE;&#x5F55;&#x8FDB;&#x884C;&#x626B;&#x63CF;&#x67E5;&#x627E; bean &#x5BF9;&#x8C61;</p>
+<h4 id="2&#x3001;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#x5256;&#x6790;&#xFF1A;">2&#x3001;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#x5256;&#x6790;&#xFF1A;</h4>
+<h4 id="&#xFF08;1&#xFF09;&#x5411;&#x5BB9;&#x5668;&#x6DFB;&#x52A0;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#xFF1A;orgspringframeworkcontextannotationannotationconfigutilsregisterannotationconfigprocessors&#xFF1A;">&#xFF08;1&#xFF09;&#x5411;&#x5BB9;&#x5668;&#x6DFB;&#x52A0;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#xFF1A;org.springframework.context.annotation.AnnotationConfigUtils#registerAnnotationConfigProcessors&#xFF1A;</h4>
+<p>&#x6839;&#x636E;&#x4E0A;&#x56FE;&#x5206;&#x6790;&#xFF0C;&#x4EE3;&#x7801;&#x8FD0;&#x884C;&#x5230;&#x8FD9;&#x91CC;&#x65F6;&#x5019;&#xFF0C;Spring &#x5BB9;&#x5668;&#x5DF2;&#x7ECF;&#x6784;&#x9020;&#x5B8C;&#x6BD5;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x4E3A;&#x5BB9;&#x5668;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x4E86;&#xFF0C;&#x5176;&#x4E2D;&#x6700;&#x4E3B;&#x8981;&#x7684;&#x7EC4;&#x4EF6;&#x4FBF;&#x662F; ConfigurationClassPostProcessor &#x548C; AutowiredAnnotationBeanPostProcessor &#xFF0C;&#x524D;&#x8005;&#x662F;&#x4E00;&#x4E2A; beanFactory &#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x7528;&#x6765;&#x5B8C;&#x6210; bean &#x7684;&#x626B;&#x63CF;&#x4E0E;&#x6CE8;&#x5165;&#x5DE5;&#x4F5C;&#xFF0C;&#x540E;&#x8005;&#x662F;&#x4E00;&#x4E2A; bean &#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x7528;&#x6765;&#x5B8C;&#x6210; @AutoWired &#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;</p>
+<p><img src="Spring%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.assets/2edced2507473780cbb4993fdac2d757.png" alt="img"></p>
+<h3 id="&#x4E8C;&#x3001;&#x6CE8;&#x518C;springconfig&#x914D;&#x7F6E;&#x7C7B;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#xFF1A;">&#x4E8C;&#x3001;&#x6CE8;&#x518C;SpringConfig&#x914D;&#x7F6E;&#x7C7B;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#xFF1A;</h3>
+<p>1&#x3001;&#x5C06;SpringConfig&#x6CE8;&#x518C;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#xFF1A;org.springframework.context.annotation.AnnotatedBeanDefinitionReader#doRegisterBean&#xFF1A;</p>
+<p>&#x8FD9;&#x4E2A;&#x6B65;&#x9AA4;&#x4E3B;&#x8981;&#x662F;&#x7528;&#x6765;&#x89E3;&#x6790;&#x7528;&#x6237;&#x4F20;&#x5165;&#x7684; Spring &#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x89E3;&#x6790;&#x6210;&#x4E00;&#x4E2A; BeanDefinition &#x7136;&#x540E;&#x6CE8;&#x518C;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x4E3B;&#x8981;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><t> void doRegisterBean(Class<t> annotatedClass, @Nullable Supplier<t> instanceSupplier, @Nullable String name,
+        @Nullable Class&lt;? extends Annotation&gt;[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
+    // &#x89E3;&#x6790;&#x4F20;&#x5165;&#x7684;&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x65E2;&#x53EF;&#x4EE5;&#x89E3;&#x6790;&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x89E3;&#x6790; Spring bean &#x5BF9;&#x8C61;
+    AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
+    // &#x5224;&#x65AD;&#x662F;&#x5426;&#x9700;&#x8981;&#x8DF3;&#x8FC7;&#xFF0C;&#x5224;&#x65AD;&#x4F9D;&#x636E;&#x662F;&#x6B64;&#x7C7B;&#x4E0A;&#x6709;&#x6CA1;&#x6709; @Conditional &#x6CE8;&#x89E3;
+    if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
+        return;
+    }</t></t></t></p>
+<pre><code class="lang-java">abd.setInstanceSupplier(instanceSupplier);
+ScopeMetadata scopeMetadata = <span class="hljs-keyword">this</span>.scopeMetadataResolver.resolveScopeMetadata(abd);
+abd.setScope(scopeMetadata.getScopeName());
+String beanName = (name != <span class="hljs-keyword">null</span> ? name : <span class="hljs-keyword">this</span>.beanNameGenerator.generateBeanName(abd, <span class="hljs-keyword">this</span>.registry));
+<span class="hljs-comment">// &#x5904;&#x7406;&#x7C7B;&#x4E0A;&#x7684;&#x901A;&#x7528;&#x6CE8;&#x89E3;</span>
+AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
+<span class="hljs-keyword">if</span> (qualifiers != <span class="hljs-keyword">null</span>) {
+    <span class="hljs-keyword">for</span> (Class&lt;? extends Annotation&gt; qualifier : qualifiers) {
+        <span class="hljs-keyword">if</span> (Primary.class == qualifier) {
+            abd.setPrimary(<span class="hljs-keyword">true</span>);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Lazy.class == qualifier) {
+            abd.setLazyInit(<span class="hljs-keyword">true</span>);
+        }
+        <span class="hljs-keyword">else</span> {
+            abd.addQualifier(<span class="hljs-keyword">new</span> AutowireCandidateQualifier(qualifier));
+        }
+    }
+}
+<span class="hljs-comment">// &#x5C01;&#x88C5;&#x6210;&#x4E00;&#x4E2A; BeanDefinitionHolder</span>
+<span class="hljs-keyword">for</span> (BeanDefinitionCustomizer customizer : definitionCustomizers) {
+    customizer.customize(abd);
+}
+BeanDefinitionHolder definitionHolder = <span class="hljs-keyword">new</span> BeanDefinitionHolder(abd, beanName);
+<span class="hljs-comment">// &#x5904;&#x7406; scopedProxyMode</span>
+definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, <span class="hljs-keyword">this</span>.registry);
+
+<span class="hljs-comment">// &#x628A; BeanDefinitionHolder &#x6CE8;&#x518C;&#x5230; registry</span>
+BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, <span class="hljs-keyword">this</span>.registry);
+}
+</code></pre>
+<h3 id="&#x4E09;&#x3001;refresh&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x6D41;&#x7A0B;&#xFF1A;">&#x4E09;&#x3001;refresh()&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x6D41;&#x7A0B;&#xFF1A;</h3>
+<p>refresh()&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5BB9;&#x5668;&#x7684;&#x5237;&#x65B0;&#xFF0C;Spring &#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x90FD;&#x4F1A;&#x8C03;&#x7528; refresh() &#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5237;&#x65B0;&#xFF0C;&#x65E0;&#x8BBA;&#x662F; Spring &#x7684;&#x7236;&#x5B50;&#x5BB9;&#x5668;&#xFF0C;&#x8FD8;&#x662F; Spring Cloud Feign &#x4E2D;&#x7684; feign &#x9694;&#x79BB;&#x5BB9;&#x5668;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x90FD;&#x4F1A;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5B8C;&#x6210;&#x521D;&#x59CB;&#x5316;&#x3002;refresh()&#x53EF;&#x5212;&#x5206;&#x4E3A;12&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x5176;&#x4E2D;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x6B65;&#x9AA4;&#x4E0B;&#x9762;&#x4F1A;&#x6709;&#x8BE6;&#x7EC6;&#x8BF4;&#x660E;&#x3002;</p>
+<p>1&#x3001;refresh()&#x65B9;&#x6CD5;&#x7684;&#x6E90;&#x7801;&#xFF1A;org.springframework.context.support.AbstractApplicationContext#refresh&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException, IllegalStateException </span>{
+    <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.startupShutdownMonitor) {
+        <span class="hljs-comment">// 1. &#x5237;&#x65B0;&#x524D;&#x7684;&#x9884;&#x5904;&#x7406;</span>
+        prepareRefresh();
+    <span class="hljs-comment">// 2. &#x83B7;&#x53D6; beanFactory&#xFF0C;&#x5373;&#x524D;&#x9762;&#x521B;&#x5EFA;&#x7684;&#x3010;DefaultListableBeanFactory&#x3011;</span>
+    ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+
+    <span class="hljs-comment">// 3. &#x9884;&#x5904;&#x7406; beanFactory&#xFF0C;&#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x7EC4;&#x4EF6;</span>
+    prepareBeanFactory(beanFactory);
+
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">// 4. &#x5B50;&#x7C7B;&#x901A;&#x8FC7;&#x91CD;&#x5199;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5728; BeanFactory &#x521B;&#x5EFA;&#x5E76;&#x4E0E;&#x51C6;&#x5907;&#x5B8C;&#x6210;&#x4EE5;&#x540E;&#x505A;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x8BBE;&#x7F6E;</span>
+        postProcessBeanFactory(beanFactory);
+
+        <span class="hljs-comment">// 5. &#x6267;&#x884C; BeanFactoryPostProcessor &#x65B9;&#x6CD5;&#xFF0C;beanFactory &#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+        invokeBeanFactoryPostProcessors(beanFactory);
+
+        <span class="hljs-comment">// 6. &#x6CE8;&#x518C; BeanPostProcessors&#xFF0C;bean &#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+        registerBeanPostProcessors(beanFactory);
+
+        <span class="hljs-comment">// 7. &#x521D;&#x59CB;&#x5316; MessageSource &#x7EC4;&#x4EF6;&#xFF08;&#x505A;&#x56FD;&#x9645;&#x5316;&#x529F;&#x80FD;&#xFF1B;&#x6D88;&#x606F;&#x7ED1;&#x5B9A;&#xFF0C;&#x6D88;&#x606F;&#x89E3;&#x6790;&#xFF09;</span>
+        initMessageSource();
+
+        <span class="hljs-comment">// 8. &#x521D;&#x59CB;&#x5316;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#xFF0C;&#x5728;&#x6CE8;&#x518C;&#x76D1;&#x542C;&#x5668;&#x65F6;&#x4F1A;&#x7528;&#x5230;</span>
+        initApplicationEventMulticaster();
+
+        <span class="hljs-comment">// 9. &#x7559;&#x7ED9;&#x5B50;&#x5BB9;&#x5668;&#xFF08;&#x5B50;&#x7C7B;&#xFF09;&#xFF0C;&#x5B50;&#x7C7B;&#x91CD;&#x5199;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x903B;&#x8F91;&#xFF0C;web &#x573A;&#x666F;&#x4E0B;&#x4F1A;&#x4F7F;&#x7528;</span>
+        onRefresh();
+
+        <span class="hljs-comment">// 10. &#x6CE8;&#x518C;&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x6D3E;&#x53D1;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4EA7;&#x751F;&#x7684;&#x4E00;&#x4E9B;&#x4E8B;&#x4EF6;&#xFF08;&#x53EF;&#x80FD;&#x6CA1;&#x6709;&#xFF09;</span>
+        registerListeners();
+
+        <span class="hljs-comment">// 11. &#x521D;&#x59CB;&#x5316;&#x6240;&#x6709;&#x7684;&#x975E;&#x5355;&#x5B9E;&#x4F8B; bean</span>
+        finishBeanFactoryInitialization(beanFactory);
+
+        <span class="hljs-comment">// 12. &#x53D1;&#x5E03;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;</span>
+        finishRefresh();
+    }
+    ...
+}
+</code></pre>
+<p>}
+&#x9996;&#x5148;&#x6211;&#x4EEC;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;refresh()&#x65B9;&#x6CD5;&#x6BCF;&#x4E00;&#x6B65;&#x4E3B;&#x8981;&#x7684;&#x529F;&#x80FD;&#xFF1A;&#x4E4B;&#x540E;&#x518D;&#x5BF9;&#x6BCF;&#x4E00;&#x6B65;&#x7684;&#x6E90;&#x7801;&#x505A;&#x5177;&#x4F53;&#x7684;&#x5206;&#x6790;</p>
+<p>1&#x3001;prepareRefresh()&#x5237;&#x65B0;&#x524D;&#x7684;&#x9884;&#x5904;&#x7406;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;initPropertySources()&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#xFF0C;&#x5B50;&#x7C7B;&#x81EA;&#x5B9A;&#x4E49;&#x4E2A;&#x6027;&#x5316;&#x7684;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x65B9;&#x6CD5;&#xFF1B;
+&#xFF08;2&#xFF09;getEnvironment().validateRequiredProperties()&#xFF1A;&#x68C0;&#x9A8C;&#x5C5E;&#x6027;&#x7684;&#x5408;&#x6CD5;&#x6027;
+&#xFF08;3&#xFF09;earlyApplicationEvents = new LinkedHashSet<applicationevent>()&#xFF1A;&#x4FDD;&#x5B58;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x65E9;&#x671F;&#x7684;&#x4E8B;&#x4EF6;&#xFF1B;
+2&#x3001;obtainFreshBeanFactory()&#xFF1A;&#x83B7;&#x53D6;&#x5728;&#x5BB9;&#x5668;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x521B;&#x5EFA;&#x7684;BeanFactory&#xFF1A;</applicationevent></p>
+<p>&#xFF08;1&#xFF09;refreshBeanFactory()&#xFF1A;&#x5237;&#x65B0;BeanFactory&#xFF0C;&#x8BBE;&#x7F6E;&#x5E8F;&#x5217;&#x5316;ID&#xFF1B;
+&#xFF08;2&#xFF09;getBeanFactory()&#xFF1A;&#x8FD4;&#x56DE;&#x521D;&#x59CB;&#x5316;&#x4E2D;&#x7684;GenericApplicationContext&#x521B;&#x5EFA;&#x7684;BeanFactory&#x5BF9;&#x8C61;&#xFF0C;&#x5373;&#x3010;DefaultListableBeanFactory&#x3011;&#x7C7B;&#x578B;
+3&#x3001;prepareBeanFactory(beanFactory)&#xFF1A;BeanFactory&#x7684;&#x9884;&#x5904;&#x7406;&#x5DE5;&#x4F5C;&#xFF0C;&#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x8BBE;&#x7F6E;BeanFactory&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x3001;&#x8BBE;&#x7F6E;&#x8868;&#x8FBE;&#x5F0F;&#x89E3;&#x6790;&#x5668;&#x7B49;&#x7B49;
+&#xFF08;2&#xFF09;&#x6DFB;&#x52A0;BeanPostProcessor&#x3010;ApplicationContextAwareProcessor&#x3011;
+&#xFF08;3&#xFF09;&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7684;&#x63A5;&#x53E3;&#xFF1A;EnvironmentAware&#x3001;EmbeddedValueResolverAware&#x3001;ResourceLoaderAware&#x3001;ApplicationEventPublisherAware&#x3001;MessageSourceAware&#x3001;ApplicationContextAware&#xFF1B;
+&#xFF08;4&#xFF09;&#x6CE8;&#x518C;&#x53EF;&#x4EE5;&#x89E3;&#x6790;&#x7684;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7C7B;&#xFF0C;&#x5373;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x610F;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#xFF1A;BeanFactory&#x3001;ResourceLoader&#x3001;ApplicationEventPublisher&#x3001;ApplicationContext
+&#xFF08;5&#xFF09;&#x6DFB;&#x52A0;BeanPostProcessor&#x3010;ApplicationListenerDetector&#x3011;
+&#xFF08;6&#xFF09;&#x6DFB;&#x52A0;&#x7F16;&#x8BD1;&#x65F6;&#x7684;AspectJ&#xFF1B;
+&#xFF08;7&#xFF09;&#x7ED9;BeanFactory&#x4E2D;&#x6CE8;&#x518C;&#x7684;3&#x4E2A;&#x7EC4;&#x4EF6;&#xFF1A;environment&#x3010;ConfigurableEnvironment&#x3011;&#x3001;systemProperties&#x3010;Map<string, object="">&#x3011;&#x3001;systemEnvironment&#x3010;Map<string, object="">&#x3011;
+4&#x3001;postProcessBeanFactory(beanFactory)&#xFF1A;&#x5B50;&#x7C7B;&#x91CD;&#x5199;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5728;BeanFactory&#x521B;&#x5EFA;&#x5E76;&#x9884;&#x5904;&#x7406;&#x5B8C;&#x6210;&#x4EE5;&#x540E;&#x505A;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x8BBE;&#x7F6E;</string,></string,></p>
+<p>5&#x3001;invokeBeanFactoryPostProcessors(beanFactory)&#xFF1A;&#x5728;BeanFactory&#x6807;&#x51C6;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x540E;&#x6267;&#x884C;BeanFactoryPostProcessor&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5373;BeanFactory&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x5148;&#x6267;&#x884C;BeanDefinitionRegistryPostProcessor&#xFF1A; postProcessor.postProcessBeanDefinitionRegistry(registry)</p>
+<p>&#x2460; &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#x4E86;BeanDefinitionRegistryPostProcessor&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;
+&#x2461; &#x5148;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;PriorityOrdered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanDefinitionRegistryPostProcessor
+&#x2462; &#x518D;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;Ordered&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanDefinitionRegistryPostProcessor
+&#x2463; &#x6700;&#x540E;&#x6267;&#x884C;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x4EFB;&#x4F55;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x662F;&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanDefinitionRegistryPostProcessors<br>&#xFF08;2&#xFF09;&#x518D;&#x6267;&#x884C;BeanFactoryPostProcessor&#x7684;&#x65B9;&#x6CD5;&#xFF1A;postProcessor.postProcessBeanFactory(beanFactory)</p>
+<p>&#x2460; &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#x4E86;BeanFactoryPostProcessor&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;
+&#x2461; &#x5148;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;PriorityOrdered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanFactoryPostProcessor
+&#x2462; &#x518D;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;Ordered&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanFactoryPostProcessor
+&#x2463; &#x6700;&#x540E;&#x6267;&#x884C;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x4EFB;&#x4F55;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x662F;&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanFactoryPostProcessor
+6&#x3001;registerBeanPostProcessors(beanFactory)&#xFF1A;&#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x6CE8;&#x518C;Bean&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;BeanPostProcessor&#xFF0C;&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x4F5C;&#x7528;&#x662F;&#x5E72;&#x9884;Spring&#x521D;&#x59CB;&#x5316;bean&#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x4ECE;&#x800C;&#x5B8C;&#x6210;&#x4EE3;&#x7406;&#x3001;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3001;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7B49;&#x529F;&#x80FD;</p>
+<p>&#xFF08;1&#xFF09;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x5B9E;&#x73B0;&#x4E86;BeanPostProcessor&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;&#xFF1A;
+&#xFF08;2&#xFF09;&#x5148;&#x6CE8;&#x518C;&#x5B9E;&#x73B0;&#x4E86;PriorityOrdered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;3&#xFF09;&#x518D;&#x6CE8;&#x518C;&#x5B9E;&#x73B0;&#x4E86;Ordered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;4&#xFF09;&#x6700;&#x540E;&#x6CE8;&#x518C;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x4EFB;&#x4F55;&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;5&#xFF09;&#x6700;refresh&#x4E3B;&#x8981;&#x53EF;&#x5212;&#x5206;&#x4E3A;12&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x5176;&#x4E2D;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x6B65;&#x9AA4;&#x4E0B;&#x9762;&#x4F1A;&#x6709;&#x8BE6;&#x7EC6;&#x8BF4;&#x660E;&#x3002;Spring &#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x90FD;&#x4F1A;&#x8C03;&#x7528; refresh() &#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5237;&#x65B0;&#xFF0C;&#x65E0;&#x8BBA;&#x662F; Spring &#x7684;&#x7236;&#x5B50;&#x5BB9;&#x5668;&#xFF0C;&#x8FD8;&#x662F; Spring Cloud Feign &#x4E2D;&#x7684; feign &#x9694;&#x79BB;&#x5BB9;&#x5668;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x90FD;&#x4F1A;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5B8C;&#x6210;&#x521D;&#x59CB;&#x5316;&#x3002;&#x7EC8;&#x6CE8;&#x518C;MergedBeanDefinitionPostProcessor&#x7C7B;&#x578B;&#x7684;BeanPostProcessor&#xFF1A;beanFactory.addBeanPostProcessor(postProcessor);
+&#xFF08;6&#xFF09;&#x7ED9;&#x5BB9;&#x5668;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;ApplicationListenerDetector&#xFF1A;&#x7528;&#x4E8E;&#x5728;Bean&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x662F;ApplicationListener&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5C31;&#x628A;Bean&#x653E;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF1A;applicationContext.addApplicationListener((ApplicationListener&lt;?&gt;) bean);
+&#x6B64;&#x65F6;&#x5BB9;&#x5668;&#x4E2D;&#x9ED8;&#x8BA4;&#x6709;6&#x4E2A;&#x9ED8;&#x8BA4;&#x7684;BeanProcessor(&#x65E0;&#x4EFB;&#x4F55;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x4E0B;)&#xFF1A;&#x3010;ApplicationContextAwareProcessor&#x3011;&#x3001;&#x3010;ConfigurationClassPostProcessorsAwareBeanPostProcessor&#x3011;&#x3001;&#x3010;PostProcessorRegistrationDelegate&#x3011;&#x3001;&#x3010;CommonAnnotationBeanPostProcessor&#x3011;&#x3001;&#x3010;AutowiredAnnotationBeanPostProcessor&#x3011;&#x3001;&#x3010;ApplicationListenerDetector&#x3011;</p>
+<p>7&#x3001;initMessageSource()&#xFF1A;&#x521D;&#x59CB;&#x5316;MessageSource&#x7EC4;&#x4EF6;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x505A;&#x56FD;&#x9645;&#x5316;&#x529F;&#x80FD;&#xFF0C;&#x6D88;&#x606F;&#x7ED1;&#x5B9A;&#x4E0E;&#x6D88;&#x606F;&#x89E3;&#x6790;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x770B;BeanFactory&#x5BB9;&#x5668;&#x4E2D;&#x662F;&#x5426;&#x6709;id&#x4E3A;messageSource &#x5E76;&#x4E14;&#x7C7B;&#x578B;&#x662F;MessageSource&#x7684;&#x7EC4;&#x4EF6;&#xFF1A;&#x5982;&#x679C;&#x6709;&#xFF0C;&#x76F4;&#x63A5;&#x8D4B;&#x503C;&#x7ED9;messageSource&#xFF1B;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;DelegatingMessageSource&#xFF1B;
+&#xFF08;2&#xFF09;&#x628A;&#x521B;&#x5EFA;&#x597D;&#x7684;MessageSource&#x6CE8;&#x518C;&#x5728;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x4EE5;&#x540E;&#x83B7;&#x53D6;&#x56FD;&#x9645;&#x5316;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x6CE8;&#x5165;MessageSource&#xFF1B;
+8&#x3001;initApplicationEventMulticaster()&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#xFF0C;&#x5728;&#x6CE8;&#x518C;&#x76D1;&#x542C;&#x5668;&#x65F6;&#x4F1A;&#x7528;&#x5230;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x770B;BeanFactory&#x5BB9;&#x5668;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x7684;ApplicationEventMulticaster&#xFF1A;&#x5982;&#x679C;&#x6709;&#xFF0C;&#x76F4;&#x63A5;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x83B7;&#x53D6;&#xFF1B;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;SimpleApplicationEventMulticaster
+&#xFF08;2&#xFF09;&#x5C06;&#x521B;&#x5EFA;&#x7684;ApplicationEventMulticaster&#x6DFB;&#x52A0;&#x5230;BeanFactory&#x4E2D;&#xFF0C;&#x4EE5;&#x540E;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x81EA;&#x52A8;&#x6CE8;&#x5165;
+9&#x3001;onRefresh()&#xFF1A;&#x7559;&#x7ED9;&#x5B50;&#x5BB9;&#x5668;&#x3001;&#x5B50;&#x7C7B;&#x91CD;&#x5199;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x903B;&#x8F91;</p>
+<p>10&#x3001;registerListeners()&#xFF1A;&#x6CE8;&#x518C;&#x76D1;&#x542C;&#x5668;&#xFF1A;&#x5C06;&#x5BB9;&#x5668;&#x4E2D;&#x6240;&#x6709;&#x7684;ApplicationListener&#x6CE8;&#x518C;&#x5230;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#x4E2D;&#xFF0C;&#x5E76;&#x6D3E;&#x53D1;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4EA7;&#x751F;&#x7684;&#x4E8B;&#x4EF6;&#xFF1A;</p>
+<p> &#xFF08;1&#xFF09;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x62FF;&#x5230;&#x6240;&#x6709;&#x7684;ApplicationListener
+&#xFF08;2&#xFF09;&#x5C06;&#x6BCF;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x6DFB;&#x52A0;&#x5230;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#x4E2D;&#xFF1A;getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
+&#xFF08;3&#xFF09;&#x6D3E;&#x53D1;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4EA7;&#x751F;&#x7684;&#x4E8B;&#x4EF6;applicationEvents&#xFF1A;getApplicationEventMulticaster().multicastEvent(earlyEvent);
+11&#x3001;finishBeanFactoryInitialization(beanFactory)&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x6240;&#x6709;&#x5269;&#x4E0B;&#x7684;&#x5355;&#x5B9E;&#x4F8B;bean&#xFF0C;&#x6838;&#x5FC3;&#x65B9;&#x6CD5;&#x662F;preInstantiateSingletons()&#xFF0C;&#x4F1A;&#x8C03;&#x7528;getBean()&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF1B;</p>
+<p>&#xFF08;1&#xFF09;&#x83B7;&#x53D6;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x6240;&#x6709;beanDefinitionName&#xFF0C;&#x4F9D;&#x6B21;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#x548C;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;
+&#xFF08;2&#xFF09;&#x83B7;&#x53D6;Bean&#x7684;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;RootBeanDefinition&#xFF0C;&#x5B83;&#x8868;&#x793A;&#x81EA;&#x5DF1;&#x7684;BeanDefinition&#x548C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x7236;&#x7C7B;&#x7684;BeanDefinition&#x5408;&#x5E76;&#x540E;&#x7684;&#x5BF9;&#x8C61;
+&#xFF08;3&#xFF09;&#x5982;&#x679C;Bean&#x6EE1;&#x8DB3;&#x8FD9;&#x4E09;&#x4E2A;&#x6761;&#x4EF6;&#xFF1A;&#x975E;&#x62BD;&#x8C61;&#x7684;&#xFF0C;&#x5355;&#x5B9E;&#x4F8B;&#xFF0C;&#x975E;&#x61D2;&#x52A0;&#x8F7D;&#xFF0C;&#x5219;&#x6267;&#x884C;&#x5355;&#x4F8B;Bean&#x521B;&#x5EFA;&#x6D41;&#x7A0B;&#xFF1A;<br>&#xFF08;4&#xFF09;&#x6240;&#x6709;Bean&#x90FD;&#x5229;&#x7528;getBean()&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x4EE5;&#x540E;&#xFF0C;&#x68C0;&#x67E5;&#x6240;&#x6709;&#x7684;Bean&#x662F;&#x5426;&#x4E3A;SmartInitializingSingleton&#x63A5;&#x53E3;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF1B;&#x5C31;&#x6267;&#x884C;afterSingletonsInstantiated()&#xFF1B;
+12&#x3001;finishRefresh()&#xFF1A;&#x53D1;&#x5E03;BeanFactory&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;initLifecycleProcessor()&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x548C;&#x751F;&#x547D;&#x5468;&#x671F;&#x6709;&#x5173;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF1A;&#x9ED8;&#x8BA4;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x627E;&#x662F;&#x5426;&#x6709;lifecycleProcessor&#x7684;&#x7EC4;&#x4EF6;&#x3010;LifecycleProcessor&#x3011;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;DefaultLifecycleProcessor()&#x52A0;&#x5165;&#x5230;&#x5BB9;&#x5668;&#xFF1B;
+&#xFF08;2&#xFF09;getLifecycleProcessor().onRefresh()&#xFF1A;&#x62FF;&#x5230;&#x524D;&#x9762;&#x5B9A;&#x4E49;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5904;&#x7406;&#x5668;&#xFF08;LifecycleProcessor&#xFF09;&#x56DE;&#x8C03;onRefresh()&#x65B9;&#x6CD5;
+&#xFF08;3&#xFF09;publishEvent(new ContextRefreshedEvent(this))&#xFF1A;&#x53D1;&#x5E03;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;&#xFF1B;
+&#xFF08;4&#xFF09;liveBeansView.registerApplicationContext(this);
+2&#x3001;&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;BeanFactory&#x7684;&#x9884;&#x5904;&#x7406;&#xFF1A;org.springframework.context.support.AbstractApplicationContext#prepareBeanFactory&#xFF1A;</p>
+<p>&#x8FD9;&#x4E00;&#x6B65;&#x4E3B;&#x8981;&#x4E3A; beanFactory &#x5DE5;&#x5382;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;</p>
+<p>protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
+    // &#x8BBE;&#x7F6E; classLoader
+    beanFactory.setBeanClassLoader(getClassLoader());
+    //&#x8BBE;&#x7F6E; bean &#x8868;&#x8FBE;&#x5F0F;&#x89E3;&#x6790;&#x5668;
+    beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
+    beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));</p>
+<pre><code>// &#x6DFB;&#x52A0;&#x4E00;&#x4E2A; BeanPostProcessor&#x3010;ApplicationContextAwareProcessor&#x3011;
+beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+
+// &#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5373;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x81EA;&#x52A8;&#x6CE8;&#x5165;
+beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
+beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
+beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);
+beanFactory.ignoreDependencyInterface(ApplicationEventPublisherAware.class);
+beanFactory.ignoreDependencyInterface(MessageSourceAware.class);
+beanFactory.ignoreDependencyInterface(ApplicationContextAware.class);
+
+// &#x6CE8;&#x518C;&#x53EF;&#x4EE5;&#x89E3;&#x6790;&#x7684;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7C7B;&#xFF0C;&#x5373;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x610F;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x81EA;&#x52A8;&#x6CE8;&#x5165;
+beanFactory.registerResolvableDependency(BeanFactory.class, beanFactory);
+beanFactory.registerResolvableDependency(ResourceLoader.class, this);
+beanFactory.registerResolvableDependency(ApplicationEventPublisher.class, this);
+beanFactory.registerResolvableDependency(ApplicationContext.class, this);
+
+// &#x6DFB;&#x52A0;&#x4E00;&#x4E2A; BeanPostProcessor&#x3010;ApplicationListenerDetector&#x3011;
+beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(this));
+
+// &#x6DFB;&#x52A0;&#x7F16;&#x8BD1;&#x65F6;&#x7684; AspectJ
+if (beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) {
+    beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
+    // Set a temporary ClassLoader for type matching.
+    beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));
+}
+
+// &#x6CE8;&#x518C; environment &#x7EC4;&#x4EF6;&#xFF0C;&#x7C7B;&#x578B;&#x662F;&#x3010;ConfigurableEnvironment&#x3011;
+if (!beanFactory.containsLocalBean(ENVIRONMENT_BEAN_NAME)) {
+    beanFactory.registerSingleton(ENVIRONMENT_BEAN_NAME, getEnvironment());
+}
+// &#x6CE8;&#x518C; systemProperties &#x7EC4;&#x4EF6;&#xFF0C;&#x7C7B;&#x578B;&#x662F;&#x3010;Map&lt;String, Object&gt;&#x3011;
+if (!beanFactory.containsLocalBean(SYSTEM_PROPERTIES_BEAN_NAME)) {
+    beanFactory.registerSingleton(SYSTEM_PROPERTIES_BEAN_NAME, getEnvironment().getSystemProperties());
+}
+// &#x6CE8;&#x518C; systemEnvironment &#x7EC4;&#x4EF6;&#xFF0C;&#x7C7B;&#x578B;&#x662F;&#x3010;Map&lt;String, Object&gt;&#x3011;
+if (!beanFactory.containsLocalBean(SYSTEM_ENVIRONMENT_BEAN_NAME)) {
+    beanFactory.registerSingleton(SYSTEM_ENVIRONMENT_BEAN_NAME, getEnvironment().getSystemEnvironment());
+}
+</code></pre><p>}
+&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;    </p>
+<p>&#xFF08;1&#xFF09;&#x8BBE;&#x7F6E;BeanFactory&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x3001;&#x8BBE;&#x7F6E;&#x8868;&#x8FBE;&#x5F0F;&#x89E3;&#x6790;&#x5668;&#x7B49;&#x7B49;
+&#xFF08;2&#xFF09;&#x6DFB;&#x52A0;BeanPostProcessor&#x3010;ApplicationContextAwareProcessor&#x3011;
+&#xFF08;3&#xFF09;&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7684;&#x63A5;&#x53E3;&#xFF1A;EnvironmentAware&#x3001;EmbeddedValueResolverAware&#x3001;ResourceLoaderAware&#x3001;ApplicationEventPublisherAware&#x3001;MessageSourceAware&#x3001;ApplicationContextAware&#xFF1B;
+&#xFF08;4&#xFF09;&#x6CE8;&#x518C;&#x53EF;&#x4EE5;&#x89E3;&#x6790;&#x7684;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7C7B;&#xFF0C;&#x5373;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x610F;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#xFF1A;BeanFactory&#x3001;ResourceLoader&#x3001;ApplicationEventPublisher&#x3001;ApplicationContext
+&#xFF08;5&#xFF09;&#x6DFB;&#x52A0;BeanPostProcessor&#x3010;ApplicationListenerDetector&#x3011;
+&#xFF08;6&#xFF09;&#x6DFB;&#x52A0;&#x7F16;&#x8BD1;&#x65F6;&#x7684;AspectJ&#xFF1B;
+&#xFF08;7&#xFF09;&#x7ED9;BeanFactory&#x4E2D;&#x6CE8;&#x518C;&#x7684;3&#x4E2A;&#x7EC4;&#x4EF6;&#xFF1A;environment&#x3010;ConfigurableEnvironment&#x3011;&#x3001;systemProperties&#x3010;Map<string, object="">&#x3011;&#x3001;systemEnvironment&#x3010;Map<string, object="">&#x3011;
+3&#x3001;&#x7B2C;&#x4E94;&#x6B65;&#xFF1A;&#x6267;&#x884C;BeanFactory&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF1A;org.springframework.context.support.PostProcessorRegistrationDelegate#invokeBeanFactoryPostProcessors&#xFF1A;</string,></string,></p>
+<p>Spring &#x5728;&#x626B;&#x63CF;&#x5B8C;&#x6240;&#x6709;&#x7684; bean &#x8F6C;&#x6210; BeanDefinition &#x65F6;&#x5019;&#xFF0C;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x505A;&#x4E00;&#x4E9B;&#x81EA;&#x5B9A;&#x4E49;&#x64CD;&#x4F5C;&#xFF0C;&#x8FD9;&#x5F97;&#x76CA;&#x4E8E; Spring &#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x7684; BeanFactoryPostProcessor &#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x5176;&#x4E2D; BeanFactoryPostProcessor &#x53C8;&#x6709;&#x4E00;&#x4E2A;&#x5B50;&#x63A5;&#x53E3; BeanDefinitionRegistryPostProcessor &#xFF0C;&#x524D;&#x8005;&#x4F1A;&#x628A; ConfigurableListableBeanFactory &#x66B4;&#x9732;&#x7ED9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#xFF0C;&#x540E;&#x8005;&#x4F1A;&#x628A; BeanDefinitionRegistry &#x6CE8;&#x518C;&#x5668;&#x66B4;&#x9732;&#x7ED9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#xFF0C;&#x4E00;&#x65E6;&#x83B7;&#x53D6;&#x5230;&#x6CE8;&#x518C;&#x5668;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x6309;&#x9700;&#x6CE8;&#x5165;&#x4E86;&#x3002;</p>
+<p>&#x540C;&#x65F6; Spring &#x662F;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x63A7;&#x5236;&#x540C;&#x7C7B;&#x578B;&#x7EC4;&#x4EF6;&#x7684;&#x987A;&#x5E8F;&#xFF0C;&#x6BD4;&#x5982;&#x5728; AOP &#x4E2D;&#x6211;&#x4EEC;&#x5E38;&#x7528;&#x7684; @Order &#x6CE8;&#x89E3;&#xFF0C;&#x8FD9;&#x91CC;&#x7684; BeanFactoryPostProcessor &#x63A5;&#x53E3;&#x5F53;&#x7136;&#x4E5F;&#x662F;&#x63D0;&#x4F9B;&#x4E86;&#x987A;&#x5E8F;&#xFF0C;&#x6700;&#x5148;&#x88AB;&#x6267;&#x884C;&#x7684;&#x662F;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5230;&#x5B9E;&#x73B0;&#x4E86; Ordered &#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#xFF0C;&#x6700;&#x540E;&#x5C31;&#x662F;&#x5269;&#x4E0B;&#x6765;&#x7684;&#x5E38;&#x89C4; BeanFactoryPostProcessor &#x7C7B;&#x3002;</p>
+<p><img src="Spring%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.assets/5d5a62c25e4e4988ee486e6134f14633.png" alt="img"></p>
+<p>&#x6B64;&#x65F6;&#x518D;&#x770B;&#x4E0A;&#x56FE;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x53D1;&#x73B0;&#x548C;&#x559D;&#x6C34;&#x4E00;&#x822C;&#x7B80;&#x5355;&#xFF0C;&#x9996;&#x5148;&#x4F1A;&#x56DE;&#x8C03; postProcessBeanDefinitionRegistry() &#x65B9;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x56DE;&#x8C03; postProcessBeanFactory() &#x65B9;&#x6CD5;&#xFF0C;&#x6700;&#x540E;&#x6CE8;&#x610F;&#x987A;&#x5E8F;&#x5373;&#x53EF;&#xFF0C;&#x4E0B;&#x9762;&#x4E00;&#x8D77;&#x770B;&#x770B;&#x5177;&#x4F53;&#x7684;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x5427;&#x3002;</p>
+<p>public static void invokeBeanFactoryPostProcessors(
+        ConfigurableListableBeanFactory beanFactory, List<beanfactorypostprocessor> beanFactoryPostProcessors) {
+    // beanFactoryPostProcessors &#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6307;&#x7528;&#x6237;&#x901A;&#x8FC7; AnnotationConfigApplicationContext.addBeanFactoryPostProcessor() &#x65B9;&#x6CD5;&#x624B;&#x52A8;&#x4F20;&#x5165;&#x7684; BeanFactoryPostProcessor&#xFF0C;&#x6CA1;&#x6709;&#x4EA4;&#x7ED9; spring &#x7BA1;&#x7406;
+    // Invoke BeanDefinitionRegistryPostProcessors first, if any.
+    // &#x4EE3;&#x8868;&#x6267;&#x884C;&#x8FC7;&#x7684; BeanDefinitionRegistryPostProcessor
+    Set<string> processedBeans = new HashSet&lt;&gt;();</string></beanfactorypostprocessor></p>
+<pre><code class="lang-java"><span class="hljs-keyword">if</span> (beanFactory <span class="hljs-keyword">instanceof</span> BeanDefinitionRegistry) {
+    BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
+    <span class="hljs-comment">// &#x5E38;&#x89C4;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x96C6;&#x5408;&#xFF0C;&#x5373;&#x5B9E;&#x73B0;&#x4E86; BeanFactoryPostProcessor &#x63A5;&#x53E3;</span>
+    List&lt;BeanFactoryPostProcessor&gt; regularPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-comment">// &#x6CE8;&#x518C;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x96C6;&#x5408;&#xFF0C;&#x5373;&#x5B9E;&#x73B0;&#x4E86; BeanDefinitionRegistryPostProcessor &#x63A5;&#x53E3;</span>
+    List&lt;BeanDefinitionRegistryPostProcessor&gt; registryProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-comment">// &#x5904;&#x7406;&#x81EA;&#x5B9A;&#x4E49;&#x7684; beanFactoryPostProcessors&#xFF08;&#x6307;&#x8C03;&#x7528; context.addBeanFactoryPostProcessor() &#x65B9;&#x6CD5;&#xFF09;&#xFF0C;&#x4E00;&#x822C;&#x8FD9;&#x91CC;&#x90FD;&#x6CA1;&#x6709;</span>
+    <span class="hljs-keyword">for</span> (BeanFactoryPostProcessor postProcessor : beanFactoryPostProcessors) {
+        <span class="hljs-keyword">if</span> (postProcessor <span class="hljs-keyword">instanceof</span> BeanDefinitionRegistryPostProcessor) {
+            BeanDefinitionRegistryPostProcessor registryProcessor =
+                    (BeanDefinitionRegistryPostProcessor) postProcessor;
+            <span class="hljs-comment">// &#x8C03;&#x7528; postProcessBeanDefinitionRegistry &#x65B9;&#x6CD5;</span>
+            registryProcessor.postProcessBeanDefinitionRegistry(registry);
+            registryProcessors.add(registryProcessor);
+        }
+        <span class="hljs-keyword">else</span> {
+            regularPostProcessors.add(postProcessor);
+        }
+    }
+
+    <span class="hljs-comment">// Do not initialize FactoryBeans here: We need to leave all regular beans</span>
+    <span class="hljs-comment">// uninitialized to let the bean factory post-processors apply to them!</span>
+    <span class="hljs-comment">// Separate between BeanDefinitionRegistryPostProcessors that implement</span>
+    <span class="hljs-comment">// PriorityOrdered, Ordered, and the rest.</span>
+    <span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x53D8;&#x91CF; currentRegistryProcessors&#xFF0C;&#x8868;&#x793A;&#x5F53;&#x524D;&#x8981;&#x5904;&#x7406;&#x7684; BeanFactoryPostProcessors</span>
+    List&lt;BeanDefinitionRegistryPostProcessor&gt; currentRegistryProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+    <span class="hljs-comment">// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.</span>
+    <span class="hljs-comment">// &#x9996;&#x5148;&#xFF0C;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x67E5;&#x627E;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;&#x7684; BeanDefinitionRegistryPostProcessor &#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x4F1A;&#x67E5;&#x627E;&#x51FA;&#x4E00;&#x4E2A;&#x3010;ConfigurationClassPostProcessor&#x3011;</span>
+    String[] postProcessorNames =
+            beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);
+    <span class="hljs-keyword">for</span> (String ppName : postProcessorNames) {
+        <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;</span>
+        <span class="hljs-keyword">if</span> (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
+            <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; currentRegistryProcessors</span>
+            currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+            <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; processedBeans&#xFF0C;&#x8868;&#x793A;&#x5DF2;&#x7ECF;&#x5904;&#x7406;&#x8FC7;&#x8FD9;&#x4E2A;&#x7C7B;&#x4E86;</span>
+            processedBeans.add(ppName);
+        }
+    }
+    <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x6392;&#x5217;&#x987A;&#x5E8F;</span>
+    sortPostProcessors(currentRegistryProcessors, beanFactory);
+    <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; registry &#x4E2D;</span>
+    registryProcessors.addAll(currentRegistryProcessors);
+    <span class="hljs-comment">// &#x6267;&#x884C; [postProcessBeanDefinitionRegistry] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+    invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+    <span class="hljs-comment">// &#x5C06; currentRegistryProcessors &#x53D8;&#x91CF;&#x6E05;&#x7A7A;&#xFF0C;&#x4E0B;&#x9762;&#x4F1A;&#x7EE7;&#x7EED;&#x7528;&#x5230;</span>
+    currentRegistryProcessors.clear();
+
+    <span class="hljs-comment">// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.</span>
+    <span class="hljs-comment">// &#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x67E5;&#x627E;&#x5B9E;&#x73B0;&#x4E86; Ordered &#x63A5;&#x53E3;&#x7684; BeanDefinitionRegistryPostProcessors &#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x91CC;&#x53EF;&#x80FD;&#x4F1A;&#x67E5;&#x627E;&#x51FA;&#x591A;&#x4E2A;</span>
+    <span class="hljs-comment">// &#x56E0;&#x4E3A;&#x3010;ConfigurationClassPostProcessor&#x3011;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4E86; postProcessBeanDefinitionRegistry() &#x65B9;&#x6CD5;&#xFF0C;&#x5DF2;&#x7ECF;&#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x5B8C;&#x6210;&#x626B;&#x63CF;&#x5DE5;&#x4F5C;&#xFF0C;&#x6240;&#x4EE5;&#x5BB9;&#x5668;&#x4F1A;&#x6709;&#x5F88;&#x591A;&#x4E2A;&#x7EC4;&#x4EF6;</span>
+    postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);
+    <span class="hljs-keyword">for</span> (String ppName : postProcessorNames) {
+        <span class="hljs-comment">// &#x5224;&#x65AD; processedBeans &#x662F;&#x5426;&#x5904;&#x7406;&#x8FC7;&#x8FD9;&#x4E2A;&#x7C7B;&#xFF0C;&#x4E14;&#x662F;&#x5426;&#x5B9E;&#x73B0; Ordered &#x63A5;&#x53E3;</span>
+        <span class="hljs-keyword">if</span> (!processedBeans.contains(ppName) &amp;&amp; beanFactory.isTypeMatch(ppName, Ordered.class)) {
+            currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+            processedBeans.add(ppName);
+        }
+    }
+    <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x6392;&#x5217;&#x987A;&#x5E8F;</span>
+    sortPostProcessors(currentRegistryProcessors, beanFactory);
+    <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; registry &#x4E2D;</span>
+    registryProcessors.addAll(currentRegistryProcessors);
+    <span class="hljs-comment">// &#x6267;&#x884C; [postProcessBeanDefinitionRegistry] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+    invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+    <span class="hljs-comment">// &#x5C06; currentRegistryProcessors &#x53D8;&#x91CF;&#x6E05;&#x7A7A;&#xFF0C;&#x4E0B;&#x9762;&#x4F1A;&#x7EE7;&#x7EED;&#x7528;&#x5230;</span>
+    currentRegistryProcessors.clear();
+
+    <span class="hljs-comment">// Finally, invoke all other BeanDefinitionRegistryPostProcessors until no further ones appear.</span>
+    <span class="hljs-comment">// &#x6700;&#x540E;&#xFF0C;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x67E5;&#x627E;&#x5269;&#x4F59;&#x6240;&#x6709;&#x5E38;&#x89C4;&#x7684; BeanDefinitionRegistryPostProcessors &#x7C7B;&#x578B;</span>
+    <span class="hljs-keyword">boolean</span> reiterate = <span class="hljs-keyword">true</span>;
+    <span class="hljs-keyword">while</span> (reiterate) {
+        reiterate = <span class="hljs-keyword">false</span>;
+        <span class="hljs-comment">// &#x6839;&#x636E;&#x7C7B;&#x578B;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x67E5;&#x627E;</span>
+        postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);
+        <span class="hljs-keyword">for</span> (String ppName : postProcessorNames) {
+            <span class="hljs-comment">// &#x5224;&#x65AD; processedBeans &#x662F;&#x5426;&#x5904;&#x7406;&#x8FC7;&#x8FD9;&#x4E2A;&#x7C7B;</span>
+            <span class="hljs-keyword">if</span> (!processedBeans.contains(ppName)) {
+                <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; currentRegistryProcessors</span>
+                currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+                <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; processedBeans&#xFF0C;&#x8868;&#x793A;&#x5DF2;&#x7ECF;&#x5904;&#x7406;&#x8FC7;&#x8FD9;&#x4E2A;&#x7C7B;&#x4E86;</span>
+                processedBeans.add(ppName);
+                <span class="hljs-comment">// &#x5C06;&#x6807;&#x8BC6;&#x8BBE;&#x7F6E;&#x4E3A; true&#xFF0C;&#x7EE7;&#x7EED;&#x5FAA;&#x73AF;&#x67E5;&#x627E;&#xFF0C;&#x53EF;&#x80FD;&#x968F;&#x65F6;&#x56E0;&#x4E3A;&#x9632;&#x6B62;&#x4E0B;&#x9762;&#x8C03;&#x7528;&#x4E86; invokeBeanDefinitionRegistryPostProcessors() &#x65B9;&#x6CD5;&#x5F15;&#x5165;&#x65B0;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+                reiterate = <span class="hljs-keyword">true</span>;
+            }
+        }
+        <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x6392;&#x5217;&#x987A;&#x5E8F;</span>
+        sortPostProcessors(currentRegistryProcessors, beanFactory);
+        <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x5230; registry &#x4E2D;</span>
+        registryProcessors.addAll(currentRegistryProcessors);
+        <span class="hljs-comment">// &#x6267;&#x884C; [postProcessBeanDefinitionRegistry] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+        invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+        <span class="hljs-comment">// &#x5C06; currentRegistryProcessors &#x53D8;&#x91CF;&#x6E05;&#x7A7A;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0B;&#x4E00;&#x6B21;&#x5FAA;&#x73AF;&#x53EF;&#x80FD;&#x4F1A;&#x7528;&#x5230;</span>
+        currentRegistryProcessors.clear();
+    }
+
+    <span class="hljs-comment">// Now, invoke the postProcessBeanFactory callback of all processors handled so far.</span>
+    <span class="hljs-comment">// &#x73B0;&#x5728;&#x6267;&#x884C; registryProcessors &#x7684; [postProcessBeanFactory] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+    invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);
+    <span class="hljs-comment">// &#x6267;&#x884C; regularPostProcessors &#x7684; [postProcessBeanFactory] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x5305;&#x542B;&#x7528;&#x6237;&#x624B;&#x52A8;&#x8C03;&#x7528; addBeanFactoryPostProcessor() &#x65B9;&#x6CD5;&#x6DFB;&#x52A0;&#x7684; BeanFactoryPostProcessor</span>
+    invokeBeanFactoryPostProcessors(regularPostProcessors, beanFactory);
+}
+
+<span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Invoke factory processors registered with the context instance.</span>
+    invokeBeanFactoryPostProcessors(beanFactoryPostProcessors, beanFactory);
+}
+
+<span class="hljs-comment">// Do not initialize FactoryBeans here: We need to leave all regular beans</span>
+<span class="hljs-comment">// uninitialized to let the bean factory post-processors apply to them!</span>
+<span class="hljs-comment">// &#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x67E5;&#x627E;&#x5B9E;&#x73B0;&#x4E86; BeanFactoryPostProcessor &#x63A5;&#x53E3;&#x7684;&#x7C7B;</span>
+String[] postProcessorNames =
+        beanFactory.getBeanNamesForType(BeanFactoryPostProcessor.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);
+
+<span class="hljs-comment">// Separate between BeanFactoryPostProcessors that implement PriorityOrdered,</span>
+<span class="hljs-comment">// Ordered, and the rest.</span>
+<span class="hljs-comment">// &#x8868;&#x793A;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;&#x7684; BeanFactoryPostProcessor</span>
+List&lt;BeanFactoryPostProcessor&gt; priorityOrderedPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-comment">// &#x8868;&#x793A;&#x5B9E;&#x73B0;&#x4E86; Ordered &#x63A5;&#x53E3;&#x7684; BeanFactoryPostProcessor</span>
+List&lt;String&gt; orderedPostProcessorNames = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-comment">// &#x8868;&#x793A;&#x5269;&#x4E0B;&#x6765;&#x7684;&#x5E38;&#x89C4;&#x7684; BeanFactoryPostProcessors</span>
+List&lt;String&gt; nonOrderedPostProcessorNames = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-keyword">for</span> (String ppName : postProcessorNames) {
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x5904;&#x7406;&#x8FC7;&#xFF0C;&#x56E0;&#x4E3A; postProcessorNames &#x5176;&#x5B9E;&#x5305;&#x542B;&#x4E86;&#x4E0A;&#x9762;&#x6B65;&#x9AA4;&#x5904;&#x7406;&#x8FC7;&#x7684; BeanDefinitionRegistry &#x7C7B;&#x578B;</span>
+    <span class="hljs-keyword">if</span> (processedBeans.contains(ppName)) {
+        <span class="hljs-comment">// skip - already processed in first phase above</span>
+    }
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
+        priorityOrderedPostProcessors.add(beanFactory.getBean(ppName, BeanFactoryPostProcessor.class));
+    }
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86; Ordered &#x63A5;&#x53E3;</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (beanFactory.isTypeMatch(ppName, Ordered.class)) {
+        orderedPostProcessorNames.add(ppName);
+    }
+    <span class="hljs-comment">// &#x5269;&#x4E0B;&#x6240;&#x6709;&#x5E38;&#x89C4;&#x7684;</span>
+    <span class="hljs-keyword">else</span> {
+        nonOrderedPostProcessorNames.add(ppName);
+    }
+}
+
+<span class="hljs-comment">// First, invoke the BeanFactoryPostProcessors that implement PriorityOrdered.</span>
+<span class="hljs-comment">// &#x5148;&#x5C06; priorityOrderedPostProcessors &#x96C6;&#x5408;&#x6392;&#x5E8F;</span>
+sortPostProcessors(priorityOrderedPostProcessors, beanFactory);
+<span class="hljs-comment">// &#x6267;&#x884C; priorityOrderedPostProcessors &#x7684; [postProcessBeanFactory] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+invokeBeanFactoryPostProcessors(priorityOrderedPostProcessors, beanFactory);
+
+<span class="hljs-comment">// Next, invoke the BeanFactoryPostProcessors that implement Ordered.</span>
+<span class="hljs-comment">// &#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x628A; orderedPostProcessorNames &#x8F6C;&#x6210; orderedPostProcessors &#x96C6;&#x5408;</span>
+List&lt;BeanFactoryPostProcessor&gt; orderedPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-keyword">for</span> (String postProcessorName : orderedPostProcessorNames) {
+    orderedPostProcessors.add(beanFactory.getBean(postProcessorName, BeanFactoryPostProcessor.class));
+}
+<span class="hljs-comment">// &#x5C06; orderedPostProcessors &#x96C6;&#x5408;&#x6392;&#x5E8F;</span>
+sortPostProcessors(orderedPostProcessors, beanFactory);
+<span class="hljs-comment">// &#x6267;&#x884C; orderedPostProcessors &#x7684; [postProcessBeanFactory] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+invokeBeanFactoryPostProcessors(orderedPostProcessors, beanFactory);
+
+<span class="hljs-comment">// Finally, invoke all other BeanFactoryPostProcessors.</span>
+<span class="hljs-comment">// &#x6700;&#x540E;&#x628A; nonOrderedPostProcessorNames &#x8F6C;&#x6210; nonOrderedPostProcessors &#x96C6;&#x5408;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#xFF0C;myBeanFactoryPostProcessor</span>
+List&lt;BeanFactoryPostProcessor&gt; nonOrderedPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-keyword">for</span> (String postProcessorName : nonOrderedPostProcessorNames) {
+    nonOrderedPostProcessors.add(beanFactory.getBean(postProcessorName, BeanFactoryPostProcessor.class));
+}
+<span class="hljs-comment">// &#x6267;&#x884C; nonOrderedPostProcessors &#x7684; [postProcessBeanFactory] &#x56DE;&#x8C03;&#x65B9;&#x6CD5;</span>
+invokeBeanFactoryPostProcessors(nonOrderedPostProcessors, beanFactory);
+
+<span class="hljs-comment">// Clear cached merged bean definitions since the post-processors might have</span>
+<span class="hljs-comment">// modified the original metadata, e.g. replacing placeholders in values...</span>
+<span class="hljs-comment">// &#x6E05;&#x9664;&#x7F13;&#x5B58;</span>
+beanFactory.clearMetadataCache();
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x5148;&#x6267;&#x884C;BeanDefinitionRegistryPostProcessor&#xFF1A; postProcessor.postProcessBeanDefinitionRegistry(registry)</p>
+<p>&#x2460; &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#x4E86;BeanDefinitionRegistryPostProcessor&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;
+&#x2461; &#x5148;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;PriorityOrdered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanDefinitionRegistryPostProcessor
+&#x2462; &#x518D;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;Ordered&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanDefinitionRegistryPostProcessor
+&#x2463; &#x6700;&#x540E;&#x6267;&#x884C;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x4EFB;&#x4F55;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x662F;&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanDefinitionRegistryPostProcessors<br>&#xFF08;2&#xFF09;&#x518D;&#x6267;&#x884C;BeanFactoryPostProcessor&#x7684;&#x65B9;&#x6CD5;&#xFF1A;postProcessor.postProcessBeanFactory(beanFactory)</p>
+<p>&#x2460; &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#x4E86;BeanFactoryPostProcessor&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;
+&#x2461; &#x5148;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;PriorityOrdered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanFactoryPostProcessor
+&#x2462; &#x518D;&#x6267;&#x884C;&#x5B9E;&#x73B0;&#x4E86;Ordered&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanFactoryPostProcessor
+&#x2463; &#x6700;&#x540E;&#x6267;&#x884C;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x4EFB;&#x4F55;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x662F;&#x987A;&#x5E8F;&#x63A5;&#x53E3;&#x7684;BeanFactoryPostProcessor
+4&#x3001;&#x7B2C;&#x516D;&#x6B65;&#xFF1A;&#x6CE8;&#x518C;Bean&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF1A;org.springframework.context.support.PostProcessorRegistrationDelegate#registerBeanPostProcessors&#xFF1A;</p>
+<p>&#x8FD9;&#x4E00;&#x6B65;&#x662F;&#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x6CE8;&#x5165; BeanPostProcessor &#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#x4EC5;&#x4EC5;&#x662F;&#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x6CE8;&#x5165;&#x800C;&#x975E;&#x4F7F;&#x7528;&#x3002;&#x5173;&#x4E8E; BeanPostProcessor &#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x4E3B;&#x8981;&#x662F;&#x4F1A;&#x5E72;&#x9884; Spring &#x521D;&#x59CB;&#x5316; bean &#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x4ECE;&#x800C;&#x5B8C;&#x6210;&#x4EE3;&#x7406;&#x3001;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3001;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7B49;&#x5404;&#x79CD;&#x529F;&#x80FD;&#x3002;</p>
+<p>public static void registerBeanPostProcessors(
+        ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x83B7;&#x53D6; BeanPostProcessor &#x7C7B;&#x578B;</span>
+String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanPostProcessor.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);
+
+<span class="hljs-comment">// Register BeanPostProcessorChecker that logs an info message when</span>
+<span class="hljs-comment">// a bean is created during BeanPostProcessor instantiation, i.e. when</span>
+<span class="hljs-comment">// a bean is not eligible for getting processed by all BeanPostProcessors.</span>
+<span class="hljs-keyword">int</span> beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + <span class="hljs-number">1</span> + postProcessorNames.length;
+<span class="hljs-comment">// &#x5411;&#x5BB9;&#x5668;&#x4E2D;&#x6DFB;&#x52A0;&#x3010;BeanPostProcessorChecker&#x3011;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x7528;&#x6765;&#x68C0;&#x67E5;&#x662F;&#x4E0D;&#x662F;&#x6709; bean &#x5DF2;&#x7ECF;&#x521D;&#x59CB;&#x5316;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;</span>
+<span class="hljs-comment">// &#x5982;&#x679C;&#x6CA1;&#x6709;&#x6267;&#x884C;&#x6240;&#x6709;&#x7684; beanPostProcessor&#xFF08;&#x7528;&#x6570;&#x91CF;&#x6765;&#x5224;&#x65AD;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x5C31;&#x4F1A;&#x6253;&#x5370;&#x4E00;&#x884C; info &#x65E5;&#x5FD7;</span>
+beanFactory.addBeanPostProcessor(<span class="hljs-keyword">new</span> BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
+
+<span class="hljs-comment">// Separate between BeanPostProcessors that implement PriorityOrdered,</span>
+<span class="hljs-comment">// Ordered, and the rest.</span>
+<span class="hljs-comment">// &#x5B58;&#x653E;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;&#x7684; BeanPostProcessor</span>
+List&lt;BeanPostProcessor&gt; priorityOrderedPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-comment">// &#x5B58;&#x653E; MergedBeanDefinitionPostProcessor &#x7C7B;&#x578B;&#x7684; BeanPostProcessor</span>
+List&lt;BeanPostProcessor&gt; internalPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-comment">// &#x5B58;&#x653E;&#x5B9E;&#x73B0;&#x4E86; Ordered &#x63A5;&#x53E3;&#x7684; BeanPostProcessor &#x7684; name</span>
+List&lt;String&gt; orderedPostProcessorNames = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-comment">// &#x5B58;&#x653E;&#x5269;&#x4E0B;&#x6765;&#x666E;&#x901A;&#x7684; BeanPostProcessor &#x7684; name</span>
+List&lt;String&gt; nonOrderedPostProcessorNames = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-comment">// &#x4ECE; beanFactory &#x4E2D;&#x67E5;&#x627E; postProcessorNames &#x91CC;&#x7684; bean&#xFF0C;&#x7136;&#x540E;&#x653E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x96C6;&#x5408;&#x4E2D;</span>
+<span class="hljs-keyword">for</span> (String ppName : postProcessorNames) {
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x6709;&#x65E0;&#x5B9E;&#x73B0; PriorityOrdered &#x63A5;&#x53E3;</span>
+    <span class="hljs-keyword">if</span> (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
+        BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);
+        priorityOrderedPostProcessors.add(pp);
+        <span class="hljs-comment">// &#x5982;&#x679C;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;&#xFF0C;&#x4E14;&#x5C5E;&#x4E8E; MergedBeanDefinitionPostProcessor</span>
+        <span class="hljs-keyword">if</span> (pp <span class="hljs-keyword">instanceof</span> MergedBeanDefinitionPostProcessor) {
+            <span class="hljs-comment">// &#x628A; MergedBeanDefinitionPostProcessor &#x7C7B;&#x578B;&#x7684;&#x6DFB;&#x52A0;&#x5230; internalPostProcessors &#x96C6;&#x5408;&#x4E2D;</span>
+            internalPostProcessors.add(pp);
+        }
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (beanFactory.isTypeMatch(ppName, Ordered.class)) {
+        orderedPostProcessorNames.add(ppName);
+    }
+    <span class="hljs-keyword">else</span> {
+        nonOrderedPostProcessorNames.add(ppName);
+    }
+}
+
+<span class="hljs-comment">// First, register the BeanPostProcessors that implement PriorityOrdered.</span>
+<span class="hljs-comment">// &#x7ED9; priorityOrderedPostProcessors &#x6392;&#x5E8F;</span>
+sortPostProcessors(priorityOrderedPostProcessors, beanFactory);
+<span class="hljs-comment">// &#x5148;&#x6CE8;&#x518C;&#x5B9E;&#x73B0;&#x4E86; PriorityOrdered &#x63A5;&#x53E3;&#x7684; beanPostProcessor</span>
+registerBeanPostProcessors(beanFactory, priorityOrderedPostProcessors);
+
+<span class="hljs-comment">// Next, register the BeanPostProcessors that implement Ordered.</span>
+<span class="hljs-comment">// &#x4ECE; beanFactory &#x4E2D;&#x67E5;&#x627E; orderedPostProcessorNames &#x91CC;&#x7684; bean&#xFF0C;&#x7136;&#x540E;&#x653E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x96C6;&#x5408;&#x4E2D;</span>
+List&lt;BeanPostProcessor&gt; orderedPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-keyword">for</span> (String ppName : orderedPostProcessorNames) {
+    BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);
+    orderedPostProcessors.add(pp);
+    <span class="hljs-keyword">if</span> (pp <span class="hljs-keyword">instanceof</span> MergedBeanDefinitionPostProcessor) {
+        internalPostProcessors.add(pp);
+    }
+}
+<span class="hljs-comment">// &#x7ED9; orderedPostProcessors &#x6392;&#x5E8F;</span>
+sortPostProcessors(orderedPostProcessors, beanFactory);
+<span class="hljs-comment">// &#x518D;&#x6CE8;&#x518C;&#x5B9E;&#x73B0;&#x4E86; Ordered &#x63A5;&#x53E3;&#x7684; beanPostProcessor</span>
+registerBeanPostProcessors(beanFactory, orderedPostProcessors);
+
+<span class="hljs-comment">// Now, register all regular BeanPostProcessors.</span>
+List&lt;BeanPostProcessor&gt; nonOrderedPostProcessors = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+<span class="hljs-keyword">for</span> (String ppName : nonOrderedPostProcessorNames) {
+    BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);
+    nonOrderedPostProcessors.add(pp);
+    <span class="hljs-keyword">if</span> (pp <span class="hljs-keyword">instanceof</span> MergedBeanDefinitionPostProcessor) {
+        internalPostProcessors.add(pp);
+    }
+}
+<span class="hljs-comment">// &#x518D;&#x6CE8;&#x518C;&#x5E38;&#x89C4;&#x7684; beanPostProcessor</span>
+registerBeanPostProcessors(beanFactory, nonOrderedPostProcessors);
+
+<span class="hljs-comment">// Finally, re-register all internal BeanPostProcessors.</span>
+<span class="hljs-comment">// &#x6392;&#x5E8F; MergedBeanDefinitionPostProcessor &#x8FD9;&#x79CD;&#x7C7B;&#x578B;&#x7684; beanPostProcessor</span>
+sortPostProcessors(internalPostProcessors, beanFactory);
+<span class="hljs-comment">// &#x6700;&#x540E;&#x6CE8;&#x518C; MergedBeanDefinitionPostProcessor &#x7C7B;&#x578B;&#x7684; beanPostProcessor</span>
+registerBeanPostProcessors(beanFactory, internalPostProcessors);
+
+<span class="hljs-comment">// Re-register post-processor for detecting inner beans as ApplicationListeners,</span>
+<span class="hljs-comment">// moving it to the end of the processor chain (for picking up proxies etc).</span>
+<span class="hljs-comment">// &#x7ED9;&#x5BB9;&#x5668;&#x4E2D;&#x6DFB;&#x52A0;&#x3010;ApplicationListenerDetector&#x3011; beanPostProcessor&#xFF0C;&#x5224;&#x65AD;&#x662F;&#x4E0D;&#x662F;&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5C31;&#x628A; bean &#x653E;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#x4FDD;&#x5B58;&#x8D77;&#x6765;</span>
+<span class="hljs-comment">// &#x6B64;&#x65F6;&#x5BB9;&#x5668;&#x4E2D;&#x9ED8;&#x8BA4;&#x4F1A;&#x6709; 6 &#x4E2A;&#x5185;&#x7F6E;&#x7684; beanPostProcessor</span>
+    <span class="hljs-comment">// 0 = {ApplicationContextAwareProcessor@1632}</span>
+    <span class="hljs-comment">//    1 = {ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor@1633}</span>
+    <span class="hljs-comment">//    2 = {PostProcessorRegistrationDelegate$BeanPostProcessorChecker@1634}</span>
+    <span class="hljs-comment">//    3 = {CommonAnnotationBeanPostProcessor@1635}</span>
+    <span class="hljs-comment">//    4 = {AutowiredAnnotationBeanPostProcessor@1636}</span>
+    <span class="hljs-comment">//    5 = {ApplicationListenerDetector@1637}</span>
+beanFactory.addBeanPostProcessor(<span class="hljs-keyword">new</span> ApplicationListenerDetector(applicationContext));
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x5B9E;&#x73B0;&#x4E86;BeanPostProcessor&#x63A5;&#x53E3;&#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;&#xFF1A;
+&#xFF08;2&#xFF09;&#x5148;&#x6CE8;&#x518C;&#x5B9E;&#x73B0;&#x4E86;PriorityOrdered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;3&#xFF09;&#x518D;&#x6CE8;&#x518C;&#x5B9E;&#x73B0;&#x4E86;Ordered&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;4&#xFF09;&#x6700;&#x540E;&#x6CE8;&#x518C;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x4EFB;&#x4F55;&#x4F18;&#x5148;&#x7EA7;&#x63A5;&#x53E3;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;5&#xFF09;&#x6700;&#x7EC8;&#x6CE8;&#x518C;MergedBeanDefinitionPostProcessor&#x7C7B;&#x578B;&#x7684;BeanPostProcessor&#xFF1B;
+&#xFF08;6&#xFF09;&#x7ED9;&#x5BB9;&#x5668;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;ApplicationListenerDetector&#xFF1A;&#x7528;&#x4E8E;&#x5728;Bean&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x662F;ApplicationListener&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5C31;&#x628A;Bean&#x653E;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF1A;applicationContext.addApplicationListener((ApplicationListener&lt;?&gt;) bean);
+5&#x3001;&#x7B2C;&#x516B;&#x6B65;&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#xFF1A;org.springframework.context.support.AbstractApplicationContext#initApplicationEventMulticaster&#xFF1A;</p>
+<p>&#x524D;&#x6587;&#x6211;&#x4EEC;&#x8BF4;&#x5230;&#xFF0C;&#x5728;&#x6574;&#x4E2A;&#x5BB9;&#x5668;&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;Spring &#x4F1A;&#x53D1;&#x5E03;&#x5F88;&#x591A;&#x5BB9;&#x5668;&#x4E8B;&#x4EF6;&#xFF0C;&#x5982;&#x5BB9;&#x5668;&#x542F;&#x52A8;&#x3001;&#x5237;&#x65B0;&#x3001;&#x5173;&#x95ED;&#x7B49;&#xFF0C;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x5F97;&#x76CA;&#x4E8E;&#x8FD9;&#x91CC;&#x7684; ApplicationEventMulticaster &#x5E7F;&#x64AD;&#x5668;&#x7EC4;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;&#x5B83;&#x6765;&#x6D3E;&#x53D1;&#x4E8B;&#x4EF6;&#x901A;&#x77E5;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initApplicationEventMulticaster</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// &#x83B7;&#x53D6; beanFactory</span>
+    ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+    <span class="hljs-comment">// &#x770B;&#x770B;&#x5BB9;&#x5668;&#x4E2D;&#x662F;&#x5426;&#x6709;&#x81EA;&#x5B9A;&#x4E49;&#x7684; applicationEventMulticaster</span>
+    <span class="hljs-keyword">if</span> (beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)) {
+        <span class="hljs-comment">// &#x6709;&#x5C31;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x83B7;&#x53D6;&#x8D4B;&#x503C;</span>
+        <span class="hljs-keyword">this</span>.applicationEventMulticaster =
+                beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
+        <span class="hljs-keyword">if</span> (logger.isTraceEnabled()) {
+            logger.trace(<span class="hljs-string">&quot;Using ApplicationEventMulticaster [&quot;</span> + <span class="hljs-keyword">this</span>.applicationEventMulticaster + <span class="hljs-string">&quot;]&quot;</span>);
+        }
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// &#x6CA1;&#x6709;&#xFF0C;&#x5C31;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; SimpleApplicationEventMulticaster</span>
+        <span class="hljs-keyword">this</span>.applicationEventMulticaster = <span class="hljs-keyword">new</span> SimpleApplicationEventMulticaster(beanFactory);
+        <span class="hljs-comment">// &#x5C06;&#x521B;&#x5EFA;&#x7684; ApplicationEventMulticaster &#x6DFB;&#x52A0;&#x5230; BeanFactory &#x4E2D;&#xFF0C; &#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x4E86;</span>
+        beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, <span class="hljs-keyword">this</span>.applicationEventMulticaster);
+        <span class="hljs-keyword">if</span> (logger.isTraceEnabled()) {
+            logger.trace(<span class="hljs-string">&quot;No &apos;&quot;</span> + APPLICATION_EVENT_MULTICASTER_BEAN_NAME + <span class="hljs-string">&quot;&apos; bean, using &quot;</span> +
+                    <span class="hljs-string">&quot;[&quot;</span> + <span class="hljs-keyword">this</span>.applicationEventMulticaster.getClass().getSimpleName() + <span class="hljs-string">&quot;]&quot;</span>);
+        }
+    }
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x770B;BeanFactory&#x5BB9;&#x5668;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x7684;ApplicationEventMulticaster&#xFF1A;&#x5982;&#x679C;&#x6709;&#xFF0C;&#x76F4;&#x63A5;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x83B7;&#x53D6;&#xFF1B;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;SimpleApplicationEventMulticaster
+&#xFF08;2&#xFF09;&#x5C06;&#x521B;&#x5EFA;&#x7684;ApplicationEventMulticaster&#x6DFB;&#x52A0;&#x5230;BeanFactory&#x4E2D;&#xFF0C;&#x4EE5;&#x540E;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x81EA;&#x52A8;&#x6CE8;&#x5165;
+6&#x3001;&#x7B2C;&#x5341;&#x6B65;&#xFF1A;&#x6CE8;&#x518C;ApplicationListener&#x76D1;&#x542C;&#x5668;&#xFF1A;org.springframework.context.support.AbstractApplicationContext#registerListeners&#xFF1A;</p>
+<p>&#x8FD9;&#x4E00;&#x6B65;&#x4E3B;&#x8981;&#x662F;&#x5C06;&#x5BB9;&#x5668;&#x4E2D;&#x6240;&#x6709;&#x7684;ApplicationListener&#x6CE8;&#x518C;&#x5230;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#x4E2D;&#xFF0C;&#x5E76;&#x6D3E;&#x53D1;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4EA7;&#x751F;&#x7684;&#x4E8B;&#x4EF6;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerListeners</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Register statically specified listeners first.</span>
+    <span class="hljs-comment">// &#x83B7;&#x53D6;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4E2D;&#x4FDD;&#x5B58;&#x7684; ApplicationListener</span>
+    <span class="hljs-keyword">for</span> (ApplicationListener&lt;?&gt; listener : getApplicationListeners()) {
+        <span class="hljs-comment">// getApplicationEventMulticaster() &#x5C31;&#x662F;&#x83B7;&#x53D6;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x521D;&#x59CB;&#x5316;&#x7684; applicationEventMulticaster</span>
+        getApplicationEventMulticaster().addApplicationListener(listener);
+    }
+<span class="hljs-comment">// Do not initialize FactoryBeans here: We need to leave all regular beans</span>
+<span class="hljs-comment">// uninitialized to let post-processors apply to them!</span>
+<span class="hljs-comment">// &#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684; ApplicationListener</span>
+String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);
+<span class="hljs-keyword">for</span> (String listenerBeanName : listenerBeanNames) {
+    getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
+}
+
+<span class="hljs-comment">// Publish early application events now that we finally have a multicaster...</span>
+<span class="hljs-comment">// &#x6D3E;&#x53D1;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4EA7;&#x751F;&#x7684; application events</span>
+Set&lt;ApplicationEvent&gt; earlyEventsToProcess = <span class="hljs-keyword">this</span>.earlyApplicationEvents;
+<span class="hljs-keyword">this</span>.earlyApplicationEvents = <span class="hljs-keyword">null</span>;
+<span class="hljs-keyword">if</span> (earlyEventsToProcess != <span class="hljs-keyword">null</span>) {
+    <span class="hljs-keyword">for</span> (ApplicationEvent earlyEvent : earlyEventsToProcess) {
+        getApplicationEventMulticaster().multicastEvent(earlyEvent);
+    }
+}
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x62FF;&#x5230;&#x6240;&#x6709;&#x7684;ApplicationListener
+&#xFF08;2&#xFF09;&#x5C06;&#x6BCF;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x6DFB;&#x52A0;&#x5230;&#x4E8B;&#x4EF6;&#x6D3E;&#x53D1;&#x5668;&#x4E2D;&#xFF1A;getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
+&#xFF08;3&#xFF09;&#x6D3E;&#x53D1;&#x4E4B;&#x524D;&#x6B65;&#x9AA4;&#x4EA7;&#x751F;&#x7684;&#x4E8B;&#x4EF6;applicationEvents&#xFF1A;getApplicationEventMulticaster().multicastEvent(earlyEvent);
+7&#x3001;&#x7B2C;&#x5341;&#x4E00;&#x6B65;&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x6240;&#x6709;&#x7684;&#x5355;&#x4F8B;Bean&#xFF1A;org.springframework.beans.factory.support.DefaultListableBeanFactory#preInstantiateSingletons&#xFF1A;</p>
+<p>&#x5728;&#x524D;&#x9762;&#x7684;&#x6B65;&#x9AA4;&#x4E2D;&#xFF0C;Spring &#x7684;&#x5927;&#x591A;&#x6570;&#x7EC4;&#x4EF6;&#x90FD;&#x5DF2;&#x7ECF;&#x521D;&#x59CB;&#x5316;&#x5B8C;&#x6BD5;&#x4E86;&#xFF0C;&#x5269;&#x4E0B;&#x6765;&#x7684;&#x8FD9;&#x4E2A;&#x6B65;&#x9AA4;&#x5C31;&#x662F;&#x521D;&#x59CB;&#x5316;&#x6240;&#x6709;&#x5269;&#x4F59;&#x7684;&#x5355;&#x5B9E;&#x4F8B; bean&#xFF0C;Spring&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;preInstantiateSingletons()&#x65B9;&#x6CD5;&#x628A;&#x5BB9;&#x5668;&#x4E2D;&#x7684; bean &#x90FD;&#x521D;&#x59CB;&#x5316;&#x5B8C;&#x6BD5;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x7EC6;&#x8BB2;Bean&#x7684;&#x521B;&#x5EFA;&#x6D41;&#x7A0B;&#x4E86;&#xFF0C;&#x7BC7;&#x5E45;&#x8F83;&#x957F;&#xFF0C;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x79FB;&#x6B65;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF1A;Spring&#x7684;Bean&#x52A0;&#x8F7D;&#x6D41;&#x7A0B;&#xFF1A;<a href="https://blog.csdn.net/a745233700/article/details/113840727" target="_blank">https://blog.csdn.net/a745233700/article/details/113840727</a></p>
+<p>public void preInstantiateSingletons() throws BeansException {
+    if (logger.isTraceEnabled()) {
+        logger.trace(&quot;Pre-instantiating singletons in &quot; + this);
+    }</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Iterate over a copy to allow for init methods which in turn register new bean definitions.</span>
+<span class="hljs-comment">// While this may not be part of the regular factory bootstrap, it does otherwise work fine.</span>
+<span class="hljs-comment">// &#x83B7;&#x53D6;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x6240;&#x6709; beanDefinitionName</span>
+List&lt;String&gt; beanNames = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(<span class="hljs-keyword">this</span>.beanDefinitionNames);
+
+<span class="hljs-comment">// Trigger initialization of all non-lazy singleton beans...</span>
+<span class="hljs-comment">// &#x5FAA;&#x73AF;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#x548C;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;</span>
+<span class="hljs-keyword">for</span> (String beanName : beanNames) {
+    <span class="hljs-comment">// &#x83B7;&#x53D6; RootBeanDefinition&#xFF0C;&#x5B83;&#x8868;&#x793A;&#x81EA;&#x5DF1;&#x7684; BeanDefinition &#x548C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x7236;&#x7C7B;&#x7684; BeanDefinition &#x5408;&#x5E76;&#x540E;&#x7684;&#x5BF9;&#x8C61;</span>
+    RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
+    <span class="hljs-comment">// &#x5982;&#x679C;&#x662F;&#x975E;&#x62BD;&#x8C61;&#x7684;&#xFF0C;&#x4E14;&#x5355;&#x5B9E;&#x4F8B;&#xFF0C;&#x975E;&#x61D2;&#x52A0;&#x8F7D;</span>
+    <span class="hljs-keyword">if</span> (!bd.isAbstract() &amp;&amp; bd.isSingleton() &amp;&amp; !bd.isLazyInit()) {
+        <span class="hljs-comment">// &#x5982;&#x679C;&#x662F; factoryBean&#xFF0C;&#x5229;&#x7528;&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;</span>
+        <span class="hljs-keyword">if</span> (isFactoryBean(beanName)) {
+            <span class="hljs-comment">// &#x5982;&#x679C;&#x662F; factoryBean&#xFF0C;&#x5219; &#x52A0;&#x4E0A; &amp;&#xFF0C;&#x5148;&#x521B;&#x5EFA;&#x5DE5;&#x5382; bean</span>
+            Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
+            <span class="hljs-keyword">if</span> (bean <span class="hljs-keyword">instanceof</span> FactoryBean) {
+                <span class="hljs-keyword">final</span> FactoryBean&lt;?&gt; factory = (FactoryBean&lt;?&gt;) bean;
+                <span class="hljs-keyword">boolean</span> isEagerInit;
+                <span class="hljs-keyword">if</span> (System.getSecurityManager() != <span class="hljs-keyword">null</span> &amp;&amp; factory <span class="hljs-keyword">instanceof</span> SmartFactoryBean) {
+                    isEagerInit = AccessController.doPrivileged((PrivilegedAction&lt;Boolean&gt;)
+                                    ((SmartFactoryBean&lt;?&gt;) factory)::isEagerInit,
+                            getAccessControlContext());
+                }
+                <span class="hljs-keyword">else</span> {
+                    isEagerInit = (factory <span class="hljs-keyword">instanceof</span> SmartFactoryBean &amp;&amp;
+                            ((SmartFactoryBean&lt;?&gt;) factory).isEagerInit());
+                }
+                <span class="hljs-keyword">if</span> (isEagerInit) {
+                    getBean(beanName);
+                }
+            }
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// &#x4E0D;&#x662F;&#x5DE5;&#x5382; bean&#xFF0C;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;</span>
+            getBean(beanName);
+        }
+    }
+}
+
+<span class="hljs-comment">// Trigger post-initialization callback for all applicable beans...</span>
+<span class="hljs-keyword">for</span> (String beanName : beanNames) {
+    Object singletonInstance = getSingleton(beanName);
+    <span class="hljs-comment">// &#x68C0;&#x67E5;&#x6240;&#x6709;&#x7684; bean &#x662F;&#x5426;&#x662F; SmartInitializingSingleton &#x63A5;&#x53E3;</span>
+    <span class="hljs-keyword">if</span> (singletonInstance <span class="hljs-keyword">instanceof</span> SmartInitializingSingleton) {
+        <span class="hljs-keyword">final</span> SmartInitializingSingleton smartSingleton = (SmartInitializingSingleton) singletonInstance;
+        <span class="hljs-keyword">if</span> (System.getSecurityManager() != <span class="hljs-keyword">null</span>) {
+            AccessController.doPrivileged((PrivilegedAction&lt;Object&gt;) () -&gt; {
+                smartSingleton.afterSingletonsInstantiated();
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+            }, getAccessControlContext());
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// &#x56DE;&#x8C03; afterSingletonsInstantiated() &#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x56DE;&#x8C03;&#x4E2D;&#x505A;&#x4E00;&#x4E9B;&#x4E8B;&#x60C5;</span>
+            smartSingleton.afterSingletonsInstantiated();
+        }
+    }
+}
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;&#x83B7;&#x53D6;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x6240;&#x6709;beanDefinitionName&#xFF0C;&#x4F9D;&#x6B21;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#x548C;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;
+&#xFF08;2&#xFF09;&#x83B7;&#x53D6;Bean&#x7684;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;RootBeanDefinition&#xFF0C;&#x5B83;&#x8868;&#x793A;&#x81EA;&#x5DF1;&#x7684;BeanDefinition&#x548C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x7236;&#x7C7B;&#x7684;BeanDefinition&#x5408;&#x5E76;&#x540E;&#x7684;&#x5BF9;&#x8C61;
+&#xFF08;3&#xFF09;&#x5982;&#x679C;Bean&#x6EE1;&#x8DB3;&#x8FD9;&#x4E09;&#x4E2A;&#x6761;&#x4EF6;&#xFF1A;&#x975E;&#x62BD;&#x8C61;&#x7684;&#xFF0C;&#x5355;&#x5B9E;&#x4F8B;&#xFF0C;&#x975E;&#x61D2;&#x52A0;&#x8F7D;&#xFF0C;&#x5219;&#x6267;&#x884C;&#x5355;&#x4F8B;Bean&#x521B;&#x5EFA;&#x6D41;&#x7A0B;&#xFF1A;<br>&#xFF08;4&#xFF09;&#x6240;&#x6709;Bean&#x90FD;&#x5229;&#x7528;getBean()&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x4EE5;&#x540E;&#xFF0C;&#x68C0;&#x67E5;&#x6240;&#x6709;&#x7684;Bean&#x662F;&#x5426;&#x4E3A;SmartInitializingSingleton&#x63A5;&#x53E3;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF1B;&#x5C31;&#x6267;&#x884C;afterSingletonsInstantiated()&#xFF1B;
+8&#x3001;&#x7B2C;&#x5341;&#x4E8C;&#x6B65;&#xFF1A;&#x53D1;&#x5E03;BeanFactory&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;&#xFF1A;org.springframework.context.support.AbstractApplicationContext#finishRefresh&#xFF1A;</p>
+<p>&#x6574;&#x4E2A;&#x5BB9;&#x5668;&#x521D;&#x59CB;&#x5316;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x8FD9;&#x91CC;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x626B;&#x5C3E;&#x5DE5;&#x4F5C;&#xFF0C;&#x5982;&#x6E05;&#x7406;&#x7F13;&#x5B58;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x751F;&#x547D;&#x5468;&#x671F;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x53D1;&#x5E03;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x4E8B;&#x4EF6;&#x7B49;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finishRefresh</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Clear context-level resource caches (such as ASM metadata from scanning).</span>
+    <span class="hljs-comment">// &#x6E05;&#x7406;&#x7F13;&#x5B58;</span>
+    clearResourceCaches();
+<span class="hljs-comment">// Initialize lifecycle processor for this context.</span>
+<span class="hljs-comment">// &#x521D;&#x59CB;&#x5316;&#x548C;&#x751F;&#x547D;&#x5468;&#x671F;&#x6709;&#x5173;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+initLifecycleProcessor();
+
+<span class="hljs-comment">// Propagate refresh to lifecycle processor first.</span>
+<span class="hljs-comment">// &#x62FF;&#x5230;&#x524D;&#x9762;&#x5B9A;&#x4E49;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5904;&#x7406;&#x5668;&#x3010;LifecycleProcessor&#x3011;&#x56DE;&#x8C03; onRefresh() &#x65B9;&#x6CD5;</span>
+getLifecycleProcessor().onRefresh();
+
+<span class="hljs-comment">// Publish the final event.</span>
+<span class="hljs-comment">// &#x53D1;&#x5E03;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;</span>
+publishEvent(<span class="hljs-keyword">new</span> ContextRefreshedEvent(<span class="hljs-keyword">this</span>));
+
+<span class="hljs-comment">// Participate in LiveBeansView MBean, if active.</span>
+LiveBeansView.registerApplicationContext(<span class="hljs-keyword">this</span>);
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5C0F;&#x7ED3;&#xFF1A;</p>
+<p>&#xFF08;1&#xFF09;initLifecycleProcessor()&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x548C;&#x751F;&#x547D;&#x5468;&#x671F;&#x6709;&#x5173;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF1A;&#x9ED8;&#x8BA4;&#x4ECE;&#x5BB9;&#x5668;&#x4E2D;&#x627E;&#x662F;&#x5426;&#x6709;lifecycleProcessor&#x7684;&#x7EC4;&#x4EF6;&#x3010;LifecycleProcessor&#x3011;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;DefaultLifecycleProcessor()&#x52A0;&#x5165;&#x5230;&#x5BB9;&#x5668;&#xFF1B;
+&#xFF08;2&#xFF09;getLifecycleProcessor().onRefresh()&#xFF1A;&#x62FF;&#x5230;&#x524D;&#x9762;&#x5B9A;&#x4E49;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5904;&#x7406;&#x5668;&#xFF08;LifecycleProcessor&#xFF09;&#x56DE;&#x8C03;onRefresh()&#x65B9;&#x6CD5;
+&#xFF08;3&#xFF09;publishEvent(new ContextRefreshedEvent(this))&#xFF1A;&#x53D1;&#x5E03;&#x5BB9;&#x5668;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;&#xFF1B;
+&#xFF08;4&#xFF09;liveBeansView.registerApplicationContext(this);</p>
+<p>&#x6587;&#x7AE0;&#x603B;&#x7ED3;&#x81EA;&#xFF1A;<a href="https://juejin.cn/post/6906637797080170510#comment" target="_blank">https://juejin.cn/post/6906637797080170510#comment</a>
+&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;
+&#x7248;&#x6743;&#x58F0;&#x660E;&#xFF1A;&#x672C;&#x6587;&#x4E3A;CSDN&#x535A;&#x4E3B;&#x300C;&#x5F20;&#x7EF4;&#x9E4F;&#x300D;&#x7684;&#x539F;&#x521B;&#x6587;&#x7AE0;&#xFF0C;&#x9075;&#x5FAA;CC 4.0 BY-SA&#x7248;&#x6743;&#x534F;&#x8BAE;&#xFF0C;&#x8F6C;&#x8F7D;&#x8BF7;&#x9644;&#x4E0A;&#x539F;&#x6587;&#x51FA;&#x5904;&#x94FE;&#x63A5;&#x53CA;&#x672C;&#x58F0;&#x660E;&#x3002;
+&#x539F;&#x6587;&#x94FE;&#x63A5;&#xFF1A;<a href="https://blog.csdn.net/a745233700/article/details/113761271" target="_blank">https://blog.csdn.net/a745233700/article/details/113761271</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="springboot.html" class="navigation navigation-prev " aria-label="Previous page: springboot">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Spring.html" class="navigation navigation-next " aria-label="Next page: spring">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"spring容器启动流程","level":"9.1.13","depth":2,"next":{"title":"spring","level":"9.1.14","depth":2,"path":"docs/myself/Spring.md","ref":"docs/myself/Spring.md","articles":[]},"previous":{"title":"springboot","level":"9.1.12","depth":2,"path":"docs/myself/springboot.md","ref":"docs/myself/springboot.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/Spring容器启动流程.md","mtime":"2021-07-07T05:38:10.704Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-07T05:46:41.314Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
