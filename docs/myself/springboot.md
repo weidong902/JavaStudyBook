@@ -1,5 +1,52 @@
 ## SpringBoot知识整理
 
+## 0、[springboot自动装配原理](https://www.cnblogs.com/fcb-it/p/12905525.html)
+
+最近开始学习spring源码，看各种文章的时候看到了springboot自动装配实现原理。用自己的话简单概括下。
+
+#### 首先打开一个基本的springboot项目，点进去@SpringBootApplication注解。
+
+![image-20210709140544850](springboot.assets/image-20210709140544850.png)
+
+#### 可以根据名字知道实现自动装配应该是上面的@EnableAutoConfiguration注解，继续点进去
+
+![image-20210709140608926](springboot.assets/image-20210709140608926.png)
+
+####  这时候对spring注解比较了解的同学应该能感觉到实现原理就在@Import(AutoConfigurationImportSelector.class)这个注解中，@Import注解的参数可以是静态类（用作直接导入）也可以是实现了ImportSelector接口的类，当是实现了ImportSelector会根据实现的selectImports方法来对类进行导入。让我们看看AutoConfigurationImportSelector的实现
+
+![image-20210709140720421](springboot.assets/image-20210709140720421.png)
+
+#### 图中loadmetadata的方法是加载项目的基本配置数据信息，而getAutoConfigurationEntry方法则是自动装配的逻辑，继续点进去
+
+![image-20210709140743901](springboot.assets/image-20210709140743901.png)
+
+#### 还是在加载配置，继续点进去
+
+![image-20210709141016683](springboot.assets/image-20210709141016683.png)
+
+#### 其实到这一步基本清楚了，做的这些事情都是在加载类，那么自动装配到底加载的是什么类呢，这里从外部传入的factoryname是Enableautoconfiguration.class
+
+![image-20210709141037556](springboot.assets/image-20210709141037556.png)
+
+#### 点进去加载逻辑可以看到是在加载FACTORIES_RESOURCE_LOCATION路径下的类。
+
+![image-20210709141136057](springboot.assets/image-20210709141136057.png)
+
+#### 会自动扫描所有项目下FACTORIES_RESOURCE_LOCATION这个路径下的类，那么这个路径是啥？
+
+![img](springboot.assets/2024602-20200517154339541-1440053702.png)
+
+#### 总结：到这里基本清楚了，springboot的自动装配就是通过自定义实现ImportSelector接口，从而导致项目启动时会自动将所有项目META-INF/spring.factories路径下的配置类注入到spring容器中，从而实现了自动装配。
+
+相关的starter和自定义starter都是根据这个实现的。后续有空的话还会写一下如何实现自定义starter的随笔。
+系统默认的META-INF/spring.factories路径下配置为
+
+![image-20210709141524110](springboot.assets/image-20210709141524110.png)
+
+笔者用的springboot版本为2.2.1，参考文章
+
+
+
 ### 1、Spring Boot 如何解决项目启动时初始化资源
 
 SpringBoot提供了多种方法可实现在启动过程中初始化资源

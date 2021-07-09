@@ -35,8 +35,6 @@ Spring是一个轻量级的IoC和AOP容器框架。是为Java应用程序提供�
 
 ### 3、Spring的IoC理解：
 
-
-
 （1）IOC就是控制反转，指创建对象的控制权转移给Spring框架进行管理，并由Spring根据配置文件去创建实例和管理各个实例之间的依赖关系，对象与对象之间松散耦合，也利于功能的复用。DI依赖注入，和控制反转是同一个概念的不同角度的描述，即 应用程序在运行时依赖IoC容器来动态注入对象需要的外部依赖。
 
 （2）最直观的表达就是，以前创建对象的主动权和时机都是由自己把控的，IOC让对象的创建不用去new了，可以由spring自动生产，使用java的反射机制，根据配置文件在运行时动态的去创建对象以及管理对象，并调用对象的方法的。
@@ -174,12 +172,13 @@ IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍�
 
 *  BeanFactory和ApplicationContext是Spring的两大核心接口，都可以当做Spring的容器。
 
-（1）BeanFactory是Spring里面最底层的接口，是IoC的核心，定义了IoC的基本功能，包含了各种Bean的定义、加载、实例化，依赖注入和生命周期管理。ApplicationContext接口作为BeanFactory的子类，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：
+（1）BeanFactory是Spring里面最底层的接口，是IoC的核心，定义了IoC的基本功能，包含了各种Bean的定义、加载、实例化，依赖注入和生命周期管理。ApplicationContext接口作为BeanFactory的子类，除了提供 BeanFactory所具有的功能外，还提供了更完整的框架功能：
 
-继承MessageSource，因此支持国际化。
-资源文件访问，如URL和文件（ResourceLoader）。
-载入多个（有继承关系）上下文（即同时加载多个配置文件） ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。
-提供在监听器中注册bean的事件。
+* 继承MessageSource，因此支持国际化。
+* 资源文件访问，如URL和文件（ResourceLoader）。
+* 载入多个（有继承关系）上下文（即同时加载多个配置文件） ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。
+* 提供在监听器中注册bean的事件。
+
 （2）①BeanFactroy采用的是延迟加载形式来注入Bean的，只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，我们就不能提前发现一些存在的Spring的配置问题。如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常。
 
 ②ApplicationContext，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 
@@ -1549,4 +1548,16 @@ spring的事务是在调用业务方法之前开始的，业务方法执行完�
 ![image-20210626224406207](Spring.assets/image-20210626224406207.png)
 
 ![image-20210626224800289](Spring.assets/image-20210626224800289.png)
+
+#### BeanFactory和ApplicationContext有什么区别？
+
+#### Spring Bean的生命周期？
+
+动态代理（jdk和CGLib）
+
+spring事务实现的底层原理？
+
+spring框架用到了哪些设计模式？
+
+
 
