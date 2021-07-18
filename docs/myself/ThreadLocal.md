@@ -1,24 +1,130 @@
+ThreadLocal：
+
+>典型的用法：spring事务中使用到事务， 
+>
+
+>key 是ThreadLocal对象。
+>
+>一个ThreadLocal只能装一个值，因为ThreadLocal只是一个map的key，因此想要装多个值的话就需要多个ThreadLocal对象。
+
+![image-20210710233825909](ThreadLocal.assets/image-20210710233825909.png)
+
+>ThreadLocal：首先我们会声明一个ThreadLocal
+>
+>我们往里面set值时候，实际上指向了当前线程所拥有的一个ThreadLocalMap，
+>
+>ThreadLocalMap中是一个Entry，Entry调用了WeakReference的构造方法，构造方法中传入的是一个ThreadLocal对象，`Entry extends WeakReference<ThreadLocal<?>>`，弱引用key。
+>
+>
+
+```java
+
+ThreadLocal<Integer> th =new ThreadLocal<>();
+		th.set(1);
+		
+		
+/**
+     * Sets the current thread's copy of this thread-local variable
+     * to the specified value.  Most subclasses will have no need to
+     * override this method, relying solely on the {@link #initialValue}
+     * method to set the values of thread-locals.
+     *
+     * @param value the value to be stored in the current thread's copy of
+     *        this thread-local.
+     */
+    public void set(T value) {
+        Thread t = Thread.currentThread();
+        ThreadLocalMap map = getMap(t);// 首先拿到当前线程的map
+        if (map != null)
+            map.set(this, value);
+        else
+            createMap(t, value);
+    }
+    
+    
+    /**
+     * Get the map associated with a ThreadLocal. Overridden in
+     * InheritableThreadLocal.
+     *
+     * @param  t the current thread
+     * @return the map
+     */
+    ThreadLocalMap getMap(Thread t) {
+        return t.threadLocals;
+    }
+
+// Thread类下的
+
+/* ThreadLocal values pertaining to this thread. This map is maintained
+     * by the ThreadLocal class. */
+    ThreadLocal.ThreadLocalMap threadLocals = null;
+
+
+ 					/**
+         * Set the value associated with key.
+         *
+         * @param key the thread local object
+         * @param value the value to be set
+         */
+        private void set(ThreadLocal<?> key, Object value) {
+
+            // We don't use a fast path as with get() because it is at
+            // least as common to use set() to create new entries as
+            // it is to replace existing ones, in which case, a fast
+            // path would fail more often than not.
+
+            Entry[] tab = table;
+            int len = tab.length;
+            int i = key.threadLocalHashCode & (len-1);
+
+            for (Entry e = tab[i];
+                 e != null;
+                 e = tab[i = nextIndex(i, len)]) {
+                ThreadLocal<?> k = e.get();
+
+                if (k == key) {
+                    e.value = value;
+                    return;
+                }
+
+                if (k == null) {
+                    replaceStaleEntry(key, value, i);
+                    return;
+                }
+            }
+
+            tab[i] = new Entry(key, value);
+            int sz = ++size;
+            if (!cleanSomeSlots(i, sz) && sz >= threshold)
+                rehash();
+        }
+
+最终生成的是个Entry，点进去发现，其父类是个弱引用。
+  弱引用，其实指的就是ThreadLocal对象。（WeakReference we =new WeakReference(new ThreadLocal());） 弱引用指的就是WeakReference里面的对象。
+ 					/**
+         * The entries in this hash map extend WeakReference, using
+         * its main ref field as the key (which is always a
+         * ThreadLocal object).  Note that null keys (i.e. entry.get()
+         * == null) mean that the key is no longer referenced, so the
+         * entry can be expunged from table.  Such entries are referred to
+         * as "stale entries" in the code that follows.
+         */
+        static class Entry extends WeakReference<ThreadLocal<?>> {
+            /** The value associated with this ThreadLocal. */
+            Object value;
+
+            Entry(ThreadLocal<?> k, Object v) {
+                super(k);
+                value = v;
+            }
+        }
+
+
+```
+
+
+
 # [分析ThreadLocal的弱引用与内存泄漏问题-Java8](https://www.cnblogs.com/-beyond/p/13125195.html)
-
-## 目录
-
-一.[介绍](https://www.cnblogs.com/-beyond/p/13125195.html#intro)
-
-二.[问题提出](https://www.cnblogs.com/-beyond/p/13125195.html#proble)
-
-　　2.1[内存原理图](https://www.cnblogs.com/-beyond/p/13125195.html#memory)
-
-　　2.2[几个问题](https://www.cnblogs.com/-beyond/p/13125195.html#ask)
-
-三.[回答问题](https://www.cnblogs.com/-beyond/p/13125195.html#answer)
-
-　　3.1[为什么会出现内存泄漏](https://www.cnblogs.com/-beyond/p/13125195.html#why-lack)
-
-　　3.2[若Entry使用弱引用](https://www.cnblogs.com/-beyond/p/13125195.html#weak-reference)
-
-　　3.3[弱引用配合自动回收](https://www.cnblogs.com/-beyond/p/13125195.html#recycle)
-
-四.[总结](https://www.cnblogs.com/-beyond/p/13125195.html#summarize) 
 
 ## 一.介绍
 

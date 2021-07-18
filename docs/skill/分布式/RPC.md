@@ -432,7 +432,7 @@ Constants.DEFAULT_WARMUP);
 JVM主动关闭( System.exit(int) ； JVM由于资源问题退出( OOM )； 应用程序接受到进程正常结束信号：SIGTERM 或 SIGINT 信号。
 优雅停机是默认开启的，停机等待时间为10秒。可以通过配置 dubbo.service.shutdown.wait 来修改等待时间。Dubbo 推出了多段关闭的方式来保证服务完全无损。
 
-***5\***|***0\*****如何实现一个RPC框架**
+## ***5\***|***0\*****如何实现一个RPC框架**
 
 思路:
 

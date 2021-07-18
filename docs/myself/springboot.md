@@ -535,3 +535,34 @@ public class MybatisAutoConfiguration {
 **25、@ImportResource**
 
 这是 Spring 3.0 添加的新注解，用来导入一个或者多个 Spring 配置文件，这对 Spring Boot 兼容老项目非常有用，因为有些配置无法通过 Java Config 的形式来配置就只能用这个注解来导入。
+
+----
+
+
+
+
+
+
+
+# Springboot:
+
+### 1、springboot自动化配置具体体现在哪儿？
+
+* xx-starter
+
+### 2、Springboot的启动原理？
+
+>run方法核心步骤：
+>
+>* 获取并启动监听器
+>* 环境构建
+>* 创建容器
+>* 前置处理
+>* 刷新容器（spring framework）
+>* 后置处理器
+>* 发出事件
+>* 执行runner
+>* 返回容器
+>
+>
+

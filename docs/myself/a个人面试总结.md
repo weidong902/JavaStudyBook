@@ -1047,6 +1047,8 @@ https://www.cnblogs.com/doit8791/p/9248476.html
 >单例模式
 >
 >代理模式
+>
+>
 
 ### 6、ThreadLocal（为什么key是弱引用？value什么时候回收）
 
@@ -1062,8 +1064,6 @@ https://www.cnblogs.com/doit8791/p/9248476.html
 >
 >**注意！假如每个key都强引用指向threadlocal，也就是上图虚线那里是个强引用，那么这个threadlocal就会因为和entry存在强引用无法被回收！造成内存泄漏** ，除非线程结束，线程被回收了，map也跟着回收。
 >
->
-
 >### 依然出现的内存泄露问题
 >
 >虽然上述的弱引用解决了key，也就是线程的ThreadLocal能及时被回收，但是value却依然存在内存泄漏的问题。
@@ -1079,8 +1079,6 @@ https://www.cnblogs.com/doit8791/p/9248476.html
 >所以当线程的某个localThread使用完了，马上调用threadlocal的remove方法
 >
 >
-
-
 
 
 
@@ -1146,7 +1144,6 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 ### 2、线程池的参数？
 
 >核心线程数、最大线程数、核心线程数、
->
 >
 
 ### 3、ThreadLocal原理？
@@ -1340,14 +1337,273 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 
 ### 11、 CPU 密集型 和 IO密集型 的区别，如何确定线程池大小？
 
->* CPU密集型也叫计算密集型： **cpu 密集型（CPU-bound）线程池设计  最佳线程数=cpu核数或者cpu核数±1**
->* IO密集型指的是系统的CPU性能相对硬盘、内存要好很多： I/O密集型（I/O-bound）线程池设计 **最佳线程数 = ((线程等待时间+线程cpu时间)/线程cpu时间\*cpu数目)**
+>* CPU密集型也叫计算密集型： **cpu 密集型（CPU-bound）线程池设计  最佳线程数=cpu核数或者cpu核数±1** （） 加减1或者乘2倍
+>* IO密集型指的是系统的CPU性能相对硬盘、内存要好很多： I/O密集型（I/O-bound）线程池设计 **最佳线程数 = ((线程等待时间+线程cpu时间)/线程cpu时间\*cpu数目)**    核心数*10
 >
 >
 
 ### 12、拦截器和过滤器
 
 ### 13、java并发包
+
+## 京东2：
+
+### 结合项目简短介绍：
+
+### http请求进到Springmvc以后的一个流程然后返回结果
+
+>
+>
+>
+
+### 异步响应框架？
+
+>WebFlux
+>
+>
+>
+>
+
+### mysql
+
+>连接池使用的什么？
+>
+>* Druid(初始10，最大40 ，空闲10)
+>
+>有哪些配置参数吗？
+>
+>（建立连接的四个参数：driver、URL、username、password）初始化连接数、最小连接池数、最大连接池数、最大等待时间、关闭空闲连接的检测时间、连接的最小生存时间、
+
+
+
+```yaml
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${url}:${port}/${数据库名}?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowMultiQueries=true&useAffectedRows=true
+    username: ${username}
+    password: ${password}
+  druid:
+      initial-size: 10 # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+      min-idle: 10 # 最小连接池数量
+      maxActive: 200 # 最大连接池数量
+      maxWait: 60000 # 获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置
+      timeBetweenEvictionRunsMillis: 60000 # 关闭空闲连接的检测时间间隔.Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。
+      minEvictableIdleTimeMillis: 300000 # 连接的最小生存时间.连接保持空闲而不被驱逐的最小时间
+      validationQuery: SELECT 1 FROM DUAL # 验证数据库服务可用性的sql.用来检测连接是否有效的sql 因数据库方言而差, 例如 oracle 应该写成 SELECT 1 FROM DUAL
+      testWhileIdle: true # 申请连接时检测空闲时间，根据空闲时间再检测连接是否有效.建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRun
+      testOnBorrow: false # 申请连接时直接检测连接是否有效.申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      testOnReturn: false # 归还连接时检测连接是否有效.归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      poolPreparedStatements: true # 开启PSCache
+      maxPoolPreparedStatementPerConnectionSize: 20 #设置PSCache值
+      connectionErrorRetryAttempts: 3 # 连接出错后再尝试连接三次
+      breakAfterAcquireFailure: true # 数据库服务宕机自动重连机制
+      timeBetweenConnectErrorMillis: 300000 # 连接出错后重试时间间隔
+      asyncInit: true # 异步初始化策略
+      remove-abandoned: true # 是否自动回收超时连接
+      remove-abandoned-timeout: 1800 # 超时时间(以秒数为单位)
+      transaction-query-timeout: 6000 # 事务超时时间
+      filters: stat,wall,log4j2
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        url-pattern: "/druid/*"
+        allow:
+        deny:
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+        
+连接池参数？
+  最大连接数，最小连接数配置多少？
+  最小10；最大200。
+   
+
+```
+
+### Redis哪些不太建议使用的操作？(请求，命令)
+
+>### 操作限制：
+>
+>* 严禁使用 Keys
+>
+>* flushdb 命令用于清空当前数据库中的所有 key
+>
+>* flushall 命令用于清空整个 Redis 服务器的数据(删除所有数据库的所有 key )
+>
+>  
+>
+>1、严禁使用 Keys
+>
+>Keys 命令效率极低，属于 O(N)操作，会阻塞其他正常命令，在 cluster 上，会是灾难性的操作。严禁使用，DBA 应该 rename 此命令，从根源禁用。
+>
+>2、严禁使用 Flush
+>
+>flush 命令会清空所有数据，属于高危操作。严禁使用，DBA 应该 rename 此命令，从根源禁用，仅 DBA 可操作。
+>
+>3、严禁作为消息队列使用
+>
+>如没有非常特殊的需求，严禁将 Redis 当作消息队列使用。Redis 当作消息队列使用，会有容量、网络、效率、功能方面的多种问题。如需要消息队列，可使用高吞吐的 Kafka 或者高可靠的 RocketMQ。
+>
+>4、严禁不设置范围的批量操作
+>
+>redis 那么快，慢查询除了网络延迟，就属于这些批量操作函数。大多数线上问题都是由于这些函数引起。
+>
+>1、[zset] 严禁对 zset 的不设范围操作
+>
+>ZRANGE、 ZRANGEBYSCORE等多个操作 ZSET 的函数，严禁使用 ZRANGE myzset 0 -1 等这种不设置范围的操作。请指定范围，如 ZRANGE myzset 0 100。如不确定长度，可使用 ZCARD 判断长度
+>
+>2、[hash] 严禁对大数据量 Key 使用 HGETALL
+>
+>HGETALL会取出相关 HASH 的所有数据，如果数据条数过大，同样会引起阻塞，请确保业务可控。如不确定长度，可使用 HLEN 先判断长度
+>
+>3、[key] Redis Cluster 集群的 mget 操作
+>
+>Redis Cluster 的 MGET 操作，会到各分片取数据聚合，相比传统的 M/S架构，性能会下降很多，请提前压测和评估
+>
+>4、[其他] 严禁使用 sunion, sinter, sdiff等一些聚合操作
+>
+>5、禁用 select 函数
+>
+>select函数用来切换 database，对于使用方来说，这是很容易发生问题的地方，cluster 模式也不支持多个 database，且没有任何收益，禁用。
+>
+>6、禁用事务
+>
+>redis 本身已经很快了，如无大的必要，建议捕获异常进行回滚，不要使用事务函数，很少有人这么干。
+>
+>7、禁用 lua 脚本扩展
+>
+>lua 脚本虽然能做很多看起来很 cool 的事情，但它就像是 SQL 的存储过程，会引入性能和一些难以维护的问题，禁用。
+>
+>8、禁止长时间 monitor
+>
+>monitor函数可以快速看到当前 redis 正在执行的数据流，但是当心，高峰期长时间阻塞在 monitor 命令上，会严重影响 redis 的性能。此命令不禁止使用，但使用一定要特别特别注意。
+>
+
+### dubbo
+
+>### 接口的超时时间。
+>
+>最小粒度：方法级别的
+>
+>维度，先级：
+>
+>* 方法级优先，接口次之，全局配置再次之
+>* 如果级别一样，则消费方优先，提供方次之
+
+### CAP理论：
+
+>###  为什么三个不能同时存在？（可以从三者的概念来说）
+>
+>**在所有分布式事务场景中不会同时具备CAP三个特性，因为在具备了P的前提下C和A是不能共存的。**
+>
+> 比如：
+>
+> 下图满足了P即表示实现分区容忍：
+>
+>![img](a%E4%B8%AA%E4%BA%BA%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93.assets/v2-df21cb43ed0a6148cc69d50bee93b256_1440w-20210515221625332.jpg)
+>
+>本图分区容忍的含义是：
+>
+>1）主数据库通过网络向从数据同步数据，可以认为主从数据库部署在不同的分区，通过网络进行交互。
+>
+>2）当主数据库和从数据库之间的网络出现问题不影响主数据库和从数据库对外提供服务。
+>
+>3）其一个结点挂掉不影响另一个结点对外提供服务。
+>
+>如果要实现C则必须保证数据一致性，在数据同步的时候为防止向从数据库查询不一致的数据则需要将从数据库数据锁定，待同步完成后解锁，如果同步失败从数据库要返回错误信息或超时信息。
+>
+>如果要实现A则必须保证数据可用性，不管任何时候都可以向从数据查询数据，则不会响应超时或返回错误信息。
+>
+>通过分析发现在满足P的前提下C和A存在矛盾性。
+
+### Maven（依赖传递）
+
+>### 依赖冲突是怎么产生的？
+>
+>* 假设有如下依赖关系：
+>
+>A->B->C->D1(log 15.0)：A中包含对B的依赖，B中包含对C的依赖，C中包含对D1的依赖，假设是D1是日志jar包，version为15.0
+>
+>E->F->D2(log 16.0)：E中包含对F的依赖，F包含对D2的依赖，假设是D2是同一个日志jar包，version为16.0
+>
+>当pom.xml文件中引入A、E两个依赖后，根据Maven传递依赖的原则，D1、D2都会被引入，而D1、D2是同一个依赖D的不同版本。
+>当我们在调用D2中的method1()方法，而D1中是15.0版本（method1可能是D升级后增加的方法），可能没有这个方法，这样JVM在加载A中D1依赖的时候，找不到method1方法，就会报NoSuchMethodError的错误，此时就产生了jar包冲突。
+>
+>### 如何解决jar冲突？
+>
+>mvn dependency:tree
+>
+>### maven冲突的原因版本不同？
+>
+>### 优先级的策略？（竟然不会）
+>
+>* 最短路径优先
+>  Maven 面对 D1 和 D2 时，会默认选择最短路径的那个 jar 包，即 D2。E->F->D2 比 A->B->C->D1 路径短 1。
+>
+>* 最先声明优先
+>  如果路径一样的话，如： A->B->C1, E->F->C2 ，两个依赖路径长度都是 2，那么就选择最先声明。
+>
+>- 覆写优先
+>
+>### 版本锁定原则：一般用在继承项目的父项目中
+
+### Linux
+
+>相关的命令：
+>
+>查看cpu、内存：top -h -p
+>
+>###   jvm fullgc的问题：
+>
+>/Users/mac/gitbook/weiddjavastudy/JavaStudyBook/docs/myself/问题排查.md
+>
+>### 查看磁盘空间:df -h
+
+### 网络
+
+>### response中3xx：（301、302都是重定向）
+>
+>3XX系列响应代码表明：客户端需要做些额外工作才能得到所需要的资源。它们通常用于GET请求。他们通常告诉客户端需要向另一个URI发送GET请求，才能得到所需的表示。那个URI就包含在Location响应报头里。
+>
+>301 redirect: 301 代表永久性转移(Permanently Moved)
+>
+>302 redirect: 302 代表暂时性转移(Temporarily Moved )
+>
+>* 共同点：
+>  * 都表示重定向，就是说浏览器在拿到服务器返回的这个状态码后会自动跳转到一个新的URL地址，这个地址可以从响应的Location首部中获取（用户看到的效果就是他输入的地址A瞬间变成了另一个地址B）
+>* 不同点：
+>  * 301表示旧地址A的资源已经被永久地移除了（这个资源不可访问了），搜索引擎在抓取新内容的同时也将旧的网址交换为重定向之后的网址；
+>  * 302表示旧地址A的资源还在（仍然可以访问），这个重定向只是临时地从旧地址A跳转到地址B，搜索引擎会抓取新的内容而保存旧的网址。
+>
+>### 跨域问题：
+>
+>**跨域**，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。
+>
+>所谓同源是指，**域名，协议，端口**均相同，只要有一个不同，就是跨域。
+>
+>#### 非同源会出现的限制 
+>
+>* 无法读取非同源网页的cookie、localstorage等 
+>
+>* 无法接触非同源网页的DOM和js对象 
+>
+>* 无法向非同源地址发送Ajax请求
+>
+>### 怎么解决跨域问题？
+>
+>**(1)通过jsonp跨域**
+>**(2)通过修改document.domain来跨子域**
+>**(3)使用window.name来进行跨域**
+>**(4)使用HTML5中新引进的window.postMessage方法来跨域传送数据**
+>**(5)使用代理服务器**Nginx,使用代理方式跨域更加直接，因为同源限制是浏览器实现的。如果请求不是从浏览器发起的，就不存在跨域问题了。
+>
+>
 
 
 
@@ -1444,9 +1700,17 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 >
 >### 4、单机挂了，哨兵怎么处理？
 >
->* 
+>### 5、redis的String类型下最大能放多少数据？
 >
+>* 512M数据
 >
+>### 6、redis集群最大能部署多少个节点？
+>
+>基于一致性hash去分配16384个槽位。（最大16384）
+>
+>### 7、redis的List数据最大能放多少元素？
+>
+>2 32 - 1
 
 ### 9、集合
 
@@ -1488,6 +1752,12 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 >
 >
 
+### 14、什么是分布式锁？
+
+
+
+
+
 
 
 # 14、国美在线
@@ -1520,7 +1790,7 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 >**注册程序说明：**
 >服务提供程序启动时：在目录下写入服务URL地址: /dubbo/com.foo.BarService/providers
 >服务使用者启动时：订阅/dubbo/com.foo.BarService/providers提供者的URL地址。
->                同时，写下消费者的URL地址/dubbo/com.foo.BarService/providers。
+>           同时，写下消费者的URL地址/dubbo/com.foo.BarService/providers。
 >监控中心启动时：订阅/dubbo/com.foo.BarService所有提供商和消费者的URL地址。
 >
 >##### 2.为什么选择zookeeper做注册中心?
@@ -1539,13 +1809,16 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 >
 >```xml
 ><dependency>
->    <groupId>org.apache.zookeeper</groupId>
->    <artifactId>zookeeper</artifactId>
->    <version>3.3.3</version>
+><groupId>org.apache.zookeeper</groupId>
+><artifactId>zookeeper</artifactId>
+><version>3.3.3</version>
 ></dependency>
 >```
 >
+>### dubbo的zookeeper注册中心宕机，消费者是否还能调用提供者？
 >
+>* 答案：消费者依然可以调用。
+>* 消息调用者在本地是有缓存信息的。
 
 
 
@@ -1657,31 +1930,280 @@ springboot的理解？
 
 
 
+# 美团初选：
+
+### [如何解决redis分布式锁过期时间到了业务没执行完问题](https://www.cnblogs.com/liuyp-ken/p/12973735.html)
+
+### Spring三级缓存
+
+### Rabbitmq
+
+> 如何保证消息不会被重复消费？
+>
+> 消息是否是有序的？怎么保证？
+>
+> 
+
+### dubbo
+
+>#### dubbo的注册中心：zk
+>
+>#### zk的几个节点：四个节点
+>
+>#### zk中watcher机制：
+>
+>#### 一个节点上是否可以加多个watch吗？（只能加一个watch）
+
+### jvm虚拟机的内存模型？
+
+>#### JVM内存模型？
+>
+>堆、方法区
+>
+>栈、本地方法栈、程序计数器
+>
+>#### 什么情况下会触发GC？
+>
+>
+
+### 目前系统的QPS？
+
+### 目前系统的实例有多少？
+
+### 日志怎么处理的？
+
+>log文件，或者可视化操作。
+>
+>
+
+### 线程池
+
+>#### 线程池使用场景？
+>
+>
+
+### volatile
+
+>#### volatile使用场景？
+>
+>可见性、禁止指令重排、不保证原子性
+>
+>
+
+如何保证原子性？
+
+>原子类、synchronized
+>
+>
+
+CAS中ABA的问题？
+
+* 解决办法：
+
+
+
+## 美团一面
+
+### MySQL：
+
+> #### 慢查询怎么排查?怎么优化
+>
+> #### 执行计划看那些指标？
+>
+> #### 数据库中表最大数据量？什么表？
+>
+> #### 数据库连接数？配置多少？（40个连接，活跃10）
+>
+> * 数据库连接数默认限制是100.但是可以修改。
+> * 连接池中初始是10，最大连接数50，最小空闲5
+> * maxWait=60000  超时等待时间以毫秒为单位 6000毫秒/1000等于60秒，当连接超过该时间便认为其实空闲连接
+>
+> 合适的连接池大小和业务请求的 QPS 和 单个请求的响应时间 RT(单位为毫秒)。基本公式:
+>
+> > 连接数 = QPS /(1000/RT) + N = QPS * RT /1000 + N
+>
+> 注意: 此处 QPS 和 RT 为单个应用端统计。假定随连接数量增加，客户端能处理的请求数线性增加。
+>
+> 举个例子
+>
+> ```javascript
+> 比如 一个请求的耗时rt=2ms,每个连接能处理的请求数量 	
+> S = 1000/2 =500 ,	
+> 业务层总请求量是 M=5000 ,那么合理的连接数为 	
+> M/S=5000/500=10 	
+> 为了避免连接数被占满，我们会在上面的连接数的基础上再加上N ,最终的连接数为10+N .
+> 
+> ```
+
+### 系统关注哪些指标？
+
+>监控：内存、CPU、磁盘空间
+>
+>
+>
+>
+>
+>
+
+## 美团二面：
+
+
+
+
+
+## 哗啦啦
+
+### 读已提交和可重复读是怎么实现的？
+
+### [Redisson](https://www.cnblogs.com/qdhxhz/p/11046905.html)
+
+### redis怎么保证在过期时间内任务能完成
+
+
+
+## 
+
 
 
 ----
 
 # Other
 
+## 字节-抖音1
+
+### 1、java如何实现线程安全？
+
+### 2、CAS如何解决ABA问题？
+
+### 3、AtomicInteger的原理？
+
+### 4、可重入锁是什么？非可重入锁又是什么？
+
+### 5、代码实现生产者和消费者，一个长度100的buffer，10个生产者，10个消费者线程
+
+### 6、spring AOP是什么？IOC又是什么？
+
+### 7、二叉树的概念？红黑树是什么？红黑树和其他平衡树的区别在哪儿？
+
+### 8、TCP三次握手的过程，重发报文的过程？
+
+### 9、TCP和UDP的区别？
+
+### 10、说一下那个项目最有挑战，有几个模块，介绍一下
+
+## 字节-抖音2
+
+### 1、MySQL的事务特性，事务的隔离级别，分别解决什么问题？
+
+### 2、间隙锁是什么？具体什么时候加锁？
+
+### 3、java里的锁，有哪几种？
+
+### 4、ReentrantLock有哪些特性？可重入是如何实现的？
+
+### 5、当某个线程获取ReentrantLock失败时，是否会从内核态切换回用户态？ReentrantLock如何存储阻塞的线程的？什么是自旋锁？
+
+### 6、JVM说下最熟悉的GC，追问CMS的整个回收流程，标记、清理等等。年轻代怎么回收？
+
+### 7、Redis的持久化如何做到的？
+
+### 8、RDB具体是如何实现的？RDB生成快照时，redis会阻塞掉吗？
+
+### 9、既然生成快照的中途依然可以执行redis，那么从节点获取快照是不完整的，如何同步？
+
+### 10、设计题：设计一个扫码登录，设计一个微信红包功能。
+
+### 11、算法题：n*n的矩阵，只能向右或向下移动，从最左上方移动到最右下方，把所有的路径输出
+
+
+
+## 快手：
+
+### 1、spring IOC？
+
+### 2、观察者模式和发布订阅的区别？
+
+### 3、单例设计模式有哪些实现方式？
+
+### 4、http有哪些状态码？5开头的状态码表示什么？
+
+### 5、http和https区别？握手方式，加密方式，如何加密？
+
+### 6、http2.0和http1.0区别？http2.0可以推送弹幕消息吗？
+
+### 7、Linux介绍下？用Linux做过哪些事？用过哪些指令？
+
+### 8、介绍redis？为什么用redis？项目中redis用来做什么？
+
+### 9、redis数据类型？
+
+### 10、redis持久化是什么？持久化方式有哪些？
+
+### 11、Redis内存淘汰策略？
+
+### 12、zookeeper中节点类型，服务端宕机后zk发生什么变化？
+
+### 13、接口设计的幂等性？
+
+### 14、索引是什么？索引为什么快？
+
+### 15、MySQL事务，隔离级别，隔离级别的实现？
+
+### 16、MySQL处理死锁机制是怎么实现的？
+
+### 17、MySQL mvcc？
+
+### 18、主从数据库的好处？
+
+### 19、java线程池，线程池的参数理解，拒绝策略？
+
+### 20、保证线程安全的方式？CAS优化，AQS，以及AQS是否可以实现非公平锁？
+
+### 21、HashMap
+
+### 22、JVM的理解，JVM编译问题？
+
+### 23、收集算法，什么时候分配在栈？什么时候分配在堆？内存泄漏的场景？
+
+### 24、聊聊熟悉的垃圾回收器？
+
+### 25、微服务了解吗？
+
+### 26、算法题：手写lru
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 阿里（菜鸟）
 
 
 
-2、快排、堆排和归并都是O(nlong n)的算法，为什么jdk会选择快速排序？
+### 2、快排、堆排和归并都是O(nlong n)的算法，为什么jdk会选择快速排序？
 
-3、为何jdk中快速排序在元素个数小于30时会采用插入排序？
+### 3、为何jdk中快速排序在元素个数小于30时会采用插入排序？
 
-4、HashMap是线程安全的吗？如果不安全可能造成什么问题？
+### 4、HashMap是线程安全的吗？如果不安全可能造成什么问题？
 
-5、HashTable是线程安全的吗？怎么实现的？
+### 5、HashTable是线程安全的吗？怎么实现的？
 
-6、常用并发包下的类？
+### 6、常用并发包下的类？
 
-7、redis持久化方式？
+### 7、redis持久化方式？
 
 8、redis为什么这么快？
 
 9、介绍自己比较熟悉的项目和项目中遇到的难点？
+
+### 10、分布式系统中如何保证接口的幂等性？
 
 ## 二面
 
@@ -2436,3 +2958,4 @@ public void test() {
 ### [聊聊Mysql索引和redis跳表 ---redis的有序集合zset数据结构底层采用了跳表原理 时间复杂度O(logn)(阿里)](https://www.cnblogs.com/aspirant/p/11475295.html)
 
 redis使用跳表不用B+数的原因是：redis是内存数据库，而B+树纯粹是为了mysql这种IO数据库准备的。B+树的每个节点的数量都是一个mysql分区页的大小(阿里面试)
+

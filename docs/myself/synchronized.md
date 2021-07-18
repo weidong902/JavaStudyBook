@@ -587,9 +587,9 @@ Synchronized通过在对象头中设置标记MarkWord实现了这一目的，是
 
 （2）**回答**：AQS，即 AbstractQueuedSynchronizer  抽象队列同步器，是一个用来构建锁和同步器的类，JUC  Lock包下的锁（常用的有ReentrantLock、ReadWriteLock），以及其他的像Semaphore、CountDownLatch，甚至是早期的FutureTask等，都是基于AQS来构建的；
 
-A.AQS在内部定义了一个变量：volatileint state，用于表示同步状态：当线程调用lock方法时，如果state=0，说明没有任何线程占有共享资源的锁，可以获得锁并将state=1；如果state=1，则说明有线程目前正在使用共享变量，其他线程必须加入同步队列进行等待。
+* A.AQS在内部定义了一个变量：volatile int state，用于表示同步状态：当线程调用lock方法时，如果state=0，说明没有任何线程占有共享资源的锁，可以获得锁并将state=1；如果state=1，则说明有线程目前正在使用共享变量，其他线程必须加入同步队列进行等待。
 
-B.AQS内部是通过Node实体类来表示一个双向链表结构的同步队列，完成线程获取锁的排队工作，当有线程获取锁失败后，就被添加到队列末尾。
+* B.AQS内部是通过Node实体类来表示一个双向链表结构的同步队列，完成线程获取锁的排队工作，当有线程获取锁失败后，就被添加到队列末尾。
 
 Node类是对要访问同步代码的线程的封装，包含了线程本身及其状态waitStatus（它有五种不同的取值，分别表示是否被阻塞、是否等待唤醒、是否已经被取消等），每个Node结点关联其prev结点和next结点（指针），方便线程释放锁后快速唤醒下一个在等待的线程，是一个FIFO的过程；
 
