@@ -1979,7 +1979,7 @@
                                 <h1 id="&#x7EBF;&#x7A0B;cpu100&#x5982;&#x4F55;&#x6392;&#x67E5;&#xFF1F;">&#x7EBF;&#x7A0B;CPU100%&#x5982;&#x4F55;&#x6392;&#x67E5;&#xFF1F;</h1>
 <h1 id="top--h--p">top -H -p</h1>
 <blockquote>
-<p>&#x5148;&#x901A;&#x8FC7;<strong>top -H -p</strong> &#x627E;&#x51FA;CPU&#x5360;&#x7528;&#x6700;&#x5927;&#x7684;&#x51E0;&#x4E2A; &#xFF0C;&#x8BB0;&#x5F55;&#x5176;Pid&#xFF0C;&#x7136;&#x540E;&#x5C06;JVM&#x65E5;&#x5FD7;&#x8F93;&#x51FA; &#xFF0C;&#x91CD;&#x590D;&#x670D;&#x52A1;&#xFF0C;&#x51CF;&#x8F7B;&#x5F71;&#x54CD;&#x3002;</p>
+<p>&#x5148;&#x901A;&#x8FC7;<strong>top -H -p</strong> &#x627E;&#x51FA;CPU&#x5360;&#x7528;&#x6700;&#x5927;&#x7684;&#x51E0;&#x4E2A; &#xFF0C;&#x8BB0;&#x5F55;&#x5176;Pid&#xFF0C;&#x7136;&#x540E;&#x5C06;JVM&#x65E5;&#x5FD7;&#x8F93;&#x51FA; &#xFF0C;&#x91CD;&#x542F;&#x670D;&#x52A1;&#xFF0C;&#x51CF;&#x8F7B;&#x5F71;&#x54CD;&#x3002;</p>
 <ul>
 <li>&#x6839;&#x636E;<code>&#x8FDB;&#x7A0B;pid</code>&amp;&amp;<code>&#x7EBF;&#x7A0B;id</code>&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x5806;&#x6808;&#x4FE1;&#x606F;</li>
 </ul>
@@ -1994,9 +1994,9 @@
 <p>&#x4E0D;&#x7BA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x65E2;&#x7136;&#x662F;CPU&#x98D9;&#x5347;&#xFF0C;&#x80AF;&#x5B9A;&#x662F;&#x67E5;&#x4E00;&#x4E0B;&#x8017;CPU&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x7136;&#x540E;&#x770B;&#x770B;GC&#x3002;</p>
 <p><strong>3.1 &#x6838;&#x5FC3;&#x6392;&#x67E5;&#x6B65;&#x9AA4;</strong></p>
 <p><strong>1.&#x6267;&#x884C;&#x201C;top&#x201D;&#x547D;&#x4EE4;&#xFF1A;&#x67E5;&#x770B;&#x6240;&#x6709;&#x8FDB;&#x7A0B;&#x5360;&#x7CFB;&#x7EDF;CPU&#x7684;&#x6392;&#x5E8F;&#x3002;&#x6781;&#x5927;&#x53EF;&#x80FD;&#x6392;&#x7B2C;&#x4E00;&#x4E2A;&#x7684;&#x5C31;&#x662F;&#x54B1;&#x4EEC;&#x7684;java&#x8FDB;&#x7A0B;&#xFF08;COMMAND&#x5217;&#xFF09;&#x3002;PID&#x90A3;&#x4E00;&#x5217;&#x5C31;&#x662F;&#x8FDB;&#x7A0B;&#x53F7;&#x3002;</strong></p>
-<p><strong>2.&#x6267;&#x884C;&#x201C;top -Hp &#x8FDB;&#x7A0B;&#x53F7;&#x201D;&#x547D;&#x4EE4;&#xFF1A;&#x67E5;&#x770B;java&#x8FDB;&#x7A0B;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x5360;CPU&#x7684;&#x60C5;&#x51B5;&#x3002;</strong></p>
+<p><strong>2.&#x6267;&#x884C;&#x201C;<code>top -Hp</code> &#x8FDB;&#x7A0B;&#x53F7;&#x201D;&#x547D;&#x4EE4;&#xFF1A;&#x67E5;&#x770B;java&#x8FDB;&#x7A0B;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x5360;CPU&#x7684;&#x60C5;&#x51B5;&#x3002;</strong></p>
 <p><strong>3.&#x6267;&#x884C;&#x201C;printf &quot;%x\n 10&quot;&#x547D;&#x4EE4; &#xFF1A;&#x540E;&#x7EED;&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x5806;&#x6808;&#x4FE1;&#x606F;&#x5C55;&#x793A;&#x7684;&#x90FD;&#x662F;&#x5341;&#x516D;&#x8FDB;&#x5236;&#xFF0C;&#x4E3A;&#x4E86;&#x627E;&#x5230;&#x54B1;&#x4EEC;&#x7684;&#x7EBF;&#x7A0B;&#x5806;&#x6808;&#x4FE1;&#x606F;&#xFF0C;&#x54B1;&#x4EEC;&#x9700;&#x8981;&#x628A;&#x7EBF;&#x7A0B;&#x53F7;&#x8F6C;&#x6210;16&#x8FDB;&#x5236;&#x3002;&#x4F8B;&#x5982;, printf &quot;%x\n 10&quot;  -&#x300B;&#x6253;&#x5370;&#xFF1A;a&#xFF0C;&#x90A3;&#x4E48;&#x5728;jstack&#x4E2D;&#x7EBF;&#x7A0B;&#x53F7;&#x5C31;&#x662F;0xa.</strong></p>
-<p><strong>4.&#x6267;&#x884C; &#x201C;jstack &#x8FDB;&#x7A0B;&#x53F7; | grep &#x7EBF;&#x7A0B;ID&#x201D; &#x67E5;&#x627E;&#x67D0;&#x8FDB;&#x7A0B;&#x4E0B; -&#x300B;&#x7EBF;&#x7A0B;ID&#xFF08;jstack&#x5806;&#x6808;&#x4FE1;&#x606F;&#x4E2D;&#x7684;nid&#xFF09;=0xa&#x7684;&#x7EBF;&#x7A0B;&#x5806;&#x6808;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x679C;&#x201C;&quot;VM Thread&quot; os_prio=0 tid=0x00007f871806e000 nid=0xa runnable&#x201D;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53CC;&#x5F15;&#x53F7;&#x5708;&#x8D77;&#x6765;&#x7684;&#x5C31;&#x662F;&#x7EBF;&#x7A0B;&#x540D;&#xFF0C;**</strong>&#x5982;&#x679C;&#x662F;&#x201C;VM Thread&#x201D;&#x8FD9;&#x5C31;&#x662F;&#x865A;&#x62DF;&#x673A;GC&#x56DE;&#x6536;&#x7EBF;&#x7A0B;&#x4E86;**</p>
+<p><strong>4.&#x6267;&#x884C; &#x201C;jstack &#x8FDB;&#x7A0B;&#x53F7; | grep &#x7EBF;&#x7A0B;ID&#x201D; &#x67E5;&#x627E;&#x67D0;&#x8FDB;&#x7A0B;&#x4E0B; -&#x300B;&#x7EBF;&#x7A0B;ID&#xFF08;jstack&#x5806;&#x6808;&#x4FE1;&#x606F;&#x4E2D;&#x7684;nid&#xFF09;=0xa&#x7684;&#x7EBF;&#x7A0B;&#x5806;&#x6808;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x679C;&#x201C;&quot;VM Thread&quot; os_prio=0 tid=0x00007f871806e000 nid=0xa runnable&#x201D;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53CC;&#x5F15;&#x53F7;&#x5708;&#x8D77;&#x6765;&#x7684;&#x5C31;&#x662F;&#x7EBF;&#x7A0B;&#x540D;&#xFF0C;**</strong> &#x5982;&#x679C;&#x662F;&#x201C;VM Thread&#x201D;&#x8FD9;&#x5C31;&#x662F;&#x865A;&#x62DF;&#x673A;GC&#x56DE;&#x6536;&#x7EBF;&#x7A0B;&#x4E86; **</p>
 <p><strong>5.&#x6267;&#x884C;&#x201C;jstat -gcutil &#x8FDB;&#x7A0B;&#x53F7; &#x7EDF;&#x8BA1;&#x95F4;&#x9694;&#x6BEB;&#x79D2; &#x7EDF;&#x8BA1;&#x6B21;&#x6570;&#xFF08;&#x7F3A;&#x7701;&#x4EE3;&#x8868;&#x4E00;&#x81F4;&#x7EDF;&#x8BA1;&#xFF09;&#x201D;&#xFF0C;&#x67E5;&#x770B;&#x67D0;&#x8FDB;&#x7A0B;GC&#x6301;&#x7EED;&#x53D8;&#x5316;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x8FD4;&#x56DE;&#x4E2D;FGC&#x5F88;&#x5927;&#x4E14;&#x4E00;&#x76F4;&#x589E;&#x5927;-&#x300B;&#x786E;&#x8BA4;Full GC! &#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x201C;jmap -heap &#x8FDB;&#x7A0B;ID&#x201D;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x8FDB;&#x7A0B;&#x7684;&#x5806;&#x5185;&#x4ECE;&#x662F;&#x4E0D;&#x662F;&#x8981;&#x6EA2;&#x51FA;&#x4E86;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x8001;&#x5E74;&#x4EE3;&#x5185;&#x4ECE;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x4E00;&#x822C;&#x662F;&#x8FBE;&#x5230;&#x9608;&#x503C;(&#x5177;&#x4F53;&#x770B;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5668;&#x548C;&#x542F;&#x52A8;&#x65F6;&#x914D;&#x7F6E;&#x7684;&#x9608;&#x503C;)&#x5C31;&#x4F1A;&#x8FDB;&#x7A0B;Full GC&#x3002;</strong></p>
 <p><strong>6.&#x6267;&#x884C;&#x201C;jmap -dump:format=b,file=filename &#x8FDB;&#x7A0B;ID&#x201D;&#xFF0C;&#x5BFC;&#x51FA;&#x67D0;&#x8FDB;&#x7A0B;&#x4E0B;&#x5185;&#x5B58;heap&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;eclipse&#x7684;mat&#x5DE5;&#x5177;&#x67E5;&#x770B;&#x5185;&#x5B58;&#x4E2D;&#x6709;&#x54EA;&#x4E9B;&#x5BF9;&#x8C61;&#x6BD4;&#x8F83;&#x591A;&#x3002;</strong></p>
 <p><strong>3.2 &#x539F;&#x56E0;&#x5206;&#x6790;</strong></p>
@@ -2014,7 +2014,7 @@
 <p><strong>2.&#x4EE3;&#x7801;&#x4E2D;&#x6709;&#x5927;&#x91CF;&#x6D88;&#x8017;CPU&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5BFC;&#x81F4;CPU&#x8FC7;&#x9AD8;&#xFF0C;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x7F13;&#x6162;&#xFF1B;</strong></p>
 <p>&#x6267;&#x884C;&#x6B65;&#x9AA4;1-4&#xFF1A;&#x5728;&#x6B65;&#x9AA4;4 jstack&#xFF0C;&#x53EF;&#x76F4;&#x63A5;&#x5B9A;&#x4F4D;&#x5230;&#x4EE3;&#x7801;&#x884C;&#x3002;&#x4F8B;&#x5982;&#x67D0;&#x4E9B;&#x590D;&#x6742;&#x7B97;&#x6CD5;&#xFF0C;&#x751A;&#x81F3;&#x7B97;&#x6CD5;BUG&#xFF0C;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x9012;&#x5F52;&#x7B49;&#x7B49;&#x3002;</p>
 <p><strong>3.&#x7531;&#x4E8E;&#x9501;&#x4F7F;&#x7528;&#x4E0D;&#x5F53;&#xFF0C;&#x5BFC;&#x81F4;&#x6B7B;&#x9501;&#x3002;</strong></p>
-<p>&#x6267;&#x884C;&#x6B65;&#x9AA4;1-4&#xFF1A; &#x5982;&#x679C;&#x6709;&#x6B7B;&#x9501;&#xFF0C;&#x4F1A;&#x76F4;&#x63A5;&#x63D0;&#x793A;&#x3002;&#x5173;&#x952E;&#x5B57;&#xFF1A;deadlock. &#x6B65;&#x9AA4;&#x56DB;&#xFF0C;&#x4F1A;&#x6253;&#x5370;&#x51FA;&#x4E1A;&#x52A1;&#x6B7B;&#x9501;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x6267;&#x884C;&#x6B65;&#x9AA4;1-4&#xFF1A; &#x5982;&#x679C;&#x6709;&#x6B7B;&#x9501;&#xFF0C;&#x4F1A;&#x76F4;&#x63A5;&#x63D0;&#x793A;&#x3002;&#x5173;&#x952E;&#x5B57;&#xFF1A;<code>deadlock</code>. &#x6B65;&#x9AA4;&#x56DB;&#xFF0C;&#x4F1A;&#x6253;&#x5370;&#x51FA;&#x4E1A;&#x52A1;&#x6B7B;&#x9501;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
 <p>&#x9020;&#x6210;&#x6B7B;&#x9501;&#x7684;&#x539F;&#x56E0;&#xFF1A;&#x6700;&#x5178;&#x578B;&#x7684;&#x5C31;&#x662F;2&#x4E2A;&#x7EBF;&#x7A0B;&#x4E92;&#x76F8;&#x7B49;&#x5F85;&#x5BF9;&#x65B9;&#x6301;&#x6709;&#x7684;&#x9501;&#x3002;</p>
 <p><strong>4.&#x968F;&#x673A;&#x51FA;&#x73B0;&#x5927;&#x91CF;&#x7EBF;&#x7A0B;&#x8BBF;&#x95EE;&#x63A5;&#x53E3;&#x7F13;&#x6162;&#x3002;</strong></p>
 <p>&#x4EE3;&#x7801;&#x67D0;&#x4E2A;&#x4F4D;&#x7F6E;&#x6709;&#x963B;&#x585E;&#x6027;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5BFC;&#x81F4;&#x8BE5;&#x529F;&#x80FD;&#x8C03;&#x7528;&#x6574;&#x4F53;&#x6BD4;&#x8F83;&#x8017;&#x65F6;&#xFF0C;&#x4F46;&#x51FA;&#x73B0;&#x662F;&#x6BD4;&#x8F83;&#x968F;&#x673A;&#x7684;&#xFF1B;&#x5E73;&#x65F6;&#x6D88;&#x8017;&#x7684;CPU&#x4E0D;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x5360;&#x7528;&#x7684;&#x5185;&#x5B58;&#x4E5F;&#x4E0D;&#x9AD8;&#x3002;</p>
@@ -2037,7 +2037,161 @@ at java.util.concurrent.locks.LockSupport.park(LockSupport.java:304)
 at com.*.SyncTask.lambda$main$0(SyncTask.java:8)-&#x300B;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#x963B;&#x585E;&#x70B9;
 at com.*.SyncTask$$Lambda$1/1791741888.run(Unknown Source) 
 at java.lang.Thread.run(Thread.java:748)
+</code></pre><hr>
+<h1 id="&#x7EBF;&#x4E0A;&#x95EE;&#x9898;&#x6392;&#x67E5;&#xFF1A;">&#x7EBF;&#x4E0A;&#x95EE;&#x9898;&#x6392;&#x67E5;&#xFF1A;</h1>
+<p>&#x4E1A;&#x52A1;&#x65E5;&#x5FD7;
+&#x5728;&#x7CFB;&#x7EDF;&#x51FA;&#x95EE;&#x9898;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x5E94;&#x8BE5;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x65E5;&#x5FD7;&#x6765;&#x6392;&#x67E5;&#x95EE;&#x9898;&#x3002;&#x4E3B;&#x8981;&#x6709;grep&#x3001;tail&#x3001;more&#x3001;less&#x7B49;&#x547D;&#x4EE4;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x5E93;&#x76F8;&#x5173;
+&#x5047;&#x8BBE;&#x51FA;&#x73B0;Could not get JDBC Connection &#x3001;&#x63A5;&#x53E3;&#x54CD;&#x5E94;&#x6162;&#x3001;&#x7EBF;&#x7A0B;&#x6253;&#x6EE1;&#x7B49;&#x3002;
+&#x767B;&#x5F55;&#x7EBF;&#x4E0A;&#x5E93;&#xFF0C;&#x67E5;&#x770B;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x60C5;&#x51B5;&#xFF1A;show processlist&#x3002;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6570;&#x636E;&#x5E93;&#x7684;&#x8FDE;&#x63A5;&#x60C5;&#x51B5;&#x3002;&#x786E;&#x5B9E;&#x56E0;&#x4E3A;&#x6162;&#x67E5;&#x8BE2;&#x9020;&#x6210;&#xFF0C;&#x987B;&#x8981;&#x624B;&#x52A8;kill&#x3002;</p>
+<h2 id="jvm&#x95EE;&#x9898;&#x6392;&#x67E5;">JVM&#x95EE;&#x9898;&#x6392;&#x67E5;</h2>
+<p>&#x4E00;&#x822C;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x51E0;&#x4E2A;&#x5DE5;&#x5177;&#x90FD;&#x80FD;&#x5B9A;&#x4F4D;&#x51FA;&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="jps&#xFF08;jvm-process-status-tool&#xFF09;">jps&#xFF08;JVM Process Status Tool&#xFF09;</h3>
+<p>&#x67E5;&#x770B;Java&#x8FDB;&#x7A0B;&#x7684;&#x5177;&#x4F53;&#x72B6;&#x6001;, &#x5305;&#x62EC;&#x8FDB;&#x7A0B;ID&#xFF0C;&#x8FDB;&#x7A0B;&#x542F;&#x52A8;&#x7684;&#x8DEF;&#x5F84;&#x53CA;&#x542F;&#x52A8;&#x53C2;&#x6570;&#x7B49;&#x3002;</p>
+<pre><code class="lang-shell">[root@izm5e4dhkm7u54kfwhgz9wz logs]# jps -mv
+25481 Jps -mv -Dapplication.home=/usr/java/jdk1.8.0_151 -Xms8m
+12489 medusa-server.jar --spring.profiles.active=test-zf -Xms128M -Xmx256M
+12235 hk-pay.jar --spring.profiles.active=test -Xms128m -Xmx128m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+21069 intl-pay.jar --spring.profiles.active=test -Xms128M -Xmx256M
+13902 converge-pay.jar --spring.profiles.active=test-zf -Xms256M -Xmx256M
 </code></pre>
+<h3 id="jinfoconfiguration-info-for-java">jinfo(Configuration Info for Java)</h3>
+<p>&#x5B9E;&#x65F6;&#x7684;&#x67E5;&#x770B;&#x548C;&#x8C03;&#x6574;&#x865A;&#x62DF;&#x673A;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<pre><code class="lang-shell">jinfo  pid   &#x8F93;&#x51FA;&#x5168;&#x90E8;&#x7684;&#x53C2;&#x6570;&#x548C;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;
+jinfo  -flag  name pid   &#x8F93;&#x51FA;&#x5BF9;&#x5E94;&#x540D;&#x79F0;&#x7684;&#x53C2;&#x6570;
+jinfo  -flag [+|-]name  pid   &#x5F00;&#x542F;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5BF9;&#x5E94;&#x540D;&#x79F0;&#x7684;&#x53C2;&#x6570;
+jinfo  -flag name=value  pid   &#x8BBE;&#x5B9A;&#x5BF9;&#x5E94;&#x540D;&#x79F0;&#x7684;&#x53C2;&#x6570;
+jinfo  -flags  pid   &#x8F93;&#x51FA;&#x5168;&#x90E8;&#x7684;&#x53C2;&#x6570;
+jinfo  -sysprops  pid   &#x8F93;&#x51FA;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;
+</code></pre>
+<h3 id="jstatjvm-statistics-monitoring-tool">jstat(JVM Statistics Monitoring Tool)</h3>
+<p>&#x76D1;&#x63A7;JVM&#x5404;&#x79CD;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;</p>
+<pre><code>[root@izm5e4dhkm7u54kfwhgz9wz logs]# jstat -options
+-class           &#x76D1;&#x89C6;&#x7C7B;&#x88C5;&#x8F7D;&#x3001;&#x5378;&#x8F7D;&#x6570;&#x91CF;&#x3001;&#x603B;&#x7A7A;&#x95F4;&#x4EE5;&#x53CA;&#x7C7B;&#x88C5;&#x8F7D;&#x6240;&#x8017;&#x8D39;&#x7684;&#x65F6;&#x95F4;
+-compiler           &#x8F93;&#x51FA;JIT&#x7F16;&#x8BD1;&#x5668;&#x7F16;&#x8BD1;&#x8FC7;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x8017;&#x65F6;&#x7B49;&#x4FE1;&#x606F;
+-gc               &#x76D1;&#x89C6;Java&#x5806;&#x72B6;&#x51B5;&#xFF0C;&#x5305;&#x62EC;Eden&#x533A;&#x3001;survior&#x533A;&#x3001;old&#x533A;&#x3001;&#x6C38;&#x4E45;&#x4EE3;&#x7B49;&#x7684;&#x5BB9;&#x91CF;&#x3001;&#x5DF2;&#x7528;&#x7A7A;&#x95F4;&#x3001;gc&#x65F6;&#x95F4;&#x5408;&#x8BA1;&#x7B49;&#x4FE1;&#x606F;
+-gccapacity      &#x76D1;&#x89C6;&#x5185;&#x5BB9;&#x4E0E;-gc&#x57FA;&#x672C;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x8F93;&#x51FA;&#x4E3B;&#x8981;&#x5173;&#x6CE8;java&#x5806;&#x5404;&#x4E2A;&#x533A;&#x57DF;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x6700;&#x5927;&#x3001;&#x6700;&#x5C0F;&#x7A7A;&#x95F4;
+-gccause         &#x4E0E;-gcutil&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x989D;&#x5916;&#x4F1A;&#x8F93;&#x51FA;&#x5BFC;&#x81F4;&#x4E0A;&#x4E00;&#x6B21;gc&#x4EA7;&#x751F;&#x7684;&#x539F;&#x56E0;
+-gcmetacapacity  &#x8F93;&#x51FA;metaspace&#x7684;&#x6700;&#x5927;&#x548C;&#x6700;&#x5C0F;&#x7A7A;&#x95F4;
+-gcnew           &#x76D1;&#x89C6;&#x65B0;&#x751F;&#x4EE3;gc&#x72B6;&#x51B5;
+-gcnewcapacity   &#x76D1;&#x89C6;&#x5185;&#x5BB9;&#x4E0E;-gcnew&#x57FA;&#x672C;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x8F93;&#x51FA;&#x4E3B;&#x8981;&#x5173;&#x6CE8;j&#x4F7F;&#x7528;&#x5230;&#x7684;&#x6700;&#x5927;&#x3001;&#x6700;&#x5C0F;&#x7A7A;&#x95F4;
+-gcold           &#x76D1;&#x89C6;&#x8001;&#x5E74;&#x4EE3;gc&#x72B6;&#x51B5;
+-gcoldcapacity   &#x76D1;&#x89C6;&#x5185;&#x5BB9;&#x4E0E;-gcold&#x57FA;&#x672C;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x8F93;&#x51FA;&#x4E3B;&#x8981;&#x5173;&#x6CE8;j&#x4F7F;&#x7528;&#x5230;&#x7684;&#x6700;&#x5927;&#x3001;&#x6700;&#x5C0F;&#x7A7A;&#x95F4;
+-gcutil           &#x76D1;&#x89C6;&#x5185;&#x5BB9;&#x4E0E;-gc&#x57FA;&#x672C;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x8F93;&#x51FA;&#x4E3B;&#x8981;&#x5173;&#x6CE8;java&#x5806;&#x5DF2;&#x4F7F;&#x7528;&#x7A7A;&#x95F4;&#x5360;&#x603B;&#x7A7A;&#x95F4;&#x7684;&#x767E;&#x5206;&#x6BD4;
+-printcompilation  &#x8F93;&#x51FA;&#x5DF2;&#x7ECF;&#x88AB;JIT&#x7F16;&#x8BD1;&#x5668;&#x7F16;&#x8BD1;&#x7684;&#x65B9;&#x6CD5;
+</code></pre><h3 id="jstackstack-trace-for-java">jstack(Stack Trace for Java)</h3>
+<p>&#x751F;&#x6210;JVM&#x8FDB;&#x7A0B;&#x5F53;&#x524D;&#x65F6;&#x523B;&#x7684;&#x7EBF;&#x7A0B;&#x7684;&#x8C03;&#x7528;&#x5806;&#x6808;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5B9A;&#x4F4D;&#x7EBF;&#x7A0B;&#x95F4;&#x6B7B;&#x9501;&#x3001;&#x9501;&#x7B49;&#x5F85;&#x3001;&#x7B49;&#x5F85;&#x5916;&#x90E8;&#x8D44;&#x6E90;&#x7B49;&#x3002;</p>
+<pre><code>jstack [option] pid
+-F &#x5F53;&#x6B63;&#x5E38;jstack&#x6B63;&#x5E38;&#x7684;&#x8BF7;&#x6C42;&#x4E0D;&#x88AB;&#x54CD;&#x5E94;&#x65F6;&#xFF0C;&#x5F3A;&#x5236;&#x8F93;&#x51FA;&#x7EBF;&#x7A0B;&#x5806;&#x6808;
+-l &#x8F93;&#x51FA;&#x9501;&#x7684;&#x9644;&#x52A0;&#x4FE1;&#x606F;
+-m &#x5982;&#x679C;&#x8C03;&#x7528;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x8F93;&#x51FA;C/C++&#x5806;&#x6808;
+</code></pre><p>&#x8F93;&#x51FA;&#x5E76;&#x4FDD;&#x5B58;&#xFF1A;</p>
+<pre><code>[root@izm5e4dhkm7u54kfwhgz9wz logs]# jstack 12235 &gt; jstack.log
+</code></pre><p><img src="%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIyMTU0Njkz,size_16,color_FFFFFF,t_70.png" alt="&#xE5;&#x9C;&#xA8;&#xE8;&#xBF;&#x99;&#xE9;&#x87;&#x8C;&#xE6;&#x8F;&#x92;&#xE5;&#x85;&#xA5;&#xE5;&#x9B;&#xBE;&#xE7;&#x89;&#x87;&#xE6;&#x8F;&#x8F;&#xE8;&#xBF;&#xB0;"></p>
+<h3 id="jmapmemory-map-for-java">jmap(Memory Map for Java)</h3>
+<p>&#x751F;&#x6210;&#x5806;&#x8F6C;&#x50A8;&#x5FEB;&#x7167;dump&#x6587;&#x4EF6;&#xFF0C;&#x9664;&#x4E86;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;
+-XX:HeapDumpOnOutOfMemoryError&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x865A;&#x62DF;&#x673A;&#x53D1;&#x751F;OOM&#x7684;&#x65F6;&#x5019;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x5806;&#x7684;dump&#x6587;&#x4EF6;&#x3002;jmap&#x9664;&#x4E86;&#x751F;&#x6210;&#x5806;&#x7684;dump&#x6587;&#x4EF6; &#x4E5F;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x67E5;&#x770B;&#x5806;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x67E5;&#x8BE2;finalize&#x6267;&#x884C;&#x961F;&#x5217;&#x7B49;&#x3002;</p>
+<pre><code class="lang-shell">[root@izm5e4dhkm7u54kfwhgz9wz logs]# jmap -dump:format=b,file=heap201906121146.bin 12235
+Dumping heap to /opt/converge-pay/logs/heap201906121146.bin ...
+Heap dump file created
+
+-dump:[live,]format=b,file=&lt;filename&gt; &#x4F7F;&#x7528;hprof&#x4E8C;&#x8FDB;&#x5236;&#x5F62;&#x5F0F;,&#x8F93;&#x51FA;jvm&#x7684;heap&#x5185;&#x5BB9;&#x5230;&#x6587;&#x4EF6;=. live&#x5B50;&#x9009;&#x9879;&#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x5047;&#x5982;&#x6307;&#x5B9A;live&#x9009;&#x9879;,&#x90A3;&#x4E48;&#x53EA;&#x8F93;&#x51FA;&#x6D3B;&#x7684;&#x5BF9;&#x8C61;&#x5230;&#x6587;&#x4EF6;. 
+-finalizerinfo &#x6253;&#x5370;&#x6B63;&#x7B49;&#x5019;&#x56DE;&#x6536;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x4FE1;&#x606F;.
+-heap &#x6253;&#x5370;heap&#x7684;&#x6982;&#x8981;&#x4FE1;&#x606F;&#xFF0C;GC&#x4F7F;&#x7528;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;heap&#x7684;&#x914D;&#x7F6E;&#x53CA;wise heap&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x51B5;.
+-histo[:live] &#x6253;&#x5370;&#x6BCF;&#x4E2A;class&#x7684;&#x5B9E;&#x4F8B;&#x6570;&#x76EE;,&#x5185;&#x5B58;&#x5360;&#x7528;,&#x7C7B;&#x5168;&#x540D;&#x4FE1;&#x606F;. VM&#x7684;&#x5185;&#x90E8;&#x7C7B;&#x540D;&#x5B57;&#x5F00;&#x5934;&#x4F1A;&#x52A0;&#x4E0A;&#x524D;&#x7F00;&#x201D;*&#x201D;. &#x5982;&#x679C;live&#x5B50;&#x53C2;&#x6570;&#x52A0;&#x4E0A;&#x540E;,&#x53EA;&#x7EDF;&#x8BA1;&#x6D3B;&#x7684;&#x5BF9;&#x8C61;&#x6570;&#x91CF;. 
+-permstat &#x6253;&#x5370;classload&#x548C;jvm heap&#x957F;&#x4E45;&#x5C42;&#x7684;&#x4FE1;&#x606F;. &#x5305;&#x542B;&#x6BCF;&#x4E2A;classloader&#x7684;&#x540D;&#x5B57;,&#x6D3B;&#x6CFC;&#x6027;,&#x5730;&#x5740;,&#x7236;classloader&#x548C;&#x52A0;&#x8F7D;&#x7684;class&#x6570;&#x91CF;. &#x53E6;&#x5916;,&#x5185;&#x90E8;String&#x7684;&#x6570;&#x91CF;&#x548C;&#x5360;&#x7528;&#x5185;&#x5B58;&#x6570;&#x4E5F;&#x4F1A;&#x6253;&#x5370;&#x51FA;&#x6765;. 
+-F &#x5F3A;&#x8FEB;.&#x5728;pid&#x6CA1;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;-dump&#x6216;&#x8005;-histo&#x53C2;&#x6570;. &#x5728;&#x8FD9;&#x4E2A;&#x6A21;&#x5F0F;&#x4E0B;,live&#x5B50;&#x53C2;&#x6570;&#x65E0;&#x6548;. 
+-h | -help &#x6253;&#x5370;&#x8F85;&#x52A9;&#x4FE1;&#x606F; 
+-J &#x4F20;&#x9012;&#x53C2;&#x6570;&#x7ED9;jmap&#x542F;&#x52A8;&#x7684;jvm.
+</code></pre>
+<h2 id="&#x670D;&#x52A1;&#x73AF;&#x5883;">&#x670D;&#x52A1;&#x73AF;&#x5883;</h2>
+<h3 id="cpu">CPU</h3>
+<h3 id="top">top</h3>
+<p>&#x4E3B;&#x8981;&#x5173;&#x6CE8;cpu&#x7684;load&#xFF0C;&#x4EE5;&#x53CA;&#x6BD4;&#x8F03;&#x8017;cpu&#x7684;&#x8FDB;&#x7A0B;&#x3002;
+&#x56E0;&#x4E3A;&#x5982;&#x4ECA;server&#x90FD;&#x662F;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x8FD8;&#x8981;&#x5173;&#x6CE8;st&#xFF08;st &#x7684;&#x5168;&#x79F0;&#x662F; Steal Time &#x3002;&#x662F;&#x5206;&#x914D;&#x7ED9;&#x6267;&#x884C;&#x5728;&#x5176;&#x4ED6;&#x865A;&#x62DF;&#x673A;&#x4E0A;&#x7684;&#x4EFB;&#x52A1;&#x7684;&#x5B9E;&#x9645; CPU &#x65F6;&#x95F4;&#xFF09;
+&#x8BF7;&#x53C2;&#x8003;&#x53E6;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#xFF1A;top&#x547D;&#x4EE4;&#x8BE6;&#x89E3;</p>
+<h3 id="&#x5185;&#x5B58;">&#x5185;&#x5B58;</h3>
+<h3 id="free">free</h3>
+<pre><code class="lang-shell">[root@izm5e4dhkm7u54kfwhgz9wz ~]# free -m -c10 -s1
+              total        used        free      shared  buff/cache   available
+Mem:           3790        1994         153        1209        1642         135
+Swap:             0           0           0
+
+-m&#xFF1A;&#x4EE5;MB&#x4E3A;&#x5355;&#x4F4D;&#x663E;&#x793A;&#x3002;&#x5176;&#x5B83;&#x7684;&#x6709;-k -g -b
+-s: &#x95F4;&#x9694;&#x591A;&#x5C11;&#x79D2;&#x6301;&#x7EED;&#x89C2;&#x5BDF;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x72B6;&#x51B5;
+-c:&#x89C2;&#x5BDF;&#x591A;&#x5C11;&#x6B21;
+</code></pre>
+<h3 id="vmstat">vmstat</h3>
+<pre><code>[root@izm5e4dhkm7u54kfwhgz9wz ~]# vmstat 1 10
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 5  0      0 145864   5780 1680672    0    0    23    14    0    0  1  1 97  0  0
+ 0  0      0 145660   5788 1680700    0    0     0    72 7158 11437  4 16 80  0  0
+
+1&#x8868;&#x793A;&#x6BCF;&#x9694;1s&#x8F93;&#x51FA;&#x4E00;&#x6B21;,10 &#x8868;&#x793A;&#x8F93;&#x51FA;10&#x6B21;
+&#x4E24;&#x4E2A;&#x53C3;&#x6570;&#x987B;&#x8981;&#x5173;&#x6CE8;
+r: &#x6267;&#x884C;&#x961F;&#x5217;&#x4E2D;&#x8FDB;&#x7A0B;&#x6570;&#x91CF;&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x4E5F;&#x80FD;&#x591F;&#x63A8;&#x65AD;&#x662F;&#x5426;&#x987B;&#x8981;&#x6DFB;&#x52A0;CPU&#x3002;&#xFF08;&#x957F;&#x671F;&#x5927;&#x4E8E;1&#xFF09;
+b: &#x7B49;&#x5F85;IO&#x7684;&#x8FDB;&#x7A0B;&#x6570;&#x91CF;&#x3002;
+</code></pre><h3 id="io">IO</h3>
+<p>iostat</p>
+<pre><code>[root@izm5e4dhkm7u54kfwhgz9wz ~]# iostat -m 1 10
+Linux 3.10.0-693.2.2.el7.x86_64 (izm5e4dhkm7u54kfwhgz9wz)     06/12/2019     _x86_64_    (2 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           1.46    0.00    1.13    0.08    0.00   97.33
+
+Device:            tps    MB_read/s    MB_wrtn/s    MB_read    MB_wrtn
+vda               3.61         0.04         0.03    2140135    1302884
+
+-m&#xFF1A;&#x67D0;&#x4E9B;&#x4F7F;&#x7528;block&#x4E3A;&#x5355;&#x4F4D;&#x7684;&#x5217;&#x5F3A;&#x5236;&#x4F7F;&#x7528;MB&#x4E3A;&#x5355;&#x4F4D;
+1 10&#xFF1A;&#x6570;&#x636E;&#x663E;&#x793A;&#x6BCF;&#x9694;1&#x79D2;&#x5237;&#x65B0;&#x4E00;&#x6B21;&#x3002;&#x5171;&#x663E;&#x793A;10&#x6B21;
+</code></pre><h3 id="&#x7F51;&#x7EDC;">&#x7F51;&#x7EDC;</h3>
+<p>netstat</p>
+<pre><code>netstat -antp 
+-a (all)&#x663E;&#x793A;&#x5168;&#x90E8;&#x9009;&#x9879;&#x3002;&#x9ED8;&#x8BA4;&#x4E0D;&#x663E;&#x793A;LISTEN&#x76F8;&#x5173;
+-t (tcp)&#x4EC5;&#x663E;&#x793A;tcp&#x76F8;&#x5173;&#x9009;&#x9879;
+-u (udp)&#x4EC5;&#x663E;&#x793A;udp&#x76F8;&#x5173;&#x9009;&#x9879;
+-n &#x62D2;&#x7EDD;&#x663E;&#x793A;&#x522B;&#x540D;&#xFF0C;&#x80FD;&#x663E;&#x793A;&#x6570;&#x5B57;&#x7684;&#x6240;&#x6709;&#x8F6C;&#x5316;&#x6210;&#x6570;&#x5B57;&#x3002;
+-l &#x4EC5;&#x5217;&#x51FA;&#x6709;&#x5728; Listen (&#x76D1;&#x542C;) &#x7684;&#x670D;&#x670D;&#x52A1;&#x72B6;&#x6001;
+-p &#x663E;&#x793A;&#x5EFA;&#x7ACB;&#x76F8;&#x5173;&#x94FE;&#x63A5;&#x7684;&#x7A0B;&#x5E8F;&#x540D;
+</code></pre><p>&#x663E;&#x793A;tcp&#x5404;&#x4E2A;&#x72B6;&#x6001;&#x6570;&#x91CF;&#xFF1A;</p>
+<pre><code>[root@izm5e4dhkm7u54kfwhgz9wz ~]#  netstat -ant |awk &apos;{print $6}&apos;|sort|uniq -c
+     26 CLOSE_WAIT
+      1 established)
+     75 ESTABLISHED
+      1 Foreign
+     25 LISTEN
+      1 SYN_SENT
+     14 TIME_WAIT
+</code></pre><p>&#x67E5;&#x770B;&#x8FDE;&#x63A5;&#x67D0;&#x670D;&#x52A1;port&#x6700;&#x591A;&#x7684;&#x7684;IP&#x5730;&#x5740;</p>
+<pre><code>[root@izm5e4dhkm7u54kfwhgz9wz ~]# netstat -nat | grep &quot;127.0.0.1:8060&quot; |awk &apos;{print $5}&apos;|awk -F: &apos;{print $4}&apos;|sort|uniq -c|sort -nr|head -10
+      6
+</code></pre><hr>
+<h2 id="&#x9762;&#x8BD5;&#x9898;&#xFF1A;">&#x9762;&#x8BD5;&#x9898;&#xFF1A;</h2>
+<h3 id="1&#x3001;&#x7EBF;&#x4E0A;java&#x9879;&#x76EE;cpu&#x7A81;&#x7136;&#x98D9;&#x5230;100&#x600E;&#x4E48;&#x6392;&#x67E5;&#xFF1F;">1&#x3001;&#x7EBF;&#x4E0A;Java&#x9879;&#x76EE;CPU&#x7A81;&#x7136;&#x98D9;&#x5230;100%&#x600E;&#x4E48;&#x6392;&#x67E5;&#xFF1F;</h3>
+<blockquote>
+<p>1&#x3001;top&#x547D;&#x4EE4;&#xFF1A;</p>
+<p><img src="%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5.assets/image-20210718114414263.png" alt="image-20210718114414263"></p>
+<p>2&#x3001;&#x8FDB;&#x7A0B;&#x53F7;&#xFF1A;pid: 90138</p>
+<p>3&#x3001;&#x6839;&#x636E;pid&#x67E5;&#x7EBF;&#x7A0B;&#xFF1A;</p>
+<p>top -Hp 90138</p>
+<p>&#x67E5;&#x51FA;cpu&#x4F7F;&#x7528;&#x8F83;&#x9AD8;&#x7684;&#x7EBF;&#x7A0B;&#x53F7;&#xFF1A;1700</p>
+<p>4&#x3001;&#x5C06;&#x7EBF;&#x7A0B;&#x8F6C;&#x6362;&#x6210;16&#x8FDB;&#x5236;&#x3002;</p>
+<p>printf  &apos;%x&apos; 1700 </p>
+<p>&#x8F6C;&#x6362;&#x540E;&#x7684;&#x503C;&#xFF1A;6a4</p>
+<p>5&#x3001;&#x5C06;&#x8FDB;&#x7A0B;&#x653E;&#x5230;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x53BB;&#xFF1A;</p>
+<p>jstack 90138  &gt;  90138.txt</p>
+<p>6&#x3001;&#x67E5;&#x770B;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p>vi 90138.txt</p>
+<p>&#x641C;&#x7D22;&#xFF1A; /find  6a4</p>
+<p>&#x65E2;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5176;&#x7EBF;&#x7A0B;&#xFF0C;&#x65E2;&#x53EF;&#x627E;&#x5230;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#xFF1A;&#x7136;&#x540E;&#x53BB;&#x6392;&#x67E5;&#x4EE3;&#x7801;&#x95EE;&#x9898;&#x3002;</p>
+</blockquote>
+<h3 id="2&#x3001;&#x7EBF;&#x4E0A;java&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x98D9;&#x5347;&#xFF1F;">2&#x3001;&#x7EBF;&#x4E0A;java&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x98D9;&#x5347;&#xFF1F;</h3>
+<blockquote>
+<p>1&#x3001;top&#xFF08;&#x770B;mem&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x8BB0;&#x4E0B;pid&#xFF09; -&gt;shift +m&#xFF08;&#x4EE5;&#x5185;&#x5B58;&#x6392;&#x5E8F;&#xFF09;--&gt; jmp -dump:format=b,file=heap.hprof (pid) &#x751F;&#x6210;&#x5806;&#x7684;&#x8F6C;&#x5B58;&#x6587;&#x4EF6; &#xFF08;heap.hprof&#x6587;&#x4EF6;&#xFF09; &#x4ECE;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x4E0B;&#x8F7D;&#x6587;&#x4EF6;&#x5230;&#x672C;&#x5730;&#x3002;</p>
+<p>2&#x3001;&#x901A;&#x8FC7;eclipse memory analyzer&#x5DE5;&#x5177;&#xFF08;mat&#xFF09;&#x6253;&#x5F00;heap.hprof--&gt;&#x770B;&#x4EC0;&#x4E48;&#x7C7B;&#x5F15;&#x8D77;&#x7684;&#x3002;</p>
+</blockquote>
+
                                 
                                 </section>
                             
@@ -2080,7 +2234,7 @@ at java.lang.Thread.run(Thread.java:748)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"问题排查","level":"9.1.5","depth":2,"next":{"title":"转账业务","level":"9.1.6","depth":2,"path":"docs/myself/转账业务.md","ref":"docs/myself/转账业务.md","articles":[]},"previous":{"title":"微服务","level":"9.1.4","depth":2,"path":"docs/myself/微服务.md","ref":"docs/myself/微服务.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/问题排查.md","mtime":"2021-07-07T05:48:51.879Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-09T09:01:39.699Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"问题排查","level":"9.1.5","depth":2,"next":{"title":"转账业务","level":"9.1.6","depth":2,"path":"docs/myself/转账业务.md","ref":"docs/myself/转账业务.md","articles":[]},"previous":{"title":"微服务","level":"9.1.4","depth":2,"path":"docs/myself/微服务.md","ref":"docs/myself/微服务.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/问题排查.md","mtime":"2021-07-18T06:13:29.509Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-19T08:54:46.713Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

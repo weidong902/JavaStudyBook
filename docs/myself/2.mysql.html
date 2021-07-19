@@ -3036,6 +3036,55 @@ InoDB:&#x652F;&#x6301;&#x3002;</p>
 <p>25.&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x5927;&#x4E8B;&#x52A1;&#x64CD;&#x4F5C;&#xFF0C;&#x63D0;&#x9AD8;&#x7CFB;&#x7EDF;&#x5E76;&#x53D1;&#x80FD;&#x529B;&#x3002;</p>
 <p>26.&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x8FD4;&#x56DE;&#x5927;&#x6570;&#x636E;&#x91CF;&#xFF0C;&#x82E5;&#x6570;&#x636E;&#x91CF;&#x8FC7;&#x5927;&#xFF0C;&#x5E94;&#x8BE5;&#x8003;&#x8651;&#x76F8;&#x5E94;&#x9700;&#x6C42;&#x662F;&#x5426;&#x5408;&#x7406;&#x3002;</p>
 <h1 id="thinkwon&#x6570;&#x636E;&#x5E93;&#x77E5;&#x8BC6;&#x70B9;"><a href="https://blog.csdn.net/ThinkWon/article/details/104778621?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162555018316780366528301%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=162555018316780366528301&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~hot_rank-1-104778621.pc_v2_rank_blog_default&amp;utm_term=MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96&amp;spm=1018.2226.3001.4450" target="_blank">ThinkWon&#x6570;&#x636E;&#x5E93;&#x77E5;&#x8BC6;&#x70B9;</a></h1>
+<h2 id="&#x9762;&#x8BD5;&#x9898;&#xFF1A;">&#x9762;&#x8BD5;&#x9898;&#xFF1A;</h2>
+<h3 id="1&#x3001;mysql&#x7684;&#x591A;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x67B6;&#x6784;-&#x9ED8;&#x8BA4;&#x7684;&#x5F15;&#x64CE;innodb&#x4E0E;-myisam&#x7684;&#x533A;&#x522B;"><a href="https://www.cnblogs.com/aspirant/p/6878204.html" target="_blank">1&#x3001;MySql&#x7684;&#x591A;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x67B6;&#x6784;, &#x9ED8;&#x8BA4;&#x7684;&#x5F15;&#x64CE;InnoDB&#x4E0E; MYISAM&#x7684;&#x533A;&#x522B;</a></h3>
+<blockquote>
+<p>1&#x3001;MyIASM&#x662F;&#x975E;&#x4E8B;&#x52A1;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x4E8B;&#x52A1;&#xFF0C;&#x800C;InnoDB&#x662F;&#x4E8B;&#x52A1;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x652F;&#x6301;&#x4E8B;&#x52A1;&#x8FD9;&#x662F;&#x6700;&#x91CD;&#x8981;&#x7684;&#x533A;&#x522B;(&#x767E;&#x5EA6;&#x9762;&#x8BD5;)</p>
+<p>2&#x3001;MyIASM&#x9501;&#x7684;&#x7C92;&#x5EA6;&#x662F;&#x8868;&#x7EA7;&#x7684;&#xFF0C;&#x800C;InnoDB&#x652F;&#x6301;&#x884C;&#x7EA7;&#x9501;</p>
+<p>3&#x3001;MyIASM&#x652F;&#x6301;&#x5168;&#x6587;&#x7C7B;&#x578B;&#x7D22;&#x5F15;&#xFF0C;&#x800C;InnoDB&#x4E0D;&#x652F;&#x6301;&#x5168;&#x6587;&#x7D22;&#x5F15;</p>
+<p>4&#x3001;MyIASM&#x76F8;&#x5BF9;&#x7B80;&#x5355;&#xFF0C;&#x6548;&#x7387;&#x4E0A;&#x8981;&#x4F18;&#x4E8E;InnoDB&#xFF0C;&#x5C0F;&#x578B;&#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x4F7F;&#x7528;MyIASM</p>
+<p>5&#x3001;MyIASM&#x8868;&#x4FDD;&#x5B58;&#x6210;&#x6587;&#x4EF6;&#x5F62;&#x5F0F;&#xFF0C;&#x8DE8;&#x5E73;&#x53F0;&#x4F7F;&#x7528;&#x66F4;&#x52A0;&#x65B9;&#x4FBF;&#x3000;</p>
+</blockquote>
+<h3 id="2&#x3001;sql&#x6CE8;&#x5165;&#xFF1A;">2&#x3001;SQL&#x6CE8;&#x5165;&#xFF1A;</h3>
+<blockquote>
+<p>&#x901A;&#x8FC7;id&#x53BB;&#x6392;&#x5E8F;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;&#x4E86; id -- &#xFF0C;&#x5BFC;&#x81F4;&#x5206;&#x9875;&#x5931;&#x6548;&#xFF0C;</p>
+<p>select * from goods order by ${id} limit 1,15</p>
+<p>select * from goods order by id --  limit 1,15</p>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;id &#x540E;&#x9762;&#x7684;&#x503C;&#x90FD;&#x65E0;&#x6548;&#xFF0C;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x4E86;&#x3002;</p>
+</blockquote>
+<h3 id="3&#x3001;&#x5982;&#x4F55;&#x5FEB;&#x901F;&#x5411;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x63D2;&#x5165;1000&#x4E07;&#x6761;&#x6570;&#x636E;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#xFF1F;">3&#x3001;&#x5982;&#x4F55;&#x5FEB;&#x901F;&#x5411;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x63D2;&#x5165;1000&#x4E07;&#x6761;&#x6570;&#x636E;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#xFF1F;</h3>
+<blockquote>
+<p>sysbench&#x5DE5;&#x5177;</p>
+</blockquote>
+<h3 id="4&#x3001;&#x5343;&#x4E07;&#x7EA7;&#x6570;&#x636E;&#x5206;&#x9875;&#x67E5;&#x8BE2;&#x5F88;&#x6162;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF1F;">4&#x3001;&#x5343;&#x4E07;&#x7EA7;&#x6570;&#x636E;&#x5206;&#x9875;&#x67E5;&#x8BE2;&#x5F88;&#x6162;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF1F;</h3>
+<blockquote>
+<p><code>select * from table limit 8000000 &#xFF0C;15;</code></p>
+<p>&#x4F18;&#x5316;&#x4E3A;&#xFF1A;</p>
+<p><code>select a.* from table a,(select id from table limit 8000000 ,15) b</code> </p>
+<p><code>where a.id=b.id;</code></p>
+</blockquote>
+<h3 id="5&#x3001;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x8003;&#x8651;&#x5206;&#x5E93;&#x5206;&#x8868;&#xFF1F;">5&#x3001;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x8003;&#x8651;&#x5206;&#x5E93;&#x5206;&#x8868;&#xFF1F;</h3>
+<blockquote>
+<ul>
+<li>&#x80FD;&#x4E0D;&#x5206;&#x5C3D;&#x91CF;&#x4E0D;&#x5206;</li>
+<li>&#x6570;&#x636E;&#x91CF;&#x5FEB;&#x901F;&#x589E;&#x957F;</li>
+<li>&#x6570;&#x636E;&#x91CF;&#x8FC7;&#x5927;&#xFF0C;&#x65E5;&#x5E38;&#x8FD0;&#x7EF4;&#x5C06;&#x5BF9;&#x4E1A;&#x52A1;&#x9020;&#x6210;&#x5F71;&#x54CD;&#x3002;</li>
+</ul>
+<p>&#x5355;&#x8868;&#x7684;&#x6570;&#x636E;&#x8D85;&#x8FC7;500&#x4E07;&#xFF1B;&#x6216;&#x8005;&#x5355;&#x8868;&#x7684;&#x6570;&#x636E;&#x8FBE;&#x5230;2G&#x3002;</p>
+</blockquote>
+<h3 id="6&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x524D;&#x7F00;&#x7D22;&#x5F15;&#xFF1F;">6&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x524D;&#x7F00;&#x7D22;&#x5F15;&#xFF1F;</h3>
+<blockquote>
+<p>&#x524D;&#x7F00;&#x7D22;&#x5F15;&#x4E5F;&#x53EB;&#x90E8;&#x5206;&#x7D22;&#x5F15;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x7ED9;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x90E8;&#x5206;&#x4FE1;&#x606F;&#x6DFB;&#x52A0;&#x7D22;&#x5F15;&#x53EB;&#x524D;&#x7F00;&#x7D22;&#x5F15;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#x624B;&#x673A;&#x53F7;&#xFF1A;</p>
+<p>13245423456</p>
+<p>15312234567</p>
+<p>alert table users add index(phone(7));</p>
+<ul>
+<li>&#x524D;&#x7F00;&#x7D22;&#x5F15;&#x80FD;&#x51CF;&#x5C11;&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x8BA9;&#x6BCF;&#x4E2A;&#x7D22;&#x5F15;&#x9875;&#x53EF;&#x4EE5;&#x4FDD;&#x5B58;&#x66F4;&#x591A;&#x7684;&#x7D22;&#x5F15;&#x503C;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x9AD8;&#x7D22;&#x5F15;&#x7684;&#x67E5;&#x8BE2;&#x901F;&#x5EA6;&#x3002;</li>
+<li>&#x524D;&#x7F00;&#x7D22;&#x5F15;&#x4E0D;&#x80FD;&#x7528;&#x6237;order by &#x6216;&#x8005;group by &#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x7528;&#x4E8E;&#x8986;&#x76D6;&#x7D22;&#x5F15;&#x3002;</li>
+<li>&#x524D;&#x7F00;&#x7D22;&#x5F15;&#x6240;&#x9009;&#x5B9A;&#x7684;&#x524D;&#x51E0;&#x4E2A;&#x5B57;&#x7B26;&#x91CD;&#x590D;&#x6982;&#x7387;&#x8D8A;&#x4F4E;&#xFF0C;&#x5219;&#x524D;&#x7F00;&#x7D22;&#x5F15;&#x6548;&#x7387;&#x8D8A;&#x9AD8;&#x3002;</li>
+</ul>
+</blockquote>
 
                                 
                                 </section>
@@ -3079,7 +3128,7 @@ InoDB:&#x652F;&#x6301;&#x3002;</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MySQL整理","level":"4.1.2","depth":2,"next":{"title":"redis整理","level":"4.1.3","depth":2,"path":"docs/myself/3.redis.md","ref":"docs/myself/3.redis.md","articles":[]},"previous":{"title":"mysql","level":"4.1.1","depth":2,"path":"docs/database/mysql.md","ref":"docs/database/mysql.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/2.mysql.md","mtime":"2021-07-07T11:32:34.190Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-09T09:01:39.699Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MySQL整理","level":"4.1.2","depth":2,"next":{"title":"redis整理","level":"4.1.3","depth":2,"path":"docs/myself/3.redis.md","ref":"docs/myself/3.redis.md","articles":[]},"previous":{"title":"mysql","level":"4.1.1","depth":2,"path":"docs/database/mysql.md","ref":"docs/database/mysql.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/2.mysql.md","mtime":"2021-07-18T12:03:10.531Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-19T08:54:46.713Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

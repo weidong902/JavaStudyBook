@@ -2466,9 +2466,10 @@ c. &#x8BE5;&#x7C7B;&#x5BF9;&#x5E94;&#x7684; java.lang.Class &#x5BF9;&#x8C61;&#x6
 </ul>
 <h4 id="3&#x3001;full-gc&#x89E6;&#x53D1;&#x6761;&#x4EF6;&#xFF1A;">3&#x3001;Full GC&#x89E6;&#x53D1;&#x6761;&#x4EF6;&#xFF1A;</h4>
 <ul>
+<li>&#x8001;&#x5E74;&#x4EE3;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#x65F6;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1; FullGC.</li>
+<li>&#x6C38;&#x4E45;&#x4EE3;/metaspace &#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x89E6;&#x53D1;FullGC.</li>
+<li>&#x663E;&#x793A;&#x8C03;&#x7528; GC&#xFF1A; System.gc.(&#x4F1A;&#x5EFA;&#x8BAE;jvm GC&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4E00;&#x5B9A;&#x4F1A;GC).</li>
 <li>System.gc()&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;</li>
-<li>&#x8001;&#x5E74;&#x4EE3;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;</li>
-<li>&#x65B9;&#x6CD5;&#x533A;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;</li>
 <li>&#x901A;&#x8FC7;Minor GC&#x540E;&#x8FDB;&#x5165;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x5E73;&#x5747;&#x5927;&#x5C0F;&#x5927;&#x4E8E;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x53EF;&#x7528;&#x5185;&#x5B58;</li>
 </ul>
 <p>&#x7531;Eden&#x533A;&#x3001;From Space&#x533A;&#x5411;To Space&#x533A;&#x590D;&#x5236;&#x65F6;&#xFF0C;&#x5BF9;&#x8C61;&#x5927;&#x5C0F;&#x5927;&#x4E8E;To Space&#x53EF;&#x7528;&#x5185;&#x5B58;&#xFF0C;&#x5219;&#x628A;&#x8BE5;&#x5BF9;&#x8C61;&#x8F6C;&#x5B58;&#x5230;&#x8001;&#x5E74;&#x4EE3;&#xFF0C;&#x4E14;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x53EF;&#x7528;&#x5185;&#x5B58;&#x5C0F;&#x4E8E;&#x8BE5;&#x5BF9;&#x8C61;&#x5927;&#x5C0F;</p>
@@ -2937,21 +2938,6 @@ C Linux&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</p>
 <h3 id="8&#x3001;jmm&#x5185;&#x5B58;&#x6A21;&#x578B;&#xFF1A;">8&#x3001;JMM&#x5185;&#x5B58;&#x6A21;&#x578B;&#xFF1A;</h3>
 <p><img src="4.JVM.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTU1OTI4Mg==,size_16,color_FFFFFF,t_70-20210510134956142.png" alt="&#x5728;&#x8FD9;&#x91CC;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x63CF;&#x8FF0;">
 <img src="4.JVM.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTU1OTI4Mg==,size_16,color_FFFFFF,t_70-20210510134956021.png" alt="&#x5728;&#x8FD9;&#x91CC;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x63CF;&#x8FF0;"></p>
-<table>
-<thead>
-<tr>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h2 id="&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x601D;&#x8003;">&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x601D;&#x8003;</h2>
 <h3 id="1&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x4E0E;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x7684;&#x533A;&#x522B;">(1)&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x4E0E;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x7684;&#x533A;&#x522B;</h3>
 <ul>
@@ -3005,6 +2991,79 @@ C Linux&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</p>
 <p>&#x53C2;&#x8003;&#x4E66;&#x7C4D;&#x3001;&#x6587;&#x732E;&#x548C;&#x8D44;&#x6599;
 1.<a href="https://blog.csdn.net/xiaofeng10330111/article/details/105360974" target="_blank">https://blog.csdn.net/xiaofeng10330111/article/details/105360974</a>
 2.<a href="https://thinkwon.blog.csdn.net/article/details/104390752" target="_blank">https://thinkwon.blog.csdn.net/article/details/104390752</a></p>
+<h2 id="jvm&#x9762;&#x8BD5;&#xFF1A;">JVM&#x9762;&#x8BD5;&#xFF1A;</h2>
+<h3 id="1&#x3001;minor-gc-&#x4E0E;-full-gc-&#x5206;&#x522B;&#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x53D1;&#x751F;&#xFF1F;">1&#x3001;Minor GC &#x4E0E; Full GC &#x5206;&#x522B;&#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x53D1;&#x751F;&#xFF1F;</h3>
+<h3 id="2&#x3001;&#x6392;&#x67E5;&#x95EE;&#x9898;&#xFF1A;&#x5E38;&#x7528;&#x547D;&#x4EE4;">2&#x3001;&#x6392;&#x67E5;&#x95EE;&#x9898;&#xFF1A;&#x5E38;&#x7528;&#x547D;&#x4EE4;</h3>
+<blockquote>
+<p>jps&#xFF1A;&#x67E5;&#x770B;&#x672C;&#x673A;java&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;
+jstack&#xFF1A;&#x6253;&#x5370;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x4FE1;&#x606F;&#xFF0C;&#x5236;&#x4F5C; &#x7EBF;&#x7A0B;dump&#x6587;&#x4EF6;
+jmap&#xFF1A;&#x6253;&#x5370;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x4FE1;&#x606F;&#xFF0C;&#x5236;&#x4F5C; &#x5806;dump&#x6587;&#x4EF6;
+jstat&#xFF1A;&#x6027;&#x80FD;&#x76D1;&#x63A7;&#x5DE5;&#x5177;
+jhat&#xFF1A;&#x5185;&#x5B58;&#x5206;&#x6790;&#x5DE5;&#x5177;&#xFF0C;&#x7528;&#x4E8E;&#x89E3;&#x6790;&#x5806;dump&#x6587;&#x4EF6;&#x5E76;&#x4EE5;&#x9002;&#x5408;&#x4EBA;&#x9605;&#x8BFB;&#x7684;&#x65B9;&#x5F0F;&#x5C55;&#x793A;&#x51FA;&#x6765;
+jconsole&#xFF1A;&#x7B80;&#x6613;&#x7684;JVM&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;
+jvisualvm&#xFF1A;&#x529F;&#x80FD;&#x66F4;&#x5F3A;&#x5927;&#x7684;JVM&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;</p>
+</blockquote>
+<h3 id="3&#x3001;jvm&#x5806;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x540E;&#xFF0C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5DE5;&#x4F5C;&#xFF1F;">3&#x3001;JVM&#x5806;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x540E;&#xFF0C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5DE5;&#x4F5C;&#xFF1F;</h3>
+<blockquote>
+<p>&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x662F;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5DE5;&#x4F5C;&#x7684;&#xFF1A;&#x5806;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x4E4B;&#x540E;&#x7EBF;&#x7A0B;&#x9500;&#x6BC1;&#xFF0C;&#x5185;&#x5B58;&#x5C31;&#x5DF2;&#x7ECF;&#x91CA;&#x653E;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x88AB;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4F7F;&#x7528;&#x3002;</p>
+</blockquote>
+<h3 id="4&#x3001;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x7528;g1&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF1F;">4&#x3001;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x7528;G1&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF1F;</h3>
+<blockquote>
+<ul>
+<li>&#x9488;&#x5BF9;&#x5927;&#x5185;&#x5B58;&#x591A;&#x5904;&#x7406;&#x5668;&#x7684;&#x673A;&#x5668;&#x63A8;&#x8350;&#x4F7F;&#x7528;G1&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF0C;&#x6BD4;&#x5982;&#x5806;&#x5927;&#x5C0F;&#x81F3;&#x5C11;6G&#x6216;&#x4EE5;&#x4E0A;&#xFF1B;</li>
+<li>&#x8D85;&#x8FC7;50%&#x7684;&#x5806;&#x7A7A;&#x95F4;&#x90FD;&#x88AB;&#x6D3B;&#x52A8;&#x6570;&#x636E;&#x5360;&#x7528;&#xFF1B;</li>
+<li>&#x5728;&#x8981;&#x6C42;&#x4F4E;&#x5EF6;&#x8FDF;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;GC&#x5BFC;&#x81F4;&#x7684;&#x7A0B;&#x5E8F;&#x6682;&#x505C;&#x65F6;&#x95F4;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;1.5-1&#x79D2;&#x4E4B;&#x95F4;&#xFF1B;</li>
+<li>&#x5BF9;&#x8C61;&#x5728;&#x5806;&#x4E2D;&#x5206;&#x914D;&#x9891;&#x7387;&#x6216;&#x8005;&#x8001;&#x5E74;&#x4EE3;&#x5347;&#x7EA7;&#x9891;&#x7387;&#x53D8;&#x5316;&#x6BD4;&#x8F83;&#x5927;&#xFF0C;&#x9632;&#x6B62;&#x9AD8;&#x5E76;&#x53D1;&#x4E0B;&#x5E94;&#x7528;&#x96EA;&#x5D29;&#x73B0;&#x8C61;&#x7684;&#x4EA7;&#x751F;&#x3002;</li>
+</ul>
+</blockquote>
+<h3 id="5&#x3001;jvm&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF1F;">5&#x3001;JVM&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF1F;</h3>
+<h3 id="6&#x3001;jvm&#x65B0;&#x751F;&#x4EE3;&#x4E3A;&#x4EC0;&#x4E48;&#x8BBE;&#x8BA1;&#x4E3A;8&#xFF1A;1&#xFF1A;1&#xFF1F;">6&#x3001;JVM&#x65B0;&#x751F;&#x4EE3;&#x4E3A;&#x4EC0;&#x4E48;&#x8BBE;&#x8BA1;&#x4E3A;8&#xFF1A;1&#xFF1A;1&#xFF1F;</h3>
+<h3 id="7&#x3001;&#x65B0;&#x751F;&#x4EE3;&#x548C;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x5360;&#x6BD4;&#xFF1F;">7&#x3001;&#x65B0;&#x751F;&#x4EE3;&#x548C;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x5360;&#x6BD4;&#xFF1F;</h3>
+<blockquote>
+<p>1&#xFF1A;3</p>
+</blockquote>
+<h3 id="8&#x3001;jvm&#x9ED8;&#x8BA4;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF1F;">8&#x3001;JVM&#x9ED8;&#x8BA4;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#xFF1F;</h3>
+<blockquote>
+<p>java -XX:+PrintCommandLineFlags -version (&#x67E5;&#x770B;&#x4F7F;&#x7528;&#x7684;&#x4EC0;&#x4E48;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;)</p>
+<p>&#x7B54;&#x6848;&#xFF1A; &#x9ED8;&#x8BA4;&#x662F;&#xFF1A; &#x5E74;&#x8F7B;&#x4EE3;  Parallel Scavenge  &#x8001;&#x5E74;&#x4EE3;&#xFF1A; Parallel Old</p>
+</blockquote>
+<h3 id="9&#x3001;jvm&#x5143;&#x7A7A;&#x95F4;&#x7684;&#x7279;&#x70B9;&#x53CA;&#x4F5C;&#x7528;&#xFF1F;">9&#x3001;JVM&#x5143;&#x7A7A;&#x95F4;&#x7684;&#x7279;&#x70B9;&#x53CA;&#x4F5C;&#x7528;&#xFF1F;</h3>
+<blockquote>
+<ul>
+<li>jdk1.8&#x5F00;&#x59CB;&#x624D;&#x51FA;&#x73B0;&#x7684;&#x5143;&#x7A7A;&#x95F4;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4E4B;&#x524D;&#x53EB;&#x65B9;&#x6CD5;&#x533A;&#x6216;&#x6C38;&#x4E45;&#x4EE3;</li>
+<li>&#x5143;&#x7A7A;&#x95F4;&#x548C;&#x5806;&#x7C7B;&#x4F3C;&#xFF0C;&#x662F;&#x7EBF;&#x7A0B;&#x5171;&#x4EAB;&#x7684;&#x5185;&#x5B58;&#x533A;&#x57DF;</li>
+<li>&#x5B58;&#x50A8;&#x7C7B;&#x4FE1;&#x606F;&#x3001;&#x5E38;&#x91CF;&#x3001;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x3001;&#x5E38;&#x91CF;&#x6C60;&#x3001;&#x5373;&#x65F6;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x7B49;&#x6570;&#x636E;</li>
+<li>&#x5143;&#x7A7A;&#x95F4;&#x91C7;&#x7528;&#x672C;&#x5730;&#x5185;&#x5B58;&#xFF0C;&#x672C;&#x5730;&#x5185;&#x5B58;&#x6709;&#x591A;&#x5C11;&#x5269;&#x4F59;&#x5C31;&#x80FD;&#x6269;&#x5C55;&#x5230;&#x591A;&#x5927;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x5143;&#x7A7A;&#x95F4;&#x5927;&#x5C0F;<ul>
+<li>-XX:UseCompressedClassPointers -XX:MetaspaceSize=20M  -XX:MaxMetaspaceSize=20M</li>
+</ul>
+</li>
+<li>&#x5143;&#x7A7A;&#x95F4;&#x5F88;&#x5C11;&#x6709;GC&#x5783;&#x573E;&#x6536;&#x96C6;&#xFF0C;&#x4E00;&#x822C;&#x8BE5;&#x533A;&#x57DF;&#x56DE;&#x6536;&#x6761;&#x4EF6;&#x82DB;&#x523B;&#xFF0C;GC&#x5F88;&#x5C11;&#x6765;&#x56DE;&#x6536;&#xFF1B;</li>
+<li>&#x5143;&#x7A7A;&#x95F4;&#x5185;&#x5B58;&#x4E0D;&#x8DB3;&#x65F6;&#xFF0C;&#x5C06;&#x629B;&#x51FA;OutOfMemoryError&#xFF1B;</li>
+</ul>
+</blockquote>
+<h3 id="10&#x3001;&#x6808;&#x7684;&#x7279;&#x70B9;&#x53CA;&#x4F5C;&#x7528;&#xFF1F;">10&#x3001;&#x6808;&#x7684;&#x7279;&#x70B9;&#x53CA;&#x4F5C;&#x7528;&#xFF1F;</h3>
+<blockquote>
+<ul>
+<li>&#x7EBF;&#x7A0B;&#x79C1;&#x6709;</li>
+<li>&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x4F1A;&#x521B;&#x5EFA;&#x6808;&#x5E27;&#xFF0C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x8868;&#x7B49;&#x4FE1;&#x606F;</li>
+<li>&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x5165;&#x865A;&#x62DF;&#x673A;&#x6808;&#xFF0C;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x5B8C;&#x51FA;&#x865A;&#x62DF;&#x673A;&#x6808;&#xFF1B;&#xFF08;&#x5148;&#x5165;&#x540E;&#x51FA;&#xFF09;</li>
+<li>&#x6808;&#x6DF1;&#x5EA6;&#x5927;&#x4E8E;&#x865A;&#x62DF;&#x673A;&#x6240;&#x5141;&#x8BB8; StackOverFlowError</li>
+<li>&#x6808;&#x9700;&#x6269;&#x5C55;&#x800C;&#x65E0;&#x6CD5;&#x7533;&#x8BF7;&#x7A7A;&#x95F4;&#xFF1A;OutOfMemoryError&#xFF08;&#x8F83;&#x5C11;&#x89C1;&#xFF09;</li>
+<li>&#x6808;&#x91CC;&#x9762;&#x8FD0;&#x884C;&#x65B9;&#x6CD5;&#xFF0C;&#x5B58;&#x653E;&#x65B9;&#x6CD5;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x53D8;&#x91CF;&#x540D;&#x6240;&#x6307;&#x5411;&#x7684;&#x503C;&#xFF08;&#x5E38;&#x91CF;&#x503C;&#x3001;&#x5BF9;&#x8C61;&#x503C;&#xFF09;&#x90FD;&#x5B58;&#x653E;&#x5728;&#x5806;&#x4E0A;</li>
+<li>&#x6808;&#x4E00;&#x822C;&#x4E0D;&#x8BBE;&#x7F6E;&#x5927;&#x5C0F;&#xFF0C;&#x6808;&#x6240;&#x5360;&#x7684;&#x7A7A;&#x95F4;&#x5176;&#x5B9E;&#x5F88;&#x5C0F;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;-Xss1M&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E3A;1M</li>
+<li>&#x968F;&#x7EBF;&#x7A0B;&#x800C;&#x751F;&#xFF0C;&#x968F;&#x7EBF;&#x7A0B;&#x800C;&#x706D;</li>
+<li>&#x8BE5;&#x533A;&#x57DF;&#x4E0D;&#x4F1A;&#x6709;GC&#x56DE;&#x6536;&#x3002;</li>
+</ul>
+</blockquote>
+<h3 id="11&#x3001;jvm&#x4F18;&#x5316;&#x7A76;&#x7ADF;&#x4F18;&#x5316;&#x4EC0;&#x4E48;&#xFF1F;">11&#x3001;JVM&#x4F18;&#x5316;&#x7A76;&#x7ADF;&#x4F18;&#x5316;&#x4EC0;&#x4E48;&#xFF1F;</h3>
+<blockquote>
+<ul>
+<li>&#x5C3D;&#x53EF;&#x80FD;&#x8BA9;&#x5BF9;&#x8C61;&#x90FD;&#x5728;&#x65B0;&#x751F;&#x4EE3;&#x91CC;&#x9762;&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;&#xFF0C;&#x907F;&#x514D;&#x5BF9;&#x8C61;&#x9891;&#x7E41;&#x8FDB;&#x5165;&#x8001;&#x5E74;&#x4EE3;&#x5BFC;&#x81F4;&#x8001;&#x5E74;&#x4EE3;&#x9891;&#x7E41;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;</li>
+<li>&#x7ED9;&#x7CFB;&#x7EDF;&#x5145;&#x8DB3;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#xFF0C;&#x907F;&#x514D;&#x65B0;&#x751F;&#x4EE3;&#x9891;&#x7E41;&#x8FDB;&#x884C;&#x5783;&#x573E;&#x56DE;&#x6536;</li>
+<li>&#x5236;&#x5B9A;&#x5408;&#x9002;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;</li>
+</ul>
+</blockquote>
+<h3 id="12&#x3001;">12&#x3001;</h3>
 
                                 
                                 </section>
@@ -3048,7 +3107,7 @@ C Linux&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JVM整理","level":"3.1.1","depth":2,"next":{"title":"设计模式","level":"3.1.2","depth":2,"path":"docs/设计模式/README.md","ref":"docs/设计模式/README.md","articles":[]},"previous":{"title":"JVM（重点）","level":"3.1","depth":1,"path":"docs/java/jvm/README.md","ref":"docs/java/jvm/README.md","articles":[{"title":"JVM整理","level":"3.1.1","depth":2,"path":"docs/myself/4.JVM.md","ref":"docs/myself/4.JVM.md","articles":[]},{"title":"设计模式","level":"3.1.2","depth":2,"path":"docs/设计模式/README.md","ref":"docs/设计模式/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/4.JVM.md","mtime":"2021-07-07T05:48:51.838Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-09T09:01:39.699Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JVM整理","level":"3.1.1","depth":2,"next":{"title":"设计模式","level":"3.1.2","depth":2,"path":"docs/设计模式/README.md","ref":"docs/设计模式/README.md","articles":[]},"previous":{"title":"JVM（重点）","level":"3.1","depth":1,"path":"docs/java/jvm/README.md","ref":"docs/java/jvm/README.md","articles":[{"title":"JVM整理","level":"3.1.1","depth":2,"path":"docs/myself/4.JVM.md","ref":"docs/myself/4.JVM.md","articles":[]},{"title":"设计模式","level":"3.1.2","depth":2,"path":"docs/设计模式/README.md","ref":"docs/设计模式/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/4.JVM.md","mtime":"2021-07-18T12:12:07.417Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-19T08:54:46.713Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1976,17 +1976,537 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5206;&#x6790;threadlocal&#x7684;&#x5F31;&#x5F15;&#x7528;&#x4E0E;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;-java8"><a href="https://www.cnblogs.com/-beyond/p/13125195.html" target="_blank">&#x5206;&#x6790;ThreadLocal&#x7684;&#x5F31;&#x5F15;&#x7528;&#x4E0E;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;-Java8</a></h1>
-<h2 id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</h2>
-<p>&#x4E00;.<a href="https://www.cnblogs.com/-beyond/p/13125195.html#intro" target="_blank">&#x4ECB;&#x7ECD;</a></p>
-<p>&#x4E8C;.<a href="https://www.cnblogs.com/-beyond/p/13125195.html#proble" target="_blank">&#x95EE;&#x9898;&#x63D0;&#x51FA;</a></p>
-<p>&#x3000;&#x3000;2.1<a href="https://www.cnblogs.com/-beyond/p/13125195.html#memory" target="_blank">&#x5185;&#x5B58;&#x539F;&#x7406;&#x56FE;</a></p>
-<p>&#x3000;&#x3000;2.2<a href="https://www.cnblogs.com/-beyond/p/13125195.html#ask" target="_blank">&#x51E0;&#x4E2A;&#x95EE;&#x9898;</a></p>
-<p>&#x4E09;.<a href="https://www.cnblogs.com/-beyond/p/13125195.html#answer" target="_blank">&#x56DE;&#x7B54;&#x95EE;&#x9898;</a></p>
-<p>&#x3000;&#x3000;3.1<a href="https://www.cnblogs.com/-beyond/p/13125195.html#why-lack" target="_blank">&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;</a></p>
-<p>&#x3000;&#x3000;3.2<a href="https://www.cnblogs.com/-beyond/p/13125195.html#weak-reference" target="_blank">&#x82E5;Entry&#x4F7F;&#x7528;&#x5F31;&#x5F15;&#x7528;</a></p>
-<p>&#x3000;&#x3000;3.3<a href="https://www.cnblogs.com/-beyond/p/13125195.html#recycle" target="_blank">&#x5F31;&#x5F15;&#x7528;&#x914D;&#x5408;&#x81EA;&#x52A8;&#x56DE;&#x6536;</a></p>
-<p>&#x56DB;.<a href="https://www.cnblogs.com/-beyond/p/13125195.html#summarize" target="_blank">&#x603B;&#x7ED3;</a> </p>
+                                <h1 id="threadlocal&#x6E90;&#x7801;&#x89E3;&#x6790;-java8"><a href="https://www.cnblogs.com/-beyond/p/13093032.html" target="_blank">ThreadLocal&#x6E90;&#x7801;&#x89E3;&#x6790;-Java8</a></h1>
+<h2 id="&#x4E00;&#x4ECB;&#x7ECD;threadlocal">&#x4E00;.&#x4ECB;&#x7ECD;ThreadLocal</h2>
+<h3 id="11threadlocal&#x7684;&#x529F;&#x80FD;">1.1ThreadLocal&#x7684;&#x529F;&#x80FD;</h3>
+<p>&#x3000;&#x3000;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x53D8;&#x91CF;&#x4ECE;&#x4F5C;&#x7528;&#x57DF;&#x8303;&#x56F4;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x201C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x201D;&#x3001;&#x201C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x201D;&#x4E24;&#x79CD;&#xFF1A;</p>
+<p>&#x3000;&#x3000;1.&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF08;global variable&#xFF09;&#xFF0C;&#x6BD4;&#x5982;&#x7C7B;&#x7684;&#x9759;&#x6001;&#x5C5E;&#x6027;&#xFF08;&#x52A0;static&#x5173;&#x952E;&#x5B57;&#xFF09;&#xFF0C;&#x5728;&#x7C7B;&#x7684;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x90FD;&#x6709;&#x6548;&#xFF1B;</p>
+<p>&#x3000;&#x3000;2.&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF08;local variable)&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4F5C;&#x7528;&#x57DF;&#x53EA;&#x662F;&#x5728;&#x5F53;&#x524D;&#x65B9;&#x6CD5;&#x5185;&#xFF0C;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x53D8;&#x91CF;&#x5C31;&#x9500;&#x6BC1;&#xFF08;&#x91CA;&#x653E;&#xFF09;&#x4E86;&#xFF1B;</p>
+<p>&#x3000;&#x3000;&#x4F7F;&#x7528;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C;&#x5F53;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x4FEE;&#x6539;&#x9759;&#x6001;&#x5C5E;&#x6027;&#xFF0C;&#x5C31;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x5E76;&#x53D1;&#x95EE;&#x9898;&#xFF0C;&#x5BFC;&#x81F4;&#x810F;&#x6570;&#x636E;&#xFF1B;&#x800C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x5E76;&#x53D1;&#x95EE;&#x9898;&#xFF08;&#x5728;&#x65B9;&#x6CD5;&#x4E2D;&#x5F00;&#x542F;&#x591A;&#x7EBF;&#x7A0B;&#x5E76;&#x53D1;&#x4FEE;&#x6539;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x4ECD;&#x53EF;&#x80FD;&#x5F15;&#x8D77;&#x5E76;&#x53D1;&#x95EE;&#x9898;&#xFF09;&#xFF1B;</p>
+<p>&#x3000;&#x3000;&#x518D;&#x770B;ThreadLocal&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E2A;&#x201C;&#x5C40;&#x90E8;&#x201D;&#x662F;&#x6307;&#x201C;&#x7EBF;&#x7A0B;&#x201D;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x8BE5;&#x53D8;&#x91CF;&#x5728;&#x8BE5;&#x7EBF;&#x7A0B;&#x7684;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x6709;&#x6548;&#x3002;</p>
+<p>&#x3000;&#x3000;&#x5173;&#x4E8E;ThreadLocal&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;<a href="https://www.cnblogs.com/-beyond/p/13111015.html" target="_blank">ThreadLocal&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x5206;&#x6790;</a>&#x3002;</p>
+<h3 id="12threadlocal&#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;">1.2ThreadLocal&#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</h3>
+<p>&#x3000;&#x3000;ThreadLocal&#x4F7F;&#x7528;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;</p>
+<pre><code>package cn.ganlixin;
+
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class TestThreadLocal {
+
+    private static class Goods {
+        public Integer id;
+        public List&lt;String&gt; tags;
+    }
+
+    @Test
+    public void testReference() {
+        Goods goods1 = new Goods();
+        goods1.id = 10;
+        goods1.tags = Arrays.asList(&quot;healthy&quot;, &quot;cheap&quot;);
+
+        ThreadLocal&lt;Goods&gt; threadLocal = new ThreadLocal&lt;&gt;();
+        threadLocal.set(goods1);
+
+        Goods goods2 = threadLocal.get();
+        System.out.println(goods1); // cn.ganlixin.TestThreadLocal$Goods@1c655221
+        System.out.println(goods2); // cn.ganlixin.TestThreadLocal$Goods@1c655221
+
+        goods2.id = 100;
+        System.out.println(goods1.id);  // 100
+        System.out.println(goods2.id);  // 100
+
+        threadLocal.remove();
+        System.out.println(threadLocal.get()); // null
+    }
+
+    @Test
+    public void test2() {
+        // &#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x591A;&#x4E2A;ThreadLocal&#x5BF9;&#x8C61;&#xFF0C;&#x591A;&#x4E2A;ThreadLoca&#x5BF9;&#x8C61;&#x4E92;&#x4E0D;&#x5F71;&#x54CD;
+        ThreadLocal&lt;String&gt; threadLocal1 = new ThreadLocal&lt;&gt;();
+        ThreadLocal&lt;String&gt; threadLocal2 = new ThreadLocal&lt;&gt;();
+        // ThreadLocal&#x5B58;&#x7684;&#x503C;&#x9ED8;&#x8BA4;&#x4E3A;null
+
+        System.out.println(threadLocal1.get()); // null
+
+        threadLocal1.set(&quot;this is value1&quot;);
+        threadLocal2.set(&quot;this is value2&quot;);
+        System.out.println(threadLocal1.get()); // this is value1
+        System.out.println(threadLocal2.get());  // this is value2
+
+        // &#x53EF;&#x4EE5;&#x91CD;&#x5199;initialValue&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x521D;&#x59CB;&#x503C;
+        ThreadLocal&lt;String&gt; threadLocal3 = new ThreadLocal&lt;String&gt;() {
+            @Override
+            protected String initialValue() {
+                return &quot;this is initial value&quot;;
+            }
+        };
+        System.out.println(threadLocal3.get()); // this is initial value
+    }
+}
+</code></pre><p>&#x3000;&#x3000;</p>
+<h2 id="&#x4E8C;&#x6E90;&#x7801;&#x5206;&#x6790;-threadlocal">&#x4E8C;.&#x6E90;&#x7801;&#x5206;&#x6790;-ThreadLocal</h2>
+<h3 id="21threadlocal&#x7C7B;&#x5C42;&#x7EA7;&#x5173;&#x7CFB;">2.1ThreadLocal&#x7C7B;&#x5C42;&#x7EA7;&#x5173;&#x7CFB;</h3>
+<p>&#x3000;&#x3000;<img src="ThreadLocal.assets/848880-20200613113707003-205775773.png" alt="img"></p>
+<p>&#x3000;&#x3000;ThreadLocal&#x7C7B;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;ThreadLocalMap&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x7279;&#x522B;&#x91CD;&#x8981;&#xFF0C;<strong>ThreadLocal&#x7684;&#x5404;&#x79CD;&#x64CD;&#x4F5C;&#x57FA;&#x672C;&#x90FD;&#x662F;&#x56F4;&#x7ED5;ThreadLocalMap&#x8FDB;&#x884C;&#x7684;</strong>&#x3002;</p>
+<p>&#x3000;&#x3000;&#x5BF9;&#x4E8E;ThreadLocalMap&#x6709;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;Entry&#x5185;&#x90E8;&#x7C7B;&#xFF0C;&#x6709;&#x4E00;&#x4E2A;table&#x5C5E;&#x6027;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;Entry&#x6570;&#x7EC4;&#xFF0C;&#x548C;HashMap&#x6709;&#x4E00;&#x4E9B;&#x76F8;&#x4F3C;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x4F46;&#x662F;ThreadLocalMap&#x548C;HashMap&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x3000;&#x3000;&#x5148;&#x5927;&#x6982;&#x770B;&#x4E00;&#x4E0B;&#x5185;&#x5B58;&#x5173;&#x7CFB;&#x56FE;&#xFF0C;&#x4E0D;&#x7406;&#x89E3;&#x4E5F;&#x6CA1;&#x5173;&#x7CFB;&#xFF0C;&#x770B;&#x4E86;&#x540E;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5E94;&#x8BE5;&#x5C31;&#x80FD;&#x7406;&#x89E3;&#x4E86;&#xFF1A;</p>
+<p>&#x3000;&#x3000;<img src="ThreadLocal.assets/848880-20200614222601388-50176963.png" alt="img"> </p>
+<p>&#x3000;&#x3000;&#x5927;&#x6982;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#xFF0C;&#x6808;&#x4E2D;&#x7684;Thread ref&#xFF08;&#x5F15;&#x7528;&#xFF09;&#x5806;&#x4E2D;&#x7684;Thread&#x5BF9;&#x8C61;&#xFF0C;Thread&#x5BF9;&#x8C61;&#x6709;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;threadlocals(ThreadLocalMap&#x7C7B;&#x578B;)&#xFF0C;&#x8FD9;&#x4E2A;Map&#x4E2D;&#x6BCF;&#x4E00;&#x9879;(Entry)&#x7684;value&#x662F;ThreadLocal.set()&#x7684;&#x503C;&#xFF0C;&#x800C;Map&#x7684;key&#x5219;&#x662F;ThreadLocal&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x3000;&#x3000;&#x4E0B;&#x9762;&#x5728;&#x4ECB;&#x7ECD;&#x6E90;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;<strong>&#x4F1A;&#x4ECE;&#x4E24;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x4ECB;&#x7ECD;&#xFF0C;&#x5148;&#x4ECB;&#x7ECD;ThreadLocal&#x7684;&#x5E38;&#x7528;api&#xFF0C;&#x7136;&#x540E;&#x518D;&#x4ECB;&#x7ECD;ThreadLocalMap&#xFF0C;&#x56E0;&#x4E3A;ThreadLocal&#x7684;api&#x5185;&#x90E8;&#x5176;&#x5B9E;&#x90FD;&#x662F;&#x5728;&#x64CD;&#x4F5C;ThreadLocalMap&#xFF0C;&#x6240;&#x4EE5;&#x770B;&#x6E90;&#x7801;&#x65F6;&#x4E00;&#x5B9A;&#x8981;&#x77E5;&#x9053;&#x4ED6;&#x4EEC;&#x4FE9;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</strong>&#x3002;</p>
+<h3 id="22threadlocal&#x7684;&#x5C5E;&#x6027;">2.2ThreadLocal&#x7684;&#x5C5E;&#x6027;</h3>
+<p>&#x3000;&#x3000;ThreadLocal&#x6709;3&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x529F;&#x80FD;&#x5C31;&#x662F;&#x751F;&#x6210;ThreadLocal&#x7684;hash&#x503C;&#x3002;</p>
+<pre><code>// threadLocalHashCode&#x7528;&#x6765;&#x8868;&#x793A;&#x5F53;&#x524D;ThreadLocal&#x5BF9;&#x8C61;&#x7684;hashCode&#xFF0C;&#x901A;&#x8FC7;&#x8BA1;&#x7B97;&#x83B7;&#x5F97;
+private final int threadLocalHashCode = nextHashCode();
+
+// &#x4E00;&#x4E2A;AtomicInteger&#x7C7B;&#x578B;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x529F;&#x80FD;&#x5C31;&#x662F;&#x8BA1;&#x6570;&#xFF0C;&#x5404;&#x79CD;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x539F;&#x5B50;&#x6027;&#x7684;&#xFF0C;&#x5728;&#x5E76;&#x53D1;&#x65F6;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x95EE;&#x9898;
+private static AtomicInteger nextHashCode = new AtomicInteger();
+
+// hash&#x503C;&#x7684;&#x589E;&#x91CF;&#xFF0C;&#x4E0D;&#x662F;&#x968F;&#x4FBF;&#x6307;&#x5B9A;&#x7684;&#xFF0C;&#x88AB;&#x79F0;&#x4E3A;&#x201C;&#x9EC4;&#x91D1;&#x5206;&#x5272;&#x6570;&#x201D;&#xFF0C;&#x80FD;&#x8BA9;hash&#x7ED3;&#x679C;&#x5747;&#x8861;&#x5206;&#x5E03;
+private static final int HASH_INCREMENT = 0x61c88647;
+
+/**
+ * &#x901A;&#x8FC7;&#x8BA1;&#x7B97;&#xFF0C;&#x4E3A;&#x5F53;&#x524D;ThreadLocal&#x5BF9;&#x8C61;&#x751F;&#x6210;&#x4E00;&#x4E2A;HashCode
+ */
+private static int nextHashCode() {
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;nextHashCode&#xFF0C;&#x7136;&#x540E;&#x9012;&#x589E;HASH_INCREMENT
+    return nextHashCode.getAndAdd(HASH_INCREMENT);
+}
+</code></pre><p>&#x3000;&#x3000;</p>
+<h3 id="23&#x521B;&#x5EFA;threadlocal&#x5BF9;&#x8C61;">2.3&#x521B;&#x5EFA;ThreadLocal&#x5BF9;&#x8C61;</h3>
+<p>&#x3000;&#x3000;ThreadLocal&#x7C7B;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x5668;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x662F;&#x6307;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x91CD;&#x5199;initialValue&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code>public ThreadLocal() {}
+
+/**
+ * &#x521D;&#x59CB;&#x503C;&#x9ED8;&#x8BA4;&#x4E3A;null&#xFF0C;&#x8981;&#x8BBE;&#x7F6E;&#x521D;&#x59CB;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4E3A;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x503C;&#x5373;&#x53EF;
+ *
+ * @return ThreadLocal&#x7684;&#x521D;&#x59CB;&#x503C;
+ */
+protected T initialValue() {
+    return null;
+}
+</code></pre><p>&#x3000;&#x3000;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;<strong>initialValue&#x65B9;&#x6CD5;&#x5E76;&#x4E0D;&#x4F1A;&#x5728;&#x521B;&#x5EFA;ThreadLocal&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#x8BBE;&#x7F6E;&#x521D;&#x59CB;&#x503C;&#xFF0C;&#x800C;&#x662F;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#xFF1A;</strong>&#x5F53;ThreadLocal&#x76F4;&#x63A5;&#x8C03;&#x7528;get&#x65F6;&#x624D;&#x4F1A;&#x89E6;&#x53D1;initialValue&#x6267;&#x884C;&#xFF08;get&#x4E4B;&#x524D;&#x6CA1;&#x6709;&#x8C03;&#x7528;set&#x6765;&#x8BBE;&#x7F6E;&#x8FC7;&#x503C;&#xFF09;&#xFF0C;initialValue&#x65B9;&#x6CD5;&#x5728;&#x540E;&#x9762;&#x8FD8;&#x4F1A;&#x4ECB;&#x7ECD;&#x3002; </p>
+<h3 id="24threadlocal-set&#x64CD;&#x4F5C;">2.4ThreadLocal-set&#x64CD;&#x4F5C;</h3>
+<p>&#x3000;&#x3000;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x53EA;&#x7ED9;&#x51FA;&#x4E86;ThreadLocal&#x7684;set&#x4EE3;&#x7801;:</p>
+<pre><code>public void set(T value) {
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;
+    Thread t = Thread.currentThread();
+
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;ThreadLocalMap&#x5C5E;&#x6027;&#xFF0C;ThreadLocal&#x6709;&#x4E00;&#x4E2A;threadLocals&#x5C5E;&#x6027;&#xFF08;ThreadLocalMap&#x7C7B;&#x578B;&#xFF09;
+    ThreadLocalMap map = getMap(t);
+
+    if (map != null) {
+        // &#x5982;&#x679C;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6709;&#x5173;&#x8054;&#x7684;ThreadLocalMap&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x8C03;&#x7528;ThreadLocalMap&#x7684;set&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;
+        map.set(this, value);
+    } else {
+        // &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E0E;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x5173;&#x8054;&#x7684;ThreadLocalMap&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x5BF9;&#x5E94;&#x7684;value
+        createMap(t, value);
+    }
+}
+
+/**
+ * &#x83B7;&#x53D6;&#x7EBF;&#x7A0B;&#x5173;&#x8054;&#x7684;ThreadLocalMap&#x5BF9;&#x8C61;
+ */
+ThreadLocalMap getMap(Thread t) {
+    return t.threadLocals;
+}
+
+/**
+ * &#x521B;&#x5EFA;ThreadLocalMap
+ * @param t          key&#x4E3A;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;
+ * @param firstValue value&#x4E3A;ThreadLocal.set&#x7684;&#x503C;
+ */
+void createMap(Thread t, T firstValue) {
+    t.threadLocals = new ThreadLocalMap(this, firstValue);
+}
+</code></pre><p>&#x3000;&#x3000;&#x5982;&#x679C;&#x60F3;&#x7ACB;&#x5373;&#x4E86;&#x89E3;ThreadLocalMap&#x7684;set&#x65B9;&#x6CD5;&#xFF0C;&#x5219;&#x53EF;&#x70B9;&#x6B64;<a href="https://www.cnblogs.com/-beyond/p/13093032.html#threadlocalmap-set" target="_blank">&#x8DF3;&#x8F6C;</a>&#xFF01;</p>
+<h3 id="25threadlocal-get&#x64CD;&#x4F5C;">2.5ThreadLocal-get&#x64CD;&#x4F5C;</h3>
+<p>&#x3000;&#x3000;&#x524D;&#x9762;&#x8BF4;&#x8FC7;&#x201C;&#x91CD;&#x5199;ThreadLocal&#x7684;initialValue&#x65B9;&#x6CD5;&#x6765;&#x8BBE;&#x7F6E;ThreadLocal&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x5728;&#x521B;&#x5EFA;ThreadLocal&#x7684;&#x65F6;&#x5019;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x76F4;&#x63A5;get&#x7684;&#x65F6;&#x5019;&#x6267;&#x884C;&#x7684;&#x201D;&#xFF0C;&#x770B;&#x4E86;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5C31;&#x77E5;&#x9053;&#x8FD9;&#x53E5;&#x8BDD;&#x7684;&#x5177;&#x4F53;&#x542B;&#x4E49;&#x4E86;&#xFF0C;&#x611F;&#x89C9;&#x8BBE;&#x8BA1;&#x5F88;&#x5DE7;&#x5999;&#xFF1A;</p>
+<pre><code>public T get() {
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;
+    Thread t = Thread.currentThread();
+
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#x7684;threadLocals&#x5C5E;&#x6027;
+    ThreadLocalMap map = getMap(t);
+
+    // &#x82E5;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#x7684;threadLocals&#x5C5E;&#x6027;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF08;map&#x4E0D;&#x4E3A;&#x7A7A;&#xFF09;
+    if (map != null) {
+        // &#x5F53;&#x524D;ThreadLocal&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;key&#xFF0C;&#x83B7;&#x53D6;ThreadLocalMap&#x4E2D;&#x5BF9;&#x5E94;&#x7684;Entry
+        ThreadLocalMap.Entry e = map.getEntry(this);
+
+        // &#x5982;&#x679C;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;Entry&#xFF0C;&#x5219;&#x8BC1;&#x660E;&#x8BE5;&#x7EBF;&#x7A0B;&#x7684;&#x8BE5;ThreadLocal&#x6709;&#x503C;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x5373;&#x53EF;
+        if (e != null) {
+            @SuppressWarnings(&quot;unchecked&quot;)
+            T result = (T) e.value;
+            return result;
+        }
+    }
+
+    // 1.&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#x7684;threadLocals&#x5C5E;&#x6027;&#x4E3A;&#x7A7A;&#xFF08;map&#x4E3A;&#x7A7A;&#xFF09;
+    // 2.&#x6216;&#x8005;map&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x4F46;&#x662F;&#x672A;&#x5728;map&#x4E2D;&#x67E5;&#x8BE2;&#x5230;&#x4EE5;&#x8BE5;ThreadLocal&#x5BF9;&#x8C61;&#x4E3A;key&#x5BF9;&#x5E94;&#x7684;entry
+    // &#x8FD9;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x90FD;&#x4F1A;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x521D;&#x59CB;&#x503C;&#xFF0C;&#x5E76;&#x5C06;&#x521D;&#x59CB;&#x503C;&#x8FD4;&#x56DE;
+    return setInitialValue();
+}
+
+/**
+ * &#x8BBE;&#x7F6E;ThreadLocal&#x521D;&#x59CB;&#x503C;
+ *
+ * @return &#x521D;&#x59CB;&#x503C;
+ */
+private T setInitialValue() {
+    // &#x8C03;&#x7528;initialValue&#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5728;&#x521B;&#x5EFA;ThreadLocal&#x7684;&#x65F6;&#x5019;&#x91CD;&#x5199;
+    T value = initialValue();
+    Thread t = Thread.currentThread();
+
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;threadLocals&#x5C5E;&#x6027;&#xFF08;map&#xFF09;
+    ThreadLocalMap map = getMap(t);
+    if (map != null) {
+        // threadLocals&#x5C5E;&#x6027;&#x503C;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x8C03;&#x7528;ThreadLocalMap&#x7684;set&#x65B9;&#x6CD5;
+        map.set(this, value);
+    } else {
+        // &#x6CA1;&#x6709;&#x5173;&#x8054;&#x7684;threadLocals&#xFF0C;&#x5219;&#x521B;&#x5EFA;ThreadLocalMap&#xFF0C;&#x5E76;&#x5728;map&#x4E2D;&#x65B0;&#x589E;&#x4E00;&#x4E2A;Entry
+        createMap(t, value);
+    }
+
+    // &#x8FD4;&#x56DE;&#x521D;&#x59CB;&#x503C;
+    return value;
+}
+
+/**
+ * &#x521D;&#x59CB;&#x503C;&#x9ED8;&#x8BA4;&#x4E3A;null&#xFF0C;&#x8981;&#x8BBE;&#x7F6E;&#x521D;&#x59CB;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4E3A;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x503C;&#x5373;&#x53EF;
+ * &#x521B;&#x5EFA;ThreadLocal&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x8986;&#x76D6;initialValue&#x65B9;&#x6CD5;&#xFF0C;initialValue&#x65B9;&#x6CD5;&#x4E0D;&#x662F;&#x5728;&#x521B;&#x5EFA;ThreadLocal&#x65F6;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6267;&#x884C;
+ *
+ * @return ThreadLocal&#x7684;&#x521D;&#x59CB;&#x503C;
+ */
+protected T initialValue() {
+    return null;
+}
+</code></pre><p>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;</p>
+<h3 id="26threadlocal-remove&#x64CD;&#x4F5C;">2.6ThreadLocal-remove&#x64CD;&#x4F5C;</h3>
+<p>&#x3000;&#x3000;&#x4E00;&#x822C;&#x662F;&#x5728;ThreadLocal&#x5BF9;&#x8C61;&#x4F7F;&#x7528;&#x5B8C;&#x540E;&#xFF0C;&#x8C03;&#x7528;ThreadLocal&#x7684;remove&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#xFF1B;</p>
+<pre><code>/**
+ * &#x5220;&#x9664;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x4E2D;threadLocals&#x5C5E;&#x6027;&#xFF08;map&#xFF09;&#x4E2D;&#x7684;Entry&#xFF08;&#x4EE5;&#x5F53;&#x524D;ThreadLocal&#x4E3A;key&#x7684;&#xFF09;
+ */
+public void remove() {
+    // &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;threadLocals&#x5C5E;&#x6027;&#xFF08;ThreadLocalMap&#xFF09;
+    ThreadLocalMap m = getMap(Thread.currentThread());
+
+    if (m != null) {
+        // &#x8C03;&#x7528;ThreadLocalMap&#x7684;remove&#x65B9;&#x6CD5;&#xFF0C;&#x5220;&#x9664;map&#x4E2D;&#x4EE5;&#x5F53;&#x524D;ThreadLocal&#x4E3A;key&#x7684;entry
+        m.remove(this);
+    }
+}
+</code></pre><h2 id="&#x4E09;threadlocalmap&#x5185;&#x90E8;&#x7C7B;">&#x4E09;.ThreadLocalMap&#x5185;&#x90E8;&#x7C7B;</h2>
+<h3 id="30-&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x7B97;&#x6CD5;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;">3.0 &#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x7B97;&#x6CD5;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;</h3>
+<p>&#x3000;&#x3000;&#x5728;&#x4ECB;&#x7ECD;ThreadLocalMap&#x7684;&#x4E4B;&#x524D;&#xFF0C;&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x5148;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x7B97;&#x6CD5;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x89E3;&#x51B3;Hash&#x51B2;&#x7A81;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E86;&#x89E3;&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;&#x5C31;&#x53BB;&#x770B;ThreadLocalMap&#x7684;&#x6E90;&#x7801;&#x5C31;&#x4F1A;&#x975E;&#x5E38;&#x5403;&#x529B;&#xFF0C;&#x4F1A;&#x611F;&#x5230;&#x83AB;&#x540D;&#x5176;&#x5999;&#x3002;</p>
+<p>&#x3000;&#x3000;&#x94FE;&#x63A5;&#x5728;&#x6B64;&#xFF1A;<a href="https://www.cnblogs.com/-beyond/p/7726347.html" target="_blank">&#x5229;&#x7528;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x6CD5;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;</a></p>
+<h3 id="31entry&#x5185;&#x90E8;&#x7C7B;">3.1Entry&#x5185;&#x90E8;&#x7C7B;</h3>
+<p>&#x3000;&#x3000;ThreadLocalMap&#x662F;ThreadLocal&#x7684;&#x5185;&#x90E8;&#x7C7B;&#xFF0C;ThreadLocalMap&#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x6570;&#x7EC4;&#x5B9E;&#x73B0;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x5143;&#x7D20;&#x90FD;&#x662F;Entry&#x7C7B;&#x578B;&#xFF08;&#x5728;ThreadLocalMap&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#xFF09;&#xFF0C;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>/**
+ * ThreadLocalMap&#x4E2D;&#x5B58;&#x653E;&#x7684;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#xFF0C;&#x7EE7;&#x627F;&#x4E86;&#x5F31;&#x5F15;&#x7528;&#x7C7B;
+ */
+static class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; {
+    // key&#x5BF9;&#x5E94;&#x7684;value&#xFF0C;&#x6CE8;&#x610F;key&#x662F;ThreadLocal&#x7C7B;&#x578B;
+    Object value;
+
+    Entry(ThreadLocal&lt;?&gt; k, Object v) {
+        super(k);
+        value = v;
+    }
+}
+</code></pre><p>&#x3000;&#x3000;ThreadLocalMap&#x548C;HashMap&#x7C7B;&#x4F3C;&#xFF0C;&#x6BD4;&#x8F83;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<p>&#x3000;&#x3000;a:&#x5E95;&#x5C42;&#x90FD;&#x662F;&#x4F7F;&#x7528;&#x6570;&#x7EC4;&#x5B9E;&#x73B0;&#xFF0C;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x90FD;&#x662F;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#xFF0C;Java8&#x4E2D;&#xFF0C;HashMap&#x7684;&#x5143;&#x7D20;&#x662F;Node&#x7C7B;&#x578B;&#xFF08;&#x6216;&#x8005;TreeNode&#x7C7B;&#x578B;&#xFF09;&#xFF0C;ThreadLocalMap&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x662F;Entry&#x7C7B;&#x578B;&#xFF1B;</p>
+<p>&#x3000;&#x3000;b.&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x8BA1;&#x7B97;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x5C06;&#x8FD9;&#x4E2A;&#x503C;&#x4E0E;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#xFF08;&#x5BB9;&#x91CF;&#xFF09;&#x8FDB;&#x884C;&#x4E0E;&#x64CD;&#x4F5C;&#xFF0C;&#x786E;&#x5B9A;Entry&#x5E94;&#x8BE5;&#x653E;&#x5230;&#x54EA;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF1B;</p>
+<p>&#x3000;&#x3000;c.&#x90FD;&#x6709;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x3001;&#x8D1F;&#x8F7D;&#x56E0;&#x5B50;&#xFF0C;&#x8D85;&#x8FC7;&#x6269;&#x5BB9;&#x9608;&#x503C;&#x5C06;&#x4F1A;&#x89E6;&#x53D1;&#x6269;&#x5BB9;&#xFF1B;&#x4F46;&#x662F;HashMap&#x7684;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x3001;&#x8D1F;&#x8F7D;&#x56E0;&#x5B50;&#x662F;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x7684;&#xFF0C;&#x800C;ThreadLocalMap&#x7684;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x548C;&#x8D1F;&#x8F7D;&#x56E0;&#x5B50;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#xFF1B;</p>
+<p>&#x3000;&#x3000;&#x6CE8;&#x610F;Entry&#x7EE7;&#x627F;&#x81EA;WeakReference&#x7C7B;&#xFF0C;&#x5728;&#x5B9E;&#x4F8B;&#x5316;Entry&#x65F6;&#xFF0C;&#x5C06;&#x63A5;&#x6536;&#x7684;key&#x4F20;&#x7ED9;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x5668;&#xFF08;&#x4E5F;&#x5C31;&#x662F;WeakReference&#x7684;&#x6784;&#x9020;&#x5668;&#xFF09;&#xFF0C;WeakReference&#x6784;&#x9020;&#x5668;&#x53C8;&#x5C06;key&#x4F20;&#x7ED9;&#x5B83;&#x7684;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x5668;&#xFF08;Reference&#xFF09;:</p>
+<pre><code>// &#x521B;&#x5EFA;Reference&#x5BF9;&#x8C61;&#xFF0C;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x5F15;&#x7528;
+Reference(T referent) {
+    this(referent, null);
+}
+
+// &#x8BBE;&#x7F6E;&#x5F15;&#x7528;
+Reference(T referent, ReferenceQueue&lt;? super T&gt; queue) {
+    this.referent = referent;
+    this.queue = (queue == null) ? ReferenceQueue.NULL : queue;
+}
+</code></pre><p>&#x3000;&#x3000;&#x5173;&#x4E8E;Java&#x7684;&#x5404;&#x79CD;&#x5F15;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#xFF1A;<a href="https://www.cnblogs.com/-beyond/p/10881060.html" target="_blank">Java-&#x5F3A;&#x5F15;&#x7528;&#x3001;&#x8F6F;&#x5F15;&#x7528;&#x3001;&#x5F31;&#x5F15;&#x7528;&#x3001;&#x865A;&#x5F15;&#x7528;</a></p>
+<h3 id="32threadlocalmap&#x7684;&#x5E38;&#x91CF;&#x4ECB;&#x7ECD;">3.2ThreadLocalMap&#x7684;&#x5E38;&#x91CF;&#x4ECB;&#x7ECD;</h3>
+<pre><code>// ThreadLocalMap&#x7684;&#x521D;&#x59CB;&#x5BB9;&#x91CF;
+private static final int INITIAL_CAPACITY = 16;
+
+// ThreadLocalMap&#x5E95;&#x5C42;&#x5B58;&#x6570;&#x636E;&#x7684;&#x6570;&#x7EC4;
+private Entry[] table;
+
+// ThreadLocalMap&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x4E2A;&#x6570;
+private int size = 0;
+
+// &#x6269;&#x5BB9;&#x9608;&#x503C;&#xFF0C;&#x5F53;size&#x8FBE;&#x5230;&#x9608;&#x503C;&#x65F6;&#x4F1A;&#x89E6;&#x53D1;&#x6269;&#x5BB9;&#xFF08;loadFactor=2/3;newCapacity=2*oldCapacity&#xFF09;
+private int threshold; // Default to 0
+</code></pre><p>&#x3000;&#x3000;</p>
+<h3 id="33&#x521B;&#x5EFA;threadlocalmap&#x5BF9;&#x8C61;">3.3&#x521B;&#x5EFA;ThreadLocalMap&#x5BF9;&#x8C61;</h3>
+<p>&#x3000;&#x3000;&#x521B;&#x5EFA;ThreadLocalMap&#xFF0C;&#x662F;&#x5728;<strong>&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;ThreadLocal&#x7684;set&#x6216;&#x8005;get&#x65B9;&#x6CD5;&#x65F6;&#x6267;&#x884C;</strong>&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E00;&#x6B21;&#x672A;set&#x503C;&#xFF0C;&#x76F4;&#x63A5;&#x8C03;&#x7528;get&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x5229;&#x7528;ThreadLocal&#x7684;&#x521D;&#x59CB;&#x503C;&#x6765;&#x521B;&#x5EFA;ThreadLocalMap&#x3002;</p>
+<p>&#x3000;&#x3000;ThreadLocalMap&#x5185;&#x90E8;&#x7C7B;&#x7684;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>/**
+ * &#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;ThreadLocalMap&#x5BF9;&#x8C61;&#xFF08;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;ThreadLocal&#x7684;set&#x65B9;&#x6CD5;&#x65F6;&#x521B;&#x5EFA;&#xFF09;&#xFF0C;&#x4F20;&#x5165;ThreadLocal&#x5BF9;&#x8C61;&#x548C;&#x5BF9;&#x5E94;&#x7684;value
+ */
+ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) {
+    // &#x521B;&#x5EFA;&#x4E00;&#x4E2A;Entry&#x6570;&#x7EC4;&#xFF0C;&#x5BB9;&#x91CF;&#x4E3A;16&#xFF08;&#x9ED8;&#x8BA4;&#xFF09;
+    table = new Entry[INITIAL_CAPACITY];
+
+    // &#x8BA1;&#x7B97;&#x65B0;&#x589E;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5E94;&#x8BE5;&#x653E;&#x5230;&#x6570;&#x7EC4;&#x7684;&#x54EA;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x6839;&#x636E;ThreadLocal&#x7684;hash&#x503C;&#x4E0E;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x8FDB;&#x884C;&quot;&#x4E0E;&quot;&#x64CD;&#x4F5C;
+    int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1);
+
+    // &#x521B;&#x5EFA;&#x4E00;&#x4E2A;Entry&#xFF0C;&#x8BBE;&#x7F6E;key&#x548C;value&#xFF0C;&#x6CE8;&#x610F;Entry&#x4E2D;&#x6CA1;&#x6709;key&#x5C5E;&#x6027;&#xFF0C;key&#x5C5E;&#x6027;&#x662F;&#x4F20;&#x7ED9;Entry&#x7684;&#x7236;&#x7C7B;WeakReference
+    table[i] = new Entry(firstKey, firstValue);
+
+    // &#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x4E3A;1
+    size = 1;
+
+    // &#x8BBE;&#x7F6E;&#x6269;&#x5BB9;&#x9608;&#x503C;
+    setThreshold(INITIAL_CAPACITY);
+}
+
+/**
+ * &#x8BBE;&#x7F6E;&#x6269;&#x5BB9;&#x9608;&#x503C;&#xFF0C;&#x63A5;&#x6536;&#x5BB9;&#x91CF;&#x503C;&#xFF0C;&#x8D1F;&#x8F7D;&#x56E0;&#x5B50;&#x56FA;&#x5B9A;&#x4E3A;2/3
+ */
+private void setThreshold(int len) {
+    threshold = len * 2 / 3;
+}
+</code></pre><h3 id="34-threadlocalmap&#x7684;set&#x64CD;&#x4F5C;">3.4 ThreadLocalMap&#x7684;set&#x64CD;&#x4F5C;</h3>
+<p>&#x3000;&#x3000;ThreadLocal&#x7684;set&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x5B9E;&#x6838;&#x5FC3;&#x5C31;&#x662F;&#x8C03;&#x7528;ThreadLocalMap&#x7684;set&#x65B9;&#x6CD5;&#xFF0C;set&#x65B9;&#x6CD5;&#x7684;&#x6D41;&#x7A0B;&#x6BD4;&#x8F83;&#x957F;</p>
+<pre><code>/**
+ * &#x4E3A;&#x5F53;&#x524D;ThreadLocal&#x5BF9;&#x8C61;&#x8BBE;&#x7F6E;value
+ */
+private void set(ThreadLocal&lt;?&gt; key, Object value) {
+    Entry[] tab = table;
+    int len = tab.length;
+
+    // &#x8BA1;&#x7B97;&#x65B0;&#x5143;&#x7D20;&#x5E94;&#x8BE5;&#x653E;&#x5230;&#x54EA;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF08;&#x8FD9;&#x4E2A;&#x4F4D;&#x7F6E;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x6700;&#x7EC8;&#x5B58;&#x653E;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;hash&#x51B2;&#x7A81;&#xFF09;
+    int i = key.threadLocalHashCode &amp; (len - 1);
+
+    // &#x5224;&#x65AD;&#x8BA1;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x4F4D;&#x7F6E;&#x662F;&#x5426;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x627E;&#x51FA;&#x5E94;&#x8BE5;&#x5B58;&#x653E;&#x7684;&#x4F4D;&#x7F6E;
+    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
+        // &#x83B7;&#x53D6;Entry&#x4E2D;key&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5F31;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;
+        ThreadLocal&lt;?&gt; k = e.get();
+
+        // &#x5224;&#x65AD;key&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF08;&#x5224;&#x65AD;&#x5F31;&#x5F15;&#x7528;&#x7684;&#x662F;&#x5426;&#x4E3A;&#x540C;&#x4E00;&#x4E2A;ThreadLocal&#x5BF9;&#x8C61;&#xFF09;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x8986;&#x76D6;
+        if (k == key) {
+            e.value = value;
+            return;
+        }
+
+        // k&#x4E3A;null&#xFF0C;&#x4E5F;&#x5C31;&#x662F;Entry&#x7684;key&#x5DF2;&#x7ECF;&#x88AB;&#x56DE;&#x6536;&#x4E86;&#xFF0C;&#x5F53;&#x524D;&#x7684;Entry&#x662F;&#x4E00;&#x4E2A;&#x9648;&#x65E7;&#x7684;&#x5143;&#x7D20;&#xFF08;stale entry&#xFF09;
+        if (k == null) {
+            // &#x7528;&#x65B0;&#x5143;&#x7D20;&#x66FF;&#x6362;&#x6389;&#x9648;&#x65E7;&#x5143;&#x7D20;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x4F1A;&#x6E05;&#x7406;&#x5176;&#x4ED6;&#x9648;&#x65E7;&#x5143;&#x7D20;&#xFF0C;&#x9632;&#x6B62;&#x5185;&#x5B58;&#x6CC4;&#x9732;
+            replaceStaleEntry(key, value, i);
+            return;
+        }
+    }
+
+    // map&#x4E2D;&#x6CA1;&#x6709;ThreadLocal&#x5BF9;&#x5E94;&#x7684;key&#xFF0C;&#x6216;&#x8005;&#x8BF4;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x9648;&#x65E7;&#x7684;Entry&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Entry&#xFF0C;&#x653E;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+    tab[i] = new Entry(key, value);
+    // ThreadLocalMap&#x7684;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x52A0;1
+    int sz = ++size;
+
+    // &#x5148;&#x6E05;&#x7406;map&#x4E2D;key&#x4E3A;null&#x7684;Entry&#x5143;&#x7D20;&#xFF0C;&#x8BE5;Entry&#x4E5F;&#x5E94;&#x8BE5;&#x88AB;&#x56DE;&#x6536;&#x6389;&#xFF0C;&#x9632;&#x6B62;&#x5185;&#x5B58;&#x6CC4;&#x9732;
+    // &#x5982;&#x679C;&#x6E05;&#x7406;&#x51FA;&#x9648;&#x65E7;&#x7684;Entry&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x5224;&#x65AD;&#x662F;&#x5426;&#x9700;&#x8981;&#x6269;&#x5BB9;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x7684;&#x8BDD;&#xFF0C;&#x5219;&#x8FDB;&#x884C;rehash
+    if (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;= threshold) {
+        rehash();
+    }
+}
+</code></pre><p>&#x3000;&#x3000;&#x4E0A;&#x9762;&#x6700;&#x540E;&#x51E0;&#x884C;&#x4EE3;&#x7801;&#x6D89;&#x53CA;&#x5230;&#x6E05;&#x7406;&#x9648;&#x65E7;Entry&#x548C;rehash&#xFF0C;&#x8FD9;&#x4E24;&#x5757;&#x7684;&#x4EE3;&#x7801;&#x5728;&#x4E0B;&#x9762;&#x3002;</p>
+<h3 id="35&#x6E05;&#x7406;&#x9648;&#x65E7;entry&#x548C;rehash">3.5&#x6E05;&#x7406;&#x9648;&#x65E7;Entry&#x548C;rehash</h3>
+<p>&#x3000;&#x3000;&#x9648;&#x65E7;&#x7684;Entry&#xFF0C;&#x662F;&#x6307;Entry&#x7684;key&#x4E3A;null&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8BE5;Entry&#x662F;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5374;&#x4E0D;&#x4F1A;&#x88AB;&#x56DE;&#x6536;&#xFF0C;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5728;&#x6BCF;&#x6B21;get&#x3001;set&#x3001;replace&#x65F6;&#xFF0C;&#x8FDB;&#x884C;&#x6E05;&#x7406;&#x9648;&#x65E7;&#x7684;Entry&#xFF0C;&#x4E0B;&#x9762;&#x53EA;&#x7ED9;&#x51FA;&#x4E00;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>/**
+ * &#x6E05;&#x7406;map&#x4E2D;key&#x4E3A;null&#x7684;Entry&#x5143;&#x7D20;&#xFF0C;&#x8BE5;Entry&#x4E5F;&#x5E94;&#x8BE5;&#x88AB;&#x56DE;&#x6536;&#x6389;&#xFF0C;&#x9632;&#x6B62;&#x5185;&#x5B58;&#x6CC4;&#x9732;
+ *
+ * @param i &#x65B0;Entry&#x63D2;&#x5165;&#x7684;&#x4F4D;&#x7F6E;
+ * @param n &#x6570;&#x7EC4;&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x6570;&#x91CF;
+ * @return &#x662F;&#x5426;&#x6709;&#x9648;&#x65E7;&#x7684;entry&#x7684;&#x6E05;&#x9664;
+ */
+private boolean cleanSomeSlots(int i, int n) {
+    boolean removed = false;
+    Entry[] tab = table;
+    int len = tab.length;
+    do {
+        i = nextIndex(i, len);
+        Entry e = tab[i];
+        if (e != null &amp;&amp; e.get() == null) {
+            n = len;
+            removed = true;
+            i = expungeStaleEntry(i);
+        }
+    } while ((n &gt;&gt;&gt;= 1) != 0);
+    return removed;
+}
+
+private void rehash() {
+    // &#x6E05;&#x9664;&#x5E95;&#x5C42;&#x6570;&#x7EC4;&#x4E2D;&#x6240;&#x6709;&#x9648;&#x65E7;&#x7684;&#xFF08;stale&#xFF09;&#x7684;Entry&#xFF0C;&#x4E5F;&#x5C31;&#x662F;key&#x4E3A;null&#x7684;Entry
+    // &#x540C;&#x65F6;&#x6BCF;&#x6E05;&#x9664;&#x4E00;&#x4E2A;Entry&#xFF0C;&#x5C31;&#x5BF9;&#x5176;&#x540E;&#x9762;&#x7684;Entry&#x91CD;&#x65B0;&#x8BA1;&#x7B97;hash&#xFF0C;&#x83B7;&#x53D6;&#x65B0;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x6CD5;&#xFF0C;&#x91CD;&#x65B0;&#x786E;&#x5B9A;&#x6700;&#x7EC8;&#x4F4D;&#x7F6E;
+    expungeStaleEntries();
+
+    // &#x6E05;&#x7406;&#x5B8C;&#x9648;&#x65E7;Entry&#x540E;&#xFF0C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x9700;&#x8981;&#x6269;&#x5BB9;
+    if (size &gt;= threshold - threshold / 4) {
+        // &#x6269;&#x5BB9;&#x65F6;&#xFF0C;&#x5BB9;&#x91CF;&#x53D8;&#x4E3A;&#x65E7;&#x5BB9;&#x91CF;&#x7684;2&#x500D;&#xFF0C;&#x518D;&#x8FDB;&#x884C;rehash&#xFF0C;&#x5E76;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x53D1;&#x786E;&#x5B9A;Entry&#x7684;&#x65B0;&#x4F4D;&#x7F6E;
+        resize();
+    }
+}
+</code></pre><p>&#x3000;&#x3000;&#x5728;rehash&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6D89;&#x53CA;&#x5230;&#x201C;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x6CD5;&#x201D;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x7528;&#x6765;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;<a href="https://www.cnblogs.com/-beyond/p/7726347.html" target="_blank">&#x5229;&#x7528;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x6CD5;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;</a>&#x4E86;&#x89E3;&#x8BE6;&#x60C5;&#x3002;</p>
+<h3 id="36threadlocalmap-remove&#x64CD;&#x4F5C;">3.6ThreadLocalMap-remove&#x64CD;&#x4F5C;</h3>
+<p>&#x3000;&#x3000;remove&#x64CD;&#x4F5C;&#xFF0C;&#x662F;&#x8C03;&#x7528;ThreadLocal.remove()&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5220;&#x9664;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;ThreadLocalMap&#x4E2D;&#x8BE5;ThreadLocal&#x4E3A;key&#x7684;Entry&#x3002;</p>
+<pre><code>/**
+ * &#x79FB;&#x9664;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;threadLocals&#x5C5E;&#x6027;&#x4E2D;key&#x4E3A;ThreadLocal&#x7684;Entry
+ *
+ * @param key &#x8981;&#x79FB;&#x9664;&#x7684;Entry&#x7684;key(ThreadLocal&#x5BF9;&#x8C61;&#xFF09;
+ */
+private void remove(ThreadLocal&lt;?&gt; key) {
+    Entry[] tab = table;
+    int len = tab.length;
+
+    // &#x8BA1;&#x7B97;&#x51FA;&#x8BE5;ThreadLocal&#x5BF9;&#x5E94;&#x7684;key&#x5E94;&#x8BE5;&#x5B58;&#x653E;&#x7684;&#x4F4D;&#x7F6E;
+    int i = key.threadLocalHashCode &amp; (len - 1);
+
+    // &#x627E;&#x5230;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#xFF0C;&#x5F00;&#x59CB;&#x6309;&#x7167;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x7B97;&#x6CD5;&#x8FDB;&#x884C;&#x67E5;&#x627E;&#x5230;&#x8BE5;Thread&#x7684;Entry
+    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
+
+        // &#x5982;&#x679C;Entry&#x7684;key&#x76F8;&#x540C;
+        if (e.get() == key) {
+            // &#x8C03;&#x7528;WeakReference&#x7684;clear&#x65B9;&#x6CD5;&#xFF0C;Entry&#x7684;key&#x662F;&#x5F31;&#x5F15;&#x7528;&#xFF0C;&#x6307;&#x5411;ThreadLocal&#xFF0C;&#x73B0;&#x5728;&#x5C06;key&#x6307;&#x5411;null
+            // &#x5219;&#x8BE5;ThreadLocal&#x5BF9;&#x8C61;&#x5728;&#x4F1A;&#x5728;&#x4E0B;&#x4E00;&#x6B21;gc&#x65F6;&#xFF0C;&#x88AB;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x56DE;&#x6536;
+            e.clear();
+
+            // &#x5C06;&#x8BE5;&#x4F4D;&#x7F6E;&#x7684;Entry&#x4E2D;&#x7684;value&#x7F6E;&#x4E3A;null&#xFF0C;&#x4E8E;&#x662F;value&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#x4E5F;&#x4F1A;&#x88AB;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x56DE;&#x6536;&#xFF08;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF09;
+            // &#x540C;&#x65F6;&#x5185;&#x90E8;&#x4F1A;&#x8C03;&#x6574;Entry&#x7684;&#x987A;&#x5E8F;&#xFF08;&#x5F00;&#x653E;&#x63A2;&#x6D4B;&#x7B97;&#x6CD5;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x5220;&#x9664;&#x5143;&#x7D20;&#x540E;&#x4F1A;&#x91CD;&#x65B0;&#x8C03;&#x6574;&#x987A;&#x5E8F;&#xFF09;
+            expungeStaleEntry(i);
+
+            return;
+        }
+    }
+}
+</code></pre><h2 id="&#x56DB;&#x603B;&#x7ED3;">&#x56DB;.&#x603B;&#x7ED3;</h2>
+<p>&#x3000;&#x3000;&#x5728;&#x5B66;&#x4E60;ThreadLocal&#x7C7B;&#x6E90;&#x7801;&#x7684;&#x8FC7;&#x7A0B;&#x8FD8;&#x662F;&#x53D7;&#x76CA;&#x9887;&#x591A;&#x7684;&#xFF1A;</p>
+<p>&#x3000;&#x3000;1.ThreadLocal&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF1B;</p>
+<p>&#x3000;&#x3000;2.initialValue&#x7684;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#xFF1B;</p>
+<p>&#x3000;&#x3000;3.HashMap&#x4F7F;&#x7528;&#x94FE;&#x8868;+&#x7EA2;&#x9ED1;&#x6811;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;&#xFF0C;ThreadLocalMap&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x63A2;&#x6D4B;&#x7B97;&#x6CD5;&#xFF08;&#x5F00;&#x653E;&#x5BFB;&#x5740;&#xFF09;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;</p>
+<p>&#x3000;&#x3000;&#x53E6;&#x5916;&#xFF0C;ThreadLocal&#x8FD8;&#x6709;&#x4E00;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#xFF0C;&#x662F;&#x5173;&#x4E8E;&#x5F31;&#x5F15;&#x7528;&#x548C;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#xFF1A;<a href="https://www.cnblogs.com/-beyond/p/13125195.html" target="_blank">&#x5206;&#x6790;ThreadLocal&#x7684;&#x5F31;&#x5F15;&#x7528;&#x4E0E;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;-Java8</a>&#x3002;</p>
+<p>&#x3000;&#x3000;&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;<a href="https://www.cnblogs.com/-beyond/p/13093032.html" target="_blank">https://www.cnblogs.com/-beyond/p/13093032.html</a></p>
+<hr>
+<h1 id="threadlocal&#xFF1A;">ThreadLocal&#xFF1A;</h1>
+<blockquote>
+<p>&#x5178;&#x578B;&#x7684;&#x7528;&#x6CD5;&#xFF1A;spring&#x4E8B;&#x52A1;&#x4E2D;&#x4F7F;&#x7528;&#x5230;&#x4E8B;&#x52A1;&#xFF0C; </p>
+<p>key &#x662F;ThreadLocal&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;ThreadLocal&#x53EA;&#x80FD;&#x88C5;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;ThreadLocal&#x53EA;&#x662F;&#x4E00;&#x4E2A;map&#x7684;key&#xFF0C;&#x56E0;&#x6B64;&#x60F3;&#x8981;&#x88C5;&#x591A;&#x4E2A;&#x503C;&#x7684;&#x8BDD;&#x5C31;&#x9700;&#x8981;&#x591A;&#x4E2A;ThreadLocal&#x5BF9;&#x8C61;&#x3002;</p>
+</blockquote>
+<p><img src="ThreadLocal.assets/image-20210710233825909.png" alt="image-20210710233825909"></p>
+<blockquote>
+<p>ThreadLocal&#xFF1A;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x4F1A;&#x58F0;&#x660E;&#x4E00;&#x4E2A;ThreadLocal</p>
+<p>&#x6211;&#x4EEC;&#x5F80;&#x91CC;&#x9762;set&#x503C;&#x65F6;&#x5019;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x6307;&#x5411;&#x4E86;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6240;&#x62E5;&#x6709;&#x7684;&#x4E00;&#x4E2A;ThreadLocalMap&#xFF0C;</p>
+<p>ThreadLocalMap&#x4E2D;&#x662F;&#x4E00;&#x4E2A;Entry&#xFF0C;Entry&#x8C03;&#x7528;&#x4E86;WeakReference&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x4F20;&#x5165;&#x7684;&#x662F;&#x4E00;&#x4E2A;ThreadLocal&#x5BF9;&#x8C61;&#xFF0C;<code>Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt;</code>&#xFF0C;&#x5F31;&#x5F15;&#x7528;key&#x3002;</p>
+</blockquote>
+<pre><code class="lang-java">
+ThreadLocal&lt;Integer&gt; th =<span class="hljs-keyword">new</span> ThreadLocal&lt;&gt;();
+        th.set(<span class="hljs-number">1</span>);
+
+
+<span class="hljs-comment">/**
+     * Sets the current thread&apos;s copy of this thread-local variable
+     * to the specified value.  Most subclasses will have no need to
+     * override this method, relying solely on the {<span class="hljs-doctag">@link</span> #initialValue}
+     * method to set the values of thread-locals.
+     *
+     * <span class="hljs-doctag">@param</span> value the value to be stored in the current thread&apos;s copy of
+     *        this thread-local.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set</span><span class="hljs-params">(T value)</span> </span>{
+        Thread t = Thread.currentThread();
+        ThreadLocalMap map = getMap(t);<span class="hljs-comment">// &#x9996;&#x5148;&#x62FF;&#x5230;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;map</span>
+        <span class="hljs-keyword">if</span> (map != <span class="hljs-keyword">null</span>)
+            map.set(<span class="hljs-keyword">this</span>, value);
+        <span class="hljs-keyword">else</span>
+            createMap(t, value);
+    }
+
+
+    <span class="hljs-comment">/**
+     * Get the map associated with a ThreadLocal. Overridden in
+     * InheritableThreadLocal.
+     *
+     * <span class="hljs-doctag">@param</span>  t the current thread
+     * <span class="hljs-doctag">@return</span> the map
+     */</span>
+    <span class="hljs-function">ThreadLocalMap <span class="hljs-title">getMap</span><span class="hljs-params">(Thread t)</span> </span>{
+        <span class="hljs-keyword">return</span> t.threadLocals;
+    }
+
+<span class="hljs-comment">// Thread&#x7C7B;&#x4E0B;&#x7684;</span>
+
+<span class="hljs-comment">/* ThreadLocal values pertaining to this thread. This map is maintained
+     * by the ThreadLocal class. */</span>
+    ThreadLocal.ThreadLocalMap threadLocals = <span class="hljs-keyword">null</span>;
+
+
+                     <span class="hljs-comment">/**
+         * Set the value associated with key.
+         *
+         * <span class="hljs-doctag">@param</span> key the thread local object
+         * <span class="hljs-doctag">@param</span> value the value to be set
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set</span><span class="hljs-params">(ThreadLocal&lt;?&gt; key, Object value)</span> </span>{
+
+            <span class="hljs-comment">// We don&apos;t use a fast path as with get() because it is at</span>
+            <span class="hljs-comment">// least as common to use set() to create new entries as</span>
+            <span class="hljs-comment">// it is to replace existing ones, in which case, a fast</span>
+            <span class="hljs-comment">// path would fail more often than not.</span>
+
+            Entry[] tab = table;
+            <span class="hljs-keyword">int</span> len = tab.length;
+            <span class="hljs-keyword">int</span> i = key.threadLocalHashCode &amp; (len-<span class="hljs-number">1</span>);
+
+            <span class="hljs-keyword">for</span> (Entry e = tab[i];
+                 e != <span class="hljs-keyword">null</span>;
+                 e = tab[i = nextIndex(i, len)]) {
+                ThreadLocal&lt;?&gt; k = e.get();
+
+                <span class="hljs-keyword">if</span> (k == key) {
+                    e.value = value;
+                    <span class="hljs-keyword">return</span>;
+                }
+
+                <span class="hljs-keyword">if</span> (k == <span class="hljs-keyword">null</span>) {
+                    replaceStaleEntry(key, value, i);
+                    <span class="hljs-keyword">return</span>;
+                }
+            }
+
+            tab[i] = <span class="hljs-keyword">new</span> Entry(key, value);
+            <span class="hljs-keyword">int</span> sz = ++size;
+            <span class="hljs-keyword">if</span> (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;= threshold)
+                rehash();
+        }
+
+&#x6700;&#x7EC8;&#x751F;&#x6210;&#x7684;&#x662F;&#x4E2A;Entry&#xFF0C;&#x70B9;&#x8FDB;&#x53BB;&#x53D1;&#x73B0;&#xFF0C;&#x5176;&#x7236;&#x7C7B;&#x662F;&#x4E2A;&#x5F31;&#x5F15;&#x7528;&#x3002;
+  &#x5F31;&#x5F15;&#x7528;&#xFF0C;&#x5176;&#x5B9E;&#x6307;&#x7684;&#x5C31;&#x662F;ThreadLocal&#x5BF9;&#x8C61;&#x3002;&#xFF08;WeakReference we =<span class="hljs-keyword">new</span> WeakReference(<span class="hljs-keyword">new</span> ThreadLocal());&#xFF09; &#x5F31;&#x5F15;&#x7528;&#x6307;&#x7684;&#x5C31;&#x662F;WeakReference&#x91CC;&#x9762;&#x7684;&#x5BF9;&#x8C61;&#x3002;
+                     <span class="hljs-comment">/**
+         * The entries in this hash map extend WeakReference, using
+         * its main ref field as the key (which is always a
+         * ThreadLocal object).  Note that null keys (i.e. entry.get()
+         * == null) mean that the key is no longer referenced, so the
+         * entry can be expunged from table.  Such entries are referred to
+         * as &quot;stale entries&quot; in the code that follows.
+         */</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Entry</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WeakReference</span>&lt;<span class="hljs-title">ThreadLocal</span>&lt;?&gt;&gt; </span>{
+            <span class="hljs-comment">/** The value associated with this ThreadLocal. */</span>
+            Object value;
+
+            Entry(ThreadLocal&lt;?&gt; k, Object v) {
+                <span class="hljs-keyword">super</span>(k);
+                value = v;
+            }
+        }
+</code></pre>
+<h1 id="&#x5206;&#x6790;threadlocal&#x7684;&#x5F31;&#x5F15;&#x7528;&#x4E0E;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;-java8"><a href="https://www.cnblogs.com/-beyond/p/13125195.html" target="_blank">&#x5206;&#x6790;ThreadLocal&#x7684;&#x5F31;&#x5F15;&#x7528;&#x4E0E;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;-Java8</a></h1>
 <h2 id="&#x4E00;&#x4ECB;&#x7ECD;">&#x4E00;.&#x4ECB;&#x7ECD;</h2>
 <p>&#x3000;&#x3000;&#x4E4B;&#x524D;&#x4F7F;&#x7528;ThreadLocal&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x542C;&#x8FC7;ThreadLocal&#x600E;&#x4E48;&#x600E;&#x4E48;&#x7684;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x5177;&#x4F53;&#x539F;&#x56E0;&#x4E5F;&#x6CA1;&#x53BB;&#x6DF1;&#x7A76;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x79CD;&#x4E0D;&#x6E05;&#x4E0D;&#x695A;&#x7684;&#x72B6;&#x6001;&#x3002;&#x6700;&#x8FD1;&#x5728;&#x770B;JDK&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x5176;&#x4E2D;&#x5C31;&#x5305;&#x542B;ThreadLocal&#xFF0C;&#x5728;&#x5BF9;ThreadLocal&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x4ECB;&#x7ECD;&#x4EE5;&#x53CA;&#x6E90;&#x7801;&#x7684;&#x5206;&#x6790;&#x540E;&#xFF0C;&#x5BF9;&#x4E8E;ThreadLocal&#x4E2D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;&#x4E5F;&#x641E;&#x6E05;&#x695A;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x4E13;&#x95E8;&#x5199;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#xFF0C;&#x5BF9;&#x4E8E;ThreadLocal&#x6E90;&#x7801;&#x5206;&#x6790;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x6211;&#x53E6;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#xFF1A;<a href="https://www.cnblogs.com/-beyond/p/13093032.html" target="_blank">ThreadLocal&#x6E90;&#x7801;&#x89E3;&#x6790;-Java8</a>&#x3002;</p>
 <p>&#x5728;&#x5206;&#x6790;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x4E86;&#x89E3;2&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x5C31;&#x662F;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x548C;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF1A;</p>
@@ -2126,7 +2646,7 @@ size--; <span class="hljs-comment">// map&#x7684;size&#x51CF;&#x4E00;</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ThreadLocal","level":"9.1.19","depth":2,"next":{"title":"javabase整理","level":"9.1.20","depth":2,"path":"docs/myself/1.javabase.md","ref":"docs/myself/1.javabase.md","articles":[]},"previous":{"title":"synchronized","level":"9.1.18","depth":2,"path":"docs/myself/synchronized.md","ref":"docs/myself/synchronized.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/ThreadLocal.md","mtime":"2021-07-07T05:48:51.846Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-09T09:01:39.699Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ThreadLocal","level":"9.1.19","depth":2,"next":{"title":"javabase整理","level":"9.1.20","depth":2,"path":"docs/myself/1.javabase.md","ref":"docs/myself/1.javabase.md","articles":[]},"previous":{"title":"synchronized","level":"9.1.18","depth":2,"path":"docs/myself/synchronized.md","ref":"docs/myself/synchronized.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","disqus","back-to-top-button","expandable-chapters","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"github-buttons":{"repo":"weidong902/JavaStudyBook","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/weidong902/JavaStudyBook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"benboerdong","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"java学习笔记-奔波儿东","language":"zh-hans","gitbook":"*","description":"Java学习中的记录，知识、技术"},"file":{"path":"docs/myself/ThreadLocal.md","mtime":"2021-07-19T08:53:27.237Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-19T08:54:46.713Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
