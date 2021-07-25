@@ -633,8 +633,7 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 >
 >
 > 
->
->## 二、一次客户端与redis的完整通信过程[#](https://www.cnblogs.com/mrmirror/p/13587311.html#2264664825)
+>## 二、一次客户端与redis的完整通信过程[c](https://www.cnblogs.com/mrmirror/p/13587311.html#2264664825)
 >
 >------
 >
@@ -657,8 +656,8 @@ Spring容器创建对象AA， 首先根据无参构造创建AA，将AA标识符�
 >[![img](a%E4%B8%AA%E4%BA%BA%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93.assets/2136379-20200830233422768-1205881078.png)](https://img2020.cnblogs.com/blog/2136379/202008/2136379-20200830233422768-1205881078.png)
 >
 >
-> 
 >
+> 
 
 ### 微服务的了解？
 
@@ -1144,7 +1143,6 @@ select * from table where currentdate between xx and xxx and id>1 order  by id l
 ### 2、线程池的参数？
 
 >核心线程数、最大线程数、核心线程数、
->
 
 ### 3、ThreadLocal原理？
 
@@ -1483,7 +1481,6 @@ spring:
 >8、禁止长时间 monitor
 >
 >monitor函数可以快速看到当前 redis 正在执行的数据流，但是当心，高峰期长时间阻塞在 monitor 命令上，会严重影响 redis 的性能。此命令不禁止使用，但使用一定要特别特别注意。
->
 
 ### dubbo
 
@@ -1928,6 +1925,24 @@ springboot的理解？
 
 >对称二叉树
 
+## 小米2：
+
+## 小米3：
+
+### 1、新公司的关注的点？
+
+###  2、功能模块，如何划分的？
+
+### 3、为什么要用redis？
+
+* 流水号为什么要使用Redis去生成？
+
+### 4、判断树是否是二叉搜索树？
+
+
+
+---
+
 
 
 # 美团初选：
@@ -2061,7 +2076,283 @@ CAS中ABA的问题？
 
 
 
-## 
+## 去哪儿（现场）
+
+### 1、java中有哪几种方式去做线程同步？
+
+synchronized、reent
+
+####  1.1 synchronized 用在不同地方的区别？
+
+#### 1.2 静态方法和非静态方法分别锁的什么？
+
+
+
+### 2、spring使用过程中用到哪些技术上的点？
+
+#### 2.1 spring事务会遇到哪些问题？
+
+#### 2.2 spring事务什么时候失效？（具体场景说）
+
+>* #### 数据库不支持事务
+>
+>  * 这里以 MySQL 为例，其 MyISAM 引擎是不支持事务操作的，InnoDB 才是支持事务的引擎，一般要支持事务都会使用 InnoDB。
+>
+>* #### 没有被spring管理
+>
+>  * 如下面例子所示：
+>
+>    ```
+>    // @Service
+>    public class OrderServiceImpl implements OrderService {
+>    
+>        @Transactional
+>        public void updateOrder(Order order) {
+>            // update order
+>        }
+>        
+>    }
+>    ```
+>
+>    如果此时把 `@Service` 注解注释掉，这个类就不会被加载成一个 Bean，那这个类就不会被 Spring 管理了，事务自然就失效了
+>
+>* #### 方法不是public的，（`@Transactional` 只能用于 public 的方法上,否则事务不会失效，如果要用在非 public 方法上，可以开启 `AspectJ` 代理模式。）
+>
+>* #### 自身调用问题
+>
+>  来看两个示例：
+>
+>  ```java
+>  @Service
+>  public class OrderServiceImpl implements OrderService {
+>  
+>      public void update(Order order) {
+>          updateOrder(order);
+>      }
+>      
+>      @Transactional
+>      public void updateOrder(Order order) {
+>          // update order
+>      }
+>      
+>  }
+>  ```
+>
+>  update方法上面没有加 `@Transactional` 注解，调用有 `@Transactional` 注解的 updateOrder 方法，updateOrder 方法上的事务管用吗？
+>
+>  再来看下面这个例子：
+>
+>  ```java
+>  @Service
+>  public class OrderServiceImpl implements OrderService {
+>  
+>      @Transactional
+>      public void update(Order order) {
+>          updateOrder(order);
+>      }
+>      
+>      @Transactional(propagation = Propagation.REQUIRES_NEW)
+>      public void updateOrder(Order order) {
+>          // update order
+>      }
+>      
+>  }
+>  ```
+>
+>  这次在 update 方法上加了 `@Transactional`，updateOrder 加了 `REQUIRES_NEW` 新开启一个事务，那么新开的事务管用么？
+>
+>  这两个例子的答案是：不管用！
+>
+>  因为它们发生了自身调用，就调该类自己的方法，而没有经过 Spring 的代理类，默认只有在外部调用事务才会生效，这也是老生常谈的经典问题了。
+>
+>* #### 不支持事务
+>
+>  来看下面这个例子：
+>
+>  ```
+>  @Service
+>  public class OrderServiceImpl implements OrderService {
+>  
+>      @Transactional
+>      public void update(Order order) {
+>          updateOrder(order);
+>      }
+>      
+>      @Transactional(propagation = Propagation.NOT_SUPPORTED)
+>      public void updateOrder(Order order) {
+>          // update order
+>      }
+>      
+>  }
+>  ```
+>
+>  **Propagation.NOT_SUPPORTED：** 表示不以事务运行，当前若存在事务则挂起，详细的可以参考《[事务隔离级别和传播机制](https://mp.weixin.qq.com/s/RTEMPBB6AFmmdj0uw1SDsg)》这篇文章。
+>
+>  都主动不支持以事务方式运行了，那事务生效也是白搭！
+>
+>* #### 异常被吃了
+>
+>  * 这个也是出现比较多的场景：
+>
+>    ```
+>    // @Service
+>    public class OrderServiceImpl implements OrderService {
+>    
+>        @Transactional
+>        public void updateOrder(Order order) {
+>            try {
+>                // update order
+>            } catch {
+>                
+>            }
+>        }
+>        
+>    }
+>    ```
+>
+>    把异常吃了，然后又不抛出来，事务怎么回滚吧！
+>
+>* #### 异常类型错误
+>
+>  上面的例子再抛出一个异常：
+>
+>  ```
+>  // @Service
+>  public class OrderServiceImpl implements OrderService {
+>  
+>      @Transactional
+>      public void updateOrder(Order order) {
+>          try {
+>              // update order
+>          } catch {
+>              throw new Exception("更新错误");
+>          }
+>      }
+>      
+>  }
+>  ```
+>
+>  这样事务也是不生效的，因为默认回滚的是：RuntimeException，如果你想触发其他异常的回滚，需要在注解上配置一下，如：
+>
+>  ```
+>  @Transactional(rollbackFor = Exception.class)
+>  ```
+>
+>  这个配置仅限于 `Throwable` 异常类及其子类。
+>
+>其实发生最多就是自身调用、异常被吃、异常抛出类型不对
+
+#### 2.3 spring事务的实现？
+
+>#### AOP底层是怎么实现？
+>
+>
+>
+>
+
+### 3、常用的垃圾收集器有哪几种？
+
+####  3.1 使用场景：
+
+####  3.2 我们使用的是什么？
+
+
+
+### 4、批处理？
+
+#### 4.1 跑批的系统使用的垃圾回收器？
+
+### 5、对同龄人来说的优势？
+
+>
+>
+>
+
+#### 5.2、你是把控组内代码开发质量？
+
+#### 5.3 代码审查的标准？
+
+###  6、在做设计的时候采用的策略或方法？架构，规范
+
+>不要去降低自身项目的重要度。
+>
+>#### 准备工作做足后，
+>
+>现有的有哪些不好，自己思考如何做的更好，改进。
+>
+>业务变动，如何做兜底；有几种方案，为什么选这种，好处是什么？
+>
+>改动最小，实现功能。
+>
+>客户之间会有权限问题？
+>
+>
+
+### 7、平时如何做一些提升
+
+>最近看的什么书？
+
+### 8、瓶颈点是什么？
+
+### 9、设计、架构、
+
+
+
+
+
+## 滴滴一面（海外钱包事业部）
+
+分布式事务的一致性？
+
+>
+>
+>
+
+### HashMap：
+
+>### HashMap：
+>
+>### ConcurrentHashMap如何保证线程安全？
+>
+>
+
+MySQL
+
+>### MySQL默认隔离级别会出现幻读吗？
+>
+>### mysql慢查询？
+>
+>### Explain主要关注哪些点？
+>
+>#### 什么时候会出现索引失效？
+
+
+
+### synchronized
+
+>#### synchronized和Reenloce的区别：
+>
+>
+>
+>
+
+
+
+### redis
+
+> #### 集群部署
+>
+> #### redis常用数据结构及应用场景
+>
+> 
+
+JVM
+
+>
+>
+>
+
+
 
 
 
@@ -2171,15 +2462,155 @@ CAS中ABA的问题？
 
 ### 26、算法题：手写lru
 
+>```java
+>class LRUCache {
+>    public int capacity;//容量
+>    public int size;//当前元素数量
+>    public DNodeList head;
+>    public DNodeList tail;
+>    public Map<Integer, DNodeList> cache = new HashMap<>();
+>
+>    class DNodeList {
+>        int key;
+>        int value;
+>        DNodeList prev;
+>        DNodeList next;
+>
+>        DNodeList() {
+>
+>        }
+>
+>        DNodeList(int key, int value) {
+>            this.key = key;
+>            this.value = value;
+>            this.prev = null;
+>            this.next = null;
+>        }
+>    }
+>
+>
+>    public LRUCache(int capacity) {
+>        this.capacity = capacity;
+>        this.size = 0;
+>        head = new DNodeList();
+>        tail = new DNodeList();
+>        head.next = tail;
+>        tail.prev = head;
+>    }
+>
+>
+>    public int get(int key) {
+>        //从cache里拿
+>        DNodeList node = cache.get(key);
+>        if (node == null) {
+>            return -1;
+>        }
+>        moveToHead(node);
+>        return node.value;
+>    }
+>
+>    public void moveToHead(DNodeList node) {
+>        //先删除
+>        removeNode(node);
+>        //再添加到头部
+>        addHead(node);
+>    }
+>
+>    public void put(int key, int value) {
+>        //先判断cache里有没有
+>        DNodeList node = cache.get(key);
+>        if (node == null) {
+>            DNodeList newNode = new DNodeList(key, value);
+>            addHead(newNode);
+>            cache.put(key, newNode);
+>            ++size;
+>            //代表不存在，先判断是否大于容量
+>            if (size > capacity) {
+>                //删除双向链表尾部的值，并更新cache
+>                DNodeList temp = removeTail();
+>                cache.remove(temp.key);
+>                --size;
+>            }
+>        } else {
+>            //存在改变原值，并放到头部
+>            node.value = value;
+>            moveToHead(node);
+>        }
+>    }
+>
+>    public void removeNode(DNodeList node) {
+>        node.prev.next = node.next;
+>        node.next.prev = node.prev;
+>    }
+>
+>    public void addHead(DNodeList node) {
+>        node.prev = head;
+>        node.next = head.next;
+>        head.next.prev = node;
+>        head.next = node;
+>    }
+>
+>    public DNodeList removeTail() {
+>        DNodeList res = tail.prev;
+>        removeNode(res);
+>        return res;
+>    }
+>}
+>```
+>
+>
 
 
 
 
 
+## 理想汽车：
 
+### 1、项目中较有挑战的问题？
 
+### 2、项目介绍：事务的关注点？
 
+### 3、内存溢出的问题排查？
 
+>top（找内存最大）-->memory(shift+m排序)——>pid-->jmap + XXX +pid-->（具体工具查看？）
+>
+>
+
+### 4、JVM参数怎么？
+
+>
+>
+>
+
+### 5、调优思路？
+
+>
+>
+>
+
+### 6、垃圾回收器：
+
+>#### CMS有哪些特点？应用场景？
+>
+>#### GC日志？gc.log
+>
+>
+>
+>
+
+### 7、spring源码？
+
+>#### aop如何实现事务的？
+>
+>
+
+### 8、MySQL的执行计划主要关注？
+
+>#### Explain主要关注哪些？
+>
+>
+
+### 9、springcloud
 
 
 
@@ -2959,3 +3390,8 @@ public void test() {
 
 redis使用跳表不用B+数的原因是：redis是内存数据库，而B+树纯粹是为了mysql这种IO数据库准备的。B+树的每个节点的数量都是一个mysql分区页的大小(阿里面试)
 
+
+
+
+
+# by benboerdong~
