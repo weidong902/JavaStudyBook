@@ -1,0 +1,8 @@
+* [分布式](/docs/skill/分布式/SUMMARY.md)
+  * [cap](/docs/skill/分布式/cap理论.md)
+  * [分布式课程](/docs/skill/分布式/分布式课程.md)
+  * [分布式事务](/docs/skill/分布式/分布式事务.md)
+  * [分布式锁](/docs/skill/分布式/分布式锁.md)
+  * [分布式锁实现业务幂等](/Users/mac/gitbook/weiddjavastudy/JavaStudyBook/docs/skill/分布式/分布式锁实现业务幂等.md)
+  * [RPC](/docs/skill/分布式/RPC.md)
+  * [dubbo](/docs/skill/分布式/dubbo.md)

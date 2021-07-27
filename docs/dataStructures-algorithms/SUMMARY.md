@@ -1,14 +1,25 @@
-### 数据结构与算法目录
+##  数据结构与算法
 
 ### [算法](/docs/dataStructures-algorithms/algorithms/readme.md)
 
-* 十大经典排序
-  * [快速排序](/docs/dataStructures-algorithms/algorithms/快速排序.md)
-  * [归并排序](/docs/dataStructures-algorithms/algorithms/归并排序.md)
+* [十大经典排序](/docs/dataStructures-algorithms/algorithms/readme.md)
+  * [快速排序](/docs/dataStructures-algorithms/algorithms/快速排序.html)
+  * [归并排序](/docs/dataStructures-algorithms/algorithms/归并排序.html)
   * 
-* [LeetCode](/docs/dataStructures-algorithms/leetcode/README.md)
 
-### 数据结构
+
+
+### [labuladong的算法小抄](/docs/dataStructures-algorithms/labuladong/readme.md)
+
+
+
+### [数据结构](/docs/dataStructures-algorithms/dataStructure/readme.md)
+
+
+
+### [LeetCode](/docs/dataStructures-algorithms/leetcode/README.md)
+
+
 
 
 

@@ -28,5 +28,216 @@ Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上�
 ##### [3.4.1.2. BIO,NIO,AIO 有什么区别?](https://snailclimb.gitee.io/javaguide/#/docs/java/basis/Java基础知识?id=_3412-bionioaio-有什么区别)
 
 - **BIO (Blocking I/O):** 同步阻塞 I/O 模式，数据的读取写入必须阻塞在一个线程内等待其完成。在活动连接数不是特别高（小于单机 1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。
+
+## bio实现文件读写
+
+```java
+/**
+    * BIO模式
+    * FileReader逐个字符读取文件,FileReader extends InputStreamReader
+    * 读取文件中内容到字符数组中
+    * 如何确定字符数组长度：
+    * FileReader不能自定义编码读取
+    * 此方法也可以用于读取二进制文件,只不过读取出来有很多乱码
+    * @param fileName
+    * @return
+    * @throws IOException
+    */
+public static char[] readByOneCharWithDefaultEncoding(String fileName) throws IOException{
+    File file = new File(fileName);
+    FileReader fileReader = new FileReader(file); // 不能自定义编码,内部默认采用系统的编码
+    System.out.println("当前采用编码: " + fileReader.getEncoding()); 
+    char[] charcters = new char[1024];
+    int result = fileReader.read();  // 逐个字符读取，不能按行读取
+    int i = 0;
+    while(result != -1 && i < 1024){
+        char temp = (char)result;
+        charcters[i] = temp;
+        i++;
+        result = fileReader.read();
+    }
+    fileReader.close();
+    return charcters;
+}
+```
+
+## bio服务器
+
+```java
+//BIO服务端源码
+public final class ServerNormal {
+    //默认的端口号
+    private static int DEFAULT_PORT = 12345;
+    //单例的ServerSocket
+    private static ServerSocket server;
+    //根据传入参数设置监听端口，如果没有参数调用以下方法并使用默认值
+    public static void start() throws IOException{
+        //使用默认值
+        start(DEFAULT_PORT);
+    }
+    //这个方法不会被大量并发访问，不太需要考虑效率，直接进行方法同步就行了
+    public synchronized static void start(int port) throws IOException{
+        if(server != null) return;
+        try{
+            //通过构造函数创建ServerSocket
+            //如果端口合法且空闲，服务端就监听成功
+            server = new ServerSocket(port);
+            System.out.println("服务器已启动，端口号：" + port);
+            //通过无线循环监听客户端连接
+            //如果没有客户端接入，将阻塞在accept操作上。
+            while(true){
+                Socket socket = server.accept();
+                //当有新的客户端接入时，会执行下面的代码
+                //然后创建一个新的线程处理这条Socket链路
+                new Thread(new ServerHandler(socket)).start();
+            }
+        }finally{
+            //一些必要的清理工作
+            if(server != null){
+                System.out.println("服务器已关闭。");
+                server.close();
+                server = null;
+            }
+        }
+    }
+}
+```
+
+## bio的服务处理handler
+
+```java
+/**
+ * 客户端线程
+ */
+public class ServerHandler implements Runnable{
+    private Socket socket;
+    public ServerHandler(Socket socket) {
+        this.socket = socket;
+    }
+    @Override
+    public void run() {
+        BufferedReader in = null;
+        PrintWriter out = null;
+        try{
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(),true);
+            String expression;
+            String result;
+            while(true){
+                //通过BufferedReader读取一行
+                //如果已经读到输入流尾部，返回null,退出循环
+                //如果得到非空值，就尝试计算结果并返回
+                if((expression = in.readLine())==null) break;
+                System.out.println("服务器收到消息：" + expression);
+                try{
+                    result = Calculator.cal(expression).toString();
+                }catch(Exception e){
+                    result = "计算错误：" + e.getMessage();
+                }
+                out.println(result);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //一些必要的清理工作
+            if(in != null){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                in = null;
+            }
+            if(out != null){
+                out.close();
+                out = null;
+            }
+            if(socket != null){
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                socket = null;
+            }
+        }
+    }
+}
+```
+
+## bio客户端
+
+```java
+/**
+ * 阻塞式I/O创建的客户端
+ */
+public class Client {
+    //默认的端口号
+    private static int DEFAULT_SERVER_PORT = 12345;
+    private static String DEFAULT_SERVER_IP = "127.0.0.1";
+    public static void send(String expression){
+        send(DEFAULT_SERVER_PORT,expression);
+    }
+    public static void send(int port,String expression){
+        System.out.println("算术表达式为：" + expression);
+        Socket socket = null;
+        BufferedReader in = null;
+        PrintWriter out = null;
+        try{
+            socket = new Socket(DEFAULT_SERVER_IP,port);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(),true);
+            out.println(expression);
+            System.out.println("___结果为：" + in.readLine());
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //一下必要的清理工作
+            if(in != null){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                in = null;
+            }
+            if(out != null){
+                out.close();
+                out = null;
+            }
+            if(socket != null){
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                socket = null;
+            }
+        }
+    }
+}
+```
+
 - **NIO (Non-blocking/New I/O):** NIO 是一种同步非阻塞的 I/O 模型，在 Java 1.4 中引入了 NIO 框架，对应 java.nio 包，提供了 Channel , Selector，Buffer 等抽象。NIO 中的 N 可以理解为 Non-blocking，不单纯是 New。它支持面向缓冲的，基于通道的 I/O 操作方法。 NIO 提供了与传统 BIO 模型中的 `Socket` 和 `ServerSocket` 相对应的 `SocketChannel` 和 `ServerSocketChannel` 两种不同的套接字通道实现,两种通道都支持阻塞和非阻塞两种模式。阻塞模式使用就像传统中的支持一样，比较简单，但是性能和可靠性都不好；非阻塞模式正好与之相反。对于低负载、低并发的应用程序，可以使用同步阻塞 I/O 来提升开发速率和更好的维护性；对于高负载、高并发的（网络）应用，应使用 NIO 的非阻塞模式来开发
+
+  ## Java NIO 由以下几个核心部分组成：
+
+  - Channels
+  - Buffers：与channel可以相互存取数据
+  - Selectors：允许单线程处理多个 Channel
+
+  ## 常用的channel
+
+  - FileChannel 从文件中读写数据。
+  - DatagramChannel 能通过 UDP 读写网络中的数据。
+  - SocketChannel 能通过 TCP 读写网络中的数据。
+  - ServerSocketChannel 可以监听TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个 SocketChannel。
+  - DatagramChannel是一个能收发UDP包的通道。因为UDP是无连接的网络协议，所以不能像其它通道那样读取和写入。它发送和接收的是数据包。
+
+  ## nio实现文件读写
+
+  ## nio实现简单服务器
+
+  ## nio实现客户端
+
 - **AIO (Asynchronous I/O):** AIO 也就是 NIO 2。在 Java 7 中引入了 NIO 的改进版 NIO 2,它是异步非阻塞的 IO 模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。AIO 是异步 IO 的缩写，虽然 NIO 在网络操作中，提供了非阻塞的方法，但是 NIO 的 IO 行为还是同步的。对于 NIO 来说，我们的业务线程是在 IO 操作准备好时，得到通知，接着就由这个线程自行进行 IO 操作，IO 操作本身是同步的。查阅网上相关资料，我发现就目前来说 AIO 的应用还不是很广泛，Netty 之前也尝试使用过 AIO，不过又放弃了。
