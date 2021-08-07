@@ -71,7 +71,7 @@ http://www.gulixueyuan.com/ 谷粒学院
 
 ![images/](images/搜狗截图20180129151112.png)
 
-## 4、Spring Boot HelloWorld
+## 4、Spring Boot Hello World
 
 一个功能：
 
@@ -191,9 +191,17 @@ Spring Boot的版本仲裁中心；
 
 ​	spring-boot-starter：spring-boot场景启动器；帮我们导入了web模块正常运行所依赖的组件；
 
-
-
 Spring Boot将所有的功能场景都抽取出来，做成一个个的starters（启动器），只需要在项目里面引入这些starter相关场景的所有依赖都会导入进来。要用什么功能就导入什么场景的启动器
+
+```java
+/**
+ * @SpringBootApplication :注解:组合注解,有多个注解组合而来
+ * @SpringBootConfiguration :这个注解是用来自动配置spring springmvc(初始化 servlet..)相关环境
+ * @EnableAutoConfiguration : 开启自动配置(自动配置核心注解) 自动配置spring相关环境,自动与项目中引入的第三方技术自动配置
+ * mybatis-springboot \ redis-springboot \ es-springboot  \ rabbitmq-springboot 第三方技术
+ * @ComponentScan :         组件扫描 spring根据注解去发挥作用(默认扫描当前包及其子包)
+ */
+```
 
 
 
@@ -236,7 +244,7 @@ public @interface SpringBootApplication {
 
 ​		标注在某个类上，表示这是一个Spring Boot的配置类；
 
-​		@**Configuration**:配置类上来标注这个注解；
+​		@**Configuration**:配置类上标注这个注解；
 
 ​			配置类 -----  配置文件；配置类也是容器中的一个组件；@Component
 
@@ -248,19 +256,19 @@ public @interface SpringBootApplication {
 
 ```java
 @AutoConfigurationPackage
-@Import(EnableAutoConfigurationImportSelector.class)
+@Import(AutoConfigurationImportSelector.class)
 public @interface EnableAutoConfiguration {
 ```
 
 ​      	@**AutoConfigurationPackage**：自动配置包
 
-​		@**Import**(AutoConfigurationPackages.Registrar.class)：
+@Import(AutoConfigurationImportSelector.class)：
 
-​		Spring的底层注解@Import，给容器中导入一个组件；导入的组件由AutoConfigurationPackages.Registrar.class；
+​		Spring的底层注解@Import，给容器中导入一个组件；导入的组件由AutoConfigurationImportSelector.class；
 
 ==将主配置类（@SpringBootApplication标注的类）的所在包及下面所有子包里面的所有组件扫描到Spring容器；==
 
-​	@**Import**(EnableAutoConfigurationImportSelector.class)；
+@Import(AutoConfigurationImportSelector.class)；
 
 ​		给容器中导入组件？
 
@@ -318,9 +326,9 @@ IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
 
 SpringBoot使用一个全局的配置文件，配置文件名是固定的；
 
-•application.properties
+• application.properties
 
-•application.yml
+• application.yml
 
 
 

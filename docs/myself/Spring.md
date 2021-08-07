@@ -1647,7 +1647,89 @@ spring的事务是在调用业务方法之前开始的，业务方法执行完�
 
 ### spring框架用到了哪些设计模式？
 
+>- **工厂设计模式** : Spring使用工厂模式通过 `BeanFactory`、`ApplicationContext` 创建 bean 对象。
+>- **代理设计模式** : Spring AOP 功能的实现。
+>- **单例设计模式** : Spring 中的 Bean 默认都是单例的。
+>- **模板方法模式** : Spring 中 `jdbcTemplate`、`hibernateTemplate` 等以 Template 结尾的对数据库操作的类，它们就使用到了模板模式。
+>- **包装器设计模式** : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。
+>- **观察者模式:** Spring 事件驱动模型就是观察者模式很经典的一个应用。
+>- **适配器模式** :Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
+>- **策略（Strategy）**:
+>
+>
 
+### Spring容器启动过程（[博文](https://blog.csdn.net/weixin_39559282/article/details/118255793)）
+
+>## Spring的启动流程可以归纳为三个步骤：
+>* 1、初始化Spring容器，注册内置的BeanPostProcessor的BeanDefinition到容器中
+>* 2、将配置类的BeanDefinition注册到容器中
+>* 3、调用refresh()方法刷新容器
+>![在这里插入图片描述](Spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTU1OTI4Mg==,size_16,color_FFFFFF,t_70.png)
+>
+>（1）初始化Spring容器，注册内置的BeanPostProcessor的BeanDefinition到容器中：
+>
+>>① 实例化BeanFactory【DefaultListableBeanFactory】工厂，用于生成Bean对象
+>>② 实例化BeanDefinitionReader注解配置读取器，用于对特定注解（如@Service、@Repository）的类进行读取转化成  BeanDefinition 对象，（BeanDefinition 是 Spring 中极其重要的一个概念，它存储了 bean 对象的所有特征信息，如是否单例，是否懒加载，factoryBeanName 等）
+>>③ 实例化ClassPathBeanDefinitionScanner路径扫描器，用于对指定的包目录进行扫描查找 bean 对象
+>
+>（2）将配置类的BeanDefinition注册到容器中：
+>
+>（3）调用refresh()方法刷新容器：
+>
+>>① prepareRefresh()刷新前的预处理：
+>>② obtainFreshBeanFactory()：获取在容器初始化时创建的BeanFactory：
+>>③ prepareBeanFactory(beanFactory)：BeanFactory的预处理工作，向容器中添加一些组件：
+>>④ postProcessBeanFactory(beanFactory)：子类重写该方法，可以实现在BeanFactory创建并预处理完成以后做进一步的设置
+>>⑤ invokeBeanFactoryPostProcessors(beanFactory)：在BeanFactory标准初始化之后执行BeanFactoryPostProcessor的方法，即BeanFactory的后置处理器：
+>>⑥ registerBeanPostProcessors(beanFactory)：向容器中注册Bean的后置处理器BeanPostProcessor，它的主要作用是干预Spring初始化bean的流程，从而完成代理、自动注入、循环依赖等功能
+>>⑦ initMessageSource()：初始化MessageSource组件，主要用于做国际化功能，消息绑定与消息解析：
+>>⑧ initApplicationEventMulticaster()：初始化事件派发器，在注册监听器时会用到：
+>>⑨ onRefresh()：留给子容器、子类重写这个方法，在容器刷新的时候可以自定义逻辑
+>>⑩ registerListeners()：注册监听器：将容器中所有的ApplicationListener注册到事件派发器中，并派发之前步骤产生的事件：
+>>⑪  finishBeanFactoryInitialization(beanFactory)：初始化所有剩下的单实例bean，核心方法是preInstantiateSingletons()，会调用getBean()方法创建对象；
+>>⑫ finishRefresh()：发布BeanFactory容器刷新完成事件：
+>
+>
+>## Spring Bean的生命周期？
+>
+>简单来说，Spring Bean的生命周期只有四个阶段：实例化 Instantiation --> 属性赋值 Populate  --> 初始化 Initialization  --> 销毁 Destruction
+>
+>但具体来说，Spring Bean的生命周期包含下图的流程：
+>![在这里插入图片描述](Spring.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTU1OTI4Mg==,size_16,color_FFFFFF,t_70-20210729145436276.png)
+>
+>（1）实例化Bean：
+>
+>对于BeanFactory容器，当客户向容器请求一个尚未初始化的bean时，或初始化bean的时候需要注入另一个尚未初始化的依赖时，容器就会调用createBean进行实例化。
+>对于ApplicationContext容器，当容器启动结束后，通过获取BeanDefinition对象中的信息，实例化所有的bean。
+>
+>（2）设置对象属性（依赖注入）：
+>实例化后的对象被封装在BeanWrapper对象中，紧接着，Spring根据BeanDefinition中的信息 以及 通过BeanWrapper提供的设置属性的接口完成属性设置与依赖注入。
+>
+>（3）处理Aware接口：Spring会检测该对象是否实现了xxxAware接口，通过Aware类型的接口，可以让我们拿到Spring容器的一些资源：
+>
+>①如果这个Bean实现了BeanNameAware接口，会调用它实现的setBeanName(String beanId)方法，传入Bean的名字；
+>②如果这个Bean实现了BeanClassLoaderAware接口，调用setBeanClassLoader()方法，传入ClassLoader对象的实例。
+>②如果这个Bean实现了BeanFactoryAware接口，会调用它实现的setBeanFactory()方法，传递的是Spring工厂自身。
+>③如果这个Bean实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文；
+>
+>（4）BeanPostProcessor前置处理：如果想对Bean进行一些自定义的前置处理，那么可以让Bean实现了BeanPostProcessor接口，那将会调用postProcessBeforeInitialization(Object obj, String s)方法。
+>
+>（5）InitializingBean：如果Bean实现了InitializingBean接口，执行afeterPropertiesSet()方法。
+>
+>（6）init-method：如果Bean在Spring配置文件中配置了 init-method 属性，则会自动调用其配置的初始化方法。
+>
+>（7）BeanPostProcessor后置处理：如果这个Bean实现了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法；由于这个方法是在Bean初始化结束时调用的，所以可以被应用于内存或缓存技术；
+>
+>以上几个步骤完成后，Bean就已经被正确创建了，之后就可以使用这个Bean了。
+>
+>（8）DisposableBean：当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用其实现的destroy()方法；
+>
+>（9）destroy-method：最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。
+>
+>
+># 未完待续~
+>
+>
 
 
 

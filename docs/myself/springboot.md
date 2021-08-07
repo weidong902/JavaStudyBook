@@ -566,3 +566,16 @@ public class MybatisAutoConfiguration {
 >
 >
 
+### SpringBoot整合mybatis
+
+
+
+![image-20210730164011233](springboot.assets/image-20210730164011233.png)
+
+![image-20210730183532301](springboot.assets/image-20210730183532301.png)
+
+
+
+![image-20210730183355186](springboot.assets/image-20210730183355186.png)
+
+![image-20210730183440161](springboot.assets/image-20210730183440161.png)
