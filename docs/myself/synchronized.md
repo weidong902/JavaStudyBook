@@ -663,3 +663,6 @@ ReadWriteLock代表了一对锁，它在数据量大 且 并发读多、写少�
 * 线程在解锁前，必须将共享变量的最新值刷新到主内存中
 * volatile的可见性都是通过内存屏障（Memory Barrier） 来实现
 * synchronized靠操作系统内核互斥锁实现，相当于JMM中lock、unlock。退出代码块时刷新变量到主内存。
+
+![reentrantLock](synchronized.assets/image-20220619213711160.png)
+
